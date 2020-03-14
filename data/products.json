@@ -1,0 +1,502 @@
+[
+  {
+    "ID": "1",
+    "name": "Alcoholic beverages",
+    "price": "23.43"
+  },
+  {
+    "ID": "2",
+    "name": "Bottled waters",
+    "price": "1.98"
+  },
+  {
+    "ID": "3",
+    "name": "Personal hygiene",
+    "price": "52.86"
+  },
+  {
+    "ID": "4",
+    "name": "Toys",
+    "price": "57.49"
+  },
+  {
+    "ID": "5",
+    "name": "Poultry",
+    "price": "45.12"
+  },
+  {
+    "ID": "6",
+    "name": "Flowers",
+    "price": "36.16"
+  },
+  {
+    "ID": "7",
+    "name": "Poultry",
+    "price": "35.78"
+  },
+  {
+    "ID": "8",
+    "name": "Detergents",
+    "price": "74.93"
+  },
+  {
+    "ID": "9",
+    "name": "Seafood",
+    "price": "62.13"
+  },
+  {
+    "ID": "10",
+    "name": "Pasta",
+    "price": "12.02"
+  },
+  {
+    "ID": "11",
+    "name": "Candies",
+    "price": "31.40"
+  },
+  {
+    "ID": "12",
+    "name": "Medicines",
+    "price": "76.36"
+  },
+  {
+    "ID": "13",
+    "name": "Personal Care",
+    "price": "36.03"
+  },
+  {
+    "ID": "14",
+    "name": "Baby-care",
+    "price": "54.43"
+  },
+  {
+    "ID": "15",
+    "name": "Sauces",
+    "price": "81.38"
+  },
+  {
+    "ID": "16",
+    "name": "Canned Goods",
+    "price": "57.01"
+  },
+  {
+    "ID": "17",
+    "name": "Fruits",
+    "price": "70.88"
+  },
+  {
+    "ID": "18",
+    "name": "Alcoholic beverages",
+    "price": "35.03"
+  },
+  {
+    "ID": "19",
+    "name": "Vegetables",
+    "price": "35.44"
+  },
+  {
+    "ID": "20",
+    "name": "Cosmetics",
+    "price": "24.32"
+  },
+  {
+    "ID": "21",
+    "name": "Chicken",
+    "price": "83.44"
+  },
+  {
+    "ID": "22",
+    "name": "House-cleaning products",
+    "price": "45.30"
+  },
+  {
+    "ID": "23",
+    "name": "White rice",
+    "price": "6.66"
+  },
+  {
+    "ID": "24",
+    "name": "Baby-care",
+    "price": "46.00"
+  },
+  {
+    "ID": "25",
+    "name": "Mustard",
+    "price": "33.80"
+  },
+  {
+    "ID": "26",
+    "name": "Brown rice",
+    "price": "63.92"
+  },
+  {
+    "ID": "27",
+    "name": "Alcoholic beverages",
+    "price": "45.06"
+  },
+  {
+    "ID": "28",
+    "name": "Tea",
+    "price": "3.36"
+  },
+  {
+    "ID": "29",
+    "name": "Poultry",
+    "price": "14.96"
+  },
+  {
+    "ID": "30",
+    "name": "Pasta",
+    "price": "10.45"
+  },
+  {
+    "ID": "31",
+    "name": "Snack foods",
+    "price": "34.13"
+  },
+  {
+    "ID": "32",
+    "name": "Candies",
+    "price": "82.67"
+  },
+  {
+    "ID": "33",
+    "name": "Frozen foods",
+    "price": "56.40"
+  },
+  {
+    "ID": "34",
+    "name": "White rice",
+    "price": "82.57"
+  },
+  {
+    "ID": "35",
+    "name": "Brown rice",
+    "price": "50.27"
+  },
+  {
+    "ID": "36",
+    "name": "Personal Care",
+    "price": "38.02"
+  },
+  {
+    "ID": "37",
+    "name": "Eggs",
+    "price": "54.70"
+  },
+  {
+    "ID": "38",
+    "name": "Seafood",
+    "price": "85.77"
+  },
+  {
+    "ID": "39",
+    "name": "Meat",
+    "price": "67.89"
+  },
+  {
+    "ID": "40",
+    "name": "Medicines",
+    "price": "62.35"
+  },
+  {
+    "ID": "41",
+    "name": "Fruits",
+    "price": "65.96"
+  },
+  {
+    "ID": "42",
+    "name": "Toys",
+    "price": "75.12"
+  },
+  {
+    "ID": "43",
+    "name": "Chicken",
+    "price": "37.46"
+  },
+  {
+    "ID": "44",
+    "name": "Mustard",
+    "price": "31.07"
+  },
+  {
+    "ID": "45",
+    "name": "Seafood",
+    "price": "41.58"
+  },
+  {
+    "ID": "46",
+    "name": "Cosmetics",
+    "price": "68.48"
+  },
+  {
+    "ID": "47",
+    "name": "White rice",
+    "price": "23.73"
+  },
+  {
+    "ID": "48",
+    "name": "Snack foods",
+    "price": "11.50"
+  },
+  {
+    "ID": "49",
+    "name": "Baby-care",
+    "price": "36.44"
+  },
+  {
+    "ID": "50",
+    "name": "Pasta",
+    "price": "40.17"
+  },
+  {
+    "ID": "51",
+    "name": "Bottled waters",
+    "price": "83.94"
+  },
+  {
+    "ID": "52",
+    "name": "Grooming products",
+    "price": "67.19"
+  },
+  {
+    "ID": "53",
+    "name": "Flour",
+    "price": "13.73"
+  },
+  {
+    "ID": "54",
+    "name": "Detergents",
+    "price": "1.00"
+  },
+  {
+    "ID": "55",
+    "name": "Hygiene products",
+    "price": "10.26"
+  },
+  {
+    "ID": "56",
+    "name": "Diet foods",
+    "price": "89.48"
+  },
+  {
+    "ID": "57",
+    "name": "Baby food",
+    "price": "68.99"
+  },
+  {
+    "ID": "58",
+    "name": "Tomato sauce",
+    "price": "88.44"
+  },
+  {
+    "ID": "59",
+    "name": "Flour",
+    "price": "36.59"
+  },
+  {
+    "ID": "60",
+    "name": "Sauces",
+    "price": "40.43"
+  },
+  {
+    "ID": "61",
+    "name": "Decorations",
+    "price": "45.97"
+  },
+  {
+    "ID": "62",
+    "name": "Personal hygiene",
+    "price": "30.42"
+  },
+  {
+    "ID": "63",
+    "name": "Poultry",
+    "price": "42.71"
+  },
+  {
+    "ID": "64",
+    "name": "Flowers",
+    "price": "79.62"
+  },
+  {
+    "ID": "65",
+    "name": "Condiments",
+    "price": "84.24"
+  },
+  {
+    "ID": "66",
+    "name": "Bread",
+    "price": "33.02"
+  },
+  {
+    "ID": "67",
+    "name": "Eggs",
+    "price": "11.41"
+  },
+  {
+    "ID": "68",
+    "name": "Vegetables",
+    "price": "15.69"
+  },
+  {
+    "ID": "69",
+    "name": "Baby food",
+    "price": "33.94"
+  },
+  {
+    "ID": "70",
+    "name": "Cosmetics",
+    "price": "38.34"
+  },
+  {
+    "ID": "71",
+    "name": "Bakery products",
+    "price": "13.70"
+  },
+  {
+    "ID": "72",
+    "name": "Personal hygiene",
+    "price": "42.52"
+  },
+  {
+    "ID": "73",
+    "name": "Cereals",
+    "price": "25.77"
+  },
+  {
+    "ID": "74",
+    "name": "House-cleaning products",
+    "price": "44.52"
+  },
+  {
+    "ID": "75",
+    "name": "Baby-care",
+    "price": "71.88"
+  },
+  {
+    "ID": "76",
+    "name": "Pasta",
+    "price": "59.05"
+  },
+  {
+    "ID": "77",
+    "name": "Olive oil",
+    "price": "80.04"
+  },
+  {
+    "ID": "78",
+    "name": "Hygiene products",
+    "price": "19.32"
+  },
+  {
+    "ID": "79",
+    "name": "Cereals",
+    "price": "64.32"
+  },
+  {
+    "ID": "80",
+    "name": "Dry Goods",
+    "price": "9.97"
+  },
+  {
+    "ID": "81",
+    "name": "Pet foods",
+    "price": "56.05"
+  },
+  {
+    "ID": "82",
+    "name": "Pasta",
+    "price": "70.73"
+  },
+  {
+    "ID": "83",
+    "name": "Nonalcoholic beverages",
+    "price": "40.46"
+  },
+  {
+    "ID": "84",
+    "name": "Candies",
+    "price": "62.09"
+  },
+  {
+    "ID": "85",
+    "name": "Meat",
+    "price": "36.64"
+  },
+  {
+    "ID": "86",
+    "name": "Personal Care",
+    "price": "16.38"
+  },
+  {
+    "ID": "87",
+    "name": "Sweets",
+    "price": "73.72"
+  },
+  {
+    "ID": "88",
+    "name": "Coffee",
+    "price": "27.53"
+  },
+  {
+    "ID": "89",
+    "name": "Fish",
+    "price": "2.94"
+  },
+  {
+    "ID": "90",
+    "name": "Flowers",
+    "price": "24.75"
+  },
+  {
+    "ID": "91",
+    "name": "Olive oil",
+    "price": "68.17"
+  },
+  {
+    "ID": "92",
+    "name": "Cheese",
+    "price": "32.86"
+  },
+  {
+    "ID": "93",
+    "name": "Pet foods",
+    "price": "36.01"
+  },
+  {
+    "ID": "94",
+    "name": "Poultry",
+    "price": "40.20"
+  },
+  {
+    "ID": "95",
+    "name": "Bakery products",
+    "price": "43.21"
+  },
+  {
+    "ID": "96",
+    "name": "Vegetables",
+    "price": "29.81"
+  },
+  {
+    "ID": "97",
+    "name": "Decorations",
+    "price": "12.54"
+  },
+  {
+    "ID": "98",
+    "name": "Vegetables",
+    "price": "41.29"
+  },
+  {
+    "ID": "99",
+    "name": "Meat",
+    "price": "52.33"
+  },
+  {
+    "ID": "100",
+    "name": "Seafood",
+    "price": "6.76"
+  }
+]

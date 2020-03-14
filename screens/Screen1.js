@@ -1,24 +1,16 @@
-import React, { Component } from 'react'
-import { View, Text } from 'react-native'
-import { connect } from 'react-redux'
+import React from 'react'
+import { View, StyleSheet } from 'react-native'
 
-class Screen1 extends Component {
-    render() {
-        console.log(this.props)
-        return (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Text>Screen 1</Text>
-            </View>
-        )
-    }
-}
+import ProductList from '../components/ProductList'
 
-const mapStateToProps = (state) => ({
-    ...state
+const Screen1 = () => (
+    <View style={styles.container}>
+        <ProductList />
+    </View>
+)
+
+const styles = StyleSheet.create({
+    container: { flex: 1, alignItems: 'center', justifyContent: 'center', flexDirection: 'row' }
 })
 
-const mapDispatchToProps = {
-
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Screen1)
+export default Screen1
