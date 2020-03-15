@@ -1,7 +1,7 @@
-import products from '../data/products.json'
+import { getProducts } from '../data/api'
 
 const INITIAL_STATE = {
-    products
+    products: getProducts()
 }
 
 export default (state = INITIAL_STATE, action) => {

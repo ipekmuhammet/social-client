@@ -10,7 +10,7 @@ const Screen1 = () => (
 )
 
 const styles = StyleSheet.create({
-    container: { flex: 1, alignItems: 'center', justifyContent: 'center', flexDirection: 'row' }
+    container: { flex: 1 }
 })
 
 export default Screen1

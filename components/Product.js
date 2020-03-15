@@ -1,5 +1,6 @@
 import React from 'react'
 import { TouchableOpacity, View, Text, Image, StyleSheet } from 'react-native'
+import { Ionicons } from '@expo/vector-icons'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { connect } from 'react-redux'
 
@@ -17,7 +18,7 @@ const Product = ({ data: { ID, name, price }, addProduct }) => {
         <View style={styles.container}>
 
             <TouchableOpacity style={styles.addProductButton} onPress={onClick}>
-                <Text>+</Text>
+                <Ionicons name={'md-add'} size={36} color={'#30FF30'} />
             </TouchableOpacity>
 
             <View style={styles.child}>
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
         padding: RFPercentage(1),
         margin: RFPercentage(1),
         borderWidth: 1,
-        borderColor: '#EFEFEF',
+        borderColor: '#CDCDCD',
         borderRadius: RFPercentage(2)
     },
     child: {
@@ -56,16 +57,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         position: 'absolute',
         top: 5,
-        right: 5,
-        width: RFPercentage(5.6),
-        height: RFPercentage(5.6),
-        borderRadius: RFPercentage(2.8),
-        borderWidth: 1,
-        borderColor: '#30FF30'
+        right: 5
     },
     productImage: {
-        width: RFPercentage(10),
-        height: RFPercentage(10)
+        width: RFPercentage(16),
+        height: RFPercentage(16)
     },
     productName: {
         fontSize: RFPercentage(3),
