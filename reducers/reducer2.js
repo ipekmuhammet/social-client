@@ -6,6 +6,6 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        default: return state
+        default: return Object.assign({}, state, action.payload)
     }
 }

@@ -3,16 +3,22 @@ import { TouchableOpacity, View, Text, Image, StyleSheet } from 'react-native'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { connect } from 'react-redux'
 
+import { addProduct } from '../actions/actions1'
+
 import productExample from '../assets/product-example.png'
 
-const Product = ({ data: { name, price } }) => {
+const Product = ({ data: { ID, name, price }, addProduct }) => {
 
     const onClick = () => {
-
+        addProduct(ID)
     }
 
     return (
-        <TouchableOpacity style={styles.container} onPress={onClick}>
+        <View style={styles.container}>
+
+            <TouchableOpacity style={styles.addProductButton} onPress={onClick}>
+                <Text>+</Text>
+            </TouchableOpacity>
 
             <View style={styles.child}>
                 <Image source={productExample} style={styles.productImage} />
@@ -23,10 +29,10 @@ const Product = ({ data: { name, price } }) => {
             </View>
 
             <View style={styles.child}>
-                <Text style={styles.productPrice}>{'₺' + price}</Text>
+                <Text style={styles.productPrice}>{'₺ ' + price}</Text>
             </View>
 
-        </TouchableOpacity>
+        </View>
     )
 }
 
@@ -44,6 +50,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         flex: 1
+    },
+    addProductButton: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'absolute',
+        top: 5,
+        right: 5,
+        width: RFPercentage(5.6),
+        height: RFPercentage(5.6),
+        borderRadius: RFPercentage(2.8),
+        borderWidth: 1,
+        borderColor: '#30FF30'
     },
     productImage: {
         width: RFPercentage(10),
@@ -66,7 +84,7 @@ const styles = StyleSheet.create({
 })
 
 const mapDispatchToProps = {
-
+    addProduct
 }
 
 export default connect(null, mapDispatchToProps)(Product)
