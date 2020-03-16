@@ -8,17 +8,17 @@ import { addProduct } from '../actions/actions1'
 
 import productExample from '../assets/product-example.png'
 
-const Product = ({ data: { ID, name, price }, addProduct }) => {
+const Product = ({ data: { Id, name, price }, addProduct }) => {
 
     const onClick = () => {
-        addProduct(ID)
+        addProduct(Id)
     }
 
     return (
         <View style={styles.container}>
 
-            <TouchableOpacity style={styles.addProductButton}>
-                <Ionicons onPress={onClick} style={styles.addProductIcon} name={'md-add'} size={24} color={'#30FF30'} />
+            <TouchableOpacity onPress={onClick} style={styles.addProductButton}>
+                <Text style={styles.addProductIcon}>+</Text>
             </TouchableOpacity>
 
             <View style={[styles.child, styles.productImageContainer]}>
@@ -56,13 +56,12 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: -1 * RFPercentage(1.2),
         right: -1 * RFPercentage(1.2),
-        zIndex: 1
+        zIndex: 1,
+        borderRadius: 4
     },
     addProductIcon: {
-        borderWidth: 1,
-        borderColor: '#CDCDCD',
-        padding: RFPercentage(1),
-        backgroundColor: 'white'
+        color: '#5837C2',
+        fontSize: 32
     },
     productImageContainer: {
         borderWidth: 1,

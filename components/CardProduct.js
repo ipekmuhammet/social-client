@@ -17,7 +17,7 @@ class CardProduct extends Component {
     }
 
     onDecreaseClick = () => {
-        this.state.countOfProduct <= 1 ? this.props.removeProduct(this.props.data.ID) : this.setState({ countOfProduct: this.state.countOfProduct - 1 })
+        this.state.countOfProduct <= 1 ? this.props.removeProduct(this.props.data.Id) : this.setState({ countOfProduct: this.state.countOfProduct - 1 })
     }
 
     render() {
@@ -106,12 +106,8 @@ const styles = StyleSheet.create({
     }
 })
 
-const mapStateToProps = (state) => ({
-
-})
-
 const mapDispatchToProps = {
     removeProduct
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CardProduct)
+export default connect(null, mapDispatchToProps)(CardProduct)

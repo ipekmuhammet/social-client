@@ -1,0 +1,42 @@
+[
+  {
+    "Id": 1,
+    "name": "New Products"
+  },
+  {
+    "Id": 2,
+    "name": "Water"
+  },
+  {
+    "Id": 3,
+    "name": "Fruits & Veg"
+  },
+  {
+    "Id": 4,
+    "name": "Baked Goods"
+  },
+  {
+    "Id": 5,
+    "name": "Snacks"
+  },
+  {
+    "Id": 6,
+    "name": "Ice Cream"
+  },
+  {
+    "Id": 7,
+    "name": "Ready To Eat"
+  },
+  {
+    "Id": 8,
+    "name": "Drinks"
+  },
+  {
+    "Id": 9,
+    "name": "Fit & Form"
+  },
+  {
+    "Id": 10,
+    "name": "Dairy & Deli"
+  }
+]

@@ -11,7 +11,7 @@ class CartScreen extends Component {
                 <View style={styles.container}>
                     <FlatList
                         data={Object.values(this.props.cart)}
-                        keyExtractor={item => 'cart' + item.ID}
+                        keyExtractor={item => 'cart' + item.Id}
                         renderItem={({ item }) => <CardProduct data={item} />}
                     />
                 </View>
@@ -39,8 +39,4 @@ const mapStateToProps = ({
     cart
 })
 
-const mapDispatchToProps = {
-
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CartScreen)
+export default connect(mapStateToProps)(CartScreen)

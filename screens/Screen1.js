@@ -1,16 +1,22 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
+import ScrollableTabView, { ScrollableTabBar } from 'react-native-scrollable-tab-view'
+
+import { getCategories, getProductsByCategoryId } from '../data/api'
 
 import ProductList from '../components/ProductList'
 
 const Screen1 = () => (
-    <View style={styles.container}>
-        <ProductList />
-    </View>
+    <ScrollableTabView
+        initialPage={1}
+        tabBarBackgroundColor={'#7849F7'}
+        tabBarTextStyle={{ color: 'white' }}
+        tabBarUnderlineStyle={{ backgroundColor: '#FED110' }}
+        renderTabBar={() => <ScrollableTabBar />}
+    >
+        {
+            getCategories().map(category => <ProductList key={category.Id} tabLabel={category.name} products={getProductsByCategoryId(category.Id)} />)
+        }
+    </ScrollableTabView>
 )
-
-const styles = StyleSheet.create({
-    container: { flex: 1 }
-})
 
 export default Screen1
