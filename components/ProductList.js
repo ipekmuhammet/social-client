@@ -10,7 +10,7 @@ const ProductList = ({ products }) => (
         scrollEnabled={true}
         keyExtractor={item => item.ID}
         renderItem={({ item }) => <Product data={item} />}
-        numColumns={2} />
+        numColumns={3} />
 )
 
 const mapStateToProps = ({

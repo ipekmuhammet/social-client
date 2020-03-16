@@ -17,11 +17,11 @@ const Product = ({ data: { ID, name, price }, addProduct }) => {
     return (
         <View style={styles.container}>
 
-            <TouchableOpacity style={styles.addProductButton} onPress={onClick}>
-                <Ionicons name={'md-add'} size={36} color={'#30FF30'} />
+            <TouchableOpacity style={styles.addProductButton}>
+                <Ionicons onPress={onClick} style={styles.addProductIcon} name={'md-add'} size={24} color={'#30FF30'} />
             </TouchableOpacity>
 
-            <View style={styles.child}>
+            <View style={[styles.child, styles.productImageContainer]}>
                 <Image source={productExample} style={styles.productImage} />
             </View>
 
@@ -43,9 +43,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         padding: RFPercentage(1),
         margin: RFPercentage(1),
-        borderWidth: 1,
-        borderColor: '#CDCDCD',
-        borderRadius: RFPercentage(2)
+        zIndex: -1
     },
     child: {
         alignItems: 'center',
@@ -56,12 +54,25 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         position: 'absolute',
-        top: 5,
-        right: 5
+        top: -1 * RFPercentage(1.2),
+        right: -1 * RFPercentage(1.2),
+        zIndex: 1
+    },
+    addProductIcon: {
+        borderWidth: 1,
+        borderColor: '#CDCDCD',
+        padding: RFPercentage(1),
+        backgroundColor: 'white'
+    },
+    productImageContainer: {
+        borderWidth: 1,
+        borderColor: '#CDCDCD',
+        borderRadius: RFPercentage(2)
     },
     productImage: {
-        width: RFPercentage(16),
-        height: RFPercentage(16)
+        width: RFPercentage(14),
+        height: RFPercentage(14),
+        margin: 12
     },
     productName: {
         fontSize: RFPercentage(3),

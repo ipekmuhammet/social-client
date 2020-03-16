@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Blank Template",
+    "name": "Platform App",
     "scheme": "platformapp",
     "slug": "platform_app",
     "privacy": "public",
