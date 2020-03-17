@@ -1,28 +1,30 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { View, FlatList, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 
 import CardProduct from '../components/CardProduct'
+import CompletePayment from '../components/CompletePayment'
 
-class CartScreen extends Component {
-    render() {
-        if (Object.values(this.props.cart).length > 0) {
-            return (
-                <View style={styles.container}>
-                    <FlatList
-                        data={Object.values(this.props.cart)}
-                        keyExtractor={item => 'cart' + item.Id}
-                        renderItem={({ item }) => <CardProduct data={item} />}
-                    />
-                </View>
-            )
-        } else {
-            return (
-                <View style={styles.centeredContainer}>
-                    <Text>Empty Cart!</Text>
-                </View>
-            )
-        }
+const CartScreen = ({ cart }) => {
+    const products = Object.values(cart)
+
+    if (products.length > 0) {
+        return (
+            <View style={styles.container}>
+                <FlatList
+                    data={products}
+                    keyExtractor={item => 'cart' + item.Id}
+                    renderItem={({ item }) => <CardProduct data={item} />}
+                />
+                <CompletePayment />
+            </View>
+        )
+    } else {
+        return (
+            <View style={styles.centeredContainer}>
+                <Text>Empty Cart!</Text>
+            </View>
+        )
     }
 }
 
