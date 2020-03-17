@@ -7,7 +7,7 @@ const CompletePaymentComponent = ({ cart, navigation }) => {
     const totalPrice = products.reduce((previousValue, currentValue) => previousValue + parseFloat(currentValue.price), 0).toFixed(2)
 
     const onCompletePaymentClick = () => {
-        navigation.navigate('choosePayment')
+        navigation.navigate('completePayment')
     }
 
     return (

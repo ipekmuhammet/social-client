@@ -1,7 +1,7 @@
 import React from 'react'
-import { View, Text } from 'react-native'
 
 import PaymentType from '../components/PaymentType'
+import HeadingDivider from '../components/HeadingDivider'
 
 const paymentTypes = {
     online: {
@@ -24,33 +24,14 @@ const paymentTypes = {
     }
 }
 
-const PaymentHeading = ({ title }) => (
-    <View style={{ flexDirection: 'row', overflow: 'hidden', paddingVertical: 2 }}>
-        <View style={{
-            flex: 1,
-            justifyContent: 'center', height: 48, paddingHorizontal: 24, backgroundColor: '#EDEDED',
-            shadowColor: "#000",
-            shadowOffset: {
-                width: 0,
-                height: 4,
-            },
-            shadowOpacity: 0.32,
-            shadowRadius: 6,
-            elevation: 9
-        }}>
-            <Text style={{ color: '#A8A8A8', fontSize: 20, fontWeight: 'bold' }}>{title}</Text>
-        </View>
-    </View>
-)
-
 const ChoosePaymentScreen = ({ navigation }) => (
-    <View>
-        <PaymentHeading title={'Online Ödeme'} />
+    <React.Fragment>
+        <HeadingDivider title={'Online Ödeme'} />
         <PaymentType navigation={navigation} {...paymentTypes.online} />
-        <PaymentHeading title={'Kapıda Ödeme'} />
+        <HeadingDivider title={'Kapıda Ödeme'} />
         <PaymentType navigation={navigation} {...paymentTypes.card} />
         <PaymentType navigation={navigation} {...paymentTypes.cash} />
-    </View>
+    </React.Fragment>
 )
 
 export default ChoosePaymentScreen
