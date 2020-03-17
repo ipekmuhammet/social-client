@@ -1,17 +1,28 @@
 import React from 'react'
+import { View, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 
 import HeadingDivider from '../components/HeadingDivider'
 import CompletePayment from '../components/CompletePayment'
-import AddressSelectComponent from '../components/AddressSelectComponent'
+
+import AddressSelectComponent from '../components/CompletePaymentComponents/AddressSelectComponent'
+import OrderTimeComponent from '../components/CompletePaymentComponents/OrderTimeComponent'
+import PaymentTypeSelectComponent from '../components/CompletePaymentComponents/PaymentTypeSelectComponent'
+import OrderNoteComponent from '../components/CompletePaymentComponents/OrderNoteComponent'
 
 const CompletePaymentScreen = ({ navigation }) => (
     <React.Fragment>
-        <HeadingDivider title={'Adres Seçimi'} />
-        <AddressSelectComponent />
-        <HeadingDivider title={'Gönderim Zamanı'} />
-        <HeadingDivider title={'Ödeme Şekli'} />
-        <HeadingDivider title={'Sipariş Notu'} />
+        <ScrollView>
+            <HeadingDivider title={'Adres Seçimi'} />
+            <AddressSelectComponent />
+            <HeadingDivider title={'Gönderim Zamanı'} />
+            <OrderTimeComponent />
+            <HeadingDivider title={'Ödeme Şekli'} />
+            <PaymentTypeSelectComponent navigation={navigation} />
+            <HeadingDivider title={'Sipariş Notu'} />
+            <OrderNoteComponent />
+            <View style={{ height: 90 }} />
+        </ScrollView>
         <CompletePayment />
     </React.Fragment>
 )

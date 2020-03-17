@@ -3,7 +3,7 @@ import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 
-const AddressSelectComponent = ({  navigation }) => {
+const OrderTimeComponent = ({ navigation }) => {
 
     const onClick = () => {
         console.log('address')
@@ -12,14 +12,14 @@ const AddressSelectComponent = ({  navigation }) => {
     return (
         <TouchableOpacity style={styles.container} onPress={onClick}>
             <View style={styles.iconContainer}>
-                <Ionicons size={40} name={'md-home'} />
+                <Ionicons size={40} name={'md-time'} />
             </View>
             <View style={styles.paymentInfoContainer}>
                 <View style={styles.paymentInfoTextContainer}>
-                    <Text style={styles.paymentTitle}>{'Ev'}</Text>
+                    <Text style={styles.paymentTitle}>{'Bugün (17.03.2020)'}</Text>
                 </View>
                 <View style={styles.paymentInfoTextContainer}>
-                    <Text style={styles.paymentDetail}>{'Fatih (Ayvansaray Mah.)'}</Text>
+                    <Text style={styles.paymentDetail}>{'Hemen ~ 25-35 dakika'}</Text>
                 </View>
             </View>
             <View style={styles.iconContainer}>
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
 })
 
 const mapDispatchToProps = {
-    
+
 }
 
-export default connect(null, mapDispatchToProps)(AddressSelectComponent)
+export default connect(null, mapDispatchToProps)(OrderTimeComponent)
