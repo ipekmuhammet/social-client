@@ -2,12 +2,15 @@ import React from 'react'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 
-const CompletePaymentComponent = ({ cart, navigation }) => {
+const CompletePaymentComponent = ({ cart, paymentType, navigation }) => {
     const products = Object.values(cart)
     const totalPrice = products.reduce((previousValue, currentValue) => previousValue + parseFloat(currentValue.price), 0).toFixed(2)
 
     const onCompletePaymentClick = () => {
-        navigation.navigate('completePayment')
+        if (paymentType === 1)
+            navigation.navigate('onlinePaymentScreen')
+        else
+            console.log('Complete Payment')
     }
 
     return (
@@ -36,9 +39,13 @@ const styles = StyleSheet.create({
 const mapStateToProps = ({
     reducer1: {
         cart
+    },
+    reducer2: {
+        paymentType
     }
 }) => ({
-    cart
+    cart,
+    paymentType
 })
 
 export default connect(mapStateToProps)(CompletePaymentComponent)
