@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import CardProduct from '../components/CardProduct'
 import CompletePayment from '../components/CompletePayment'
 
-const CartScreen = ({ cart }) => {
+const CartScreen = ({ cart, navigation }) => {
     const products = Object.values(cart)
 
     if (products.length > 0) {
@@ -16,7 +16,7 @@ const CartScreen = ({ cart }) => {
                     keyExtractor={item => 'cart' + item.Id}
                     renderItem={({ item }) => <CardProduct data={item} />}
                 />
-                <CompletePayment />
+                <CompletePayment navigation={navigation} />
             </View>
         )
     } else {

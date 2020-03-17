@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 
-const CompletePaymentComponent = ({ cart }) => {
+const CompletePaymentComponent = ({ cart, navigation }) => {
     const products = Object.values(cart)
     const totalPrice = products.reduce((previousValue, currentValue) => previousValue + parseFloat(currentValue.price), 0).toFixed(2)
 
     const onCompletePaymentClick = () => {
-        console.log('click')
+        navigation.navigate('choosePayment')
     }
 
     return (
