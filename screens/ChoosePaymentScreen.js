@@ -1,20 +1,23 @@
 import React from 'react'
 import { View, Text } from 'react-native'
-import { connect } from 'react-redux'
+
 import PaymentType from '../components/PaymentType'
 
 const paymentTypes = {
     online: {
+        Id: 0,
         title: 'Online Kredi/Banka Kartı',
         detail: 'Online ödeyin, zaman kazanın.',
         icon: 'md-briefcase'
     },
     card: {
+        Id: 1,
         title: 'Kredi Kartı',
         detail: 'Sipariş teslimide kredi kartı / banka kartı ile ödeme',
         icon: 'ios-card'
     },
     cash: {
+        Id: 2,
         title: 'Nakit',
         detail: 'Nakit ödeme',
         icon: 'ios-wallet'
@@ -40,22 +43,14 @@ const PaymentHeading = ({ title }) => (
     </View>
 )
 
-const ChoosePaymentScreen = () => (
+const ChoosePaymentScreen = ({ navigation }) => (
     <View>
         <PaymentHeading title={'Online Ödeme'} />
-        <PaymentType {...paymentTypes.online} />
+        <PaymentType navigation={navigation} {...paymentTypes.online} />
         <PaymentHeading title={'Kapıda Ödeme'} />
-        <PaymentType {...paymentTypes.card} />
-        <PaymentType {...paymentTypes.cash} />
+        <PaymentType navigation={navigation} {...paymentTypes.card} />
+        <PaymentType navigation={navigation} {...paymentTypes.cash} />
     </View>
 )
 
-const mapStateToProps = (state) => ({
-
-})
-
-const mapDispatchToProps = {
-
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ChoosePaymentScreen)
+export default ChoosePaymentScreen

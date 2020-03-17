@@ -1,10 +1,19 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons'
 
-const PaymentType = ({ title, detail, icon }) => {
+import { setPaymentType } from '../actions/actions2'
+
+const PaymentType = ({ Id, title, detail, icon, setPaymentType, navigation }) => {
+
+    const onPaymentTypeClick = () => {
+        setPaymentType(Id)
+        navigation.goBack()
+    }
+
     return (
-        <View style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={onPaymentTypeClick}>
             <View style={styles.iconContainer}>
                 <Ionicons size={40} name={icon} />
             </View>
@@ -16,7 +25,7 @@ const PaymentType = ({ title, detail, icon }) => {
                     <Text style={styles.paymentDetail}>{detail}</Text>
                 </View>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 
@@ -54,4 +63,8 @@ const styles = StyleSheet.create({
     }
 })
 
-export default PaymentType
+const mapDispatchToProps = {
+    setPaymentType
+}
+
+export default connect(null, mapDispatchToProps)(PaymentType)
