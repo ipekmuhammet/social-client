@@ -1,20 +1,20 @@
-import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import React from 'react'
 import { connect } from 'react-redux'
-import HeadingDivider from '../components/HeadingDivider'
 
-class CompletePaymentScreen extends Component {
-    render() {
-        return (
-            <React.Fragment>
-                <HeadingDivider title={'Adres Seçimi'} />
-                <HeadingDivider title={'Gönderim Zamanı'} />
-                <HeadingDivider title={'Ödeme Şekli'} />
-                <HeadingDivider title={'Sipariş Notu'} />
-            </React.Fragment>
-        )
-    }
-}
+import HeadingDivider from '../components/HeadingDivider'
+import CompletePayment from '../components/CompletePayment'
+import AddressSelectComponent from '../components/AddressSelectComponent'
+
+const CompletePaymentScreen = ({ navigation }) => (
+    <React.Fragment>
+        <HeadingDivider title={'Adres Seçimi'} />
+        <AddressSelectComponent />
+        <HeadingDivider title={'Gönderim Zamanı'} />
+        <HeadingDivider title={'Ödeme Şekli'} />
+        <HeadingDivider title={'Sipariş Notu'} />
+        <CompletePayment />
+    </React.Fragment>
+)
 
 const mapStateToProps = (state) => ({
 
