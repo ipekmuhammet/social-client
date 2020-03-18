@@ -1,48 +1,16 @@
-import React, { Component } from 'react'
-import { ScrollView, View, FlatList, Text } from 'react-native'
-import { connect } from 'react-redux'
+import React from 'react'
+import { createStackNavigator } from '@react-navigation/stack'
 
-import { SliderBox } from 'react-native-image-slider-box'
-import { getCategories } from '../data/api'
+import HomeScreen from './HomeScreen'
+import ProductScreen from './ProductsScreen'
 
-import Category from '../components/Category'
+const Stack = createStackNavigator()
 
-const images = [
-    "https://source.unsplash.com/1024x768/?nature",
-    "https://source.unsplash.com/1024x768/?water",
-    "https://source.unsplash.com/1024x768/?girl",
-    "https://source.unsplash.com/1024x768/?tree"
-]
+const Screen1 = () => (
+    <Stack.Navigator>
+        <Stack.Screen name='home' component={HomeScreen} options={{ headerShown: false }} />
+        <Stack.Screen name='products' component={ProductScreen} options={{ headerShown: false }} />
+    </Stack.Navigator>
+)
 
-class Screen1 extends Component {
-    render() {
-        return (
-            <ScrollView>
-                <SliderBox
-                    autoplay
-                    circleLoop
-                    resizeMethod={'resize'}
-                    resizeMode={'cover'}
-                    sliderBoxHeight={140}
-                    images={images} />
-
-                <FlatList
-                    data={Object.values(getCategories())}
-                    keyExtractor={(item) => item.Id}
-                    renderItem={({ item }) => <Category data={item} />}
-                    numColumns={3}
-                />
-            </ScrollView>
-        )
-    }
-}
-
-const mapStateToProps = (state) => ({
-
-})
-
-const mapDispatchToProps = {
-
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Screen1)
+export default Screen1

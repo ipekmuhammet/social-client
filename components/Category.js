@@ -3,18 +3,21 @@ import { TouchableOpacity, View, Text, Image, StyleSheet } from 'react-native'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { connect } from 'react-redux'
 
+import { setSelectedCategory } from '../actions/actions3'
+
 import productExample from '../assets/product-example.png'
 
-const Category = ({ data: { Id, name } }) => {
+const Category = ({ data: { Id, name }, navigation, setSelectedCategory }) => {
 
-    const onClick = () => {
-        console.log('product click')
+    const onCategoryClick = () => {
+        setSelectedCategory(Id)
+        navigation.navigate('products')
     }
 
     return (
-        <TouchableOpacity style={styles.container} onPress={onClick}>
+        <TouchableOpacity style={styles.container} onPress={onCategoryClick}>
 
-            <View style={[styles.child, styles.productImageContainer]}>
+            <View style={styles.child}>
                 <Image source={productExample} style={styles.productImage} />
             </View>
 
@@ -30,8 +33,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        padding: RFPercentage(1),
-        margin: RFPercentage(1),
+        padding: RFPercentage(.8),
+        margin: RFPercentage(.8),
         zIndex: -1
     },
     child: {
@@ -39,15 +42,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flex: 1
     },
-    productImageContainer: {
-        borderWidth: 1,
-        borderColor: '#CDCDCD',
-        borderRadius: RFPercentage(2)
-    },
     productImage: {
         width: RFPercentage(14),
         height: RFPercentage(14),
-        margin: 12
+        margin: 6,
+        borderRadius: 12
     },
     productName: {
         fontSize: RFPercentage(3),
@@ -66,7 +65,7 @@ const styles = StyleSheet.create({
 })
 
 const mapDispatchToProps = {
-
+    setSelectedCategory
 }
 
 export default connect(null, mapDispatchToProps)(Category)

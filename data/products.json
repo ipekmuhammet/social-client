@@ -1,4 +1,14 @@
 [
+  { "Id": "91", "name": "Olive oil", "price": "68.17", "categoryId": 0 },
+  { "Id": "92", "name": "Cheese", "price": "32.86", "categoryId": 0 },
+  { "Id": "93", "name": "Pet foods", "price": "36.01", "categoryId": 0 },
+  { "Id": "94", "name": "Poultry", "price": "40.20", "categoryId": 0 },
+  { "Id": "95", "name": "Bakery products", "price": "43.21", "categoryId": 0 },
+  { "Id": "96", "name": "Vegetables", "price": "29.81", "categoryId": 0 },
+  { "Id": "97", "name": "Decorations", "price": "12.54", "categoryId": 0 },
+  { "Id": "98", "name": "Vegetables", "price": "41.29", "categoryId": 0 },
+  { "Id": "99", "name": "Meat", "price": "52.33", "categoryId": 0 },
+  { "Id": "100", "name": "Seafood", "price": "6.76", "categoryId": 0 },
   {
     "Id": "1",
     "name": "Alcoholic beverages",
@@ -123,15 +133,5 @@
   { "Id": "87", "name": "Sweets", "price": "73.72", "categoryId": 9 },
   { "Id": "88", "name": "Coffee", "price": "27.53", "categoryId": 9 },
   { "Id": "89", "name": "Fish", "price": "2.94", "categoryId": 9 },
-  { "Id": "90", "name": "Flowers", "price": "24.75", "categoryId": 9 },
-  { "Id": "91", "name": "Olive oil", "price": "68.17", "categoryId": 10 },
-  { "Id": "92", "name": "Cheese", "price": "32.86", "categoryId": 10 },
-  { "Id": "93", "name": "Pet foods", "price": "36.01", "categoryId": 10 },
-  { "Id": "94", "name": "Poultry", "price": "40.20", "categoryId": 10 },
-  { "Id": "95", "name": "Bakery products", "price": "43.21", "categoryId": 10 },
-  { "Id": "96", "name": "Vegetables", "price": "29.81", "categoryId": 10 },
-  { "Id": "97", "name": "Decorations", "price": "12.54", "categoryId": 10 },
-  { "Id": "98", "name": "Vegetables", "price": "41.29", "categoryId": 10 },
-  { "Id": "99", "name": "Meat", "price": "52.33", "categoryId": 10 },
-  { "Id": "100", "name": "Seafood", "price": "6.76", "categoryId": 10 }
+  { "Id": "90", "name": "Flowers", "price": "24.75", "categoryId": 9 }
 ]

@@ -1,13 +1,14 @@
 import React from 'react'
 import ScrollableTabView, { ScrollableTabBar } from 'react-native-scrollable-tab-view'
+import { connect } from 'react-redux'
 
 import { getCategories, getProductsByCategoryId } from '../data/api'
 
 import ProductList from '../components/ProductList'
 
-const ProductsScreen = () => (
+const ProductsScreen = ({ selectedCategory }) => (
     <ScrollableTabView
-        initialPage={1}
+        initialPage={selectedCategory}
         tabBarBackgroundColor={'#7849F7'}
         tabBarTextStyle={{ color: 'white' }}
         tabBarUnderlineStyle={{ backgroundColor: '#FED110' }}
@@ -19,4 +20,12 @@ const ProductsScreen = () => (
     </ScrollableTabView>
 )
 
-export default ProductsScreen
+const mapStateToProps = ({
+    reducer3: {
+        selectedCategory
+    }
+}) => ({
+    selectedCategory
+})
+
+export default connect(mapStateToProps)(ProductsScreen)
