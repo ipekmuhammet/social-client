@@ -3,22 +3,16 @@ import { TouchableOpacity, View, Text, Image, StyleSheet } from 'react-native'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { connect } from 'react-redux'
 
-import { addProduct } from '../actions/actions1'
-
 import productExample from '../assets/product-example.png'
 
-const Product = ({ data: { Id, name, price }, addProduct }) => {
+const Category = ({ data: { Id, name } }) => {
 
     const onClick = () => {
-        addProduct(Id)
+        console.log('product click')
     }
 
     return (
-        <View style={styles.container}>
-
-            <TouchableOpacity onPress={onClick} style={styles.addProductButton}>
-                <Text style={styles.addProductIcon}>+</Text>
-            </TouchableOpacity>
+        <TouchableOpacity style={styles.container} onPress={onClick}>
 
             <View style={[styles.child, styles.productImageContainer]}>
                 <Image source={productExample} style={styles.productImage} />
@@ -28,11 +22,7 @@ const Product = ({ data: { Id, name, price }, addProduct }) => {
                 <Text style={styles.productName}>{name}</Text>
             </View>
 
-            <View style={styles.child}>
-                <Text style={styles.productPrice}>{'₺ ' + price}</Text>
-            </View>
-
-        </View>
+        </TouchableOpacity>
     )
 }
 
@@ -48,19 +38,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         flex: 1
-    },
-    addProductButton: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'absolute',
-        top: -1 * RFPercentage(1.2),
-        right: -1 * RFPercentage(1.2),
-        zIndex: 1,
-        borderRadius: 4
-    },
-    addProductIcon: {
-        color: '#5837C2',
-        fontSize: 32
     },
     productImageContainer: {
         borderWidth: 1,
@@ -89,7 +66,7 @@ const styles = StyleSheet.create({
 })
 
 const mapDispatchToProps = {
-    addProduct
+
 }
 
-export default connect(null, mapDispatchToProps)(Product)
+export default connect(null, mapDispatchToProps)(Category)
