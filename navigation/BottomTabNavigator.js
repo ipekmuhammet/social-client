@@ -5,6 +5,7 @@ import TabBarIcon from './TabBarIcon'
 import Home from '../screens/Screen1'
 import Search from '../screens/Screen2'
 import Cart from '../screens/Screen3'
+import ProfileScreen from '../screens/ProfileScreen'
 
 const BottomTab = createBottomTabNavigator()
 const INITIAL_ROUTE_NAME = 'Home'
@@ -42,6 +43,15 @@ export default function BottomTabNavigator({ navigation, route }) {
         }}
       />
 
+      <BottomTab.Screen
+        name='Profile'
+        component={ProfileScreen}
+        options={{
+          title: 'Profile',
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name='md-person' />
+        }}
+      />
+
     </BottomTab.Navigator>
   )
 }
@@ -56,5 +66,7 @@ function getHeaderTitle(route) {
       return 'Search'
     case 'Cart':
       return 'Cart'
+    case 'Profile':
+      return 'Profile'
   }
 }
