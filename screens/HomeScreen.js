@@ -22,7 +22,7 @@ const HomeScreen = ({ navigation }) => (
         ListHeaderComponent={
             <ImageBackground
                 style={{ height: 180, left: 0, right: 0 }}
-                source={{ uri: 'https://source.unsplash.com/1024x768/?girl' }}
+                source={{ uri: 'https://source.unsplash.com/1024x768/?tree' }}
                 resizeMode={'cover'}
             />
             // Kastırıyor.
