@@ -20,6 +20,10 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.muhammetipke.platformapp",
+      "versionCode": 1
     }
   }
 }
