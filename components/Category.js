@@ -7,10 +7,10 @@ import { setSelectedCategory } from '../actions/actions3'
 
 import productExample from '../assets/product-example.png'
 
-const Category = ({ data: { Id, name }, navigation, setSelectedCategory }) => {
+const Category = ({ data: { name }, index, navigation, setSelectedCategory }) => {
 
     const onCategoryClick = () => {
-        setSelectedCategory(Id)
+        setSelectedCategory(index)
         navigation.navigate('products')
     }
 

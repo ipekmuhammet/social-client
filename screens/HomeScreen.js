@@ -17,7 +17,7 @@ const HomeScreen = ({ navigation }) => (
     <FlatList
         data={Object.values(getCategories())}
         keyExtractor={(item) => item.Id}
-        renderItem={({ item }) => <Category navigation={navigation} data={item} />}
+        renderItem={({ item, index }) => <Category navigation={navigation} index={index} data={item} />}
         numColumns={3}
         ListHeaderComponent={
             <ImageBackground
