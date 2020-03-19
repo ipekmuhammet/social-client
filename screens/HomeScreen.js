@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList } from 'react-native'
+import { FlatList, ImageBackground } from 'react-native'
 
 import { SliderBox } from 'react-native-image-slider-box'
 import { getCategories } from '../data/api'
@@ -19,15 +19,21 @@ const HomeScreen = ({ navigation }) => (
         keyExtractor={(item) => item.Id}
         renderItem={({ item }) => <Category navigation={navigation} data={item} />}
         numColumns={3}
-    //ListHeaderComponent={
-    //    <SliderBox
-    //        autoplay
-    //        circleLoop
-    //        resizeMethod={'resize'}
-    //        resizeMode={'cover'}
-    //        sliderBoxHeight={140}
-    //        images={images} />
-    //}
+        ListHeaderComponent={
+            <ImageBackground
+                style={{ height: 180, left: 0, right: 0 }}
+                source={{ uri: 'https://source.unsplash.com/1024x768/?girl' }}
+                resizeMode={'cover'}
+            />
+            // Kastırıyor.
+            //<SliderBox
+            //    autoplay
+            //    circleLoop
+            //    resizeMethod={'resize'}
+            //    resizeMode={'cover'}
+            //    sliderBoxHeight={180}
+            //    images={images} />
+        }
     />
 )
 
