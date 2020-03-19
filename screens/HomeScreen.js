@@ -1,10 +1,11 @@
 import React from 'react'
 import { FlatList, ImageBackground } from 'react-native'
-
 import { SliderBox } from 'react-native-image-slider-box'
-import { getCategories } from '../data/api'
 
+import { getCategories } from '../data/api'
 import Category from '../components/Category'
+import banner from '../assets/banner.jpg'
+
 
 const images = [
     "https://source.unsplash.com/1024x768/?nature",
@@ -22,7 +23,7 @@ const HomeScreen = ({ navigation }) => (
         ListHeaderComponent={
             <ImageBackground
                 style={{ height: 180, left: 0, right: 0 }}
-                source={{ uri: 'https://source.unsplash.com/1024x768/?tree' }}
+                source={banner}
                 resizeMode={'cover'}
             />
             // Kastırıyor.
