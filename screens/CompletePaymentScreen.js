@@ -23,7 +23,7 @@ const CompletePaymentScreen = ({ navigation }) => (
             <OrderNoteComponent />
             <View style={{ height: 90 }} />
         </ScrollView>
-        <CompletePayment navigation={navigation}/>
+        <CompletePayment completable={true} navigation={navigation}/>
     </React.Fragment>
 )
 

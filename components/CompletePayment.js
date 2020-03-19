@@ -2,15 +2,19 @@ import React from 'react'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 
-const CompletePaymentComponent = ({ cart, paymentType, navigation }) => {
+const CompletePaymentComponent = ({ completable, cart, paymentType, navigation }) => {
     const products = Object.values(cart)
     const totalPrice = products.reduce((previousValue, currentValue) => previousValue + parseFloat(currentValue.price) * currentValue.count, 0).toFixed(2)
 
     const onCompletePaymentClick = () => {
-        if (paymentType === 1)
-            navigation.navigate('onlinePaymentScreen')
-        else
-            console.log('Complete Payment')
+        if (completable) {
+            if (paymentType === 0)
+                navigation.navigate('onlinePaymentScreen')
+            else
+                console.log('Complete Payment')
+        } else {
+            navigation.navigate('completePayment')
+        }
     }
 
     return (
