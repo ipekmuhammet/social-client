@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 const CompletePaymentComponent = ({ cart, paymentType, navigation }) => {
     const products = Object.values(cart)
-    const totalPrice = products.reduce((previousValue, currentValue) => previousValue + parseFloat(currentValue.price), 0).toFixed(2)
+    const totalPrice = products.reduce((previousValue, currentValue) => previousValue + parseFloat(currentValue.price) * currentValue.count, 0).toFixed(2)
 
     const onCompletePaymentClick = () => {
         if (paymentType === 1)

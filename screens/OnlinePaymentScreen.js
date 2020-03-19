@@ -20,7 +20,7 @@ class OnlinePaymentScreen extends Component {
     render() {
 
         const products = Object.values(this.props.cart)
-        const totalPrice = products.reduce((previousValue, currentValue) => previousValue + parseFloat(currentValue.price), 0).toFixed(2)
+        const totalPrice = products.reduce((previousValue, currentValue) => previousValue + parseFloat(currentValue.price) * currentValue.count, 0).toFixed(2)
 
         return (
             <View style={{ flexDirection: 'column', left: 0, right: 0, backgroundColor: '#EDEDED' }}>

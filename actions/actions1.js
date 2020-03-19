@@ -1,7 +1,8 @@
 import { getProductById } from '../data/api'
 
 export const ADD_PRODUCT = 'ADD_PRODUCT'
-export const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
+export const DECREASE_PRODUCT_COUNT = 'DECREASE_PRODUCT_COUNT'
+export const INCREASE_PRODUCT_COUNT = 'INCREASE_PRODUCT_COUNT'
 
 export const addProduct = (productId) => {
     return (dispatch) => {
@@ -14,10 +15,21 @@ export const addProduct = (productId) => {
     }
 }
 
-export const removeProduct = (productId) => {
+export const decreaseProductCount = (productId) => {
     return (dispatch) => {
         dispatch({
-            type: REMOVE_PRODUCT,
+            type: DECREASE_PRODUCT_COUNT,
+            payload: {
+                productId
+            }
+        })
+    }
+}
+
+export const increaseProductCount = (productId) => {
+    return (dispatch) => {
+        dispatch({
+            type: INCREASE_PRODUCT_COUNT,
             payload: {
                 productId
             }

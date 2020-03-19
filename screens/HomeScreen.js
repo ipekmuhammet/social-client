@@ -19,15 +19,15 @@ const HomeScreen = ({ navigation }) => (
         keyExtractor={(item) => item.Id}
         renderItem={({ item }) => <Category navigation={navigation} data={item} />}
         numColumns={3}
-        ListHeaderComponent={
-            <SliderBox
-                autoplay
-                circleLoop
-                resizeMethod={'resize'}
-                resizeMode={'cover'}
-                sliderBoxHeight={140}
-                images={images} />
-        }
+    //ListHeaderComponent={
+    //    <SliderBox
+    //        autoplay
+    //        circleLoop
+    //        resizeMethod={'resize'}
+    //        resizeMode={'cover'}
+    //        sliderBoxHeight={140}
+    //        images={images} />
+    //}
     />
 )
 

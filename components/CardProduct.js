@@ -2,74 +2,56 @@ import React, { Component } from 'react'
 import { View, TouchableOpacity, Image, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 
-import { removeProduct } from '../actions/actions1'
+import { decreaseProductCount, increaseProductCount } from '../actions/actions1'
 
 import productExample from '../assets/product-example.png'
 
-class CardProduct extends Component {
+const CardProduct = ({ data: { Id, name, price, count }, decreaseProductCount, increaseProductCount }) => {
+    return (
+        <View style={styles.container}>
 
-    state = {
-        countOfProduct: 1
-    }
+            <View style={styles.child} />
 
-    onIncreaseClick = () => {
-        this.setState({ countOfProduct: this.state.countOfProduct + 1 })
-    }
+            <View style={styles.child}>
+                <Image style={styles.productImage} source={productExample} />
+            </View>
 
-    onDecreaseClick = () => {
-        this.state.countOfProduct <= 1 ? this.props.removeProduct(this.props.data.Id) : this.setState({ countOfProduct: this.state.countOfProduct - 1 })
-    }
+            <View style={styles.child} />
 
-    render() {
-        const { name, price } = this.props.data
-        const { countOfProduct } = this.state
-
-        return (
-            <View style={styles.container}>
-
-                <View style={styles.child} />
-
+            <View style={[styles.child, styles.flex2, styles.column]}>
                 <View style={styles.child}>
-                    <Image style={styles.productImage} source={productExample} />
+                    <Text>{name}</Text>
                 </View>
+                <View style={styles.child}>
+                    <Text>{'₺ ' + price}</Text>
+                </View>
+            </View>
 
+            <View style={styles.child} />
+
+            <View style={[styles.child, styles.column]}>
                 <View style={styles.child} />
+                <View style={[styles.child, styles.row]}>
 
-                <View style={[styles.child, styles.flex2, styles.column]}>
+                    <TouchableOpacity onPress={() => { decreaseProductCount(Id) }} style={[styles.child, styles.button]}>
+                        <Text>{'-'}</Text>
+                    </TouchableOpacity>
+
                     <View style={styles.child}>
-                        <Text>{name}</Text>
+                        <Text>{count}</Text>
                     </View>
-                    <View style={styles.child}>
-                        <Text>{'₺ ' + price}</Text>
-                    </View>
+
+                    <TouchableOpacity onPress={() => { increaseProductCount(Id) }} style={[styles.child, styles.button]}>
+                        <Text>{'+'}</Text>
+                    </TouchableOpacity>
+
                 </View>
-
-                <View style={styles.child} />
-
-                <View style={[styles.child, styles.column]}>
-                    <View style={styles.child} />
-                    <View style={[styles.child, styles.row]}>
-
-                        <TouchableOpacity onPress={this.onDecreaseClick} style={[styles.child, styles.button]}>
-                            <Text>{'-'}</Text>
-                        </TouchableOpacity>
-
-                        <View style={styles.child}>
-                            <Text>{countOfProduct}</Text>
-                        </View>
-
-                        <TouchableOpacity onPress={this.onIncreaseClick} style={[styles.child, styles.button]}>
-                            <Text>{'+'}</Text>
-                        </TouchableOpacity>
-
-                    </View>
-                    <View style={styles.child} />
-                </View>
-
                 <View style={styles.child} />
             </View>
-        )
-    }
+
+            <View style={styles.child} />
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({
@@ -107,7 +89,8 @@ const styles = StyleSheet.create({
 })
 
 const mapDispatchToProps = {
-    removeProduct
+    decreaseProductCount,
+    increaseProductCount
 }
 
 export default connect(null, mapDispatchToProps)(CardProduct)
