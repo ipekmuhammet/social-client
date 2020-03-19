@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { View, TouchableOpacity, Image, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 
@@ -6,53 +6,51 @@ import { decreaseProductCount, increaseProductCount } from '../actions/actions1'
 
 import productExample from '../assets/product-example.png'
 
-const CardProduct = ({ data: { Id, name, price, count }, decreaseProductCount, increaseProductCount }) => {
-    return (
-        <View style={styles.container}>
+const CardProduct = ({ data: { Id, name, price, count }, decreaseProductCount, increaseProductCount }) => (
+    <View style={styles.container}>
 
-            <View style={styles.child} />
+        <View style={styles.child} />
 
+        <View style={styles.child}>
+            <Image style={styles.productImage} source={productExample} />
+        </View>
+
+        <View style={styles.child} />
+
+        <View style={[styles.child, styles.flex2, styles.column]}>
             <View style={styles.child}>
-                <Image style={styles.productImage} source={productExample} />
+                <Text>{name}</Text>
             </View>
+            <View style={styles.child}>
+                <Text>{'₺ ' + price}</Text>
+            </View>
+        </View>
 
+        <View style={styles.child} />
+
+        <View style={[styles.child, styles.column]}>
             <View style={styles.child} />
+            <View style={[styles.child, styles.row]}>
 
-            <View style={[styles.child, styles.flex2, styles.column]}>
+                <TouchableOpacity onPress={() => { decreaseProductCount(Id) }} style={[styles.child, styles.button]}>
+                    <Text>{'-'}</Text>
+                </TouchableOpacity>
+
                 <View style={styles.child}>
-                    <Text>{name}</Text>
+                    <Text>{count}</Text>
                 </View>
-                <View style={styles.child}>
-                    <Text>{'₺ ' + price}</Text>
-                </View>
+
+                <TouchableOpacity onPress={() => { increaseProductCount(Id) }} style={[styles.child, styles.button]}>
+                    <Text>{'+'}</Text>
+                </TouchableOpacity>
+
             </View>
-
-            <View style={styles.child} />
-
-            <View style={[styles.child, styles.column]}>
-                <View style={styles.child} />
-                <View style={[styles.child, styles.row]}>
-
-                    <TouchableOpacity onPress={() => { decreaseProductCount(Id) }} style={[styles.child, styles.button]}>
-                        <Text>{'-'}</Text>
-                    </TouchableOpacity>
-
-                    <View style={styles.child}>
-                        <Text>{count}</Text>
-                    </View>
-
-                    <TouchableOpacity onPress={() => { increaseProductCount(Id) }} style={[styles.child, styles.button]}>
-                        <Text>{'+'}</Text>
-                    </TouchableOpacity>
-
-                </View>
-                <View style={styles.child} />
-            </View>
-
             <View style={styles.child} />
         </View>
-    )
-}
+
+        <View style={styles.child} />
+    </View>
+)
 
 const styles = StyleSheet.create({
     container: {
