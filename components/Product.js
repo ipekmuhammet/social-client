@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         top: -2,
         right: -2,
         zIndex: 1,
-        borderRadius: 4,
+        borderRadius: 8,
         borderWidth: .6,
         width: 28,
         height: 28,
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     productPrice: {
-        fontSize: RFPercentage(3),
+        fontSize: RFPercentage(2.7),
         fontWeight: '300',
         color: '#5837C2',
         textAlign: 'center',
