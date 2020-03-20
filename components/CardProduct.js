@@ -19,10 +19,10 @@ const CardProduct = ({ data: { Id, categoryId, name, price, count }, decreasePro
 
         <View style={[styles.child, styles.flex2, styles.column]}>
             <View style={styles.child}>
-                <Text>{name}</Text>
+                <Text numberOfLines={3}>{name}</Text>
             </View>
             <View style={styles.child}>
-                <Text>{'₺ ' + price}</Text>
+                <Text numberOfLines={2}>{'₺ ' + price}</Text>
             </View>
         </View>
 

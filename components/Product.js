@@ -25,7 +25,7 @@ const Product = ({ data: { Id, categoryId, name, price }, addProduct }) => {
             </View>
 
             <View style={styles.child}>
-                <Text style={styles.productName}>{name}</Text>
+                <Text numberOfLines={2} style={styles.productName}>{name}</Text>
             </View>
 
             <View style={styles.child}>
@@ -59,14 +59,14 @@ const styles = StyleSheet.create({
         zIndex: 1,
         borderRadius: 4,
         borderWidth: .6,
-        width: 32,
-        height: 32,
+        width: 28,
+        height: 28,
         borderColor: '#CDCDCD',
         backgroundColor: 'white'
     },
     addProductIcon: {
         color: '#5837C2',
-        fontSize: 32
+        fontSize: 24
     },
     productImageContainer: {
         borderWidth: .4,
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
         margin: 12
     },
     productName: {
-        fontSize: RFPercentage(3),
+        fontSize: RFPercentage(2.7),
         fontWeight: '300',
         color: '#707070',
         textAlign: 'center',
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     productPrice: {
         fontSize: RFPercentage(3),
         fontWeight: '300',
-        color: '#7070D5',
+        color: '#5837C2',
         textAlign: 'center',
         justifyContent: 'center'
     }
