@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, TouchableOpacity, Image, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
+import { RFPercentage } from 'react-native-responsive-fontsize'
 
 import { decreaseProductCount, increaseProductCount } from '../actions/actions1'
 
@@ -9,47 +10,47 @@ import { getProductImage } from '../data/api'
 const CardProduct = ({ data: { Id, categoryId, name, price, count }, decreaseProductCount, increaseProductCount }) => (
     <View style={styles.container}>
 
-        <View style={styles.child} />
-
-        <View style={styles.child}>
+        <View style={[styles.child, styles.flex2, {
+            padding: 4,
+            borderWidth: 1,
+            borderColor: '#CDCDCD',
+            borderRadius: 12
+        }]}>
             <Image style={styles.productImage} source={getProductImage(categoryId, Id)} />
         </View>
 
-        <View style={styles.child} />
+        <View style={[styles.child, styles.flex3, styles.column]}>
+            <View style={styles.child} />
+            <View style={{ flex: 1, width: '100%', paddingHorizontal: 8, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+                <Text style={styles.productName} numberOfLines={2}>{name}</Text>
+            </View>
+            <View style={{ flex: 1, width: '100%', paddingHorizontal: 8, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+                <Text style={styles.productPrice} numberOfLines={2}>{'₺' + price}</Text>
+            </View>
+            <View style={styles.child} />
+        </View>
 
         <View style={[styles.child, styles.flex2, styles.column]}>
-            <View style={styles.child}>
-                <Text numberOfLines={3}>{name}</Text>
-            </View>
-            <View style={styles.child}>
-                <Text numberOfLines={2}>{'₺ ' + price}</Text>
-            </View>
-        </View>
-
-        <View style={styles.child} />
-
-        <View style={[styles.child, styles.column]}>
             <View style={styles.child} />
-            <View style={[styles.child, styles.row]}>
+            <View style={styles.rowChild}>
 
-                <TouchableOpacity onPress={() => { decreaseProductCount(Id) }} style={[styles.child, styles.button]}>
-                    <Text>{'-'}</Text>
+                <TouchableOpacity onPress={() => { decreaseProductCount(Id) }} style={[styles.child, styles.decreaseButton]}>
+                    <Text style={{ color: '#5D3EBD', fontSize: 18 }}>{'-'}</Text>
                 </TouchableOpacity>
 
-                <View style={styles.child}>
-                    <Text>{count}</Text>
+                <View style={[styles.child, { backgroundColor: '#5D3EBD', padding: 4 }]}>
+                    <Text style={{ color: 'white', fontSize: 18 }}>{count}</Text>
                 </View>
 
-                <TouchableOpacity onPress={() => { increaseProductCount(Id) }} style={[styles.child, styles.button]}>
-                    <Text>{'+'}</Text>
+                <TouchableOpacity onPress={() => { increaseProductCount(Id) }} style={[styles.child, styles.increaseButton]}>
+                    <Text style={{ color: '#5D3EBD', fontSize: 18 }}>{'+'}</Text>
                 </TouchableOpacity>
 
             </View>
             <View style={styles.child} />
         </View>
 
-        <View style={styles.child} />
-    </View>
+    </View >
 )
 
 const styles = StyleSheet.create({
@@ -57,7 +58,10 @@ const styles = StyleSheet.create({
         flex: 1,
         display: 'flex',
         flexDirection: 'row',
-        marginVertical: 6
+        padding: 8,
+        paddingVertical: 12,
+        borderBottomWidth: 1,
+        borderBottomColor: '#EFEFEF'
     },
     child: {
         flex: 1,
@@ -65,24 +69,49 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     flex2: {
+        flex: 1.6
+    },
+    flex3: {
         flex: 3
     },
     column: {
         flexDirection: 'column',
         display: 'flex'
     },
-    row: {
+    rowChild: {
+        flex: 2,
+        alignItems: 'center',
+        justifyContent: 'center',
         flexDirection: 'row',
         display: 'flex'
     },
-    productImage: {
-        width: 64,
-        height: 64
+    productName: {
+        fontSize: RFPercentage(2.4),
+        fontWeight: '700',
+        color: 'black',
+        textAlign: 'justify',
+        justifyContent: 'center'
     },
-    button: {
-        borderWidth: 1,
-        borderColor: '#CDCDCD',
-        padding: 4
+    productPrice: {
+        fontSize: RFPercentage(2.7),
+        fontWeight: '700',
+        color: '#5837C2',
+        textAlign: 'center',
+        justifyContent: 'center'
+    },
+    productImage: {
+        width: RFPercentage(14),
+        height: RFPercentage(14)
+    },
+    decreaseButton: {
+        padding: 4,
+        borderTopLeftRadius: 10,
+        borderBottomLeftRadius: 10
+    },
+    increaseButton: {
+        padding: 4,
+        borderTopRightRadius: 10,
+        borderBottomRightRadius: 10
     }
 })
 

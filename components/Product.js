@@ -29,7 +29,7 @@ const Product = ({ data: { Id, categoryId, name, price }, addProduct }) => {
             </View>
 
             <View style={styles.child}>
-                <Text style={styles.productPrice}>{'₺ ' + price}</Text>
+                <Text style={styles.productPrice}>{'₺' + price}</Text>
             </View>
 
         </View>
