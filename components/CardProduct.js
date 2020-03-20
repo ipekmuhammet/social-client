@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         display: 'flex'
     },
     productName: {
-        fontSize: RFPercentage(2.4),
+        fontSize: RFPercentage(3),
         fontWeight: '700',
         color: 'black',
         textAlign: 'justify',
