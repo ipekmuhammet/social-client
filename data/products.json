@@ -14,21 +14,23 @@
   { "Id": "8", "name": "Detergents", "price": "74.93", "categoryId": 0 },
   { "Id": "9", "name": "Seafood", "price": "62.13", "categoryId": 0 },
   { "Id": "10", "name": "Pasta", "price": "12.02", "categoryId": 0 },
-  { "Id": "11", "name": "Candies", "price": "31.40", "categoryId": 1 },
-  { "Id": "12", "name": "Medicines", "price": "76.36", "categoryId": 1 },
-  { "Id": "13", "name": "Personal Care", "price": "36.03", "categoryId": 1 },
-  { "Id": "14", "name": "Baby-care", "price": "54.43", "categoryId": 1 },
-  { "Id": "15", "name": "Sauces", "price": "81.38", "categoryId": 1 },
-  { "Id": "16", "name": "Canned Goods", "price": "57.01", "categoryId": 1 },
-  { "Id": "17", "name": "Fruits", "price": "70.88", "categoryId": 1 },
+
+  { "Id": "11", "name": "Torku Banada", "price": "31.40", "categoryId": 1 },
+  { "Id": "12", "name": "Danone Pro+ Muz & Yer Fıstıklı Proteinli Süt 330 Ml", "price": "76.36", "categoryId": 1 },
+  { "Id": "13", "name": "Halk Süt Uht Yarım Yağlı 1 Lt", "price": "36.03", "categoryId": 1 },
+  { "Id": "14", "name": "Besler Mutfak Süt Uht Yarım Yağli 1 Lt", "price": "54.43", "categoryId": 1 },
+  { "Id": "15", "name": "Danone Pro+ Kahveli Proteinli Süt 330 Ml", "price": "81.38", "categoryId": 1 },
+  { "Id": "16", "name": "İçim Süt Uht 1 Lt", "price": "57.01", "categoryId": 1 },
+  { "Id": "17", "name": "Sele", "price": "70.88", "categoryId": 1 },
   {
     "Id": "18",
-    "name": "Alcoholic beverages",
+    "name": "Torku fındık ezmesi",
     "price": "35.03",
     "categoryId": 1
   },
-  { "Id": "19", "name": "Vegetables", "price": "35.44", "categoryId": 1 },
-  { "Id": "20", "name": "Cosmetics", "price": "24.32", "categoryId": 1 },
+  { "Id": "19", "name": "Alpro süt", "price": "35.44", "categoryId": 1 },
+  { "Id": "20", "name": "Alpro süt 2", "price": "24.32", "categoryId": 1 },
+
   { "Id": "21", "name": "Chicken", "price": "83.44", "categoryId": 2 },
   {
     "Id": "22",
