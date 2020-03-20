@@ -16,6 +16,7 @@ const images = [
 
 const HomeScreen = ({ navigation }) => (
     <FlatList
+        contentContainerStyle={{ backgroundColor: 'white' }}
         data={Object.values(getCategories())}
         keyExtractor={(item) => item.Id}
         renderItem={({ item, index }) => <Category navigation={navigation} index={index} data={item} />}

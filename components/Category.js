@@ -4,10 +4,9 @@ import { RFPercentage } from 'react-native-responsive-fontsize'
 import { connect } from 'react-redux'
 
 import { setSelectedCategory } from '../actions/actions3'
+import { getCategoryImage } from '../data/api'
 
-import productExample from '../assets/product-example.png'
-
-const Category = ({ data: { name }, index, navigation, setSelectedCategory }) => {
+const Category = ({ data: { Id, name }, index, navigation, setSelectedCategory }) => {
 
     const onCategoryClick = () => {
         setSelectedCategory(index)
@@ -17,8 +16,8 @@ const Category = ({ data: { name }, index, navigation, setSelectedCategory }) =>
     return (
         <TouchableOpacity style={styles.container} onPress={onCategoryClick}>
 
-            <View style={styles.child}>
-                <Image source={productExample} style={styles.productImage} />
+            <View style={[styles.child, styles.imageContainer]}>
+                <Image source={getCategoryImage(Id)} resizeMode={'contain'} style={styles.productImage} />
             </View>
 
             <View style={styles.child}>
@@ -35,18 +34,23 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         padding: RFPercentage(.8),
         margin: RFPercentage(.8),
-        zIndex: -1
+        zIndex: -1,
+        backgroundColor: 'transparent'
     },
     child: {
         alignItems: 'center',
         justifyContent: 'center',
         flex: 1
     },
+    imageContainer: {
+        borderWidth: .4,
+        borderRadius: 12,
+        borderColor: '#CDCDCD'
+    },
     productImage: {
         width: RFPercentage(14),
         height: RFPercentage(14),
-        margin: 6,
-        borderRadius: 12
+        margin: 4
     },
     productName: {
         fontSize: RFPercentage(3),

@@ -7,7 +7,7 @@ import CompletePayment from '../components/CompletePayment'
 
 const CartScreen = ({ cart, refreshCard, navigation }) => {
     const products = Object.values(cart)
-    
+
     if (products.length > 0) {
         return (
             <View style={styles.container}>
@@ -30,8 +30,8 @@ const CartScreen = ({ cart, refreshCard, navigation }) => {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1 },
-    centeredContainer: { flex: 1, alignItems: 'center', justifyContent: 'center' }
+    container: { flex: 1, backgroundColor: 'white' },
+    centeredContainer: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white' }
 })
 
 const mapStateToProps = ({

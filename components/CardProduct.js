@@ -4,15 +4,15 @@ import { connect } from 'react-redux'
 
 import { decreaseProductCount, increaseProductCount } from '../actions/actions1'
 
-import productExample from '../assets/product-example.png'
+import { getProductImage } from '../data/api'
 
-const CardProduct = ({ data: { Id, name, price, count }, decreaseProductCount, increaseProductCount }) => (
+const CardProduct = ({ data: { Id, categoryId, name, price, count }, decreaseProductCount, increaseProductCount }) => (
     <View style={styles.container}>
 
         <View style={styles.child} />
 
         <View style={styles.child}>
-            <Image style={styles.productImage} source={productExample} />
+            <Image style={styles.productImage} source={getProductImage(categoryId, Id)} />
         </View>
 
         <View style={styles.child} />

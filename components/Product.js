@@ -4,10 +4,10 @@ import { RFPercentage } from 'react-native-responsive-fontsize'
 import { connect } from 'react-redux'
 
 import { addProduct } from '../actions/actions1'
+import { getProductImage } from '../data/api'
 
-import productExample from '../assets/product-example.png'
 
-const Product = ({ data: { Id, name, price }, addProduct }) => {
+const Product = ({ data: { Id, categoryId, name, price }, addProduct }) => {
 
     const onClick = () => {
         addProduct(Id)
@@ -21,7 +21,7 @@ const Product = ({ data: { Id, name, price }, addProduct }) => {
             </TouchableOpacity>
 
             <View style={[styles.child, styles.productImageContainer]}>
-                <Image source={productExample} style={styles.productImage} />
+                <Image source={getProductImage(categoryId, Id)} resizeMode={'contain'} style={styles.productImage} />
             </View>
 
             <View style={styles.child}>
@@ -42,7 +42,8 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         padding: RFPercentage(1),
         margin: RFPercentage(1),
-        zIndex: -1
+        zIndex: -1,
+        backgroundColor: 'transparent'
     },
     child: {
         alignItems: 'center',
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
         fontSize: 32
     },
     productImageContainer: {
-        borderWidth: 1,
+        borderWidth: .4,
         borderColor: '#CDCDCD',
         borderRadius: RFPercentage(2)
     },

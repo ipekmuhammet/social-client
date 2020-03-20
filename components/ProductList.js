@@ -4,7 +4,7 @@ import { View, FlatList } from 'react-native'
 import Product from './Product'
 
 const ProductList = ({ products }) => (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: 'white' }}>
         <FlatList
             data={products}
             scrollEnabled={true}
