@@ -16,7 +16,7 @@ const CardProduct = ({ data: { Id, categoryId, name, price, count }, decreasePro
             borderColor: '#CDCDCD',
             borderRadius: 12
         }]}>
-            <Image style={styles.productImage} source={getProductImage(categoryId, Id)} />
+            <Image style={styles.productImage} resizeMode={'contain'} source={getProductImage(categoryId, Id)} />
         </View>
 
         <View style={[styles.child, styles.flex3, styles.column]}>

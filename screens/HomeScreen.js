@@ -5,6 +5,7 @@ import { SliderBox } from 'react-native-image-slider-box'
 import { getCategories } from '../data/api'
 import Category from '../components/Category'
 import banner from '../assets/banner.jpg'
+import EmptyCategory from '../components/EmptyCategory'
 
 
 const images = [
@@ -14,12 +15,27 @@ const images = [
     "https://source.unsplash.com/1024x768/?tree"
 ]
 
+const formatData = (data, numColumns) => {
+    const numberOfFullRows = Math.floor(data.length / numColumns)
+
+    let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns)
+    while (numberOfElementsLastRow !== numColumns && numberOfElementsLastRow !== 0) {
+        data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true })
+        numberOfElementsLastRow++
+    }
+
+    return data
+}
+
+
 const HomeScreen = ({ navigation }) => (
     <FlatList
         contentContainerStyle={{ backgroundColor: 'white' }}
-        data={Object.values(getCategories())}
+        data={formatData(Object.values(getCategories()), 3)}
+        columnWrapperStyle={{ justifyContent: 'space-between' }}
         keyExtractor={(item) => item.Id}
-        renderItem={({ item, index }) => <Category navigation={navigation} index={index} data={item} />}
+        renderItem={({ item, index }) => item.empty ? <EmptyCategory /> : <Category navigation={navigation} index={index} data={item} />
+        }
         numColumns={3}
         ListHeaderComponent={
             <ImageBackground
