@@ -54,10 +54,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         position: 'absolute',
-        top: -1 * RFPercentage(1.2),
-        right: -1 * RFPercentage(1.2),
+        top: -2,
+        right: -2,
         zIndex: 1,
-        borderRadius: 4
+        borderRadius: 4,
+        borderWidth: .6,
+        width: 32,
+        height: 32,
+        borderColor: '#CDCDCD',
+        backgroundColor: 'white'
     },
     addProductIcon: {
         color: '#5837C2',
