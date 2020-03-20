@@ -12,7 +12,7 @@ const CardProduct = ({ data: { Id, categoryId, name, price, count }, decreasePro
 
         <View style={[styles.child, styles.flex2, {
             padding: 4,
-            borderWidth: 1,
+            borderWidth: .4,
             borderColor: '#CDCDCD',
             borderRadius: 12
         }]}>
