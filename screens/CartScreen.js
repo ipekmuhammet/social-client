@@ -16,6 +16,9 @@ const CartScreen = ({ cart, refreshCard, navigation }) => {
                     data={products}
                     keyExtractor={item => 'cart' + item.Id}
                     renderItem={({ item }) => <CardProduct key={item.Id} data={item} />}
+                    ListFooterComponent={
+                        <View style={{ height: 90 }} />
+                    }
                 />
                 <CompletePayment navigation={navigation} />
             </View>
