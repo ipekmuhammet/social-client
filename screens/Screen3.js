@@ -10,10 +10,48 @@ const Stack = createStackNavigator()
 
 const Screen3 = () => (
     <Stack.Navigator>
-        <Stack.Screen name='cart' component={CartScreen} options={{ headerShown: false }} />
-        <Stack.Screen name='choosePayment' component={ChoosePaymentScreen} options={{ headerShown: false }} />
-        <Stack.Screen name='completePayment' component={CompletePaymentScreen} options={{ headerShown: false }} />
-        <Stack.Screen name='onlinePaymentScreen' component={OnlinePaymentScreen} options={{ headerShown: false }} />
+        <Stack.Screen
+            name='cart'
+            component={CartScreen}
+            options={{
+                title: 'Cart',
+                headerTitleAlign: 'center',
+                headerTintColor: 'white',
+                headerStyle: { backgroundColor: '#5D3EBD' }
+            }}
+        />
+
+        <Stack.Screen
+            name='completePayment'
+            component={CompletePaymentScreen}
+            options={{
+                title: 'Checkout',
+                headerTitleAlign: 'center',
+                headerTintColor: 'white',
+                headerStyle: { backgroundColor: '#5D3EBD' }
+            }}
+        />
+
+        <Stack.Screen
+            name='choosePayment'
+            component={ChoosePaymentScreen}
+            options={{
+                title: 'Ödeme Şekli',
+                headerTitleAlign: 'center',
+                headerTintColor: 'white',
+                headerStyle: { backgroundColor: '#5D3EBD' }
+            }} />
+
+        <Stack.Screen
+            name='onlinePaymentScreen'
+            component={OnlinePaymentScreen}
+            options={{
+                title: 'Online Kredi/Banka Kartı',
+                headerTitleAlign: 'center',
+                headerTintColor: 'white',
+                headerStyle: { backgroundColor: '#5D3EBD' }
+            }}
+        />
     </Stack.Navigator>
 )
 

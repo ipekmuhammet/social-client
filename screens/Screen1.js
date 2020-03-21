@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Image } from 'react-native'
+import { View, Image } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 
 import HomeScreen from './HomeScreen'
@@ -20,10 +20,10 @@ const Screen1 = () => (
         <Stack.Screen
             name='products'
             options={{
-                header: props =>
-                    <View style={{ backgroundColor: '#5D3EBD', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
-                        <Text style={{ fontSize: 20, paddingHorizontal: 12, color: 'white', fontWeight: 'bold' }}>{props.scene.route.params.title}</Text>
-                    </View>
+                title: 'Products',
+                headerTitleAlign: 'center',
+                headerTintColor: 'white',
+                headerStyle: { backgroundColor: '#5D3EBD' }
             }}
             component={ProductScreen} />
     </Stack.Navigator>

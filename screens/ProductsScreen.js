@@ -10,7 +10,7 @@ const ProductsScreen = ({ selectedCategory }) => (
     <ScrollableTabView
         initialPage={selectedCategory}
         tabBarBackgroundColor={'#7849F7'}
-        tabBarTextStyle={{ color: 'white' }}
+        tabBarTextStyle={{ color: 'white', fontSize: 16 }}
         tabBarUnderlineStyle={{ backgroundColor: '#FED110' }}
         renderTabBar={() => <ScrollableTabBar />}
     >

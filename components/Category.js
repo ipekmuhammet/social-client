@@ -10,7 +10,7 @@ const Category = ({ data: { Id, name }, index, navigation, setSelectedCategory }
 
     const onCategoryClick = () => {
         setSelectedCategory(index)
-        navigation.navigate({ name: 'products', params: { title: name } })
+        navigation.navigate({ name: 'products' })
     }
 
     return (

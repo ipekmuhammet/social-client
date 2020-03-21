@@ -8,8 +8,25 @@ const Stack = createStackNavigator()
 
 const Screen3 = () => (
     <Stack.Navigator>
-        <Stack.Screen name='profile' component={ProfileScreen} options={{ headerShown: false }} />
-        <Stack.Screen name='addresses' component={AddressesScreen} options={{ headerShown: false }} />
+        <Stack.Screen
+            name='profile'
+            component={ProfileScreen}
+            options={{
+                title: 'Diğer',
+                headerTitleAlign: 'center',
+                headerTintColor: 'white',
+                headerStyle: { backgroundColor: '#5D3EBD' }
+            }} />
+
+        <Stack.Screen
+            name='addresses'
+            component={AddressesScreen}
+            options={{
+                title: 'Adreslerim',
+                headerTitleAlign: 'center',
+                headerTintColor: 'white',
+                headerStyle: { backgroundColor: '#5D3EBD' }
+            }} />
     </Stack.Navigator>
 )
 
