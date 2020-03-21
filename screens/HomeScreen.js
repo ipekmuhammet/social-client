@@ -30,7 +30,7 @@ const formatData = (data, numColumns) => {
 
 const HomeScreen = ({ navigation }) => (
     <FlatList
-        contentContainerStyle={{ backgroundColor: 'white' }}
+        contentContainerStyle={{ backgroundColor: '#F5F5F5' }}
         data={formatData(Object.values(getCategories()), 3)}
         columnWrapperStyle={{ justifyContent: 'space-between' }}
         keyExtractor={(item) => item.Id}

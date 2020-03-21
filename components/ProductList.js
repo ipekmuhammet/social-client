@@ -17,7 +17,7 @@ const formatData = (data, numColumns) => {
 }
 
 const ProductList = ({ products }) => (
-    <View style={{ flex: 1, backgroundColor: 'white' }}>
+    <View style={{ flex: 1, backgroundColor: '#F5F5F5' }}>
         <FlatList
             data={formatData(products, 3)}
             scrollEnabled={true}

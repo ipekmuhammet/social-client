@@ -14,7 +14,8 @@ const CardProduct = ({ data: { Id, categoryId, name, price, count }, decreasePro
             padding: 4,
             borderWidth: .4,
             borderColor: '#CDCDCD',
-            borderRadius: 12
+            borderRadius: 12,
+            backgroundColor: 'white'
         }]}>
             <Image style={styles.productImage} resizeMode={'contain'} source={getProductImage(categoryId, Id)} />
         </View>

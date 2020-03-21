@@ -24,6 +24,9 @@
     "android": {
       "package": "com.muhammetipke.platformapp",
       "versionCode": 1
+    },
+    "androidStatusBar": {
+      "backgroundColor": "#442D87"
     }
   }
 }

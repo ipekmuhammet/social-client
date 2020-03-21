@@ -70,9 +70,10 @@ const styles = StyleSheet.create({
         fontSize: 24
     },
     productImageContainer: {
-        borderWidth: .4,
-        borderColor: '#CDCDCD',
-        borderRadius: RFPercentage(2)
+        borderWidth: .2,
+        borderColor: '#BCBCBC',
+        borderRadius: RFPercentage(2),
+        backgroundColor: 'white'
     },
     productImage: {
         width: RFPercentage(14),

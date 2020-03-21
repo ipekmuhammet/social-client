@@ -11,7 +11,7 @@ const BottomTab = createBottomTabNavigator()
 const INITIAL_ROUTE_NAME = 'Home'
 
 export default function BottomTabNavigator({ navigation, route }) {
-  navigation.setOptions({ headerTitle: getHeaderTitle(route) })
+  navigation.setOptions({ headerTitle: getHeaderTitle(route), headerShown: false })
 
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>

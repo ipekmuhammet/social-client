@@ -10,7 +10,7 @@ const Category = ({ data: { Id, name }, index, navigation, setSelectedCategory }
 
     const onCategoryClick = () => {
         setSelectedCategory(index)
-        navigation.navigate('products')
+        navigation.navigate({ name: 'products', params: { title: name } })
     }
 
     return (
@@ -34,8 +34,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         padding: RFPercentage(.8),
         margin: RFPercentage(.8),
-        zIndex: -1,
-        backgroundColor: 'transparent'
+        zIndex: -1
     },
     child: {
         alignItems: 'center',
@@ -43,9 +42,10 @@ const styles = StyleSheet.create({
         flex: 1
     },
     imageContainer: {
-        borderWidth: .4,
+        borderWidth: .2,
         borderRadius: 12,
-        borderColor: '#CDCDCD'
+        borderColor: '#BCBCBC',
+        backgroundColor: 'white'
     },
     productImage: {
         width: RFPercentage(14),
