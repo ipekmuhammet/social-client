@@ -1,12 +1,12 @@
 import React from 'react'
-import { View, TouchableOpacity, FlatList, Text, TextInput, StyleSheet } from 'react-native'
+import { View, TouchableOpacity, FlatList, Text, TextInput, StyleSheet, Dimensions } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
 import HeadingDivider from '../components/HeadingDivider'
 
 const Screen2 = () => (
-    <View style={styles.container}>
-        <View style={{ flex: 1, margin: 2, flexDirection: 'row' }}>
+    <View style={styles.container} behavior={'height'}>
+        <View style={{ flex: .8, margin: 2, flexDirection: 'row', backgroundColor: 'white' }}>
             <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
                 <Ionicons name={'md-search'} size={32} color={'#5D3EBD'} />
             </View>
@@ -17,17 +17,15 @@ const Screen2 = () => (
                 <Ionicons name={'md-microphone'} size={32} color={'#6D7891'} />
             </View>
         </View>
-        <View style={{ flex: 1.2, margin: 2 }}>
-            <HeadingDivider title={'Popular Searches'} />
-        </View>
-        <View style={{ flex: 1.2, margin: 2, alignItems: 'center', justifyContent: 'center' }}>
+        <HeadingDivider title={'Popular Searches'} />
+        <View style={{ flex: .8, padding: 6, margin: 2, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white' }}>
             <FlatList
                 data={['water', 'milk', 'bread', 'egg', 'yogurt', 'coffee']}
                 horizontal={true}
-                scroll
+                showsHorizontalScrollIndicator={false}
                 renderItem={({ item }) =>
-                    <TouchableOpacity style={{ flex: 1, paddingHorizontal: 12, margin: 4, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: '#5D3EBD', borderRadius: 8 }}>
-                        <Text style={{ color: '#5D3EBD', fontSize: 16 }}>{item}</Text>
+                    <TouchableOpacity style={{ flex: 1, paddingHorizontal: 12, margin: 4, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', borderWidth: .4, borderColor: '#5D3EBD', borderRadius: 8 }}>
+                        <Text style={{ color: '#5D3EBD', fontSize: 14 }}>{item}</Text>
                     </TouchableOpacity>
                 }
             />
@@ -37,7 +35,7 @@ const Screen2 = () => (
 )
 
 const styles = StyleSheet.create({
-    container: { ...StyleSheet.absoluteFillObject, flexDirection: 'column' }
+    container: { top: 0, left: 0, height: Dimensions.get('window').height, width: Dimensions.get('window').width, flexDirection: 'column' }
 })
 
 export default Screen2
