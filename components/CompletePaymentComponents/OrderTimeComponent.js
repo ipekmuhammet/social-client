@@ -12,7 +12,7 @@ const OrderTimeComponent = ({ navigation }) => {
     return (
         <TouchableOpacity style={styles.container} onPress={onClick}>
             <View style={styles.iconContainer}>
-                <Ionicons size={40} name={'md-time'} />
+                <Ionicons size={36} name={'md-time'} />
             </View>
             <View style={styles.paymentInfoContainer}>
                 <View style={styles.paymentInfoTextContainer}>
@@ -23,7 +23,7 @@ const OrderTimeComponent = ({ navigation }) => {
                 </View>
             </View>
             <View style={styles.iconContainer}>
-                <MaterialIcons color={'#ACACAC'} size={40} name={'chevron-right'} />
+                <MaterialIcons color={'#ACACAC'} size={36} name={'chevron-right'} />
             </View>
         </TouchableOpacity>
     )
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         marginHorizontal: 8,
         padding: 4,
-        height: 72,
+        height: 60,
         flex: 5
     },
     paymentInfoTextContainer: {

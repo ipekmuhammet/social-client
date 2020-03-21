@@ -12,10 +12,10 @@ const HeadingDivider = ({ title }) => (
 const styles = StyleSheet.create({
     container: { flexDirection: 'row', overflow: 'hidden', paddingVertical: 4, borderRadius: 8 },
     titleContainer: {
-        flex: 1, justifyContent: 'center', height: 48, paddingHorizontal: 24, backgroundColor: '#EDEDED',
+        flex: 1, justifyContent: 'center', height: 44, paddingHorizontal: 20, backgroundColor: '#EDEDED',
         shadowColor: "#000", shadowOffset: { width: 1, height: 1, }, shadowOpacity: .2, shadowRadius: 12, elevation: 6
     },
-    title: { color: '#A8A8A8', fontSize: 20, fontWeight: 'bold' }
+    title: { color: '#A8A8A8', fontSize: 19, fontWeight: 'bold' }
 })
 
 export default HeadingDivider

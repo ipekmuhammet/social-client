@@ -17,7 +17,7 @@ const OrderNoteComponent = ({ navigation }) => {
         <View style={styles.container}>
             <View style={styles.rowContainer}>
                 <View style={styles.iconContainer}>
-                    <Ionicons size={40} name={'md-attach'} />
+                    <Ionicons size={36} name={'md-attach'} />
                 </View>
                 <View style={styles.infoContainer}>
                     <TouchableOpacity style={styles.infoTextContainer} onPress={onClick}>
@@ -27,7 +27,7 @@ const OrderNoteComponent = ({ navigation }) => {
                         <View style={styles.showSavedNotesTextContainer}>
                             <Text style={styles.showSavedNotesText}>Kayıtlı notlarımı göster</Text>
                         </View>
-                        <MaterialIcons color={'#ACACAC'} size={40} name={'chevron-right'} />
+                        <MaterialIcons color={'#ACACAC'} size={36} name={'chevron-right'} />
                     </TouchableOpacity>
                 </View>
             </View>

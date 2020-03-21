@@ -14,7 +14,7 @@ const CompletePaymentScreen = ({ navigation }) => (
     <React.Fragment>
         <ScrollView>
             <HeadingDivider title={'Adres Seçimi'} />
-            <AddressSelectComponent />
+            <AddressSelectComponent navigation={navigation} />
             <HeadingDivider title={'Gönderim Zamanı'} />
             <OrderTimeComponent />
             <HeadingDivider title={'Ödeme Şekli'} />
@@ -23,16 +23,8 @@ const CompletePaymentScreen = ({ navigation }) => (
             <OrderNoteComponent />
             <View style={{ height: 90 }} />
         </ScrollView>
-        <CompletePayment completable={true} navigation={navigation}/>
+        <CompletePayment completable={true} navigation={navigation} />
     </React.Fragment>
 )
 
-const mapStateToProps = (state) => ({
-
-})
-
-const mapDispatchToProps = {
-
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CompletePaymentScreen)
+export default CompletePaymentScreen
