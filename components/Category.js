@@ -44,8 +44,9 @@ const styles = StyleSheet.create({
     imageContainer: {
         borderWidth: .2,
         borderRadius: 12,
-        borderColor: '#BCBCBC',
-        backgroundColor: 'white'
+        borderColor: '#5D3EBD',
+        backgroundColor: 'white',
+        shadowColor: "#000", shadowOffset: { width: 1, height: 1, }, shadowOpacity: .2, shadowRadius: 12, elevation: 2
     },
     productImage: {
         width: RFPercentage(14),
