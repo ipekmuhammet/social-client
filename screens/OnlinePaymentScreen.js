@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
+import { View, TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native'
 import { connect } from 'react-redux'
 
 import FloatingInput from 'react-native-floating-labels'
@@ -23,9 +23,10 @@ class OnlinePaymentScreen extends Component {
         const totalPrice = products.reduce((previousValue, currentValue) => previousValue + parseFloat(currentValue.price) * currentValue.count, 0).toFixed(2)
 
         return (
-            <View style={{ flexDirection: 'column', left: 0, right: 0, backgroundColor: '#EDEDED' }}>
+            <View style={styles.container}>
+
                 <View style={{
-                    height: 80, backgroundColor: 'white', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+                    flex: .16, backgroundColor: 'white', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                     shadowColor: "#000", shadowOffset: { width: 0, height: 4, }, shadowOpacity: 0.32, shadowRadius: 6, elevation: 9
                 }}>
                     <View style={{ alignItems: 'center', justifyContent: 'center' }}>
@@ -35,7 +36,9 @@ class OnlinePaymentScreen extends Component {
                         <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 24 }}>{`${totalPrice} TL`}</Text>
                     </View>
                 </View>
-                <View style={{ height: 290 }}>
+
+
+                <View style={{ flex: .3 }}>
                     <View style={{ flex: 1, marginHorizontal: 12 }}>
                         <FloatingInput
                             labelStyle={styles.labelInput}
@@ -44,7 +47,7 @@ class OnlinePaymentScreen extends Component {
                             value='john@email.com'>Kart Numarası *</FloatingInput>
                     </View>
 
-                    <View style={{ flex: 1, left: 0, right: 0, flexDirection: 'row', marginHorizontal: 12 }}>
+                    <View style={{ flex: 1, flexDirection: 'row', marginHorizontal: 12 }}>
                         <View style={{ flex: 1 }}>
                             <FloatingInput
                                 labelStyle={styles.labelInput}
@@ -61,30 +64,26 @@ class OnlinePaymentScreen extends Component {
                                 value='john@email.com'>Güvenlik Kodu (CVC2) *</FloatingInput>
                         </View>
                     </View>
+                </View>
 
-                    <View style={{ flex: 1, left: 0, right: 0, flexDirection: 'row' }}>
-                        <View style={{ flex: 1 }}>
-
-                        </View>
-
-                        <View style={{ flex: 1 }}>
-                            <Text style={{ fontSize: 14, margin: 6, color: '#A5A5A5' }}>Kartınızın arka yüzünde bulunan 3 haneli sayı</Text>
-                        </View>
-                    </View>
-
-                    <View style={{ alignItems: 'center', justifyContent: 'center', display: 'flex', flexDirection: 'row' }}>
-                        <View style={{ flex: 1 }} />
-                        <View style={{ flex: 7, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-                            <View style={{ margin: 8 }}><Ionicons name={'md-information-circle-outline'} size={28} /></View>
-                            <Text>Kredi kartı bilgileriniz Platform App tarafından tutulmamaktadır; ödeme altyapısı Mastercard tarafından sağlanmaktadır.</Text>
-                        </View>
-                        <View style={{ flex: 1 }} />
+                <View style={{ flex: .1, flexDirection: 'row' }}>
+                    <View style={{ flex: 1 }} />
+                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                        <Text style={{ fontSize: 14, color: '#A5A5A5' }}>Kartınızın arka yüzünde bulunan 3 haneli sayı</Text>
                     </View>
                 </View>
 
-                <TouchableOpacity
-                    onPress={this.completePayment}
-                    style={{ alignItems: 'center', justifyContent: 'center', height: 60, backgroundColor: '#D3D3D3', margin: 8, borderRadius: 36 }}>
+                <View style={{ alignItems: 'center', justifyContent: 'center', display: 'flex', flexDirection: 'row', flex: .1 }}>
+                    <View style={{ flex: 1 }} />
+                    <View style={{ flex: 7, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                        <View style={{ margin: 8 }}><Ionicons name={'md-information-circle-outline'} size={28} /></View>
+                        <Text>Kredi kartı bilgileriniz Platform App tarafından tutulmamaktadır; ödeme altyapısı Mastercard tarafından sağlanmaktadır.</Text>
+                    </View>
+                    <View style={{ flex: 1 }} />
+                </View>
+
+                <TouchableOpacity onPress={this.completePayment}
+                    style={{ alignItems: 'center', justifyContent: 'center', flex: .6, backgroundColor: '#D3D3D3', margin: 8, borderRadius: 36, flex: .1 }}>
                     <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#8D8D8D' }}>Siparişi Tamamla</Text>
                 </TouchableOpacity>
             </View >
@@ -94,7 +93,14 @@ class OnlinePaymentScreen extends Component {
 
 const styles = StyleSheet.create({
     container: {
-
+        flexDirection: 'column',
+        top: 0,
+        left: 0,
+        height: Dimensions.get('window').height,
+        width: Dimensions.get('window').width,
+        backgroundColor: '#EDEDED',
+        display: 'flex',
+        flexDirection: 'column'
     },
     labelInput: {
         color: '#57A25A',
