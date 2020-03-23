@@ -2,11 +2,9 @@ import React from 'react'
 import ScrollableTabView, { ScrollableTabBar } from 'react-native-scrollable-tab-view'
 import { connect } from 'react-redux'
 
-import { getProductsByCategoryId } from '../data/api'
-
 import ProductList from '../components/ProductList'
 
-const ProductsScreen = ({ selectedCategory, categories }) => (
+const ProductsScreen = ({ selectedCategory, categories,products }) => (
 	<ScrollableTabView
 		initialPage={selectedCategory}
 		tabBarBackgroundColor={'#7849F7'}
@@ -15,7 +13,7 @@ const ProductsScreen = ({ selectedCategory, categories }) => (
 		renderTabBar={() => <ScrollableTabBar />}
 	>
 		{
-			categories.map(category => <ProductList key={category.Id} tabLabel={category.name} products={getProductsByCategoryId(category.Id)} />)
+			categories.map(category => <ProductList key={category.Id} tabLabel={category.name} products={products[category.Id]} />)
 		}
 	</ScrollableTabView>
 )
@@ -25,11 +23,13 @@ const mapStateToProps = ({
 		selectedCategory
 	},
 	reducer4: {
-		categories
+		categories,
+		products
 	}
 }) => ({
 	selectedCategory,
-	categories
+	categories,
+	products
 })
 
 export default connect(mapStateToProps)(ProductsScreen)

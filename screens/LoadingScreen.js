@@ -6,17 +6,17 @@ import { setInitialDatas } from '../actions/actions4'
 
 class LoadingScreen extends React.PureComponent {
 
-	componentWillMount() {
+	UNSAFE_componentWillMount() {
 		this.props.setInitialDatas()
 	}
 
-	componentWillReceiveProps(nextProps) {
-		if (nextProps.categories.length > 0 && nextProps.products.length > 0) {
+	UNSAFE_componentWillReceiveProps(nextProps) {
+		if (nextProps.categories.length > 0) {
 			this.props.navigation.navigate('Root')
 		}
 		else {
 			console.warn('Initial datas problem')
-			this.props.setInitialDatas()
+			// this.props.setInitialDatas()
 		}
 	}
 
