@@ -8,117 +8,117 @@ import { decreaseProductCount, increaseProductCount } from '../actions/actions1'
 import { getProductImage } from '../data/api'
 
 const CardProduct = ({ data: { Id, categoryId, name, price, count }, decreaseProductCount, increaseProductCount }) => (
-    <View style={styles.container}>
+	<View style={styles.container}>
 
-        <View style={[styles.child, styles.flex2, {
-            padding: 4,
-            borderWidth: .4,
-            borderColor: '#CDCDCD',
-            borderRadius: 12,
-            backgroundColor: 'white'
-        }]}>
-            <Image style={styles.productImage} resizeMode={'contain'} source={getProductImage(categoryId, Id)} />
-        </View>
+		<View style={[styles.child, styles.flex2, {
+			padding: 4,
+			borderWidth: .4,
+			borderColor: '#CDCDCD',
+			borderRadius: 12,
+			backgroundColor: 'white'
+		}]}>
+			<Image style={styles.productImage} resizeMode={'contain'} source={getProductImage(categoryId, Id)} />
+		</View>
 
-        <View style={[styles.child, styles.flex3, styles.column]}>
-            <View style={styles.child} />
-            <View style={{ flex: 1, width: '100%', paddingHorizontal: 8, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-                <Text style={styles.productName} numberOfLines={2}>{name}</Text>
-            </View>
-            <View style={{ flex: 1, width: '100%', paddingHorizontal: 8, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-                <Text style={styles.productPrice} numberOfLines={2}>{'₺' + price}</Text>
-            </View>
-            <View style={styles.child} />
-        </View>
+		<View style={[styles.child, styles.flex3, styles.column]}>
+			<View style={styles.child} />
+			<View style={{ flex: 1, width: '100%', paddingHorizontal: 8, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+				<Text style={styles.productName} numberOfLines={2}>{name}</Text>
+			</View>
+			<View style={{ flex: 1, width: '100%', paddingHorizontal: 8, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+				<Text style={styles.productPrice} numberOfLines={2}>{'₺' + price}</Text>
+			</View>
+			<View style={styles.child} />
+		</View>
 
-        <View style={[styles.child, styles.flex2, styles.column]}>
-            <View style={styles.child} />
-            <View style={styles.rowChild}>
+		<View style={[styles.child, styles.flex2, styles.column]}>
+			<View style={styles.child} />
+			<View style={styles.rowChild}>
 
-                <TouchableOpacity onPress={() => { decreaseProductCount(Id) }} style={[styles.child, styles.decreaseButton]}>
-                    <Text style={{ color: '#5D3EBD', fontSize: 18 }}>{'-'}</Text>
-                </TouchableOpacity>
+				<TouchableOpacity onPress={() => { decreaseProductCount(Id) }} style={[styles.child, styles.decreaseButton]}>
+					<Text style={{ color: '#5D3EBD', fontSize: 18 }}>{'-'}</Text>
+				</TouchableOpacity>
 
-                <View style={[styles.child, { backgroundColor: '#5D3EBD', padding: 4 }]}>
-                    <Text style={{ color: 'white', fontSize: 18 }}>{count}</Text>
-                </View>
+				<View style={[styles.child, { backgroundColor: '#5D3EBD', padding: 4 }]}>
+					<Text style={{ color: 'white', fontSize: 18 }}>{count}</Text>
+				</View>
 
-                <TouchableOpacity onPress={() => { increaseProductCount(Id) }} style={[styles.child, styles.increaseButton]}>
-                    <Text style={{ color: '#5D3EBD', fontSize: 18 }}>{'+'}</Text>
-                </TouchableOpacity>
+				<TouchableOpacity onPress={() => { increaseProductCount(Id) }} style={[styles.child, styles.increaseButton]}>
+					<Text style={{ color: '#5D3EBD', fontSize: 18 }}>{'+'}</Text>
+				</TouchableOpacity>
 
-            </View>
-            <View style={styles.child} />
-        </View>
+			</View>
+			<View style={styles.child} />
+		</View>
 
-    </View >
+	</View >
 )
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        display: 'flex',
-        flexDirection: 'row',
-        padding: 8,
-        paddingVertical: 12,
-        borderBottomWidth: 1,
-        borderBottomColor: '#EFEFEF'
-    },
-    child: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    flex2: {
-        flex: 1.6
-    },
-    flex3: {
-        flex: 3
-    },
-    column: {
-        flexDirection: 'column',
-        display: 'flex'
-    },
-    rowChild: {
-        flex: 2,
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'row',
-        display: 'flex'
-    },
-    productName: {
-        fontSize: RFPercentage(3),
-        fontWeight: '700',
-        color: 'black',
-        textAlign: 'justify',
-        justifyContent: 'center'
-    },
-    productPrice: {
-        fontSize: RFPercentage(2.7),
-        fontWeight: '700',
-        color: '#5837C2',
-        textAlign: 'center',
-        justifyContent: 'center'
-    },
-    productImage: {
-        width: RFPercentage(14),
-        height: RFPercentage(14)
-    },
-    decreaseButton: {
-        padding: 4,
-        borderTopLeftRadius: 10,
-        borderBottomLeftRadius: 10
-    },
-    increaseButton: {
-        padding: 4,
-        borderTopRightRadius: 10,
-        borderBottomRightRadius: 10
-    }
+	container: {
+		flex: 1,
+		display: 'flex',
+		flexDirection: 'row',
+		padding: 8,
+		paddingVertical: 12,
+		borderBottomWidth: 1,
+		borderBottomColor: '#EFEFEF'
+	},
+	child: {
+		flex: 1,
+		alignItems: 'center',
+		justifyContent: 'center'
+	},
+	flex2: {
+		flex: 1.6
+	},
+	flex3: {
+		flex: 3
+	},
+	column: {
+		flexDirection: 'column',
+		display: 'flex'
+	},
+	rowChild: {
+		flex: 2,
+		alignItems: 'center',
+		justifyContent: 'center',
+		flexDirection: 'row',
+		display: 'flex'
+	},
+	productName: {
+		fontSize: RFPercentage(3),
+		fontWeight: '700',
+		color: 'black',
+		textAlign: 'justify',
+		justifyContent: 'center'
+	},
+	productPrice: {
+		fontSize: RFPercentage(2.7),
+		fontWeight: '700',
+		color: '#5837C2',
+		textAlign: 'center',
+		justifyContent: 'center'
+	},
+	productImage: {
+		width: RFPercentage(14),
+		height: RFPercentage(14)
+	},
+	decreaseButton: {
+		padding: 4,
+		borderTopLeftRadius: 10,
+		borderBottomLeftRadius: 10
+	},
+	increaseButton: {
+		padding: 4,
+		borderTopRightRadius: 10,
+		borderBottomRightRadius: 10
+	}
 })
 
 const mapDispatchToProps = {
-    decreaseProductCount,
-    increaseProductCount
+	decreaseProductCount,
+	increaseProductCount
 }
 
 export default connect(null, mapDispatchToProps)(CardProduct)
