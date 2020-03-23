@@ -11,9 +11,13 @@ class LoadingScreen extends React.PureComponent {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		console.log(nextProps.categories)
-		if (nextProps.categories.length > 0 && nextProps.products.length > 0)
+		if (nextProps.categories.length > 0 && nextProps.products.length > 0) {
 			this.props.navigation.navigate('Root')
+		}
+		else {
+			console.warn('Initial datas problem')
+			this.props.setInitialDatas()
+		}
 	}
 
 	render() {
