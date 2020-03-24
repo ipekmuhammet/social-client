@@ -24,7 +24,9 @@ class LoadingScreen extends React.PureComponent {
 		return (
 			<View style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: 'white', display: 'flex', flex: 1 }}>
 				<View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
-					<Image source={require('../assets/loading.gif')} />
+					<Image source={{
+						uri: `http://192.168.1.102:3000/assets/loading.gif`
+					}} />
 					<Text style={{ fontSize: 24, paddingVertical: 30, fontWeight: '700', color: '#5D3EBD' }}>Lütfen bekleyin.</Text>
 				</View>
 			</View>

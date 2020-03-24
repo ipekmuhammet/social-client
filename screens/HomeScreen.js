@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { FlatList, ImageBackground } from 'react-native'
 import { SliderBox } from 'react-native-image-slider-box'
 
-import { getCategories } from '../data/api'
 import Category from '../components/Category'
 import banner from '../assets/banner.jpg'
 import EmptyCategory from '../components/EmptyCategory'

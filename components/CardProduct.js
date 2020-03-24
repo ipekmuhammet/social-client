@@ -5,8 +5,6 @@ import { RFPercentage } from 'react-native-responsive-fontsize'
 
 import { decreaseProductCount, increaseProductCount } from '../actions/actions1'
 
-import { getProductImage } from '../data/api'
-
 const CardProduct = ({ data: { Id, categoryId, name, price, count }, decreaseProductCount, increaseProductCount }) => (
 	<View style={styles.container}>
 
@@ -17,7 +15,9 @@ const CardProduct = ({ data: { Id, categoryId, name, price, count }, decreasePro
 			borderRadius: 12,
 			backgroundColor: 'white'
 		}]}>
-			<Image style={styles.productImage} resizeMode={'contain'} source={getProductImage(categoryId, Id)} />
+			<Image style={styles.productImage}
+				resizeMode={'contain'}
+				source={{ uri: `http://192.168.1.102:3000/assets/products/${categoryId}/${parseInt(Id) % 10 ? parseInt(Id) % 10 : 10}.jpg` }} />
 		</View>
 
 		<View style={[styles.child, styles.flex3, styles.column]}>
