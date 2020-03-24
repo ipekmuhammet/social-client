@@ -53,7 +53,7 @@ export default function App(props) {
 				<NavigationContainer ref={containerRef} initialState={initialNavigationState}>
 					<Stack.Navigator initialRouteName={store.getState().reducer4.categories.length > 0 ? 'Root' : 'Loading'}>
 						<Stack.Screen name='Loading' component={LoadingScreen} options={{ headerShown: false }} />
-						<Stack.Screen name='Root' component={BottomTabNavigator} options={{ headerStatusBarHeight: 0 }} />
+						<Stack.Screen name='Root' component={BottomTabNavigator} />
 					</Stack.Navigator>
 				</NavigationContainer>
 			</Provider>

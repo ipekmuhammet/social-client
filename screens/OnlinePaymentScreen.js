@@ -5,16 +5,14 @@ import { connect } from 'react-redux'
 import FloatingInput from 'react-native-floating-labels'
 import { Ionicons } from '@expo/vector-icons'
 
+import { makeOrder } from '../actions/actions1'
+
 class OnlinePaymentScreen extends Component {
 
     state = {
         cardNumber: '',
         expirationDate: '',
         CVC2: ''
-    }
-
-    completePayment() {
-        console.log('Complete Payment')
     }
 
     render() {
@@ -82,7 +80,7 @@ class OnlinePaymentScreen extends Component {
                     <View style={{ flex: 1 }} />
                 </View>
 
-                <TouchableOpacity onPress={this.completePayment}
+                <TouchableOpacity onPress={this.props.makeOrder}
                     style={{ alignItems: 'center', justifyContent: 'center', flex: .6, backgroundColor: '#D3D3D3', margin: 8, borderRadius: 36, flex: .1 }}>
                     <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#8D8D8D' }}>Siparişi Tamamla</Text>
                 </TouchableOpacity>
@@ -121,7 +119,7 @@ const mapStateToProps = ({ reducer1: {
 })
 
 const mapDispatchToProps = {
-
+    makeOrder
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(OnlinePaymentScreen)
