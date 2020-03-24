@@ -13,7 +13,7 @@ const Screen1 = () => (
 			headerTitleAlign: 'center',
 			headerTitle: () => (
 				<View style={{ height: '100%', padding: 8, backgroundColor: '#5D3EBD', display: 'flex' }}>
-					<Image source={{ uri: `http://192.168.1.102:3000/assets/logo.png` }} resizeMode={'contain'} style={{ flex: 1 }} />
+					<Image source={require('../assets/logo.png')} resizeMode={'contain'} style={{ flex: 1 }} />
 				</View>
 			)
 		}} />
