@@ -13,7 +13,7 @@ const CompletePaymentComponent = ({ completable, cart, paymentType, navigation, 
             if (paymentType === 0)
                 navigation.navigate('onlinePaymentScreen')
             else
-                makeOrder()
+                makeOrder(cart, navigation)
         } else {
             navigation.navigate('completePayment')
         }

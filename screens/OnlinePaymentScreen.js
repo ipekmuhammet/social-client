@@ -15,6 +15,10 @@ class OnlinePaymentScreen extends Component {
         CVC2: ''
     }
 
+    makeOrder = () => {
+        this.props.makeOrder(this.props.cart, this.props.navigation)
+    }
+
     render() {
 
         const products = Object.values(this.props.cart)
@@ -80,7 +84,7 @@ class OnlinePaymentScreen extends Component {
                     <View style={{ flex: 1 }} />
                 </View>
 
-                <TouchableOpacity onPress={this.props.makeOrder}
+                <TouchableOpacity onPress={this.makeOrder}
                     style={{ alignItems: 'center', justifyContent: 'center', flex: .6, backgroundColor: '#D3D3D3', margin: 8, borderRadius: 36, flex: .1 }}>
                     <Text style={{ fontSize: 22, fontWeight: 'bold', color: '#8D8D8D' }}>Siparişi Tamamla</Text>
                 </TouchableOpacity>
