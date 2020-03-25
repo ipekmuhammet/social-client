@@ -11,6 +11,7 @@ const Screen1 = () => (
 	<Stack.Navigator>
 		<Stack.Screen name='home' component={HomeScreen} options={{
 			headerTitleAlign: 'center',
+			headerStyle: { backgroundColor: '#5D3EBD' },
 			headerTitle: () => (
 				<View style={{ height: '100%', padding: 8, backgroundColor: '#5D3EBD', display: 'flex' }}>
 					<Image source={require('../assets/logo.png')} resizeMode={'contain'} style={{ flex: 1 }} />
