@@ -15,7 +15,7 @@ const CartScreen = ({ cart, refreshCard, navigation }) => {
                 <FlatList
                     key={refreshCard} // TODO : This will make react think that is new object each time. Thats why images reloading.
                     data={products}
-                    keyExtractor={item => 'cart' + item.Id}
+                    keyExtractor={item => 'cart' + item.id}
                     renderItem={({ item }) => <CardProduct data={item} />}
                     ListFooterComponent={
                         <View style={{ height: 90 }} />

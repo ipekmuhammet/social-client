@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import ProductList from '../components/ProductList'
 
-const ProductsScreen = ({ selectedCategory, categories,products }) => (
+const ProductsScreen = ({ selectedCategory, categories, products }) => (
 	<ScrollableTabView
 		initialPage={selectedCategory}
 		tabBarBackgroundColor={'#7849F7'}
@@ -13,7 +13,7 @@ const ProductsScreen = ({ selectedCategory, categories,products }) => (
 		renderTabBar={() => <ScrollableTabBar />}
 	>
 		{
-			categories.map(category => <ProductList key={category.Id} tabLabel={category.name} products={products[category.Id]} />)
+			categories.map(category => <ProductList key={category.id} tabLabel={category.name} products={products[category.id]} />)
 		}
 	</ScrollableTabView>
 )

@@ -5,12 +5,12 @@ import { connect } from 'react-redux'
 
 import { addProduct } from '../actions/actions1'
 
-const Product = ({ data: { Id, categoryId, name, price }, addProduct }) => {
+const Product = ({ data: { id, product_name, kind_name, price, image }, addProduct }) => {
 
-	const imageUrl = `http://192.168.1.102:3000/assets/products/${categoryId}/${parseInt(Id) % 10 ? parseInt(Id) % 10 : 10}.jpg`
+	const imageUrl = `http://192.168.1.102:3000/assets/products/${image}.png`
 
 	const onClick = () => {
-		addProduct(Id)
+		addProduct(id)
 	}
 
 	return (
@@ -24,12 +24,16 @@ const Product = ({ data: { Id, categoryId, name, price }, addProduct }) => {
 				<Image source={{ uri: imageUrl }} resizeMode={'contain'} style={styles.productImage} />
 			</View>
 
-			<View style={styles.child}>
-				<Text numberOfLines={2} style={styles.productName}>{name}</Text>
+			<View style={[styles.child, { alignItems: 'flex-start' }]}>
+				<Text style={styles.productPrice}>{'₺' + price}</Text>
 			</View>
 
 			<View style={styles.child}>
-				<Text style={styles.productPrice}>{'₺' + price}</Text>
+				<Text numberOfLines={3} style={styles.productName}>{product_name}</Text>
+			</View>
+
+			<View style={[styles.child, { alignItems: 'flex-start' }]}>
+				<Text numberOfLines={3} style={styles.kindText}>{kind_name}</Text>
 			</View>
 
 		</View>
@@ -42,13 +46,15 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 		padding: RFPercentage(1),
 		margin: RFPercentage(1),
+		marginVertical: RFPercentage(2),
 		zIndex: -1,
 		backgroundColor: 'transparent'
 	},
 	child: {
+		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
-		flex: 1
+		marginVertical: RFPercentage(.3)
 	},
 	addProductButton: {
 		alignItems: 'center',
@@ -81,17 +87,24 @@ const styles = StyleSheet.create({
 		margin: 12
 	},
 	productName: {
-		fontSize: RFPercentage(2.7),
+		fontSize: RFPercentage(2.8),
 		fontWeight: '300',
-		color: '#707070',
-		textAlign: 'center',
+		color: 'black',
+		textAlign: 'left',
+		justifyContent: 'center'
+	},
+	kindText: {
+		fontSize: RFPercentage(2.6),
+		fontWeight: '700',
+		color: '#B1B1B1',
+		textAlign: 'left',
 		justifyContent: 'center'
 	},
 	productPrice: {
-		fontSize: RFPercentage(2.7),
-		fontWeight: '300',
+		fontSize: RFPercentage(3.2),
+		fontWeight: '700',
 		color: '#5837C2',
-		textAlign: 'center',
+		textAlign: 'left',
 		justifyContent: 'center'
 	}
 })

@@ -33,7 +33,7 @@ const HomeScreen = ({ categories, navigation }) => (
 		contentContainerStyle={{ backgroundColor: '#F5F5F5' }}
 		data={formatData(Object.values(categories), 3)}
 		columnWrapperStyle={{ justifyContent: 'space-between' }}
-		keyExtractor={(item) => item.Id}
+		keyExtractor={(item) => item.id}
 		renderItem={({ item, index }) => item.empty ? <EmptyCategory /> : <Category navigation={navigation} index={index} data={item} />
 		}
 		numColumns={3}

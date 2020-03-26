@@ -21,7 +21,7 @@ const ProductList = ({ products }) => (
 		<FlatList
 			data={formatData(products, 3)}
 			scrollEnabled={true}
-			keyExtractor={item => item.Id}
+			keyExtractor={item => item.id}
 			renderItem={({ item }) => item.empty ? <EmptyProduct /> : <Product data={item} />}
 			numColumns={3} />
 	</View>

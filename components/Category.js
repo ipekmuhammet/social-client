@@ -5,9 +5,9 @@ import { connect } from 'react-redux'
 
 import { setSelectedCategory } from '../actions/actions3'
 
-const Category = ({ data: { Id, name }, index, navigation, setSelectedCategory }) => {
+const Category = ({ data: { id, name }, index, navigation, setSelectedCategory }) => {
 
-	const imageUrl = `http://192.168.1.102:3000/assets/categories/${Id}.jpg`
+	const imageUrl = `http://192.168.1.102:3000/assets/categories/${id}.jpg`
 
 	const onCategoryClick = () => {
 		setSelectedCategory(index)
