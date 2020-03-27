@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 import WelcomeScreen from './WelcomeScreen'
 import LoginScreen from './LoginScreen'
-import SignupScreen from './SignupScreen'
+import RegisterScreen from './RegisterScreen'
 import ForgotPasswordScreen from './ForgotPasswordScreen'
 import ResetPasswordScreen from './ResetPasswordScreen'
 
@@ -29,7 +29,7 @@ const WelcomeStack = () => (
             headerStyle: { backgroundColor: '#5D3EBD' }
         }} />
 
-        <Stack.Screen name='signup' component={SignupScreen} options={{
+        <Stack.Screen name='signup' component={RegisterScreen} options={{
             title: 'Register',
             headerTitleAlign: 'center',
             headerTintColor: 'white',

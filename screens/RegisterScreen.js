@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, CheckBox, TouchableOpacity, TextInput, Text, StyleSheet } from 'react-native'
 
-const RegisterScreen = () => (
+const RegisterScreen = ({ navigation }) => (
     <View style={styles.container}>
 
         <View style={styles.child}>
@@ -61,7 +61,10 @@ const RegisterScreen = () => (
         }
 
         <View style={styles.child}>
-            <TouchableOpacity style={{ backgroundColor: '#5D3EBD', flex: 1, margin: 4, borderRadius: 10, alignItems: 'center', justifyContent: 'center' }} onPress={() => { navigation.navigate('signup') }}>
+            <TouchableOpacity
+                onPress={() => { console.log('send activation code') }}
+                style={{ backgroundColor: '#5D3EBD', flex: 1, margin: 4, borderRadius: 10, alignItems: 'center', justifyContent: 'center' }}
+            >
                 <Text style={{ color: 'white', fontSize: 19 }}>Register</Text>
             </TouchableOpacity>
         </View>
