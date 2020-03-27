@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, TouchableOpacity, TextInput, Text, StyleSheet } from 'react-native'
 
-const LoginScreen = () => (
+const LoginScreen = ({ navigation }) => (
     <View style={styles.container}>
         <View style={styles.child}>
             <TouchableOpacity style={{ backgroundColor: '#3B589E', flex: 1, margin: 4, borderRadius: 10, alignItems: 'center', justifyContent: 'center' }} onPress={() => { navigation.navigate('signup') }}>
@@ -23,15 +23,18 @@ const LoginScreen = () => (
         </View>
 
         <View style={styles.child}>
-            <TouchableOpacity style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Text style={{ color: '#636874', fontSize: 18, fontWeight: 'bold' }}>Forgot Password</Text>
+            <TouchableOpacity style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }} onPress={() => { navigation.navigate('forgotPassword') }}>
+                <Text style={{ color: '#6E7586', fontSize: 19, fontWeight: 'bold' }}>Forgot Password</Text>
             </TouchableOpacity>
         </View>
         <View style={styles.child} />
         <View style={styles.child} />
 
         <View style={styles.child}>
-            <TouchableOpacity style={{ backgroundColor: 'white', borderWidth: 1, borderColor: '#5D3EBD', flex: 1, margin: 4, borderRadius: 10, alignItems: 'center', justifyContent: 'center' }} onPress={() => { navigation.navigate('signup') }}>
+            <TouchableOpacity
+                onPress={() => { navigation.navigate('signup') }}
+                style={{ backgroundColor: 'white', borderWidth: 1, borderColor: '#5D3EBD', flex: 1, margin: 4, borderRadius: 10, alignItems: 'center', justifyContent: 'center' }}
+            >
                 <Text style={{ color: '#5D3EBD', fontSize: 19, fontWeight: 'bold' }}>Register</Text>
             </TouchableOpacity>
         </View>
