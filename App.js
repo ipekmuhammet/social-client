@@ -9,6 +9,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import rootReducer from './reducers/root-reducer'
 
 import BottomTabNavigator from './navigation/BottomTabNavigator'
+import WelcomeStack from './screens/WelcomeStack'
 import LoadingScreen from './screens/LoadingScreen'
 import useLinking from './navigation/useLinking'
 
@@ -51,7 +52,9 @@ export default function App(props) {
 		return (
 			<Provider store={store}>
 				<NavigationContainer ref={containerRef} initialState={initialNavigationState}>
-					<Stack.Navigator initialRouteName={store.getState().reducer4.categories.length > 0 ? 'Root' : 'Loading'}>
+					<Stack.Navigator // initialRouteName={store.getState().reducer4.categories.length > 0 ? 'Root' : 'Loading'}
+					>
+						<Stack.Screen name='Welcome' component={WelcomeStack} options={{ headerShown: false }} />
 						<Stack.Screen name='Loading' component={LoadingScreen} options={{ headerShown: false }} />
 						<Stack.Screen name='Root' component={BottomTabNavigator} />
 					</Stack.Navigator>
