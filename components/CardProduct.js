@@ -26,7 +26,7 @@ const CardProduct = ({ data: { id, product_name, price, image, count }, decrease
 				<Text style={styles.productName} numberOfLines={2}>{product_name}</Text>
 			</View>
 			<View style={{ flex: 1, width: '100%', paddingHorizontal: 8, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-				<Text style={styles.productPrice} numberOfLines={2}>{'₺' + price}</Text>
+				<Text style={styles.productPrice} numberOfLines={2}>{'₺' + price.toString().replace('.', ',')}</Text>
 			</View>
 			<View style={styles.child} />
 		</View>
@@ -87,18 +87,20 @@ const styles = StyleSheet.create({
 		display: 'flex'
 	},
 	productName: {
-		fontSize: RFPercentage(3),
+		fontSize: RFPercentage(2.6),
 		fontWeight: '700',
-		color: 'black',
+		color: '#303030',
 		textAlign: 'justify',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		letterSpacing: .2
 	},
 	productPrice: {
-		fontSize: RFPercentage(2.7),
+		fontSize: RFPercentage(3.4),
 		fontWeight: '700',
-		color: '#5837C2',
+		color: '#5439B3',
 		textAlign: 'center',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		letterSpacing: .2
 	},
 	productImage: {
 		width: RFPercentage(14),

@@ -25,7 +25,7 @@ const Product = ({ data: { id, product_name, kind_name, price, image }, addProdu
 			</View>
 
 			<View style={[styles.child, { alignItems: 'flex-start' }]}>
-				<Text style={styles.productPrice}>{'₺' + price}</Text>
+				<Text style={styles.productPrice}>{'₺' + price.toString().replace('.', ',')}</Text>
 			</View>
 
 			<View style={styles.child}>
@@ -89,23 +89,26 @@ const styles = StyleSheet.create({
 	productName: {
 		fontSize: RFPercentage(2.8),
 		fontWeight: '300',
-		color: 'black',
+		color: '#303030',
 		textAlign: 'left',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		letterSpacing: .2
 	},
 	kindText: {
 		fontSize: RFPercentage(2.6),
 		fontWeight: '700',
 		color: '#B1B1B1',
 		textAlign: 'left',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		letterSpacing: .2
 	},
 	productPrice: {
 		fontSize: RFPercentage(3.2),
 		fontWeight: '700',
 		color: '#5837C2',
 		textAlign: 'left',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		letterSpacing: .2
 	}
 })
 
