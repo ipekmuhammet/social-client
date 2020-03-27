@@ -1,4 +1,5 @@
 import React from 'react'
+import { AsyncStorage } from 'react-native'
 import { SplashScreen } from 'expo'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
@@ -15,6 +16,20 @@ import useLinking from './navigation/useLinking'
 
 const store = createStore(rootReducer, applyMiddleware(thunk))
 const Stack = createStackNavigator()
+
+const getInitalScreen = () => {
+	AsyncStorage.getItem('token').then((token) => {
+		if (token) {
+			if (store.getState().reducer4.categories.length > 0) {
+				return 'Root'
+			} else {
+				return 'Loading'
+			}
+		} else {
+			return 'Welcome'
+		}
+	})
+}
 
 export default function App(props) {
 
@@ -52,7 +67,7 @@ export default function App(props) {
 		return (
 			<Provider store={store}>
 				<NavigationContainer ref={containerRef} initialState={initialNavigationState}>
-					<Stack.Navigator // initialRouteName={store.getState().reducer4.categories.length > 0 ? 'Root' : 'Loading'}
+					<Stack.Navigator initialRouteName={getInitalScreen()}
 					>
 						<Stack.Screen name='Welcome' component={WelcomeStack} options={{ headerShown: false }} />
 						<Stack.Screen name='Loading' component={LoadingScreen} options={{ headerShown: false }} />
