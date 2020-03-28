@@ -7,6 +7,7 @@ import LoginScreen from './LoginScreen'
 import RegisterScreen from './RegisterScreen'
 import ForgotPasswordScreen from './ForgotPasswordScreen'
 import ResetPasswordScreen from './ResetPasswordScreen'
+import ActivationScreen from './ActivationScreen'
 
 const Stack = createStackNavigator()
 
@@ -49,6 +50,14 @@ const WelcomeStack = () => (
             headerTintColor: 'white',
             headerStyle: { backgroundColor: '#5D3EBD' }
         }} />
+
+        <Stack.Screen name='activationScreen' component={ActivationScreen} options={{
+            title: 'Activate Account',
+            headerTitleAlign: 'center',
+            headerTintColor: 'white',
+            headerStyle: { backgroundColor: '#5D3EBD' }
+        }} />
+
     </Stack.Navigator>
 )
 

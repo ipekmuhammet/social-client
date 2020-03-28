@@ -1,5 +1,6 @@
 import React from 'react'
-import { View, CheckBox, TouchableOpacity, TextInput, Text, StyleSheet } from 'react-native'
+import { View, CheckBox, TouchableOpacity, TextInput, Text, StyleSheet, Alert } from 'react-native'
+import axios from 'axios'
 
 const RegisterScreen = ({ navigation }) => (
     <View style={styles.container}>
@@ -62,7 +63,16 @@ const RegisterScreen = ({ navigation }) => (
 
         <View style={styles.child}>
             <TouchableOpacity
-                onPress={() => { console.log('send activation code') }}
+                onPress={() => {
+                    console.log('x')
+                    axios.post('http://192.168.1.102:3000/send-activation-code', { phone_number: '905468133198' }).then(res => {
+                        if (res.status === 200) {
+                            navigation.navigate('activationScreen')
+                        } else {
+                            Alert.alert('err')
+                        }
+                    })
+                }}
                 style={{ backgroundColor: '#5D3EBD', flex: 1, margin: 4, borderRadius: 10, alignItems: 'center', justifyContent: 'center' }}
             >
                 <Text style={{ color: 'white', fontSize: 19 }}>Register</Text>

@@ -17,20 +17,6 @@ import useLinking from './navigation/useLinking'
 const store = createStore(rootReducer, applyMiddleware(thunk))
 const Stack = createStackNavigator()
 
-const getInitalScreen = () => {
-	AsyncStorage.getItem('token').then((token) => {
-		if (token) {
-			if (store.getState().reducer4.categories.length > 0) {
-				return 'Root'
-			} else {
-				return 'Loading'
-			}
-		} else {
-			return 'Welcome'
-		}
-	})
-}
-
 export default function App(props) {
 
 	const [isLoadingComplete, setLoadingComplete] = React.useState(false)
@@ -67,7 +53,7 @@ export default function App(props) {
 		return (
 			<Provider store={store}>
 				<NavigationContainer ref={containerRef} initialState={initialNavigationState}>
-					<Stack.Navigator initialRouteName={getInitalScreen()}
+					<Stack.Navigator initialRouteName={'Loading'}
 					>
 						<Stack.Screen name='Welcome' component={WelcomeStack} options={{ headerShown: false }} />
 						<Stack.Screen name='Loading' component={LoadingScreen} options={{ headerShown: false }} />

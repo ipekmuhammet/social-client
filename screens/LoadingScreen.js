@@ -1,13 +1,23 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { View, Image, Text } from 'react-native'
+import { View, Image, Text, AsyncStorage } from 'react-native'
 
 import { setInitialDatas } from '../actions/actions4'
 
 class LoadingScreen extends React.PureComponent {
 
 	UNSAFE_componentWillMount() {
-		this.props.setInitialDatas()
+		AsyncStorage.getItem('token').then((token) => {
+			if (token) {
+				if (this.props.categories.length > 0) {
+					this.props.navigation.navigate('Root')
+				} else {
+					this.props.setInitialDatas()
+				}
+			} else {
+				this.props.navigation.navigate('Welcome')
+			}
+		})
 	}
 
 	UNSAFE_componentWillReceiveProps(nextProps) {
