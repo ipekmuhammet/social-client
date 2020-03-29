@@ -67,7 +67,7 @@ const RegisterScreen = ({ navigation }) => (
                     console.log('x')
                     axios.post('http://192.168.1.102:3000/send-activation-code', { phone_number: '905468133198' }).then(res => {
                         if (res.status === 200) {
-                            navigation.navigate('activationScreen')
+                            navigation.navigate('activationScreen', { from: 'register' })
                         } else {
                             Alert.alert('err')
                         }

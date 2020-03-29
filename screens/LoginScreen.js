@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import { View, TouchableOpacity, TextInput, Text, StyleSheet } from 'react-native'
 
 const LoginScreen = ({ navigation }) => (
@@ -17,7 +18,17 @@ const LoginScreen = ({ navigation }) => (
         </View>
 
         <View style={styles.child}>
-            <TouchableOpacity style={{ backgroundColor: '#5D3EBD', flex: 1, margin: 4, borderRadius: 10, alignItems: 'center', justifyContent: 'center' }} onPress={() => { navigation.navigate('signup') }}>
+            <TouchableOpacity
+                style={{ backgroundColor: '#5D3EBD', flex: 1, margin: 4, borderRadius: 10, alignItems: 'center', justifyContent: 'center' }}
+                onPress={() => {
+                    axios.post('http://192.168.1.102:3000/send-activation-code', { phone_number: '905468133198' }).then(res => {
+                        if (res.status === 200) {
+                            navigation.navigate('activationScreen', { from: 'login' })
+                        } else {
+                            Alert.alert('err')
+                        }
+                    })
+                }}>
                 <Text style={{ color: 'white', fontSize: 19 }}>Login</Text>
             </TouchableOpacity>
         </View>
