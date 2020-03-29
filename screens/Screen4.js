@@ -1,5 +1,6 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
+import { CardStyleInterpolators } from '@react-navigation/stack'
 
 import ProfileScreen from './ProfileScreen'
 import AddressesScreen from './SettingsScreens/AddressesScreen'
@@ -7,7 +8,7 @@ import AddressesScreen from './SettingsScreens/AddressesScreen'
 const Stack = createStackNavigator()
 
 const Screen3 = () => (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }}>
         <Stack.Screen
             name='profile'
             component={ProfileScreen}

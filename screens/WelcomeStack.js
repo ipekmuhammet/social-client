@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Image } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
+import { CardStyleInterpolators } from '@react-navigation/stack'
 
 import WelcomeScreen from './WelcomeScreen'
 import LoginScreen from './LoginScreen'
@@ -12,7 +13,7 @@ import ActivationScreen from './ActivationScreen'
 const Stack = createStackNavigator()
 
 const WelcomeStack = () => (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }}>
         <Stack.Screen name='welcome' component={WelcomeScreen} options={{
             headerTitleAlign: 'center',
             headerStyle: { backgroundColor: '#5D3EBD' },

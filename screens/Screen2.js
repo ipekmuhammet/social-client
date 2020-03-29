@@ -1,12 +1,13 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
+import { CardStyleInterpolators } from '@react-navigation/stack'
 
 import SearchScreen from './SearchScreen'
 
 const Stack = createStackNavigator()
 
 const Screen2 = () => (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }}>
         <Stack.Screen
             name='search'
             options={{

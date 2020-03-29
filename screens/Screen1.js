@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Image } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
+import { CardStyleInterpolators } from '@react-navigation/stack'
 
 import HomeScreen from './HomeScreen'
 import ProductScreen from './ProductsScreen'
@@ -8,8 +9,8 @@ import ProductScreen from './ProductsScreen'
 const Stack = createStackNavigator()
 
 const Screen1 = () => (
-	<Stack.Navigator>
-		<Stack.Screen name='home' component={HomeScreen} options={{
+	<Stack.Navigator screenOptions={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }}>
+		<Stack.Screen name='home' component={HomeScreen}  options={{
 			headerTitleAlign: 'center',
 			headerStyle: { backgroundColor: '#5D3EBD' },
 			headerTitle: () => (
