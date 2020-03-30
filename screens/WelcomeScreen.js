@@ -19,7 +19,9 @@ const WelcomeScreen = ({ navigation }) => (
         </View>
 
         <View style={[styles.child, { flex: 1.2 }]}>
-            <TouchableOpacity style={{ backgroundColor: '#5D3EBD', flex: 1, margin: 4, borderRadius: 10, alignItems: 'center', justifyContent: 'center' }} onPress={() => { navigation.navigate('signup') }}>
+            <TouchableOpacity
+                style={{ backgroundColor: '#5D3EBD', flex: 1, margin: 4, borderRadius: 10, alignItems: 'center', justifyContent: 'center' }}
+                onPress={() => { navigation.navigate('signup') }}>
                 <Text style={{ color: 'white', fontSize: 19, fontWeight: 'bold' }}>Register</Text>
             </TouchableOpacity>
         </View>

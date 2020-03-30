@@ -1,13 +1,8 @@
 import React from 'react'
-import { View, TouchableOpacity, TextInput, Text, Image, StyleSheet } from 'react-native'
+import { View, TouchableOpacity, TextInput, Text, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-import Modal, {
-    ScaleAnimation,
-    ModalTitle,
-    ModalButton,
-    ModalFooter,
-    ModalContent
-} from 'react-native-modals'
+
+import PasswordChangedPopup from '../components/popups/PasswordChangedPopup'
 
 class ResetPasswordScreen extends React.PureComponent {
 
@@ -15,49 +10,14 @@ class ResetPasswordScreen extends React.PureComponent {
         scaleAnimationModal: false
     }
 
+    setPopupState = (state) => {
+        this.setState(state)
+    }
+
     render() {
         return (
             <View style={styles.container}>
-
-                <Modal
-                    onTouchOutside={() => {
-                        this.setState({ scaleAnimationModal: false });
-                    }}
-                    width={0.9}
-                    visible={this.state.scaleAnimationModal}
-                    onSwipeOut={() => this.setState({ scaleAnimationModal: false })}
-                    // modalAnimation={new ScaleAnimation()}
-                    onHardwareBackPress={() => {
-                        console.log('onHardwareBackPress');
-                        // this.setState({ scaleAnimationModal: false });
-                        return true;
-                    }}
-                    //  modalTitle={
-                    //      <ModalTitle
-                    //          title="Modal - Scale Animation"
-                    //          hasTitleBar={false}
-                    //      />
-                    //  }
-                    footer={
-                        <ModalFooter>
-                            <ModalButton
-                                text='OK'
-                                textStyle={{ color: 'white' }}
-                                style={{ backgroundColor: '#5D3EBD' }}
-                                onPress={() => {
-                                    console.log('Close')
-                                    this.setState({ scaleAnimationModal: false });
-                                }}
-                                key="button-1"
-                            />
-                        </ModalFooter>
-                    }>
-                    <ModalContent style={{ backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' }}>
-                        <Image style={{ height: 80 }} source={require('../assets/verify-image.jpeg')} />
-                        <Text style={{ fontSize: 20, fontWeight: 'bold', marginTop: 12, marginBottom: -12 }}>Your password is changed</Text>
-                    </ModalContent>
-                </Modal>
-
+                <PasswordChangedPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
                 <View style={[styles.child, { flexDirection: 'row' }]}>
                     <TextInput keyboardType={'phone-pad'} placeholder={'Country/Region Code'} style={{ flex: 1, margin: 4, borderRadius: 6, paddingHorizontal: 12, fontSize: 19, borderWidth: .8, borderColor: '#ABABAB' }} />
                     <TextInput keyboardType={'phone-pad'} placeholder={'Phone Number'} style={{ flex: 1, margin: 4, borderRadius: 6, paddingHorizontal: 12, fontSize: 19, borderWidth: .8, borderColor: '#ABABAB' }} />
