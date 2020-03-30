@@ -10,6 +10,10 @@ import ForgotPasswordScreen from './ForgotPasswordScreen'
 import ResetPasswordScreen from './ResetPasswordScreen'
 import ActivationScreen from './ActivationScreen'
 
+import SearchAddressScreen from './AddressScreens/SearchAddressScreen'
+import PinAddressScreen from './AddressScreens/PinAddressScreen'
+import CompleteAddressScreen from './AddressScreens/CompleteAddressScreen'
+
 const Stack = createStackNavigator()
 
 const WelcomeStack = () => (
@@ -54,6 +58,27 @@ const WelcomeStack = () => (
 
         <Stack.Screen name='activationScreen' component={ActivationScreen} options={{
             title: 'Activate Account',
+            headerTitleAlign: 'center',
+            headerTintColor: 'white',
+            headerStyle: { backgroundColor: '#5D3EBD' }
+        }} />
+
+        <Stack.Screen name='searchAddressScreen' component={SearchAddressScreen} options={{
+            title: 'Add New Address',
+            headerTitleAlign: 'center',
+            headerTintColor: 'white',
+            headerStyle: { backgroundColor: '#5D3EBD' }
+        }} />
+
+        <Stack.Screen name='pinAddressScreen' component={PinAddressScreen} options={{
+            title: 'Add New Address',
+            headerTitleAlign: 'center',
+            headerTintColor: 'white',
+            headerStyle: { backgroundColor: '#5D3EBD' }
+        }} />
+
+        <Stack.Screen name='completeAddressScreen' component={CompleteAddressScreen} options={{
+            title: 'Add New Address',
             headerTitleAlign: 'center',
             headerTintColor: 'white',
             headerStyle: { backgroundColor: '#5D3EBD' }
