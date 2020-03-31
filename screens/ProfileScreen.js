@@ -4,6 +4,31 @@ import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 
 import SettingItem from '../components/SettingItem'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import LogoutPopup from '../components/popups/LogoutPopup'
+
+class LogoutItem extends React.PureComponent {
+    state = {
+        scaleAnimationModal: false
+    }
+
+    setPopupState = (state) => {
+        this.setState(state)
+    }
+
+    render() {
+        return (
+            <React.Fragment>
+                <LogoutPopup navigation={this.props.navigation} scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
+                <TouchableOpacity onPress={() => { this.setPopupState({ scaleAnimationModal: true }) }}>
+                    <SettingItem title={'Logout'}>
+                        <MaterialIcons color={'#4522A0'} name={'exit-to-app'} size={40} />
+                    </SettingItem>
+                </TouchableOpacity>
+            </React.Fragment>
+        )
+    }
+}
+
 
 const ProfileScreen = ({ navigation }) => (
     <ScrollView>
@@ -20,7 +45,7 @@ const ProfileScreen = ({ navigation }) => (
             <Ionicons color={'#4522A0'} name={'md-phone-portrait'} size={40} />
         </SettingItem>
 
-        <TouchableOpacity onPress={() => { navigation.navigate('addresses', { title: 'Addresses' }) }}>
+        <TouchableOpacity onPress={() => { navigation.navigate('addresses') }}>
             <SettingItem title={'Addresses'}>
                 <MaterialIcons color={'#4522A0'} name={'place'} size={40} />
             </SettingItem>
@@ -58,11 +83,10 @@ const ProfileScreen = ({ navigation }) => (
             <Ionicons color={'#4522A0'} name={'md-help-circle-outline'} size={40} />
         </SettingItem>
 
-        <SettingItem title={'Logout'}>
-            <MaterialIcons color={'#4522A0'} name={'exit-to-app'} size={40} />
-        </SettingItem>
+        <LogoutItem navigation={navigation}/>
 
         <SettingItem title={'English'} />
+
         <SettingItem title={'2.5.5'} />
 
     </ScrollView>

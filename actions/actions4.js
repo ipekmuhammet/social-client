@@ -61,3 +61,20 @@ export const setInitialDatas = () => {
 		})
 	}
 }
+
+export const logout = (navigation) => {
+	return (dispatch) => {
+		AsyncStorage.multiRemove(['token', 'user']).then(vals => {
+			dispatch({
+				type: SET_INITIAL_DATAS,
+				payload: {
+					categories: [],
+					products: [],
+					user: {},
+					token: null
+				}
+			})
+			navigation.navigate('Welcome')
+		})
+	}
+}

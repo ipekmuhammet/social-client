@@ -1,5 +1,3 @@
-import { SET_INITIAL_DATAS, SET_USER } from '../actions/actions4'
-
 const INITIAL_STATE = {
 	categories: [],
 	products: [],

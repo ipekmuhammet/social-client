@@ -37,6 +37,9 @@ class AddressList extends React.PureComponent {
                             <Ionicons color={'#4522A0'} name={'md-trash'} size={40} />
                         </InteractiveSettingItem>
                     )}
+                    ListFooterComponent={
+                        this.props.footer()
+                    }
                 />
                 <DeleteAddressPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
             </React.Fragment>
