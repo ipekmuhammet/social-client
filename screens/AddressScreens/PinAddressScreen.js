@@ -8,8 +8,7 @@ class PinAddressScreen extends React.PureComponent {
 
     state = {
         region: {
-            latitude: 41.0381665,
-            longitude: 28.9417276,
+            ...this.props.route.params.location,
             latitudeDelta: 0.0035,
             longitudeDelta: 0.0035,
         },
@@ -55,9 +54,9 @@ class PinAddressScreen extends React.PureComponent {
                         flexDirection: 'row', alignItems: 'center', paddingHorizontal: 24, paddingVertical: 24
                     }}>
 
-                    <TouchableOpacity 
-                    style={{ flex: 1, fontSize: 22, padding: 16, backgroundColor: '#5D3EBD', borderRadius: 16 }} 
-                    onPress={()=>{this.props.navigation.navigate('completeAddressScreen',{address:this.state.address,region:this.state.region})}}>
+                    <TouchableOpacity
+                        style={{ flex: 1, fontSize: 22, padding: 16, backgroundColor: '#5D3EBD', borderRadius: 16 }}
+                        onPress={() => { this.props.navigation.navigate('completeAddressScreen', { address: this.state.address, region: this.state.region }) }}>
                         <Text style={{ fontSize: 24, color: 'white', textAlign: 'center', fontWeight: 'bold' }}>Use This Address</Text>
                     </TouchableOpacity>
                 </View>
