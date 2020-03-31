@@ -22,8 +22,13 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.muhammetipke.platformapp",
-      "versionCode": 1
+      "package": "com.muhammetipek.platformapp",
+      "versionCode": 1,
+      "config": {
+				"googleMaps": {
+					"apiKey": "AIzaSyDOKcW0tFvi_T9vFyERfUDh20IxfTfBsmA"
+				}
+			}
     }
   }
 }
