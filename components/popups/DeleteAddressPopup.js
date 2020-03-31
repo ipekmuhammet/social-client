@@ -1,13 +1,10 @@
 import React from 'react'
-import { connect } from 'react-redux'
 
 import Modal, {
     ModalTitle,
     ModalButton,
     ModalFooter
 } from 'react-native-modals'
-
-import { deleteAddress } from '../../actions/actions4'
 
 const DeleteAddressPopup = ({ scaleAnimationModal, setPopupState }) => (
     <Modal
@@ -49,15 +46,10 @@ const DeleteAddressPopup = ({ scaleAnimationModal, setPopupState }) => (
                     onPress={() => {
                         setPopupState({ scaleAnimationModal: false }, true);
                     }}
-                    key="button-1"
+                    key="button-2"
                 />
             </ModalFooter>
-        }>
-    </Modal>
+        } />
 )
 
-const mapDispatchToProps = {
-    deleteAddress
-}
-
-export default connect(null, mapDispatchToProps)(DeleteAddressPopup)
+export default DeleteAddressPopup

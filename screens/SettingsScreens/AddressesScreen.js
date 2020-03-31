@@ -1,15 +1,13 @@
 import React from 'react'
-import { ScrollView, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
 import InteractiveSettingItem from '../../components/InteractiveSettingItem'
 import HeadingDivider from '../../components/HeadingDivider'
-import DeleteAddressPopup from '../../components/popups/DeleteAddressPopup'
 import AddressList from '../../components/AddressList'
 
 const AddressesScreen = ({ navigation }) => (
-    <ScrollView style={styles.container}>
-        <DeleteAddressPopup />
+    <View style={styles.container}>
         <AddressList />
 
         <HeadingDivider title={'Add Address'} />
@@ -31,7 +29,7 @@ const AddressesScreen = ({ navigation }) => (
             <Ionicons color={'#4522A0'} name={'md-add'} size={40} />
         </InteractiveSettingItem>
 
-    </ScrollView>
+    </View>
 )
 
 const styles = StyleSheet.create({

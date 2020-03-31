@@ -48,12 +48,12 @@ const ConfirmAddressPopup = ({ address, scaleAnimationModal, setPopupState }) =>
                     onPress={() => {
                         setPopupState(false, true);
                     }}
-                    key="button-1"
+                    key="button-2"
                 />
             </ModalFooter>
         }>
         <ModalContent style={{ alignItems: 'center', justiftContent: 'center' }}>
-            <Text numberOfLines={3} style={{ fontSize: 20, color: '#303030', fontWeight: 'bold' }}>{address}</Text>
+            <Text numberOfLines={3} style={{ fontSize: 20, color: '#303030', fontWeight: 'bold', textAlign: 'center' }}>{address}</Text>
         </ModalContent>
     </Modal>
 )

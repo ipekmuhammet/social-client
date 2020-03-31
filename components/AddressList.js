@@ -28,6 +28,7 @@ class AddressList extends React.PureComponent {
             <React.Fragment>
                 <FlatList
                     data={this.props.user.addresses}
+                    keyExtractor={item => item._id}
                     renderItem={({ item: address }) => (
                         <InteractiveSettingItem title={address.open_address} onRightIconClick={() => {
                             this.setPopupState({ scaleAnimationModal: true, addressId: address._id })

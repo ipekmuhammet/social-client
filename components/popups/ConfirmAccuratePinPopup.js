@@ -44,7 +44,7 @@ const ConfirmAccuratePinPopup = ({ scaleAnimationModal, setPopupState }) => (
                         // this.props.addAddress('Ahmet Rüfai Sok., No:1', this.props.token)
                         setPopupState(false, true);
                     }}
-                    key="button-1"
+                    key="button-2"
                 />
             </ModalFooter>
         }>
