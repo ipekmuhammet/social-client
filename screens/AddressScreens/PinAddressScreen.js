@@ -28,17 +28,24 @@ class PinAddressScreen extends React.PureComponent {
         })
     }
 
+    UNSAFE_componentWillMount(){
+        this.getAddress(this.state.region).then((address) => {
+            this.setState({ address })
+        })
+    }
+
     render() {
         return (
-            <View style={{ flex: 1, backgroundColor: 'red' }}>
-
+            <View style={{ flex: 1 }}>
                 <View
                     style={{
                         position: 'absolute', top: 0, height: 68, left: 0, right: 0, backgroundColor: 'white', zIndex: 2, display: 'flex',
                         flexDirection: 'row', alignItems: 'center', borderRadius: 16, margin: 18, marginHorizontal: 24, paddingHorizontal: 12
                     }}>
                     <Ionicons name={'md-pin'} size={40} color={'#5D3EBD'} />
-                    <TextInput style={{ margin: 8, marginHorizontal: 4, flex: 1, fontSize: 22, padding: 8, paddingHorizontal: 8, color: '#757B8B' }} value={this.state.address} />
+                    <TextInput
+                        style={{ margin: 8, marginHorizontal: 4, flex: 1, fontSize: 22, padding: 8, paddingHorizontal: 8, color: '#757B8B' }}
+                        value={this.state.address} />
                 </View>
 
                 <MapView

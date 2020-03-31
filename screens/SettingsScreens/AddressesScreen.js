@@ -1,28 +1,22 @@
 import React from 'react'
 import { ScrollView, StyleSheet } from 'react-native'
-import { connect } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons'
-
-import { addAddress, deleteAddress } from '../../actions/actions4'
 
 import InteractiveSettingItem from '../../components/InteractiveSettingItem'
 import HeadingDivider from '../../components/HeadingDivider'
+import DeleteAddressPopup from '../../components/popups/DeleteAddressPopup'
+import AddressList from '../../components/AddressList'
 
-const AddressesScreen = ({ user, token, addAddress, deleteAddress }) => (
+const AddressesScreen = ({ navigation }) => (
     <ScrollView style={styles.container}>
-
-        {
-            user.addresses.map(address => (
-                <InteractiveSettingItem title={address.open_address} onRightIconClick={() => { deleteAddress(address._id, token) }}>
-                    <Ionicons color={'#4522A0'} name={'md-home'} size={40} />
-                    <Ionicons color={'#4522A0'} name={'md-trash'} size={40} />
-                </InteractiveSettingItem>
-            ))
-        }
+        <DeleteAddressPopup />
+        <AddressList />
 
         <HeadingDivider title={'Add Address'} />
 
-        <InteractiveSettingItem title={'Add home address'} onRightIconClick={() => { addAddress('MAMİ BABA SOKAK.', token) }} >
+        <InteractiveSettingItem title={'Add home address'} onRightIconClick={() => {
+            navigation.navigate('searchAddressScreen')
+        }}>
             <Ionicons color={'#4522A0'} name={'md-home'} size={40} />
             <Ionicons color={'#4522A0'} name={'md-add'} size={40} />
         </InteractiveSettingItem>
@@ -46,19 +40,5 @@ const styles = StyleSheet.create({
     }
 })
 
-const mapStateToProps = ({
-    reducer4: {
-        user,
-        token
-    }
-}) => ({
-    user,
-    token
-})
 
-const mapDispatchToProps = {
-    addAddress,
-    deleteAddress
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddressesScreen)
+export default AddressesScreen
