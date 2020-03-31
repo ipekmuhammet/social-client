@@ -4,6 +4,8 @@ import MapView from 'react-native-maps'
 import axios from 'axios'
 import { Ionicons } from '@expo/vector-icons'
 
+import ConfirmAccuratePinPopup from '../../components/popups/ConfirmAccuratePinPopup'
+
 class PinAddressScreen extends React.PureComponent {
 
     state = {
@@ -12,7 +14,8 @@ class PinAddressScreen extends React.PureComponent {
             latitudeDelta: 0.0035,
             longitudeDelta: 0.0035,
         },
-        address: ''
+        address: '',
+        scaleAnimationModal: false
     }
 
     getAddress = (region) => (
@@ -28,15 +31,27 @@ class PinAddressScreen extends React.PureComponent {
         })
     }
 
-    UNSAFE_componentWillMount(){
+    UNSAFE_componentWillMount() {
         this.getAddress(this.state.region).then((address) => {
             this.setState({ address })
         })
     }
 
+    setPopupState = (scaleAnimationModal, navigate) => {
+        this.setState({ scaleAnimationModal })
+        if (navigate) {
+            this.props.navigation.navigate('completeAddressScreen', { address: this.state.address, region: this.state.region })
+        }
+    }
+
     render() {
         return (
             <View style={{ flex: 1 }}>
+
+                <ConfirmAccuratePinPopup
+                    setPopupState={this.setPopupState}
+                    scaleAnimationModal={this.state.scaleAnimationModal} />
+
                 <View
                     style={{
                         position: 'absolute', top: 0, height: 68, left: 0, right: 0, backgroundColor: 'white', zIndex: 2, display: 'flex',
@@ -63,7 +78,9 @@ class PinAddressScreen extends React.PureComponent {
 
                     <TouchableOpacity
                         style={{ flex: 1, fontSize: 22, padding: 16, backgroundColor: '#5D3EBD', borderRadius: 16 }}
-                        onPress={() => { this.props.navigation.navigate('completeAddressScreen', { address: this.state.address, region: this.state.region }) }}>
+                        onPress={() => {
+                            this.setPopupState(true)
+                        }}>
                         <Text style={{ fontSize: 24, color: 'white', textAlign: 'center', fontWeight: 'bold' }}>Use This Address</Text>
                     </TouchableOpacity>
                 </View>

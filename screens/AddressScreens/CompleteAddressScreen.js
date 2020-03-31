@@ -6,6 +6,8 @@ import axios from 'axios'
 import { Ionicons } from '@expo/vector-icons'
 import { addAddress } from '../../actions/actions4'
 
+import ConfirmAddressPopup from '../../components/popups/ConfirmAddressPopup'
+
 class CompleteAddressScreen extends React.Component {
 
     state = {
@@ -15,7 +17,7 @@ class CompleteAddressScreen extends React.Component {
             latitudeDelta: 0.0035,
             longitudeDelta: 0.0035,
         },
-        address: ''
+        scaleAnimationModal: false
     }
 
     getAddress = (region) => (
@@ -31,10 +33,18 @@ class CompleteAddressScreen extends React.Component {
         })
     }
 
+    setPopupState = (scaleAnimationModal, complete) => {
+        this.setState({ scaleAnimationModal })
+        if (complete) {
+            this.props.addAddress(this.props.route.params.address, this.props.token)
+            this.props.navigation.pop(3)
+        }
+    }
+
     render() {
-        console.log(this.props)
         return (
             <View style={{ flex: 1 }}>
+                <ConfirmAddressPopup address={this.props.route.params.address} scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
                 <View style={{ flex: 1.4 }} />
                 <View style={{ flex: 3, backgroundColor: 'pink' }}>
                     <View style={{ flex: 1, margin: 2, flexDirection: 'row' }}>
@@ -61,7 +71,7 @@ class CompleteAddressScreen extends React.Component {
                     </View>
                     <View style={{ flex: 1, margin: 2 }}>
                         <TouchableOpacity
-                            onPress={() => { this.props.addAddress(this.props.route.params.address, this.props.token) }}
+                            onPress={() => { this.setPopupState(true) }}
                             style={{ flex: 1, backgroundColor: '#5D3EBD', alignItems: 'center', justifyContent: 'center', margin: 6, borderRadius: 12 }}>
                             <Text style={{ fontSize: 22, color: 'white' }}>Save</Text>
                         </TouchableOpacity>
