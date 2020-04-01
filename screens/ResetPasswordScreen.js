@@ -7,7 +7,10 @@ import PasswordChangedPopup from '../components/popups/PasswordChangedPopup'
 class ResetPasswordScreen extends React.PureComponent {
 
     state = {
-        scaleAnimationModal: false
+        scaleAnimationModal: false,
+        phoneNumber: '',
+        activationCode: '',
+        password: ''
     }
 
     setPopupState = (state) => {
@@ -19,30 +22,53 @@ class ResetPasswordScreen extends React.PureComponent {
             <View style={styles.container}>
                 <PasswordChangedPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
                 <View style={[styles.child, { flexDirection: 'row' }]}>
-                    <TextInput keyboardType={'phone-pad'} placeholder={'Country/Region Code'} style={{ flex: 1, margin: 4, borderRadius: 6, paddingHorizontal: 12, fontSize: 19, borderWidth: .8, borderColor: '#ABABAB' }} />
-                    <TextInput keyboardType={'phone-pad'} placeholder={'Phone Number'} style={{ flex: 1, margin: 4, borderRadius: 6, paddingHorizontal: 12, fontSize: 19, borderWidth: .8, borderColor: '#ABABAB' }} />
+
+                    {
+                        //  <TextInput
+                        //      keyboardType={'phone-pad'}
+                        //      placeholder={'Country/Region Code'}
+                        //      style={styles.input} />
+                    }
+
+                    <TextInput
+                        onChangeText={(phoneNumber) => { this.setState({ phoneNumber }) }}
+                        value={this.state.phoneNumber}
+                        keyboardType={'phone-pad'}
+                        placeholder={'Phone Number'}
+                        style={styles.input} />
+
                 </View>
 
                 <View style={[styles.child, { flexDirection: 'row' }]}>
-                    <TextInput keyboardType={'number-pad'} placeholder={'Activation Code'} style={{ flex: 1, margin: 4, borderRadius: 6, paddingHorizontal: 12, fontSize: 19, borderWidth: .8, borderColor: '#ABABAB' }} />
+                    <TextInput
+                        onChangeText={(activationCode) => { this.setState({ activationCode }) }}
+                        value={this.state.activationCode}
+                        keyboardType={'number-pad'}
+                        placeholder={'Activation Code'}
+                        style={styles.input} />
                 </View>
 
                 <View style={[styles.child, { flexDirection: 'row' }]}>
-                    <TextInput keyboardType={'number-pad'} placeholder={'New Password (min 4 characters)'} style={{ flex: 1, margin: 4, borderRadius: 6, paddingHorizontal: 12, fontSize: 19, borderWidth: .8, borderColor: '#ABABAB' }} />
+                    <TextInput
+                        onChangeText={(password) => { this.setState({ password }) }}
+                        value={this.state.password}
+                        secureTextEntry={true}
+                        placeholder={'New Password (min 4 characters)'}
+                        style={styles.input} />
                 </View>
 
                 <View style={styles.child}>
                     <TouchableOpacity
-                        style={{ backgroundColor: '#5D3EBD', flex: 1, margin: 4, borderRadius: 10, alignItems: 'center', justifyContent: 'center' }}
+                        style={styles.resetPasswordButton}
                         onPress={() => {
                             this.setState({ scaleAnimationModal: true })
                         }}>
-                        <Text style={{ color: 'white', fontSize: 19 }}>Reset Password</Text>
+                        <Text style={styles.resetPasswordText}>Reset Password</Text>
                     </TouchableOpacity>
                 </View>
-                <View style={[styles.child, { flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }]}>
-                    <Ionicons name={'md-refresh'} size={36} color={'#6E7586'} />
-                    <Text style={{ fontSize: 24, paddingHorizontal: 12, color: '#6E7586' }}>Resend Code</Text>
+                <View style={[styles.child, styles.resendContainer]}>
+                    <Ionicons name={'md-refresh'} size={32} color={'#6E7586'} />
+                    <Text style={styles.resendCodeText}>Resend Code</Text>
                 </View>
                 <View style={styles.child} />
                 <View style={styles.child} />
@@ -53,14 +79,13 @@ class ResetPasswordScreen extends React.PureComponent {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginVertical: 12
-    },
-    child: {
-        flex: 1,
-        margin: 3
-    }
+    container: { flex: 1, marginVertical: 12 },
+    child: { flex: 1, margin: 3 },
+    input: { flex: 1, margin: 4, borderRadius: 6, paddingHorizontal: 12, fontSize: 19, borderWidth: .8, borderColor: '#ABABAB' },
+    resetPasswordButton: { backgroundColor: '#5D3EBD', flex: 1, margin: 4, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
+    resendContainer: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
+    resendCodeText: { fontSize: 22, paddingHorizontal: 12, color: '#6E7586' },
+    resetPasswordText: { color: 'white', fontSize: 19 }
 })
 
 export default ResetPasswordScreen

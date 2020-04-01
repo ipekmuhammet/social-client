@@ -31,7 +31,7 @@ const WelcomeStack = () => (
             headerStyle: { backgroundColor: '#5D3EBD' }
         }} />
 
-        <Stack.Screen name='signup' component={RegisterScreen} options={{
+        <Stack.Screen name='register' component={RegisterScreen} options={{
             title: 'Register',
             headerTitleAlign: 'center',
             headerTintColor: 'white',

@@ -62,6 +62,22 @@ export const setInitialDatas = () => {
 	}
 }
 
+export const login = (token, user, navigation) => {
+	return (dispatch) => {
+		AsyncStorage.multiSet([['token', token], ['user', JSON.stringify(user)]]).then((res) => {
+			dispatch({
+				type: SET_INITIAL_DATAS,
+				payload: {
+					user,
+					token
+				}
+			})
+
+			navigation.navigate('Loading')
+		})
+	}
+}
+
 export const logout = (navigation) => {
 	return (dispatch) => {
 		AsyncStorage.multiRemove(['token', 'user']).then(vals => {

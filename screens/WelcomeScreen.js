@@ -13,7 +13,9 @@ const WelcomeScreen = ({ navigation }) => (
         <View style={{ flex: .9 }} />
 
         <View style={styles.child}>
-            <TouchableOpacity style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }} onPress={() => { navigation.navigate('signup') }}>
+            <TouchableOpacity style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }} onPress={() => {
+                console.log('Continue without registration')
+            }}>
                 <Text style={{ color: '#6E7586', fontSize: 19, fontWeight: 'bold' }}>Continue Without Registration</Text>
             </TouchableOpacity>
         </View>
@@ -21,7 +23,7 @@ const WelcomeScreen = ({ navigation }) => (
         <View style={[styles.child, { flex: 1.2 }]}>
             <TouchableOpacity
                 style={{ backgroundColor: '#5D3EBD', flex: 1, margin: 4, borderRadius: 10, alignItems: 'center', justifyContent: 'center' }}
-                onPress={() => { navigation.navigate('signup') }}>
+                onPress={() => { navigation.navigate('register') }}>
                 <Text style={{ color: 'white', fontSize: 19, fontWeight: 'bold' }}>Register</Text>
             </TouchableOpacity>
         </View>

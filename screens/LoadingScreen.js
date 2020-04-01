@@ -7,26 +7,29 @@ import { setInitialDatas } from '../actions/actions4'
 class LoadingScreen extends React.PureComponent {
 
 	UNSAFE_componentWillMount() {
-		AsyncStorage.getItem('token').then((token) => {
-			if (token) {
-				if (this.props.categories.length > 0) {
-					this.props.navigation.navigate('Root')
-				} else {
-					this.props.setInitialDatas()
-				}
+		if (this.props.token) {
+			if (this.props.categories.length > 0) {
+				this.props.navigation.navigate('Root')
 			} else {
-				this.props.navigation.navigate('Welcome')
+				this.props.setInitialDatas()
 			}
-		})
+		} else {
+			this.props.navigation.navigate('Welcome')
+		}
 	}
 
 	UNSAFE_componentWillReceiveProps(nextProps) {
-		if (nextProps.categories.length > 0) {
-			this.props.navigation.navigate('Root')
-		}
-		else {
-			console.warn('Initial datas problem')
-			// this.props.setInitialDatas()
+		if (nextProps.token) {
+			if (this.props.categories.length > 0) {
+				this.props.navigation.navigate('Root')
+			} else {
+				// if (this.props.token !== nextProps.token) {
+				// console.warn('Initial datas problem')
+				this.props.setInitialDatas()
+				// }
+			}
+		} else {
+			this.props.navigation.navigate('Welcome')
 		}
 	}
 
@@ -44,10 +47,12 @@ class LoadingScreen extends React.PureComponent {
 
 const mapStateToProps = ({
 	reducer4: {
+		token,
 		categories,
 		products
 	}
 }) => ({
+	token,
 	categories,
 	products
 })

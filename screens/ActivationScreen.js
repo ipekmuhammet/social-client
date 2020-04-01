@@ -24,7 +24,7 @@ class ActivationScreen extends React.PureComponent {
                 <View style={styles.child}>
                     <TouchableOpacity
                         onPress={() => {
-                            axios.post(`http://192.168.1.102:3000/${this.props.route.params.from}`, { phone_number: '905468133198', activation_code: this.state.activationCode }).then(res => {
+                            axios.post(`http://192.168.1.102:3000/register`, { ...this.props.route.params, activation_code: this.state.activationCode }).then(res => {
                                 if (res.status === 200) {
                                     AsyncStorage.multiSet([['token', res.data.token], ['user', JSON.stringify(res.data.user)]]).then((res) => {
                                         this.props.navigation.navigate('Loading')
