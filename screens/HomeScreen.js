@@ -9,10 +9,10 @@ import EmptyCategory from '../components/EmptyCategory'
 
 
 const images = [
-	"https://source.unsplash.com/1024x768/?nature",
-	"https://source.unsplash.com/1024x768/?water",
-	"https://source.unsplash.com/1024x768/?girl",
-	"https://source.unsplash.com/1024x768/?tree"
+	'https://source.unsplash.com/1024x768/?nature',
+	'https://source.unsplash.com/1024x768/?water',
+	'https://source.unsplash.com/1024x768/?girl',
+	'https://source.unsplash.com/1024x768/?tree'
 ]
 
 const formatData = (data, numColumns) => {

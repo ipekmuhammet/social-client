@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { View, TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native'
 import { connect } from 'react-redux'
 
@@ -7,7 +7,7 @@ import { Ionicons } from '@expo/vector-icons'
 
 import { makeOrder } from '../actions/actions1'
 
-class OnlinePaymentScreen extends Component {
+class OnlinePaymentScreen extends React.PureComponent {
 
     state = {
         cardNumber: '',
@@ -29,7 +29,7 @@ class OnlinePaymentScreen extends Component {
 
                 <View style={{
                     flex: .16, backgroundColor: 'white', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-                    shadowColor: "#000", shadowOffset: { width: 0, height: 4, }, shadowOpacity: 0.32, shadowRadius: 6, elevation: 9
+                    shadowColor: '#000', shadowOffset: { width: 0, height: 4, }, shadowOpacity: 0.32, shadowRadius: 6, elevation: 9
                 }}>
                     <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                         <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 20 }}>Ödeme Tutarı</Text>
@@ -79,7 +79,7 @@ class OnlinePaymentScreen extends Component {
                     <View style={{ flex: 1 }} />
                     <View style={{ flex: 7, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
                         <View style={{ margin: 8 }}><Ionicons name={'md-information-circle-outline'} size={28} /></View>
-                        <Text>Kredi kartı bilgileriniz Platform App tarafından tutulmamaktadır; ödeme altyapısı Mastercard tarafından sağlanmaktadır.</Text>
+                        <Text>Kredi kartı bilgileriniz Platform App tarafından tutulmamaktadır ödeme altyapısı Mastercard tarafından sağlanmaktadır.</Text>
                     </View>
                     <View style={{ flex: 1 }} />
                 </View>
@@ -114,11 +114,13 @@ const styles = StyleSheet.create({
         borderColor: '#333',
         color: 'black'
     }
-});
+})
 
-const mapStateToProps = ({ reducer1: {
-    cart
-} }) => ({
+const mapStateToProps = ({
+    reducer1: {
+        cart
+    }
+}) => ({
     cart
 })
 

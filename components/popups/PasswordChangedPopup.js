@@ -10,16 +10,16 @@ import Modal, {
 const PasswordChangedPopup = ({ scaleAnimationModal, setPopupState }) => (
     <Modal
         onTouchOutside={() => {
-            setPopupState({ scaleAnimationModal: false });
+            setPopupState({ scaleAnimationModal: false })
         }}
         width={0.9}
         visible={scaleAnimationModal}
         onSwipeOut={() => setPopupState({ scaleAnimationModal: false })}
         // modalAnimation={new ScaleAnimation()}
         onHardwareBackPress={() => {
-            console.log('onHardwareBackPress');
-            setPopupState({ scaleAnimationModal: false });
-            return true;
+            console.log('onHardwareBackPress')
+            setPopupState({ scaleAnimationModal: false })
+            return true
         }}
         //  modalTitle={
         //      <ModalTitle
@@ -28,14 +28,14 @@ const PasswordChangedPopup = ({ scaleAnimationModal, setPopupState }) => (
         //      />
         //  }
         footer={
-            <ModalFooter>
+            <ModalFooter style={{ height: 42 }}>
                 <ModalButton
                     text='OK'
                     textStyle={{ color: 'white' }}
                     style={{ backgroundColor: '#5D3EBD' }}
                     onPress={() => {
                         console.log('Close')
-                        setPopupState({ scaleAnimationModal: false });
+                        setPopupState({ scaleAnimationModal: false })
                     }}
                     key="button-1"
                 />
@@ -43,7 +43,7 @@ const PasswordChangedPopup = ({ scaleAnimationModal, setPopupState }) => (
         }>
         <ModalContent style={{ backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' }}>
             <Image style={{ height: 80 }} source={require('../../assets/verify-image.jpeg')} />
-            <Text style={{ fontSize: 20, fontWeight: 'bold', marginTop: 12, marginBottom: -12 }}>Your password is changed</Text>
+            <Text style={{ fontSize: 17, fontWeight: 'bold', marginTop: 12, marginBottom: -6 }}>Your password is changed</Text>
         </ModalContent>
     </Modal>
 )

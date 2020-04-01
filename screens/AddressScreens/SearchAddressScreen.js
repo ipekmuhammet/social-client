@@ -30,8 +30,8 @@ class SearchAddressScreen extends React.PureComponent {
 
                     <View style={{ flex: 1, display: 'flex', flexDirection: 'row', alignItems: 'center', marginHorizontal: 6 }}>
                         <View style={{ flex: 1, flexDirection: 'row', marginHorizontal: 10 }}>
-                            <Ionicons size={40} name={'md-search'} color={'#5E3FBE'} />
-                            <TextInput onChangeText={this.search} placeholder={'Search Address'} style={{ flex: 1, paddingHorizontal: 16, fontSize: 20 }} />
+                            <Ionicons size={32} name={'md-search'} color={'#5E3FBE'} />
+                            <TextInput onChangeText={this.search} placeholder={'Search Address'} style={{ flex: 1, paddingHorizontal: 16, fontSize: 18 }} />
                         </View>
                     </View>
 
@@ -46,8 +46,8 @@ class SearchAddressScreen extends React.PureComponent {
                         }}
                         style={{ flex: 1, display: 'flex', flexDirection: 'row', alignItems: 'center', marginHorizontal: 6 }}>
                         <View style={{ flex: 1, flexDirection: 'row', marginHorizontal: 10, alignItems: 'center' }}>
-                            <Ionicons size={40} name={'md-locate'} color={'#5E3FBE'} />
-                            <Text style={{ flex: 1, paddingHorizontal: 16, fontSize: 20 }}>Use current location</Text>
+                            <Ionicons size={32} name={'md-locate'} color={'#5E3FBE'} />
+                            <Text style={{ flex: 1, paddingHorizontal: 16, fontSize: 18 }}>Use current location</Text>
                         </View>
                     </TouchableOpacity>
 
@@ -62,9 +62,9 @@ class SearchAddressScreen extends React.PureComponent {
                                     onPress={() => { this.movePinAddressScreen(item.place_id) }}
                                     style={{ height: 70, paddingVertical: 16, display: 'flex', flexDirection: 'row', alignItems: 'center', margin: 6 }}>
                                     <View style={{ flex: 1, flexDirection: 'row', marginHorizontal: 10, alignItems: 'center' }}>
-                                        <Ionicons size={40} name={'md-pin'} color={'#6B788B'} />
-                                        <Text numberOfLines={3} style={{ flex: 1, paddingHorizontal: 16, fontSize: 20, color: '#6B788B', fontWeight: 'bold' }}>{item.description}</Text>
-                                        <Text numberOfLines={3} style={{ paddingHorizontal: 4, fontSize: 18, color: '#6B788B', fontWeight: 'bold' }}>
+                                        <Ionicons size={32} name={'md-pin'} color={'#6B788B'} />
+                                        <Text numberOfLines={3} style={{ flex: 1, paddingHorizontal: 16, fontSize: 16, color: '#6B788B', fontWeight: '500' }}>{item.description}</Text>
+                                        <Text numberOfLines={3} style={{ paddingHorizontal: 4, fontSize: 14, color: '#6B788B', fontWeight: '500' }}>
                                             {item.distance_meters && (parseInt(item.distance_meters) > 1000 ? (parseInt(item.distance_meters) / 1000).toFixed(2) + 'km' : item.distance_meters + 'm')}
                                         </Text>
                                     </View>

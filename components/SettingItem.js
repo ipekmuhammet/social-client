@@ -11,7 +11,7 @@ const SettingItem = ({ children: icon, title }) => (
             <Text style={styles.title}>{title}</Text>
         </View>
         <View style={styles.rightIconContainer}>
-            <MaterialIcons color={'#4522A0'} name={'chevron-right'} size={40} />
+            <MaterialIcons color={'#4522A0'} name={'chevron-right'} size={32} />
         </View>
     </View>
 )

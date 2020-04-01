@@ -11,33 +11,33 @@ import { logout } from '../../actions/actions4'
 const LogoutPopup = ({ scaleAnimationModal, navigation, setPopupState, logout }) => (
     <Modal
         onTouchOutside={() => {
-            setPopupState({ scaleAnimationModal: false });
+            setPopupState({ scaleAnimationModal: false })
         }}
         width={0.9}
         visible={scaleAnimationModal}
         onSwipeOut={() => setPopupState({ scaleAnimationModal: false })}
         // modalAnimation={new ScaleAnimation()}
         onHardwareBackPress={() => {
-            console.log('onHardwareBackPress');
-            setPopupState({ scaleAnimationModal: false });
-            return true;
+            console.log('onHardwareBackPress')
+            setPopupState({ scaleAnimationModal: false })
+            return true
         }}
         modalTitle={
             <ModalTitle
-                style={{ marginVertical: 8 }}
-                textStyle={{ textAlign: 'center' }}
+                style={{ marginVertical: 6 }}
+                textStyle={{ textAlign: 'center', fontStyle: 'bold', fontSize: 17 }}
                 title='Are you sure you want to log out?'
                 hasTitleBar={false}
             />
         }
         footer={
-            <ModalFooter>
+            <ModalFooter style={{ height: 42 }}>
                 <ModalButton
                     text='No'
                     textStyle={{ color: 'white' }}
                     style={{ backgroundColor: '#697488' }}
                     onPress={() => {
-                        setPopupState({ scaleAnimationModal: false });
+                        setPopupState({ scaleAnimationModal: false })
                     }}
                     key="button-1"
                 />

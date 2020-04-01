@@ -51,7 +51,7 @@ const CardProduct = ({ data: { id, product_name, price, image, count }, decrease
 			<View style={styles.child} />
 		</View>
 
-	</View >
+	</View>
 )
 
 const styles = StyleSheet.create({

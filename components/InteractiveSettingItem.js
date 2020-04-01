@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     container: { flexDirection: 'row', padding: 10, borderBottomWidth: .8, borderBottomColor: '#D2D2D2', marginHorizontal: 6 },
     iconContainer: { alignItems: 'center', justifyContent: 'center', flex: 1 },
     titleContainer: { alignItems: 'flex-start', flex: 6, justifyContent: 'center' },
-    title: { marginHorizontal: 4, fontSize: 18, fontWeight: 'bold', color: 'black' },
+    title: { marginHorizontal: 4, fontSize: 16, fontWeight: 'bold', color: 'black' },
     rightIconContainer: { alignItems: 'flex-end', justifyContent: 'center', flex: 1 }
 })
 

@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
 		height: 28,
 		borderColor: '#CDCDCD',
 		backgroundColor: 'white',
-		shadowColor: "#000", shadowOffset: { width: 1, height: 1, }, shadowOpacity: .2, shadowRadius: 12, elevation: 4
+		shadowColor: '#000', shadowOffset: { width: 1, height: 1, }, shadowOpacity: .2, shadowRadius: 12, elevation: 4
 	},
 	addProductIcon: {
 		color: '#5837C2',

@@ -15,7 +15,7 @@ const PaymentType = ({ Id, title, detail, icon, setPaymentType, navigation }) =>
     return (
         <TouchableOpacity style={styles.container} onPress={onPaymentTypeClick}>
             <View style={styles.iconContainer}>
-                <Ionicons size={40} name={icon} />
+                <Ionicons size={32} name={icon} />
             </View>
             <View style={styles.paymentInfoContainer}>
                 <View style={styles.paymentInfoTextContainer}>

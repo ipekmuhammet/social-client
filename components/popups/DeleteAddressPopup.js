@@ -9,16 +9,16 @@ import Modal, {
 const DeleteAddressPopup = ({ scaleAnimationModal, setPopupState }) => (
     <Modal
         onTouchOutside={() => {
-            setPopupState({ scaleAnimationModal: false });
+            setPopupState({ scaleAnimationModal: false })
         }}
         width={0.9}
         visible={scaleAnimationModal}
         onSwipeOut={() => setPopupState({ scaleAnimationModal: false })}
         // modalAnimation={new ScaleAnimation()}
         onHardwareBackPress={() => {
-            console.log('onHardwareBackPress');
-            setPopupState({ scaleAnimationModal: false });
-            return true;
+            console.log('onHardwareBackPress')
+            setPopupState({ scaleAnimationModal: false })
+            return true
         }}
         modalTitle={
             <ModalTitle
@@ -29,13 +29,13 @@ const DeleteAddressPopup = ({ scaleAnimationModal, setPopupState }) => (
             />
         }
         footer={
-            <ModalFooter>
+            <ModalFooter style={{ height: 42 }}>
                 <ModalButton
                     text='No'
                     textStyle={{ color: 'white' }}
                     style={{ backgroundColor: '#697488' }}
                     onPress={() => {
-                        setPopupState({ scaleAnimationModal: false });
+                        setPopupState({ scaleAnimationModal: false })
                     }}
                     key="button-1"
                 />
@@ -44,7 +44,7 @@ const DeleteAddressPopup = ({ scaleAnimationModal, setPopupState }) => (
                     textStyle={{ color: 'white' }}
                     style={{ backgroundColor: '#5D3EBD' }}
                     onPress={() => {
-                        setPopupState({ scaleAnimationModal: false }, true);
+                        setPopupState({ scaleAnimationModal: false }, true)
                     }}
                     key="button-2"
                 />

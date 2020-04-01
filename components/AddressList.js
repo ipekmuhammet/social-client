@@ -33,8 +33,8 @@ class AddressList extends React.PureComponent {
                         <InteractiveSettingItem title={address.open_address} onRightIconClick={() => {
                             this.setPopupState({ scaleAnimationModal: true, addressId: address._id })
                         }}>
-                            <Ionicons color={'#4522A0'} name={'md-home'} size={40} />
-                            <Ionicons color={'#4522A0'} name={'md-trash'} size={40} />
+                            <Ionicons color={'#4522A0'} name={'md-home'} size={32} />
+                            <Ionicons color={'#4522A0'} name={'md-trash'} size={32} />
                         </InteractiveSettingItem>
                     )}
                     ListFooterComponent={
