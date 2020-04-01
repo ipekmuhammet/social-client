@@ -25,7 +25,7 @@ const LogoutPopup = ({ scaleAnimationModal, navigation, setPopupState, logout })
         modalTitle={
             <ModalTitle
                 style={{ marginVertical: 6 }}
-                textStyle={{ textAlign: 'center', fontStyle: 'bold', fontSize: 17 }}
+                textStyle={{ textAlign: 'center', fontSize: 17 }}
                 title='Are you sure you want to log out?'
                 hasTitleBar={false}
             />

@@ -79,7 +79,7 @@ class PinAddressScreen extends React.PureComponent {
                         justifyContent: 'center',
                         zIndex: 2,
                     }} pointerEvents="none">
-                    <Image style={{ width: 42, height: 42 }} source={require('../../assets/map-marker.png')} />
+                    <Image style={{ width: 48, height: 48 }} source={require('../../assets/map-marker.png')} />
                 </View>
 
                 <MapView
