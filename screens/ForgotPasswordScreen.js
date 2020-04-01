@@ -2,6 +2,11 @@ import React from 'react'
 import { View, TouchableOpacity, TextInput, Text, StyleSheet } from 'react-native'
 
 class ForgotPasswordScreen extends React.Component {
+
+    state = {
+        phoneNumber: '905468133198'
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -12,7 +17,12 @@ class ForgotPasswordScreen extends React.Component {
                         //      style={styles.input} />
                     }
 
-                    <TextInput keyboardType={'phone-pad'} placeholder={'Phone Number'} style={styles.input} />
+                    <TextInput
+                        onChangeText={(phoneNumber) => this.setState({ phoneNumber })}
+                        value={this.state.phoneNumber}
+                        keyboardType={'phone-pad'}
+                        placeholder={'Phone Number'}
+                        style={styles.input} />
                 </View>
                 <View style={styles.child}>
                     <TouchableOpacity

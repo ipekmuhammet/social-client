@@ -42,7 +42,7 @@ const PasswordChangedPopup = ({ scaleAnimationModal, setPopupState }) => (
             </ModalFooter>
         }>
         <ModalContent style={{ backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' }}>
-            <Image style={{ height: 80 }} source={require('../../assets/verify-image.jpeg')} />
+            <Image style={{ height: 72 }} source={require('../../assets/verify-image.jpeg')} />
             <Text style={{ fontSize: 17, fontWeight: 'bold', marginTop: 12, marginBottom: -6 }}>Your password is changed</Text>
         </ModalContent>
     </Modal>

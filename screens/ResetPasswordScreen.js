@@ -1,5 +1,6 @@
 import React from 'react'
-import { View, TouchableOpacity, TextInput, Text, StyleSheet } from 'react-native'
+import axios from 'axios'
+import { View, TouchableOpacity, TextInput, Text, StyleSheet, Alert } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
 import PasswordChangedPopup from '../components/popups/PasswordChangedPopup'
@@ -8,9 +9,9 @@ class ResetPasswordScreen extends React.PureComponent {
 
     state = {
         scaleAnimationModal: false,
-        phoneNumber: '',
+        phoneNumber: '905468133198',
         activationCode: '',
-        password: ''
+        password: '1234'
     }
 
     setPopupState = (state) => {
@@ -44,6 +45,7 @@ class ResetPasswordScreen extends React.PureComponent {
                         onChangeText={(activationCode) => { this.setState({ activationCode }) }}
                         value={this.state.activationCode}
                         keyboardType={'number-pad'}
+                        maxLength={4}
                         placeholder={'Activation Code'}
                         style={styles.input} />
                 </View>
@@ -61,14 +63,26 @@ class ResetPasswordScreen extends React.PureComponent {
                     <TouchableOpacity
                         style={styles.resetPasswordButton}
                         onPress={() => {
-                            this.setState({ scaleAnimationModal: true })
+                            axios.put('http://192.168.1.102:3000/send-activation-code',
+                                { activation_code: this.state.activationCode, phone_number: this.state.phoneNumber, new_password: this.state.password }
+                            ).then(({ status }) => {
+                                if (status === 200) {
+                                    this.setState({ scaleAnimationModal: true })
+                                }
+                            }).catch((reason) => {
+                                Alert.alert(JSON.stringify(reason)) // TDOO
+                            })
                         }}>
                         <Text style={styles.resetPasswordText}>Reset Password</Text>
                     </TouchableOpacity>
                 </View>
-                <View style={[styles.child, styles.resendContainer]}>
-                    <Ionicons name={'md-refresh'} size={32} color={'#6E7586'} />
-                    <Text style={styles.resendCodeText}>Resend Code</Text>
+                <View style={styles.child}>
+                    <TouchableOpacity style={styles.resendContainer} onPress={() => {
+                        axios.post('http://192.168.1.102:3000/send-activation-code', { phone_number: this.state.phoneNumber })
+                    }}>
+                        <Ionicons name={'md-refresh'} size={32} color={'#6E7586'} />
+                        <Text style={styles.resendCodeText}>Resend Code</Text>
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.child} />
                 <View style={styles.child} />
