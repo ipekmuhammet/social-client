@@ -1,9 +1,8 @@
 import React from 'react'
-import { View, TouchableOpacity, Text, TextInput } from 'react-native'
+import { View, TouchableOpacity, Image, Text, TextInput, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import MapView from 'react-native-maps'
 import axios from 'axios'
-import { Ionicons } from '@expo/vector-icons'
 import { addAddress } from '../../actions/actions4'
 
 import ConfirmAddressPopup from '../../components/popups/ConfirmAddressPopup'
@@ -13,11 +12,16 @@ class CompleteAddressScreen extends React.Component {
     state = {
         region: {
             latitude: 41.0381665,
-            longitude: 28.9417276,
+            longitude: 28.9417273,
             latitudeDelta: 0.0035,
             longitudeDelta: 0.0035,
         },
-        scaleAnimationModal: false
+        scaleAnimationModal: false,
+        address: this.props.route.params.address,
+        addressTitle: 'Home',
+        buildingNo: '',
+        floor: '',
+        aptNo: ''
     }
 
     getAddress = (region) => (
@@ -43,37 +47,112 @@ class CompleteAddressScreen extends React.Component {
 
     render() {
         return (
-            <View style={{ flex: 1 }}>
+            <View style={styles.container}>
                 <ConfirmAddressPopup address={this.props.route.params.address} scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
-                <View style={{ flex: 1.4 }} />
-                <View style={{ flex: 3, backgroundColor: 'pink' }}>
-                    <View style={{ flex: 1, margin: 2, flexDirection: 'row' }}>
-                        <View style={{ flex: 1, margin: 2 }}>
+                <View style={styles.mapContainer}>
+                    <View style={styles.markerContainer} pointerEvents="none">
+                        <Image style={styles.marker} source={require('../../assets/map-marker.png')} />
+                    </View>
+
+                    <MapView
+                        style={StyleSheet.absoluteFillObject}
+                        tracksViewChanges={false}
+                        loadingEnabled={true}
+                        showsCompass={false}
+                        initialRegion={this.state.region}
+                        customMapStyle={[
+                            {
+                                featureType: 'poi',
+                                elementType: 'labels.text',
+                                stylers: [
+                                    {
+                                        visibility: 'off'
+                                    }
+                                ]
+                            },
+                            {
+                                featureType: 'poi.business',
+                                stylers: [
+                                    {
+                                        visibility: 'off'
+                                    }
+                                ]
+                            },
+                            {
+                                featureType: 'road',
+                                elementType: 'labels.icon',
+                                stylers: [
+                                    {
+                                        visibility: 'off'
+                                    }
+                                ]
+                            },
+                            {
+                                featureType: 'transit',
+                                stylers: [
+                                    {
+                                        visibility: 'off'
+                                    }
+                                ]
+                            }
+                        ]} />
+                </View>
+                <View style={styles.body}>
+                    <View style={styles.inputContainerChild}>
+                        <View style={styles.inputContainer}>
+                            <TextInput
+                                placeholder={'Address Icon'}
+                                style={styles.input} />
                         </View>
-                        <View style={{ flex: 2, margin: 2 }}>
+                        <View style={styles.input2container}>
+                            <TextInput
+                                onChangeText={(addressTitle) => { this.setState({ addressTitle }) }}
+                                value={this.state.addressTitle} placeholder={'Address title (Home, Work)'}
+                                style={styles.input} />
                         </View>
                     </View>
-                    <View style={{ flex: 1, margin: 2 }}>
-                    </View>
-                    <View style={{ flex: 1, margin: 2, flexDirection: 'row' }}>
-                        <View style={{ flex: 1, margin: 2 }}>
-                            <TextInput placeholder={'Building No'} style={{ flex: 1, borderWidth: 1, alignItems: 'center', justifyContent: 'center', margin: 6, borderRadius: 12, paddingHorizontal: 16, fontSize: 22 }} />
-                        </View>
-                        <View style={{ flex: 1, margin: 2 }}>
-                            <TextInput placeholder={'Floor'} style={{ flex: 1, borderWidth: 1, alignItems: 'center', justifyContent: 'center', margin: 6, borderRadius: 12, paddingHorizontal: 16, fontSize: 22 }} />
-                        </View>
-                        <View style={{ flex: 1, margin: 2 }}>
-                            <TextInput placeholder={'Apt No'} style={{ flex: 1, borderWidth: 1, alignItems: 'center', justifyContent: 'center', margin: 6, borderRadius: 12, paddingHorizontal: 16, fontSize: 22 }} />
+                    <View style={styles.inputContainerChild}>
+                        <View style={styles.inputContainer}>
+                            <TextInput
+                                value={this.state.address}
+                                placeholder={'Address'}
+                                style={styles.input} />
                         </View>
                     </View>
-                    <View style={{ flex: 1, margin: 2 }}>
-                        <TextInput placeholder={'Directions'} style={{ flex: 1, borderWidth: 1, alignItems: 'center', justifyContent: 'center', margin: 6, borderRadius: 12, paddingHorizontal: 16, fontSize: 22 }} />
+                    <View style={styles.inputContainerChild}>
+                        <View style={styles.inputContainer}>
+                            <TextInput
+                                value={this.state.buildingNo}
+                                keyboardType={'number-pad'}
+                                onChangeText={(buildingNo) => { this.setState({ buildingNo }) }}
+                                placeholder={'Building No'}
+                                style={styles.input} />
+                        </View>
+                        <View style={styles.inputContainer}>
+                            <TextInput
+                                value={this.state.floor}
+                                keyboardType={'number-pad'}
+                                onChangeText={(floor) => { this.setState({ floor }) }}
+                                placeholder={'Floor'}
+                                style={styles.input} />
+                        </View>
+                        <View style={styles.inputContainer}>
+                            <TextInput
+                                value={this.state.aptNo}
+                                keyboardType={'number-pad'}
+                                onChangeText={(aptNo) => { this.setState({ aptNo }) }}
+                                placeholder={'Apt No'}
+                                style={styles.input} />
+                        </View>
                     </View>
-                    <View style={{ flex: 1, margin: 2 }}>
+                    <View style={styles.inputContainer}>
+                        <TextInput placeholder={'Directions'} style={styles.input} />
+                    </View>
+                    <View style={styles.inputContainer}>
                         <TouchableOpacity
                             onPress={() => { this.setPopupState(true) }}
-                            style={{ flex: 1, backgroundColor: '#5D3EBD', alignItems: 'center', justifyContent: 'center', margin: 6, borderRadius: 12 }}>
-                            <Text style={{ fontSize: 22, color: 'white' }}>Save</Text>
+                            style={styles.button}>
+                            <Text style={styles.buttonText}>Save</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -81,6 +160,23 @@ class CompleteAddressScreen extends React.Component {
         )
     }
 }
+
+const styles = StyleSheet.create({
+    container: { flex: 1 },
+    mapContainer: { flex: 1.4 },
+    body: { flex: 3, marginVertical: 12 },
+    markerContainer: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', zIndex: 2 },
+    marker: { width: 48, borderColor: '#C3C3C3', height: 48 },
+    inputContainer: { flex: 1, margin: 2 },
+    input2Container: { flex: 2, margin: 2 },
+    inputContainerChild: { flex: 1, margin: 2, flexDirection: 'row' },
+    input: {
+        flex: 1, borderWidth: 1, alignItems: 'center', justifyContent: 'center', margin: 3, borderRadius: 8,
+        borderColor: '#C3C3C3', paddingHorizontal: 13, fontSize: 18
+    },
+    button: { flex: 1, backgroundColor: '#5D3EBD', alignItems: 'center', justifyContent: 'center', margin: 3, borderRadius: 8 },
+    buttonText: { fontSize: 18, color: 'white' }
+})
 
 const mapStateToProps = ({
     reducer4: {
