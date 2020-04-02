@@ -2,7 +2,9 @@ import React from 'react'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 
-const CompletePaymentComponent = ({ completable, cart, paymentType, navigation }) => {
+import { makeOrder } from '../actions/actions1'
+
+const CompletePaymentComponent = ({ completable, cart, paymentType, navigation, makeOrder }) => {
     const products = Object.values(cart)
     const totalPrice = products.reduce((previousValue, currentValue) => previousValue + parseFloat(currentValue.price) * currentValue.count, 0).toFixed(2)
 
@@ -11,7 +13,7 @@ const CompletePaymentComponent = ({ completable, cart, paymentType, navigation }
             if (paymentType === 0)
                 navigation.navigate('onlinePaymentScreen')
             else
-                console.log('Complete Payment')
+                makeOrder(cart, navigation)
         } else {
             navigation.navigate('completePayment')
         }
@@ -52,4 +54,8 @@ const mapStateToProps = ({
     paymentType
 })
 
-export default connect(mapStateToProps)(CompletePaymentComponent)
+const mapDispatchToProps = {
+    makeOrder
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CompletePaymentComponent)

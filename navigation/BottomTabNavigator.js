@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import TabBarIcon from './TabBarIcon'
 
 import Home from '../screens/Screen1'
 import Search from '../screens/Screen2'
 import Cart from '../screens/Screen3'
 import ProfileScreen from '../screens/Screen4'
+import TabBarIcon from './TabBarIcon'
 
 const BottomTab = createBottomTabNavigator()
 const INITIAL_ROUTE_NAME = 'Home'
@@ -14,7 +14,7 @@ export default function BottomTabNavigator({ navigation, route }) {
   navigation.setOptions({ headerTitle: getHeaderTitle(route), headerShown: false })
 
   return (
-    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
+    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME} tabBarOptions={{ activeTintColor: '#5D3EBD' }}>
 
       <BottomTab.Screen
         name='Home'

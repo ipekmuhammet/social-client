@@ -1,4 +1,4 @@
-import { ADD_PRODUCT, DECREASE_PRODUCT_COUNT, INCREASE_PRODUCT_COUNT } from '../actions/actions1'
+import { ADD_PRODUCT, DECREASE_PRODUCT_COUNT, INCREASE_PRODUCT_COUNT, MAKE_ORDER } from '../actions/actions1'
 
 const INITIAL_STATE = {
     cart: {},
@@ -7,6 +7,8 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case MAKE_ORDER: return action.payload.status ? { cart: {}, refreshCard: !state.refreshCard } : state
+
         case ADD_PRODUCT: {
             const productId = Object.keys(action.payload)[0]
 

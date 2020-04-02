@@ -1,15 +1,17 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
+import { CardStyleInterpolators } from '@react-navigation/stack'
 
 import CartScreen from './CartScreen'
 import ChoosePaymentScreen from './ChoosePaymentScreen'
 import CompletePaymentScreen from './CompletePaymentScreen'
 import OnlinePaymentScreen from './OnlinePaymentScreen'
+import ThanksScreen from './ThanksScreen'
 
 const Stack = createStackNavigator()
 
 const Screen3 = () => (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }}>
         <Stack.Screen
             name='cart'
             component={CartScreen}
@@ -50,6 +52,14 @@ const Screen3 = () => (
                 headerTitleAlign: 'center',
                 headerTintColor: 'white',
                 headerStyle: { backgroundColor: '#5D3EBD' }
+            }}
+        />
+
+        <Stack.Screen
+            name='thanksScreen'
+            component={ThanksScreen}
+            options={{
+                headerShown: false
             }}
         />
     </Stack.Navigator>

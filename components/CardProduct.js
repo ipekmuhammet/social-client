@@ -5,9 +5,7 @@ import { RFPercentage } from 'react-native-responsive-fontsize'
 
 import { decreaseProductCount, increaseProductCount } from '../actions/actions1'
 
-import { getProductImage } from '../data/api'
-
-const CardProduct = ({ data: { Id, categoryId, name, price, count }, decreaseProductCount, increaseProductCount }) => (
+const CardProduct = ({ data: { id, product_name, price, image, count }, decreaseProductCount, increaseProductCount }) => (
 	<View style={styles.container}>
 
 		<View style={[styles.child, styles.flex2, {
@@ -17,16 +15,18 @@ const CardProduct = ({ data: { Id, categoryId, name, price, count }, decreasePro
 			borderRadius: 12,
 			backgroundColor: 'white'
 		}]}>
-			<Image style={styles.productImage} resizeMode={'contain'} source={getProductImage(categoryId, Id)} />
+			<Image style={styles.productImage}
+				resizeMode={'contain'}
+				source={{ uri: `http://192.168.1.102:3000/assets/products/${image}.png` }} />
 		</View>
 
 		<View style={[styles.child, styles.flex3, styles.column]}>
 			<View style={styles.child} />
 			<View style={{ flex: 1, width: '100%', paddingHorizontal: 8, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-				<Text style={styles.productName} numberOfLines={2}>{name}</Text>
+				<Text style={styles.productName} numberOfLines={2}>{product_name}</Text>
 			</View>
 			<View style={{ flex: 1, width: '100%', paddingHorizontal: 8, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-				<Text style={styles.productPrice} numberOfLines={2}>{'₺' + price}</Text>
+				<Text style={styles.productPrice} numberOfLines={2}>{'₺' + price.toString().replace('.', ',')}</Text>
 			</View>
 			<View style={styles.child} />
 		</View>
@@ -35,7 +35,7 @@ const CardProduct = ({ data: { Id, categoryId, name, price, count }, decreasePro
 			<View style={styles.child} />
 			<View style={styles.rowChild}>
 
-				<TouchableOpacity onPress={() => { decreaseProductCount(Id) }} style={[styles.child, styles.decreaseButton]}>
+				<TouchableOpacity onPress={() => { decreaseProductCount(id) }} style={[styles.child, styles.decreaseButton]}>
 					<Text style={{ color: '#5D3EBD', fontSize: 18 }}>{'-'}</Text>
 				</TouchableOpacity>
 
@@ -43,7 +43,7 @@ const CardProduct = ({ data: { Id, categoryId, name, price, count }, decreasePro
 					<Text style={{ color: 'white', fontSize: 18 }}>{count}</Text>
 				</View>
 
-				<TouchableOpacity onPress={() => { increaseProductCount(Id) }} style={[styles.child, styles.increaseButton]}>
+				<TouchableOpacity onPress={() => { increaseProductCount(id) }} style={[styles.child, styles.increaseButton]}>
 					<Text style={{ color: '#5D3EBD', fontSize: 18 }}>{'+'}</Text>
 				</TouchableOpacity>
 
@@ -51,7 +51,7 @@ const CardProduct = ({ data: { Id, categoryId, name, price, count }, decreasePro
 			<View style={styles.child} />
 		</View>
 
-	</View >
+	</View>
 )
 
 const styles = StyleSheet.create({
@@ -87,18 +87,20 @@ const styles = StyleSheet.create({
 		display: 'flex'
 	},
 	productName: {
-		fontSize: RFPercentage(3),
+		fontSize: RFPercentage(2.6),
 		fontWeight: '700',
-		color: 'black',
+		color: '#303030',
 		textAlign: 'justify',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		letterSpacing: .2
 	},
 	productPrice: {
-		fontSize: RFPercentage(2.7),
+		fontSize: RFPercentage(3.4),
 		fontWeight: '700',
-		color: '#5837C2',
+		color: '#5439B3',
 		textAlign: 'center',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		letterSpacing: .2
 	},
 	productImage: {
 		width: RFPercentage(14),

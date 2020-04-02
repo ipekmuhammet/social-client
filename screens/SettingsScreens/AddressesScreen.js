@@ -1,36 +1,36 @@
 import React from 'react'
-import { ScrollView, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
 import InteractiveSettingItem from '../../components/InteractiveSettingItem'
 import HeadingDivider from '../../components/HeadingDivider'
+import AddressList from '../../components/AddressList'
 
-const AddressesScreen = () => (
-    <ScrollView style={styles.container}>
+const AddressesScreen = ({ navigation }) => (
+    <View style={styles.container}>
+        <AddressList footer={() => (
+            <React.Fragment>
+                <HeadingDivider title={'Add Address'} />
 
-        <InteractiveSettingItem title={'Home - Fatih (Ayvansaray Mah.)'}>
-            <Ionicons color={'#4522A0'} name={'md-home'} size={40} />
-            <Ionicons color={'#4522A0'} name={'md-trash'} size={40} />
-        </InteractiveSettingItem>
+                <InteractiveSettingItem title={'Add home address'} onRightIconClick={() => {
+                    navigation.navigate('searchAddressScreen')
+                }}>
+                    <Ionicons color={'#4522A0'} name={'md-home'} size={32} />
+                    <Ionicons color={'#4522A0'} name={'md-add'} size={32} />
+                </InteractiveSettingItem>
 
-        <HeadingDivider title={'Add Address'} />
+                <InteractiveSettingItem title={'Add work address'} onRightIconClick={() => { console.log('Add work address') }}>
+                    <Ionicons color={'#4522A0'} name={'md-business'} size={32} />
+                    <Ionicons color={'#4522A0'} name={'md-add'} size={32} />
+                </InteractiveSettingItem>
 
-        <InteractiveSettingItem title={'Add home address'}>
-            <Ionicons color={'#4522A0'} name={'md-home'} size={40} />
-            <Ionicons color={'#4522A0'} name={'md-add'} size={40} />
-        </InteractiveSettingItem>
-
-        <InteractiveSettingItem title={'Add work address'}>
-            <Ionicons color={'#4522A0'} name={'md-business'} size={40} />
-            <Ionicons color={'#4522A0'} name={'md-add'} size={40} />
-        </InteractiveSettingItem>
-
-        <InteractiveSettingItem title={'Add other address'}>
-            <Ionicons color={'#4522A0'} name={'md-locate'} size={40} />
-            <Ionicons color={'#4522A0'} name={'md-add'} size={40} />
-        </InteractiveSettingItem>
-
-    </ScrollView>
+                <InteractiveSettingItem title={'Add other address'} onRightIconClick={() => { console.log('Add other address') }}>
+                    <Ionicons color={'#4522A0'} name={'md-locate'} size={32} />
+                    <Ionicons color={'#4522A0'} name={'md-add'} size={32} />
+                </InteractiveSettingItem>
+            </React.Fragment>
+        )} />
+    </View>
 )
 
 const styles = StyleSheet.create({
@@ -38,5 +38,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#EDEDED'
     }
 })
+
 
 export default AddressesScreen
