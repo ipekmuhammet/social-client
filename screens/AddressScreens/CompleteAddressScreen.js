@@ -21,7 +21,8 @@ class CompleteAddressScreen extends React.Component {
         addressTitle: 'Home',
         buildingNo: '',
         floor: '',
-        aptNo: ''
+        aptNo: '',
+        directions: ''
     }
 
     getAddress = (region) => (
@@ -115,6 +116,7 @@ class CompleteAddressScreen extends React.Component {
                         <View style={styles.inputContainer}>
                             <TextInput
                                 value={this.state.address}
+                                onChangeText={(address) => { this.setState({ address }) }}
                                 placeholder={'Address'}
                                 style={styles.input} />
                         </View>
@@ -146,7 +148,11 @@ class CompleteAddressScreen extends React.Component {
                         </View>
                     </View>
                     <View style={styles.inputContainer}>
-                        <TextInput placeholder={'Directions'} style={styles.input} />
+                        <TextInput
+                            onChangeText={(directions) => { this.setState({ directions }) }}
+                            value={this.state.directions}
+                            placeholder={'Directions'}
+                            style={styles.input} />
                     </View>
                     <View style={styles.inputContainer}>
                         <TouchableOpacity
