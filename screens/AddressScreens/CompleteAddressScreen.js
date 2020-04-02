@@ -40,7 +40,7 @@ class CompleteAddressScreen extends React.Component {
     setPopupState = (scaleAnimationModal, complete) => {
         this.setState({ scaleAnimationModal })
         if (complete) {
-            this.props.addAddress(this.props.route.params.address, this.props.token)
+            this.props.addAddress(this.state.address, this.props.token)
             this.props.navigation.pop(3)
         }
     }
@@ -48,7 +48,7 @@ class CompleteAddressScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <ConfirmAddressPopup address={this.props.route.params.address} scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
+                <ConfirmAddressPopup address={this.state.address} scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
                 <View style={styles.mapContainer}>
                     <View style={styles.markerContainer} pointerEvents="none">
                         <Image style={styles.marker} source={require('../../assets/map-marker.png')} />
