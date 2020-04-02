@@ -1,39 +1,33 @@
 import React from 'react'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
-import { connect } from 'react-redux'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 
-const OrderNoteComponent = ({ navigation }) => {
-
-    const onClick = () => {
-        console.log('address')
-    }
-
-    const showSavedNotes = () => {
-        console.log('show saved notes')
-    }
-
-    return (
-        <View style={styles.container}>
-            <View style={styles.rowContainer}>
-                <View style={styles.iconContainer}>
-                    <Ionicons size={36} name={'md-attach'} />
-                </View>
-                <View style={styles.infoContainer}>
-                    <TouchableOpacity style={styles.infoTextContainer} onPress={onClick}>
-                        <Text style={styles.title}>{'Siparişinizle ilgili tüm detayları (soğuk kola vb...) belirtebilir, sonra kullanmak üzere kaydedebilirsiniz.'}</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.showSavedNotesContainer} onPress={showSavedNotes}>
-                        <View style={styles.showSavedNotesTextContainer}>
-                            <Text style={styles.showSavedNotesText}>Kayıtlı notlarımı göster</Text>
-                        </View>
-                        <MaterialIcons color={'#ACACAC'} size={36} name={'chevron-right'} />
-                    </TouchableOpacity>
-                </View>
+const OrderNoteComponent = () => (
+    <View style={styles.container}>
+        <View style={styles.rowContainer}>
+            <View style={styles.iconContainer}>
+                <Ionicons size={32} name={'md-attach'} />
+            </View>
+            <View style={styles.infoContainer}>
+                <TouchableOpacity style={styles.infoTextContainer} onPress={() => {
+                    console.log('address')
+                }}>
+                    <Text style={styles.title}>{'Siparişinizle ilgili tüm detayları (soğuk kola vb...) belirtebilir, sonra kullanmak üzere kaydedebilirsiniz.'}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.showSavedNotesContainer} onPress={() => {
+                    const showSavedNotes = () => {
+                        console.log('show saved notes')
+                    }
+                }}>
+                    <View style={styles.showSavedNotesTextContainer}>
+                        <Text style={styles.showSavedNotesText}>Kayıtlı notlarımı göster</Text>
+                    </View>
+                    <MaterialIcons color={'#ACACAC'} size={32} name={'chevron-right'} />
+                </TouchableOpacity>
             </View>
         </View>
-    )
-}
+    </View>
+)
 
 const styles = StyleSheet.create({
     container: {
@@ -80,8 +74,4 @@ const styles = StyleSheet.create({
     }
 })
 
-const mapDispatchToProps = {
-
-}
-
-export default connect(null, mapDispatchToProps)(OrderNoteComponent)
+export default OrderNoteComponent

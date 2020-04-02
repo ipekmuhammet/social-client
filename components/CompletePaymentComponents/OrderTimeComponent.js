@@ -1,33 +1,27 @@
 import React from 'react'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
-import { connect } from 'react-redux'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 
-const OrderTimeComponent = ({ navigation }) => {
-
-    const onClick = () => {
+const OrderTimeComponent = () => (
+    <TouchableOpacity style={styles.container} onPress={() => {
         console.log('address')
-    }
-
-    return (
-        <TouchableOpacity style={styles.container} onPress={onClick}>
-            <View style={styles.iconContainer}>
-                <Ionicons size={36} name={'md-time'} />
+    }}>
+        <View style={styles.iconContainer}>
+            <Ionicons size={32} name={'md-time'} />
+        </View>
+        <View style={styles.paymentInfoContainer}>
+            <View style={styles.paymentInfoTextContainer}>
+                <Text style={styles.paymentTitle}>{'Bugün (17.03.2020)'}</Text>
             </View>
-            <View style={styles.paymentInfoContainer}>
-                <View style={styles.paymentInfoTextContainer}>
-                    <Text style={styles.paymentTitle}>{'Bugün (17.03.2020)'}</Text>
-                </View>
-                <View style={styles.paymentInfoTextContainer}>
-                    <Text style={styles.paymentDetail}>{'Hemen ~ 25-35 dakika'}</Text>
-                </View>
+            <View style={styles.paymentInfoTextContainer}>
+                <Text style={styles.paymentDetail}>{'Hemen ~ 25-35 dakika'}</Text>
             </View>
-            <View style={styles.iconContainer}>
-                <MaterialIcons color={'#ACACAC'} size={36} name={'chevron-right'} />
-            </View>
-        </TouchableOpacity>
-    )
-}
+        </View>
+        <View style={styles.iconContainer}>
+            <MaterialIcons color={'#ACACAC'} size={32} name={'chevron-right'} />
+        </View>
+    </TouchableOpacity>
+)
 
 const styles = StyleSheet.create({
     container: {
@@ -61,8 +55,4 @@ const styles = StyleSheet.create({
     }
 })
 
-const mapDispatchToProps = {
-
-}
-
-export default connect(null, mapDispatchToProps)(OrderTimeComponent)
+export default OrderTimeComponent
