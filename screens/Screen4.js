@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { CardStyleInterpolators } from '@react-navigation/stack'
 
 import ProfileScreen from './ProfileScreen'
+import ChangePasswordScreen from './ChangePasswordScreen'
 import AddressesScreen from './SettingsScreens/AddressesScreen'
 import SearchAddressScreen from './AddressScreens/SearchAddressScreen'
 import PinAddressScreen from './AddressScreens/PinAddressScreen'
@@ -21,10 +22,20 @@ const Screen4 = () => (
                 headerTintColor: 'white',
                 headerStyle: { backgroundColor: '#5D3EBD' }
             }} />
-
+            
         <Stack.Screen
             name='addresses'
             component={AddressesScreen}
+            options={{
+                title: 'Adreslerim',
+                headerTitleAlign: 'center',
+                headerTintColor: 'white',
+                headerStyle: { backgroundColor: '#5D3EBD' }
+            }} />
+
+        <Stack.Screen
+            name='changePasswordScreen'
+            component={ChangePasswordScreen}
             options={{
                 title: 'Adreslerim',
                 headerTitleAlign: 'center',

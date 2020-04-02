@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { View, Image, Text, AsyncStorage } from 'react-native'
+import { View, Image, Text } from 'react-native'
 
 import { setInitialDatas } from '../actions/actions4'
 

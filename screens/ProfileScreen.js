@@ -46,9 +46,11 @@ const ProfileScreen = ({ navigation }) => (
             <Ionicons color={'#4522A0'} name={'md-document'} size={32} />
         </SettingItem>
 
-        <SettingItem title={'Change Password'}>
-            <Ionicons color={'#4522A0'} name={'md-lock'} size={32} />
-        </SettingItem>
+        <TouchableOpacity onPress={() => { navigation.navigate('changePasswordScreen') }}>
+            <SettingItem title={'Change Password'}>
+                <Ionicons color={'#4522A0'} name={'md-lock'} size={32} />
+            </SettingItem>
+        </TouchableOpacity>
 
         <SettingItem title={'Communication Options'}>
             <Ionicons color={'#4522A0'} name={'md-notifications'} size={32} />
