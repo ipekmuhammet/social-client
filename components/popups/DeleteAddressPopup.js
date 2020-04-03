@@ -34,7 +34,7 @@ const DeleteAddressPopup = ({ scaleAnimationModal, setPopupState }) => (
                     onPress={() => {
                         setPopupState({ scaleAnimationModal: false })
                     }}
-                    key="button-1" />
+                    key='button-1' />
                 <ModalButton
                     text='Yes'
                     textStyle={{ color: 'white' }}
@@ -42,7 +42,7 @@ const DeleteAddressPopup = ({ scaleAnimationModal, setPopupState }) => (
                     onPress={() => {
                         setPopupState({ scaleAnimationModal: false }, true)
                     }}
-                    key="button-2" />
+                    key='button-2' />
             </ModalFooter>
         } />
 )

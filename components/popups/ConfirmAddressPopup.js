@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Text } from 'react-native'
 import Modal, {
     ModalTitle,
@@ -7,7 +8,7 @@ import Modal, {
     ModalContent
 } from 'react-native-modals'
 
-const ConfirmAddressPopup = ({ address, scaleAnimationModal, setPopupState }) => (
+const ConfirmAddressPopup = ({ address, token, scaleAnimationModal, setPopupState }) => (
     <Modal
         onTouchOutside={() => {
             setPopupState(false)
@@ -41,7 +42,7 @@ const ConfirmAddressPopup = ({ address, scaleAnimationModal, setPopupState }) =>
                     textStyle={{ color: 'white' }}
                     style={{ backgroundColor: '#5D3EBD' }}
                     onPress={() => {
-                        setPopupState(false, true)
+                        setPopupState(false, true, address, token)
                     }}
                     key='button-2' />
             </ModalFooter>
@@ -52,4 +53,16 @@ const ConfirmAddressPopup = ({ address, scaleAnimationModal, setPopupState }) =>
     </Modal>
 )
 
-export default ConfirmAddressPopup
+const mapStateToProps = ({
+    reducer4: {
+        token
+    },
+    mapReducer: {
+        address
+    }
+}) => ({
+    address,
+    token
+})
+
+export default connect(mapStateToProps)(ConfirmAddressPopup)

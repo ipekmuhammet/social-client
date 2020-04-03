@@ -10,7 +10,7 @@ import Modal, {
 
 import { addAddress } from '../../actions/actions4'
 
-const ConfirmAccuratePinPopup = ({ scaleAnimationModal, setPopupState }) => (
+const ConfirmAccuratePinPopup = ({ scaleAnimationModal, setPopupState, region }) => (
     <Modal
         onTouchOutside={() => {
             setPopupState(false)
@@ -37,7 +37,7 @@ const ConfirmAccuratePinPopup = ({ scaleAnimationModal, setPopupState }) => (
                     textStyle={{ color: 'white' }}
                     style={{ backgroundColor: '#5D3EBD' }}
                     onPress={() => {
-                        setPopupState(false, true)
+                        setPopupState(false, true, region)
                     }}
                     key='button-2' />
             </ModalFooter>
@@ -53,4 +53,12 @@ const mapDispatchToProps = {
     addAddress
 }
 
-export default connect(null, mapDispatchToProps)(ConfirmAccuratePinPopup)
+const mapStateToProps = ({
+    mapReducer: {
+        region
+    }
+}) => ({
+    region
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ConfirmAccuratePinPopup)

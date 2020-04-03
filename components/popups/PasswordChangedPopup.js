@@ -29,7 +29,7 @@ const PasswordChangedPopup = ({ scaleAnimationModal, setPopupState }) => (
                         console.log('Close')
                         setPopupState({ scaleAnimationModal: false })
                     }}
-                    key="button-1" />
+                    key='button-1' />
             </ModalFooter>
         }>
         <ModalContent style={{ backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' }}>

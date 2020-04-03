@@ -1,17 +1,15 @@
 import React from 'react'
 import { View, TouchableOpacity, Image, Text, TextInput, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
-import MapView from 'react-native-maps'
-import axios from 'axios'
 import { addAddress } from '../../actions/actions4'
 
 import ConfirmAddressPopup from '../../components/popups/ConfirmAddressPopup'
+import Map from '../MapScreens/Map'
+import CompleteAddressInput from '../MapScreens/CompleteAddressInput'
 
 class CompleteAddressScreen extends React.Component {
 
     state = {
-        region: this.props.route.params.region,
-        address: this.props.route.params.address,
         scaleAnimationModal: false,
         addressTitle: 'Home',
         buildingNo: '',
@@ -20,22 +18,10 @@ class CompleteAddressScreen extends React.Component {
         directions: ''
     }
 
-    getAddress = (region) => (
-        axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${region.latitude},${region.longitude}&key=AIzaSyDOKcW0tFvi_T9vFyERfUDh20IxfTfBsmA`)
-            .then(({ data }) => data.results[0].formatted_address)
-    )
-
-
-    onRegionChange = (region) => {
-        this.getAddress(region).then((address) => {
-            this.setState({ address, region })
-        })
-    }
-
-    setPopupState = (scaleAnimationModal, complete) => {
+    setPopupState = (scaleAnimationModal, complete, address, token) => {
         this.setState({ scaleAnimationModal })
         if (complete) {
-            this.props.addAddress(this.state.address, this.props.token)
+            this.props.addAddress(address, token)
             this.props.navigation.pop(3)
         }
     }
@@ -43,54 +29,15 @@ class CompleteAddressScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <ConfirmAddressPopup address={this.state.address} region={this.state.region} scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
+                <ConfirmAddressPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
                 <View style={styles.mapContainer}>
-                    <View style={styles.markerContainer} pointerEvents="none">
+
+                    <Map region={this.props.route.params.region}/>
+
+                    <View style={styles.markerContainer} pointerEvents='none'>
                         <Image style={styles.marker} source={require('../../assets/map-marker.png')} />
                     </View>
 
-                    <MapView
-                        style={StyleSheet.absoluteFillObject}
-                        tracksViewChanges={false}
-                        loadingEnabled={true}
-                        showsCompass={false}
-                        initialRegion={this.state.region}
-                        customMapStyle={[
-                            {
-                                featureType: 'poi',
-                                elementType: 'labels.text',
-                                stylers: [
-                                    {
-                                        visibility: 'off'
-                                    }
-                                ]
-                            },
-                            {
-                                featureType: 'poi.business',
-                                stylers: [
-                                    {
-                                        visibility: 'off'
-                                    }
-                                ]
-                            },
-                            {
-                                featureType: 'road',
-                                elementType: 'labels.icon',
-                                stylers: [
-                                    {
-                                        visibility: 'off'
-                                    }
-                                ]
-                            },
-                            {
-                                featureType: 'transit',
-                                stylers: [
-                                    {
-                                        visibility: 'off'
-                                    }
-                                ]
-                            }
-                        ]} />
                 </View>
                 <View style={styles.body}>
                     <View style={styles.inputContainerChild}>
@@ -108,11 +55,7 @@ class CompleteAddressScreen extends React.Component {
                     </View>
                     <View style={styles.inputContainerChild}>
                         <View style={styles.inputContainer}>
-                            <TextInput
-                                value={this.state.address}
-                                onChangeText={(address) => { this.setState({ address }) }}
-                                placeholder={'Address'}
-                                style={styles.input} />
+                            <CompleteAddressInput />
                         </View>
                     </View>
                     <View style={styles.inputContainerChild}>
