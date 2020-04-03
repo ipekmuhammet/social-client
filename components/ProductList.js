@@ -20,6 +20,10 @@ const ProductList = ({ products }) => (
 	<View style={{ flex: 1, margin: 6, backgroundColor: '#F5F5F5' }}>
 		<FlatList
 			data={formatData(products, 3)}
+			// removeClippedSubviews={true}		// Performance
+			// initialNumToRender={2}			// Performance
+			// maxToRenderPerBatch={8}			// Performance
+			// updateCellsBatchingPeriod={100}	// Performance
 			scrollEnabled={true}
 			keyExtractor={item => item.id}
 			renderItem={({ item }) => item.empty ? <EmptyProduct /> : <Product data={item} />}

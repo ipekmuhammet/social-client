@@ -11,7 +11,7 @@ const Category = ({ data: { id, name }, index, navigation, setSelectedCategory }
 
 	const onCategoryClick = () => {
 		setSelectedCategory(index)
-		navigation.navigate({ name: 'products' })
+		navigation.navigate('products')
 	}
 
 	return (

@@ -22,8 +22,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         options={{
           title: 'Home',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name='md-home' />
-        }}
-      />
+        }} />
 
       <BottomTab.Screen
         name='Search'
@@ -31,8 +30,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         options={{
           title: 'Search',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name='md-search' />
-        }}
-      />
+        }} />
 
       <BottomTab.Screen
         name='Cart'
@@ -40,8 +38,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         options={{
           title: 'Cart',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name='md-cart' />
-        }}
-      />
+        }} />
 
       <BottomTab.Screen
         name='Profile'
@@ -49,8 +46,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         options={{
           title: 'Profile',
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name='md-person' />
-        }}
-      />
+        }} />
 
     </BottomTab.Navigator>
   )
