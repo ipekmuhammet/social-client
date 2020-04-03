@@ -24,17 +24,15 @@ const Product = ({ data: { id, product_name, kind_name, price, image }, addProdu
 				<Image source={{ uri: imageUrl }} resizeMode={'contain'} style={styles.productImage} />
 			</View>
 
-			<View style={[styles.child, { alignItems: 'flex-start' }]}>
-				<Text style={styles.productPrice}>{'₺' + price.toString().replace('.', ',')}</Text>
-			</View>
+			<Text style={[styles.child, styles.productPrice, { alignItems: 'flex-start' }]}>{'₺' + price.toFixed(2).toString().replace('.', ',')}</Text>
 
-			<View style={styles.child}>
-				<Text numberOfLines={3} style={styles.productName}>{product_name}</Text>
-			</View>
+			<Text numberOfLines={3} style={[styles.productName, styles.child]}>{product_name}</Text>
 
-			<View style={[styles.child, { alignItems: 'flex-start' }]}>
-				<Text numberOfLines={3} style={styles.kindText}>{kind_name}</Text>
-			</View>
+			{
+				//	<View style={[styles.child, { alignItems: 'flex-start' }]}>
+				//		<Text numberOfLines={3} style={styles.kindText}>{kind_name}</Text>
+				//	</View>
+			}
 
 		</View>
 	)
