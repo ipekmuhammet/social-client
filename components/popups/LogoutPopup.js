@@ -16,9 +16,7 @@ const LogoutPopup = ({ scaleAnimationModal, navigation, setPopupState, logout })
         width={0.9}
         visible={scaleAnimationModal}
         onSwipeOut={() => setPopupState({ scaleAnimationModal: false })}
-        // modalAnimation={new ScaleAnimation()}
         onHardwareBackPress={() => {
-            console.log('onHardwareBackPress')
             setPopupState({ scaleAnimationModal: false })
             return true
         }}
@@ -27,8 +25,7 @@ const LogoutPopup = ({ scaleAnimationModal, navigation, setPopupState, logout })
                 style={{ marginVertical: 6 }}
                 textStyle={{ textAlign: 'center', fontSize: 17 }}
                 title='Are you sure you want to log out?'
-                hasTitleBar={false}
-            />
+                hasTitleBar={false} />
         }
         footer={
             <ModalFooter style={{ height: 42 }}>
@@ -39,8 +36,7 @@ const LogoutPopup = ({ scaleAnimationModal, navigation, setPopupState, logout })
                     onPress={() => {
                         setPopupState({ scaleAnimationModal: false })
                     }}
-                    key="button-1"
-                />
+                    key="button-1" />
                 <ModalButton
                     text='Yes'
                     textStyle={{ color: 'white' }}
@@ -49,8 +45,7 @@ const LogoutPopup = ({ scaleAnimationModal, navigation, setPopupState, logout })
                         setPopupState({ scaleAnimationModal: false })
                         logout(navigation)
                     }}
-                    key="button-2"
-                />
+                    key="button-2" />
             </ModalFooter>
         } />
 )

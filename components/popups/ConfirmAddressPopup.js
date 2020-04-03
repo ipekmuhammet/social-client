@@ -15,9 +15,7 @@ const ConfirmAddressPopup = ({ address, scaleAnimationModal, setPopupState }) =>
         width={0.9}
         visible={scaleAnimationModal}
         onSwipeOut={() => setPopupState(false)}
-        // modalAnimation={new ScaleAnimation()}
         onHardwareBackPress={() => {
-            console.log('onHardwareBackPress')
             setPopupState(false)
             return true
         }}
@@ -26,8 +24,7 @@ const ConfirmAddressPopup = ({ address, scaleAnimationModal, setPopupState }) =>
                 style={{ marginVertical: 8 }}
                 textStyle={{ textAlign: 'center', color: '#5D3EBD', fontWeight: '600', fontSize: 20 }}
                 title='Do you confirm that your address is true?'
-                hasTitleBar={false}
-            />
+                hasTitleBar={false} />
         }
         footer={
             <ModalFooter style={{ height: 42 }}>
@@ -38,8 +35,7 @@ const ConfirmAddressPopup = ({ address, scaleAnimationModal, setPopupState }) =>
                     onPress={() => {
                         setPopupState(false)
                     }}
-                    key='button-1'
-                />
+                    key='button-1' />
                 <ModalButton
                     text='Yes'
                     textStyle={{ color: 'white' }}
@@ -47,8 +43,7 @@ const ConfirmAddressPopup = ({ address, scaleAnimationModal, setPopupState }) =>
                     onPress={() => {
                         setPopupState(false, true)
                     }}
-                    key='button-2'
-                />
+                    key='button-2' />
             </ModalFooter>
         }>
         <ModalContent style={{ alignItems: 'center', justiftContent: 'center' }}>

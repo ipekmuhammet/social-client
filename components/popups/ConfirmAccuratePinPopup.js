@@ -18,9 +18,7 @@ const ConfirmAccuratePinPopup = ({ scaleAnimationModal, setPopupState }) => (
         width={0.9}
         visible={scaleAnimationModal}
         onSwipeOut={() => setPopupState(false)}
-        // modalAnimation={new ScaleAnimation()}
         onHardwareBackPress={() => {
-            console.log('onHardwareBackPress')
             setPopupState(false)
             return true
         }}
@@ -33,18 +31,15 @@ const ConfirmAccuratePinPopup = ({ scaleAnimationModal, setPopupState }) => (
                     onPress={() => {
                         setPopupState(false)
                     }}
-                    key='button-1'
-                />
+                    key='button-1' />
                 <ModalButton
                     text='Yes'
                     textStyle={{ color: 'white' }}
                     style={{ backgroundColor: '#5D3EBD' }}
                     onPress={() => {
-                        // this.props.addAddress('Ahmet Rüfai Sok., No:1', this.props.token)
                         setPopupState(false, true)
                     }}
-                    key='button-2'
-                />
+                    key='button-2' />
             </ModalFooter>
         }>
         <ModalContent style={{ backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' }}>

@@ -10,14 +10,9 @@ import ConfirmAddressPopup from '../../components/popups/ConfirmAddressPopup'
 class CompleteAddressScreen extends React.Component {
 
     state = {
-        region: {
-            latitude: 41.0381665,
-            longitude: 28.9417273,
-            latitudeDelta: 0.0035,
-            longitudeDelta: 0.0035,
-        },
-        scaleAnimationModal: false,
+        region: this.props.route.params.region,
         address: this.props.route.params.address,
+        scaleAnimationModal: false,
         addressTitle: 'Home',
         buildingNo: '',
         floor: '',
@@ -32,9 +27,8 @@ class CompleteAddressScreen extends React.Component {
 
 
     onRegionChange = (region) => {
-        this.setState({ region })
         this.getAddress(region).then((address) => {
-            this.setState({ address })
+            this.setState({ address, region })
         })
     }
 
@@ -49,7 +43,7 @@ class CompleteAddressScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <ConfirmAddressPopup address={this.state.address} scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
+                <ConfirmAddressPopup address={this.state.address} region={this.state.region} scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
                 <View style={styles.mapContainer}>
                     <View style={styles.markerContainer} pointerEvents="none">
                         <Image style={styles.marker} source={require('../../assets/map-marker.png')} />

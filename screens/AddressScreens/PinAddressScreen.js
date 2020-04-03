@@ -25,9 +25,8 @@ class PinAddressScreen extends React.PureComponent {
 
 
     onRegionChange = (region) => {
-        this.setState({ region })
         this.getAddress(region).then((address) => {
-            this.setState({ address })
+            this.setState({ address, region })
         })
     }
 
