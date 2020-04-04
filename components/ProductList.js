@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, FlatList } from 'react-native'
+import { FlatList } from 'react-native'
 
 import Product from './Product'
 import EmptyProduct from './EmptyProduct'
@@ -16,19 +16,21 @@ const formatData = (data, numColumns) => {
 	return data
 }
 
+const renderListItem = ({ item }) => item.empty ? <EmptyProduct /> : <Product data={item} />
+
 const ProductList = ({ products }) => (
-	<View style={{ flex: 1, margin: 6, backgroundColor: '#F5F5F5' }}>
-		<FlatList
-			data={formatData(products, 3)}
-			// removeClippedSubviews={true}		// Performance
-			// initialNumToRender={2}			// Performance
-			// maxToRenderPerBatch={8}			// Performance
-			// updateCellsBatchingPeriod={100}	// Performance
-			scrollEnabled={true}
-			keyExtractor={item => item.id}
-			renderItem={({ item }) => item.empty ? <EmptyProduct /> : <Product data={item} />}
-			numColumns={3} />
-	</View>
+	<FlatList
+		style={{ flex: 1, margin: 6, backgroundColor: '#F5F5F5' }}
+		data={formatData(products, 3)}
+		removeClippedSubviews={true}		// Performance
+		windowSize={6}						// Performance
+		initialNumToRender={2}				// Performance
+		maxToRenderPerBatch={8}				// Performance
+		updateCellsBatchingPeriod={100}		// Performance
+		scrollEnabled={true}
+		keyExtractor={item => item.id}
+		renderItem={renderListItem}
+		numColumns={3} />
 )
 
 export default ProductList
