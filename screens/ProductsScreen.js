@@ -11,7 +11,7 @@ const ProductsScreen = ({ selectedCategory, categories, products }) => (
 		tabBarTextStyle={{ color: 'white', fontSize: 16 }}
 		tabBarUnderlineStyle={{ backgroundColor: '#FED110' }}
 		scrollWithoutAnimation={true}
-		prerenderingSiblingsNumber={1}
+		prerenderingSiblingsNumber={0}
 		renderTabBar={() => <ScrollableTabBar />}>
 		{
 			categories.map(category => <ProductList key={category.id} tabLabel={category.name} products={products[category.id]} />)
