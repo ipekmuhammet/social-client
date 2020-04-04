@@ -26,7 +26,7 @@ const CardProduct = ({ data: { id, product_name, price, image, count }, decrease
 				<Text style={styles.productName} numberOfLines={2}>{product_name}</Text>
 			</View>
 			<View style={{ flex: 1, width: '100%', paddingHorizontal: 8, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-				<Text style={styles.productPrice} numberOfLines={2}>{'₺' + price.toString().replace('.', ',')}</Text>
+				<Text style={styles.productPrice} numberOfLines={2}>{'₺' + price.toFixed(2).toString().replace('.', ',')}</Text>
 			</View>
 			<View style={styles.child} />
 		</View>
