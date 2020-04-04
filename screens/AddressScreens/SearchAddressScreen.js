@@ -1,19 +1,15 @@
 import React from 'react'
-import { View, FlatList, TouchableOpacity, Text, TextInput } from 'react-native'
+import { connect } from 'react-redux'
 import axios from 'axios'
+import { View, FlatList, TouchableOpacity, Text, TextInput } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
+
+import { setRegionByPlace, setCurrentRegion } from '../../actions/map-actions'
 
 class SearchAddressScreen extends React.PureComponent {
 
     state = {
         locations: []
-    }
-
-    movePinAddressScreen = (placeId) => {
-        axios.get(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${placeId}&key=AIzaSyDOKcW0tFvi_T9vFyERfUDh20IxfTfBsmA`)
-            .then(({ data }) => {
-                this.props.navigation.navigate('pinAddressScreen', { location: { latitude: data.result.geometry.location.lat, longitude: data.result.geometry.location.lng } })
-            })
     }
 
     search = (text) => {
@@ -36,14 +32,7 @@ class SearchAddressScreen extends React.PureComponent {
                     </View>
 
                     <TouchableOpacity
-                        onPress={() => {
-                            this.props.navigation.navigate('pinAddressScreen', {
-                                location: {
-                                    latitude: 41.0381665,
-                                    longitude: 28.9417276
-                                }
-                            })
-                        }}
+                        onPress={() => { this.props.setCurrentRegion(this.props.navigation) }}
                         style={{ flex: 1, display: 'flex', flexDirection: 'row', alignItems: 'center', marginHorizontal: 6 }}>
                         <View style={{ flex: 1, flexDirection: 'row', marginHorizontal: 10, alignItems: 'center' }}>
                             <Ionicons size={32} name={'md-locate'} color={'#5E3FBE'} />
@@ -59,7 +48,7 @@ class SearchAddressScreen extends React.PureComponent {
                             data={this.state.locations}
                             renderItem={({ item }) => (
                                 <TouchableOpacity
-                                    onPress={() => { this.movePinAddressScreen(item.place_id) }}
+                                    onPress={() => { this.props.setRegionByPlace(item.place_id, this.props.navigation) }}
                                     style={{ height: 70, paddingVertical: 16, display: 'flex', flexDirection: 'row', alignItems: 'center', margin: 6 }}>
                                     <View style={{ flex: 1, flexDirection: 'row', marginHorizontal: 10, alignItems: 'center' }}>
                                         <Ionicons size={32} name={'md-pin'} color={'#6B788B'} />
@@ -77,4 +66,9 @@ class SearchAddressScreen extends React.PureComponent {
     }
 }
 
-export default SearchAddressScreen
+const mapDispatchToProps = {
+    setRegionByPlace,
+    setCurrentRegion
+}
+
+export default connect(null, mapDispatchToProps)(SearchAddressScreen)

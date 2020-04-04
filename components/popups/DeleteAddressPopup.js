@@ -14,9 +14,7 @@ const DeleteAddressPopup = ({ scaleAnimationModal, setPopupState }) => (
         width={0.9}
         visible={scaleAnimationModal}
         onSwipeOut={() => setPopupState({ scaleAnimationModal: false })}
-        // modalAnimation={new ScaleAnimation()}
         onHardwareBackPress={() => {
-            console.log('onHardwareBackPress')
             setPopupState({ scaleAnimationModal: false })
             return true
         }}
@@ -25,8 +23,7 @@ const DeleteAddressPopup = ({ scaleAnimationModal, setPopupState }) => (
                 style={{ marginVertical: 8 }}
                 textStyle={{ textAlign: 'center' }}
                 title='Are you sure you want to delete you address?'
-                hasTitleBar={false}
-            />
+                hasTitleBar={false} />
         }
         footer={
             <ModalFooter style={{ height: 42 }}>
@@ -37,8 +34,7 @@ const DeleteAddressPopup = ({ scaleAnimationModal, setPopupState }) => (
                     onPress={() => {
                         setPopupState({ scaleAnimationModal: false })
                     }}
-                    key="button-1"
-                />
+                    key='button-1' />
                 <ModalButton
                     text='Yes'
                     textStyle={{ color: 'white' }}
@@ -46,8 +42,7 @@ const DeleteAddressPopup = ({ scaleAnimationModal, setPopupState }) => (
                     onPress={() => {
                         setPopupState({ scaleAnimationModal: false }, true)
                     }}
-                    key="button-2"
-                />
+                    key='button-2' />
             </ModalFooter>
         } />
 )

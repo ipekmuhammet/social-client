@@ -2,31 +2,26 @@ import React from 'react'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 
-const AddressSelectComponent = ({ navigation }) => {
-
-    const onClick = () => {
+const AddressSelectComponent = ({ navigation }) => (
+    <TouchableOpacity style={styles.container} onPress={() => {
         navigation.navigate('addresses')
-    }
-
-    return (
-        <TouchableOpacity style={styles.container} onPress={onClick}>
-            <View style={styles.iconContainer}>
-                <Ionicons size={36} name={'md-home'} />
+    }}>
+        <View style={styles.iconContainer}>
+            <Ionicons size={32} name={'md-home'} />
+        </View>
+        <View style={styles.paymentInfoContainer}>
+            <View style={styles.paymentInfoTextContainer}>
+                <Text style={styles.paymentTitle}>{'Ev'}</Text>
             </View>
-            <View style={styles.paymentInfoContainer}>
-                <View style={styles.paymentInfoTextContainer}>
-                    <Text style={styles.paymentTitle}>{'Ev'}</Text>
-                </View>
-                <View style={styles.paymentInfoTextContainer}>
-                    <Text style={styles.paymentDetail}>{'Fatih (Ayvansaray Mah.)'}</Text>
-                </View>
+            <View style={styles.paymentInfoTextContainer}>
+                <Text style={styles.paymentDetail}>{'Fatih (Ayvansaray Mah.)'}</Text>
             </View>
-            <View style={styles.iconContainer}>
-                <MaterialIcons color={'#ACACAC'} size={36} name={'chevron-right'} />
-            </View>
-        </TouchableOpacity>
-    )
-}
+        </View>
+        <View style={styles.iconContainer}>
+            <MaterialIcons color={'#ACACAC'} size={32} name={'chevron-right'} />
+        </View>
+    </TouchableOpacity>
+)
 
 const styles = StyleSheet.create({
     container: {
