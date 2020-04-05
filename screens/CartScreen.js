@@ -6,14 +6,13 @@ import { Ionicons } from '@expo/vector-icons'
 import CardProduct from '../components/CardProduct'
 import CompletePayment from '../components/CompletePayment'
 
-const CartScreen = ({ cart, refreshCard, navigation }) => {
+const CartScreen = ({ cart, navigation }) => {
     const products = Object.values(cart)
 
     if (products.length > 0) {
         return (
             <View style={styles.container}>
                 <FlatList
-                    key={refreshCard} // TODO : This will make react think that is new object each time. Thats why images reloading.
                     data={products}
                     keyExtractor={item => 'cart' + item.id}
                     renderItem={({ item }) => <CardProduct data={item} />}
@@ -59,12 +58,10 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = ({
     reducer1: {
-        cart,
-        refreshCard
+        cart
     }
 }) => ({
-    cart,
-    refreshCard
+    cart
 })
 
 export default connect(mapStateToProps)(CartScreen)

@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { View, Image, Text } from 'react-native'
 
 import { setInitialDatas } from '../actions/actions4'
+import LoadingComponent from '../components/LoadingCompenent'
 
 class LoadingScreen extends React.PureComponent {
 
@@ -35,12 +35,7 @@ class LoadingScreen extends React.PureComponent {
 
 	render() {
 		return (
-			<View style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: 'white', display: 'flex', flex: 1 }}>
-				<View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
-					<Image source={require('../assets/loading.gif')} />
-					<Text style={{ fontSize: 24, paddingVertical: 30, fontWeight: '700', color: '#5D3EBD' }}>Lütfen bekleyin.</Text>
-				</View>
-			</View>
+			<LoadingComponent />
 		)
 	}
 }

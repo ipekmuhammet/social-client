@@ -22,12 +22,13 @@ const ProductList = ({ products }) => (
 	<FlatList
 		style={{ flex: 1, margin: 6, backgroundColor: '#F5F5F5' }}
 		data={formatData(products, 3)}
-		removeClippedSubviews={true}		// Performance
-		windowSize={6}						// Performance
-		initialNumToRender={2}				// Performance
-		maxToRenderPerBatch={8}				// Performance
-		updateCellsBatchingPeriod={100}		// Performance
+		removeClippedSubviews={true}			// Performance
+		windowSize={36}							// Performance
+		initialNumToRender={36}					// Performance
+		// maxToRenderPerBatch={24}				// Performance
+		// updateCellsBatchingPeriod={100}		// Performance
 		scrollEnabled={true}
+		showsVerticalScrollIndicator={false}
 		keyExtractor={item => item.id}
 		renderItem={renderListItem}
 		numColumns={3} />

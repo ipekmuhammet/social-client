@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     markerContainer: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', zIndex: 2, },
     marker: { width: 48, height: 48 },
     buttonContainer: {
-        position: 'absolute', bottom: 0, height: 78, left: 0, right: 0, backgroundColor: 'white', zIndex: 2, display: 'flex',
+        position: 'absolute', bottom: 0, height: 78, left: 0, right: 0, backgroundColor: 'transparent', zIndex: 2, display: 'flex',
         flexDirection: 'row', alignItems: 'center', paddingHorizontal: 24, paddingVertical: 24
     },
     button: { flex: 1, padding: 12, backgroundColor: '#5D3EBD', borderRadius: 16 },

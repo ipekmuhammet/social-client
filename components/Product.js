@@ -5,42 +5,35 @@ import { connect } from 'react-redux'
 
 import { addProduct } from '../actions/actions1'
 
-const Product = ({ data: { id, product_name, kind_name, price, image }, addProduct }) => {
+const Product = ({ data: { id, product_name, kind_name, price, image }, addProduct }) => (
+	<View style={styles.container}>
 
-	const imageUrl = `http://192.168.1.102:3000/assets/products/${image}.png`
+		<TouchableOpacity onPress={() => {
+			addProduct(id)
+		}}
+			style={styles.addProductButton}>
+			<Text style={styles.addProductIcon}>+</Text>
+		</TouchableOpacity>
 
-	const onClick = () => {
-		addProduct(id)
-	}
-
-	return (
-		<View style={styles.container}>
-
-			<TouchableOpacity onPress={onClick} style={styles.addProductButton}>
-				<Text style={styles.addProductIcon}>+</Text>
-			</TouchableOpacity>
-
-			<View style={[styles.child, styles.productImageContainer]}>
-				<Image source={{ uri: imageUrl }} resizeMode={'contain'} style={styles.productImage} />
-			</View>
-
-			<Text style={[styles.child, styles.productPrice, { alignItems: 'flex-start' }]}>{'₺' + price.toFixed(2).toString().replace('.', ',')}</Text>
-
-			<Text numberOfLines={3} style={[styles.productName, styles.child]}>{product_name}</Text>
-
-			{
-				//	<View style={[styles.child, { alignItems: 'flex-start' }]}>
-				//		<Text numberOfLines={3} style={styles.kindText}>{kind_name}</Text>
-				//	</View>
-			}
-
+		<View style={[styles.child, styles.productImageContainer]}>
+			<Image source={{ uri: `http://192.168.1.102:3000/assets/products/${image}.png` }} resizeMode={'contain'} style={styles.productImage} />
 		</View>
-	)
-}
+
+		<Text style={[styles.child, styles.productPrice, { alignItems: 'flex-start' }]}>{'₺' + price.toFixed(2).toString().replace('.', ',')}</Text>
+
+		<Text numberOfLines={3} style={[styles.productName, styles.child]}>{product_name}</Text>
+
+		{
+			//	<View style={[styles.child, { alignItems: 'flex-start' }]}>
+			//		<Text numberOfLines={3} style={styles.kindText}>{kind_name}</Text>
+			//	</View>
+		}
+
+	</View>
+)
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
 		flexDirection: 'column',
 		padding: RFPercentage(1),
 		margin: RFPercentage(1),
@@ -49,7 +42,6 @@ const styles = StyleSheet.create({
 		backgroundColor: 'transparent'
 	},
 	child: {
-		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
 		marginVertical: RFPercentage(.3)

@@ -19,14 +19,14 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false
     },
     "android": {
       "package": "com.muhammetipek.platformapp",
       "versionCode": 1,
       "config": {
 				"googleMaps": {
-					"apiKey": "AIzaSyDOKcW0tFvi_T9vFyERfUDh20IxfTfBsmA"
+					"apiKey": "AIzaSyDqO6aeMglQlL9ONRqWB93_6SCUOf5XAg8"
 				}
 			}
     }
