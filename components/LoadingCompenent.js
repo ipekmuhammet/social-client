@@ -5,7 +5,7 @@ const LoadingComponent = () => (
     <View style={styles.container}>
         <View style={styles.center}>
             <Image source={require('../assets/loading.gif')} />
-            <Text style={styles.text}>Lütfen bekleyinx.</Text>
+            <Text style={styles.text}>Lütfen bekleyin.</Text>
         </View>
     </View>
 )

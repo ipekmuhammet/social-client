@@ -1,9 +1,8 @@
 import React from 'react'
-import { View, TouchableOpacity, Image, Text, StyleSheet } from 'react-native'
-import { connect } from 'react-redux'
+import { View, Image, Text, StyleSheet } from 'react-native'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 
-import { decreaseProductCount, increaseProductCount } from '../actions/actions1'
+import CardProductQuantityComponent from './CardProductQuantityComponent'
 
 const CardProduct = ({ data: { id, product_name, price, image, count }, decreaseProductCount, increaseProductCount }) => (
 	<View style={styles.container}>
@@ -22,10 +21,10 @@ const CardProduct = ({ data: { id, product_name, price, image, count }, decrease
 
 		<View style={[styles.child, styles.flex3, styles.column]}>
 			<View style={styles.child} />
-			<View style={{ flex: 1, width: '100%', paddingHorizontal: 8, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+			<View style={{ width: '100%', paddingHorizontal: 8, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
 				<Text style={styles.productName} numberOfLines={2}>{product_name}</Text>
 			</View>
-			<View style={{ flex: 1, width: '100%', paddingHorizontal: 8, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+			<View style={{ width: '100%', paddingHorizontal: 8, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
 				<Text style={styles.productPrice} numberOfLines={2}>{'₺' + price.toFixed(2).toString().replace('.', ',')}</Text>
 			</View>
 			<View style={styles.child} />
@@ -34,19 +33,7 @@ const CardProduct = ({ data: { id, product_name, price, image, count }, decrease
 		<View style={[styles.child, styles.flex2, styles.column]}>
 			<View style={styles.child} />
 			<View style={styles.rowChild}>
-
-				<TouchableOpacity onPress={() => { decreaseProductCount(id) }} style={[styles.child, styles.decreaseButton]}>
-					<Text style={{ color: '#5D3EBD', fontSize: 18 }}>{'-'}</Text>
-				</TouchableOpacity>
-
-				<View style={[styles.child, { backgroundColor: '#5D3EBD', padding: 4 }]}>
-					<Text style={{ color: 'white', fontSize: 18 }}>{count}</Text>
-				</View>
-
-				<TouchableOpacity onPress={() => { increaseProductCount(id) }} style={[styles.child, styles.increaseButton]}>
-					<Text style={{ color: '#5D3EBD', fontSize: 18 }}>{'+'}</Text>
-				</TouchableOpacity>
-
+				<CardProductQuantityComponent id={id} />
 			</View>
 			<View style={styles.child} />
 		</View>
@@ -56,7 +43,6 @@ const CardProduct = ({ data: { id, product_name, price, image, count }, decrease
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
 		display: 'flex',
 		flexDirection: 'row',
 		padding: 8,
@@ -87,7 +73,7 @@ const styles = StyleSheet.create({
 		display: 'flex'
 	},
 	productName: {
-		fontSize: RFPercentage(2.6),
+		fontSize: RFPercentage(2.7),
 		fontWeight: '700',
 		color: '#303030',
 		textAlign: 'justify',
@@ -105,22 +91,7 @@ const styles = StyleSheet.create({
 	productImage: {
 		width: RFPercentage(14),
 		height: RFPercentage(14)
-	},
-	decreaseButton: {
-		padding: 4,
-		borderTopLeftRadius: 10,
-		borderBottomLeftRadius: 10
-	},
-	increaseButton: {
-		padding: 4,
-		borderTopRightRadius: 10,
-		borderBottomRightRadius: 10
 	}
 })
 
-const mapDispatchToProps = {
-	decreaseProductCount,
-	increaseProductCount
-}
-
-export default connect(null, mapDispatchToProps)(CardProduct)
+export default CardProduct
