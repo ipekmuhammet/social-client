@@ -26,25 +26,27 @@ const ProfileScreen = ({ navigation }) => (
             </SettingItem>
         </TouchableOpacity>
 
-        <SettingItem title={'Favorite Products'}>
-            <Ionicons color={'#4522A0'} name={'md-heart'} size={32} />
-        </SettingItem>
-
-        <SettingItem title={'Previous Orders'}>
-            <Ionicons color={'#4522A0'} name={'md-basket'} size={32} />
-        </SettingItem>
-
-        <SettingItem title={'Previous Invoices'}>
-            <Ionicons color={'#4522A0'} name={'md-document'} size={32} />
-        </SettingItem>
-
         <SettingItem title={'Payment Options'}>
             <Ionicons color={'#4522A0'} name={'ios-card'} size={32} />
         </SettingItem>
 
-        <SettingItem title={'Invoice Information'}>
-            <Ionicons color={'#4522A0'} name={'md-document'} size={32} />
-        </SettingItem>
+        {
+            //  <SettingItem title={'Favorite Products'}>
+            //      <Ionicons color={'#4522A0'} name={'md-heart'} size={32} />
+            //  </SettingItem>
+            //  
+            //  <SettingItem title={'Previous Orders'}>
+            //      <Ionicons color={'#4522A0'} name={'md-basket'} size={32} />
+            //  </SettingItem>
+            //  
+            //  <SettingItem title={'Previous Invoices'}>
+            //      <Ionicons color={'#4522A0'} name={'md-document'} size={32} />
+            //  </SettingItem>
+            //  
+            //  <SettingItem title={'Invoice Information'}>
+            //      <Ionicons color={'#4522A0'} name={'md-document'} size={32} />
+            //  </SettingItem>
+        }
 
         <TouchableOpacity onPress={() => { navigation.navigate('changePasswordScreen') }}>
             <SettingItem title={'Change Password'}>
@@ -52,19 +54,23 @@ const ProfileScreen = ({ navigation }) => (
             </SettingItem>
         </TouchableOpacity>
 
-        <SettingItem title={'Communication Options'}>
-            <Ionicons color={'#4522A0'} name={'md-notifications'} size={32} />
-        </SettingItem>
-
-        <SettingItem title={'Support'}>
-            <Ionicons color={'#4522A0'} name={'md-help-circle-outline'} size={32} />
-        </SettingItem>
+        {
+            //  <SettingItem title={'Communication Options'}>
+            //      <Ionicons color={'#4522A0'} name={'md-notifications'} size={32} />
+            //  </SettingItem>
+            //  
+            //  <SettingItem title={'Support'}>
+            //      <Ionicons color={'#4522A0'} name={'md-help-circle-outline'} size={32} />
+            //  </SettingItem>
+        }
 
         <LogoutItem navigation={navigation} />
 
-        <SettingItem title={'English'} />
+        <TouchableOpacity onPress={() => { navigation.navigate('changePasswordScreen') }}>
+            <SettingItem title={'English'} />
+        </TouchableOpacity>
 
-        <SettingItem title={'2.5.5'} />
+        <SettingItem title={'1.0.0'} />
 
     </ScrollView>
 )
