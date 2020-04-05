@@ -34,7 +34,6 @@ const Product = ({ data: { id, product_name, kind_name, price, image }, addProdu
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
 		flexDirection: 'column',
 		padding: RFPercentage(1),
 		margin: RFPercentage(1),
@@ -43,7 +42,6 @@ const styles = StyleSheet.create({
 		backgroundColor: 'transparent'
 	},
 	child: {
-		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
 		marginVertical: RFPercentage(.3)
