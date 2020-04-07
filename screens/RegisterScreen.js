@@ -55,7 +55,6 @@ class RegisterScreen extends React.PureComponent {
                         placeholder={'Password (min 4 characters)'}
                         style={styles.input} />
                 </View>
-
                 <View style={styles.child}>
                     <TextInput
                         value={this.state.nameSurname}
@@ -74,6 +73,7 @@ class RegisterScreen extends React.PureComponent {
                         style={styles.input} />
                 </View>
 
+                <View style={styles.child} />
 
                 <View style={[styles.child, styles.termsContainer]}>
                     <View style={styles.checkBoxContainer}>
