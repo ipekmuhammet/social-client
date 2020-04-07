@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Image, Text } from 'react-native'
+import { Image, Text, StyleSheet } from 'react-native'
 
 import Modal, {
     ModalButton,
@@ -23,31 +23,41 @@ const ConfirmAccuratePinPopup = ({ scaleAnimationModal, setPopupState, region })
             return true
         }}
         footer={
-            <ModalFooter style={{ height: 42 }}>
+            <ModalFooter style={styles.footer}>
                 <ModalButton
                     text='No'
-                    textStyle={{ color: 'white' }}
-                    style={{ backgroundColor: '#697488' }}
+                    textStyle={styles.buttonText}
+                    style={styles.buttonNo}
                     onPress={() => {
                         setPopupState(false)
                     }}
                     key='button-1' />
                 <ModalButton
                     text='Yes'
-                    textStyle={{ color: 'white' }}
-                    style={{ backgroundColor: '#5D3EBD' }}
+                    textStyle={styles.buttonText}
+                    style={styles.buttonYes}
                     onPress={() => {
                         setPopupState(false, true, region)
                     }}
                     key='button-2' />
             </ModalFooter>
         }>
-        <ModalContent style={{ backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' }}>
-            <Image style={{ height: 92 }} resizeMode={'contain'} source={require('../../assets/pin.png')} />
-            <Text style={{ fontSize: 17, fontWeight: 'bold', marginTop: 12, marginBottom: -6, textAlign: 'center' }}>Your order will be delivered to the pin location on the map. Do you confirm pin location is accurate?</Text>
+        <ModalContent style={styles.content}>
+            <Image style={styles.contentImage} resizeMode={'contain'} source={require('../../assets/pin.png')} />
+            <Text style={styles.contentText}>Your order will be delivered to the pin location on the map. Do you confirm pin location is accurate?</Text>
         </ModalContent>
     </Modal>
 )
+
+const styles = StyleSheet.create({
+    footer: { height: 42 },
+    buttonNo: { backgroundColor: '#697488' },
+    buttonYes: { backgroundColor: '#5D3EBD' },
+    buttonText: { color: 'white' },
+    content: { backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' },
+    contentImage: { height: 92 },
+    contentText: { fontSize: 17, fontWeight: 'bold', marginTop: 12, marginBottom: -6, textAlign: 'center' }
+})
 
 const mapDispatchToProps = {
     addAddress

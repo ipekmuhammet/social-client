@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Text } from 'react-native'
+import { Text, StyleSheet } from 'react-native'
 import Modal, {
     ModalTitle,
     ModalButton,
@@ -22,36 +22,47 @@ const ConfirmAddressPopup = ({ address, token, scaleAnimationModal, setPopupStat
         }}
         modalTitle={
             <ModalTitle
-                style={{ marginVertical: 8 }}
-                textStyle={{ textAlign: 'center', color: '#5D3EBD', fontWeight: '600', fontSize: 20 }}
+                style={styles.title}
+                textStyle={styles.titleText}
                 title='Do you confirm that your address is true?'
                 hasTitleBar={false} />
         }
         footer={
-            <ModalFooter style={{ height: 42 }}>
+            <ModalFooter style={styles.footer}>
                 <ModalButton
                     text='No'
-                    textStyle={{ color: 'white' }}
-                    style={{ backgroundColor: '#697488' }}
+                    textStyle={styles.buttonText}
+                    style={styles.buttonNo}
                     onPress={() => {
                         setPopupState(false)
                     }}
                     key='button-1' />
                 <ModalButton
                     text='Yes'
-                    textStyle={{ color: 'white' }}
-                    style={{ backgroundColor: '#5D3EBD' }}
+                    textStyle={styles.buttonText}
+                    style={styles.buttonYes}
                     onPress={() => {
                         setPopupState(false, true, address, token)
                     }}
                     key='button-2' />
             </ModalFooter>
         }>
-        <ModalContent style={{ alignItems: 'center', justiftContent: 'center' }}>
-            <Text numberOfLines={3} style={{ fontSize: 17, color: '#303030', fontWeight: 'bold', textAlign: 'center' }}>{address}</Text>
+        <ModalContent style={styles.content}>
+            <Text numberOfLines={3} style={styles.contentText}>{address}</Text>
         </ModalContent>
     </Modal>
 )
+
+const styles = StyleSheet.create({
+    footer: { height: 42 },
+    buttonNo: { backgroundColor: '#697488' },
+    buttonYes: { backgroundColor: '#5D3EBD' },
+    buttonText: { color: 'white' },
+    title: { marginVertical: 8 },
+    titleText: { textAlign: 'center', color: '#5D3EBD', fontWeight: '600', fontSize: 20 },
+    content: { alignItems: 'center', justifyContent: 'center' },
+    contentText: { fontSize: 17, color: '#303030', fontWeight: 'bold', textAlign: 'center' }
+})
 
 const mapStateToProps = ({
     reducer4: {

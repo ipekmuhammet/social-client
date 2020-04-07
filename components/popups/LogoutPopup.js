@@ -1,4 +1,5 @@
 import React from 'react'
+import { StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import Modal, {
     ModalTitle,
@@ -22,25 +23,25 @@ const LogoutPopup = ({ scaleAnimationModal, navigation, setPopupState, logout })
         }}
         modalTitle={
             <ModalTitle
-                style={{ marginVertical: 6 }}
-                textStyle={{ textAlign: 'center', fontSize: 17 }}
+                style={styles.title}
+                textStyle={styles.titleText}
                 title='Are you sure you want to log out?'
                 hasTitleBar={false} />
         }
         footer={
-            <ModalFooter style={{ height: 42 }}>
+            <ModalFooter style={styles.footer}>
                 <ModalButton
                     text='No'
-                    textStyle={{ color: 'white' }}
-                    style={{ backgroundColor: '#697488' }}
+                    textStyle={styles.buttonText}
+                    style={styles.buttonNo}
                     onPress={() => {
                         setPopupState({ scaleAnimationModal: false })
                     }}
                     key='button-1' />
                 <ModalButton
                     text='Yes'
-                    textStyle={{ color: 'white' }}
-                    style={{ backgroundColor: '#5D3EBD' }}
+                    textStyle={styles.buttonText}
+                    style={styles.buttonYes}
                     onPress={() => {
                         setPopupState({ scaleAnimationModal: false })
                         logout(navigation)
@@ -49,6 +50,15 @@ const LogoutPopup = ({ scaleAnimationModal, navigation, setPopupState, logout })
             </ModalFooter>
         } />
 )
+
+const styles = StyleSheet.create({
+    footer: { height: 42 },
+    buttonNo: { backgroundColor: '#697488' },
+    buttonYes: { backgroundColor: '#5D3EBD' },
+    buttonText: { color: 'white' },
+    title: { marginVertical: 6 },
+    titleText: { textAlign: 'center', fontSize: 17 }
+})
 
 const mapDispatchToProps = {
     logout

@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { StyleSheet } from 'react-native'
 import Modal, {
     ModalTitle,
     ModalButton,
@@ -20,25 +20,25 @@ const DeleteAddressPopup = ({ scaleAnimationModal, setPopupState }) => (
         }}
         modalTitle={
             <ModalTitle
-                style={{ marginVertical: 8 }}
-                textStyle={{ textAlign: 'center' }}
+                style={styles.title}
+                textStyle={styles.titleText}
                 title='Are you sure you want to delete you address?'
                 hasTitleBar={false} />
         }
         footer={
-            <ModalFooter style={{ height: 42 }}>
+            <ModalFooter style={styles.footer}>
                 <ModalButton
                     text='No'
-                    textStyle={{ color: 'white' }}
-                    style={{ backgroundColor: '#697488' }}
+                    textStyle={styles.buttonText}
+                    style={styles.buttonNo}
                     onPress={() => {
                         setPopupState({ scaleAnimationModal: false })
                     }}
                     key='button-1' />
                 <ModalButton
                     text='Yes'
-                    textStyle={{ color: 'white' }}
-                    style={{ backgroundColor: '#5D3EBD' }}
+                    textStyle={styles.buttonText}
+                    style={styles.buttonYes}
                     onPress={() => {
                         setPopupState({ scaleAnimationModal: false }, true)
                     }}
@@ -46,5 +46,14 @@ const DeleteAddressPopup = ({ scaleAnimationModal, setPopupState }) => (
             </ModalFooter>
         } />
 )
+
+const styles = StyleSheet.create({
+    footer: { height: 42 },
+    buttonNo: { backgroundColor: '#697488' },
+    buttonYes: { backgroundColor: '#5D3EBD' },
+    buttonText: { color: 'white' },
+    title: { marginVertical: 8 },
+    titleText: { textAlign: 'center' }
+})
 
 export default DeleteAddressPopup
