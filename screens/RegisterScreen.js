@@ -16,15 +16,17 @@ class RegisterScreen extends React.PureComponent {
         return (
             <View style={styles.container}>
 
-                <View style={styles.child}>
-                    <TouchableOpacity
-                        style={styles.facebookButton}
-                        onPress={() => {
-                            console.log('Connect with Facebook')
-                        }}>
-                        <Text style={styles.facebookText}>Connect with Facebook</Text>
-                    </TouchableOpacity>
-                </View>
+                {
+                    //  <View style={styles.child}>
+                    //      <TouchableOpacity
+                    //          style={styles.facebookButton}
+                    //          onPress={() => {
+                    //              console.log('Connect with Facebook')
+                    //          }}>
+                    //          <Text style={styles.facebookText}>Connect with Facebook</Text>
+                    //      </TouchableOpacity>
+                    //  </View>
+                }
 
                 <View style={[styles.child, { flexDirection: 'row' }]}>
                     {
@@ -73,7 +75,7 @@ class RegisterScreen extends React.PureComponent {
                 </View>
 
 
-                <View style={[styles.child, { flex: 2, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }]}>
+                <View style={[styles.child, { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }]}>
                     <View style={{ alignItems: 'flex-start', justifyContent: 'flex-start', }}>
                         <CheckBox style={{ backgroundColor: 'transparent' }} />
                     </View>
@@ -87,6 +89,7 @@ class RegisterScreen extends React.PureComponent {
                         </View>
                     </View>
                 </View>
+                <View style={styles.child} />
 
                 {
                     //  <View style={[styles.child, { flexDirection: 'row' }]}>

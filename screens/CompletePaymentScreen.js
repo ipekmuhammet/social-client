@@ -14,12 +14,14 @@ const CompletePaymentScreen = ({ navigation }) => (
         <ScrollView>
             <HeadingDivider title={'Adres Seçimi'} />
             <AddressSelectComponent navigation={navigation} />
-            <HeadingDivider title={'Gönderim Zamanı'} />
-            <OrderTimeComponent />
-            <HeadingDivider title={'Ödeme Şekli'} />
-            <PaymentTypeSelectComponent navigation={navigation} />
-            <HeadingDivider title={'Sipariş Notu'} />
-            <OrderNoteComponent />
+            {
+                //  <HeadingDivider title={'Gönderim Zamanı'} />
+                //  <OrderTimeComponent />
+                //  <HeadingDivider title={'Ödeme Şekli'} />
+                //  <PaymentTypeSelectComponent navigation={navigation} />
+                //  <HeadingDivider title={'Sipariş Notu'} />
+                //  <OrderNoteComponent />
+            }
             <View style={{ height: 90 }} />
         </ScrollView>
         <CompletePayment completable={true} navigation={navigation} />

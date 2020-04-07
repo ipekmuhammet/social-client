@@ -17,13 +17,15 @@ class LoginScreen extends React.PureComponent {
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.child}>
-                    <TouchableOpacity style={styles.facebookButton} onPress={() => {
-                        console.log('Connect with Facebook')
-                    }}>
-                        <Text style={styles.facebookText}>Connect with Facebook</Text>
-                    </TouchableOpacity>
-                </View>
+                {
+                    //  <View style={styles.child}>
+                    //      <TouchableOpacity style={styles.facebookButton} onPress={() => {
+                    //          console.log('Connect with Facebook')
+                    //      }}>
+                    //          <Text style={styles.facebookText}>Connect with Facebook</Text>
+                    //      </TouchableOpacity>
+                    //  </View>
+                }
                 <View style={[styles.child, { flexDirection: 'row' }]}>
                     {
                         // <TextInput
@@ -75,6 +77,8 @@ class LoginScreen extends React.PureComponent {
                         <Text style={styles.forgotPasswordText}>Forgot Password</Text>
                     </TouchableOpacity>
                 </View>
+                
+                <View style={styles.child} />
                 <View style={styles.child} />
                 <View style={styles.child} />
 
