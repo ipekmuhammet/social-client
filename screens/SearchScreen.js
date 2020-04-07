@@ -24,11 +24,11 @@ const SearchScreen = () => (
                 keyExtractor={(_, index) => 'most_searched' + index}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
-                renderItem={({ item }) =>
+                renderItem={({ item }) => (
                     <TouchableOpacity style={styles.mostSearchedItem}>
                         <Text style={styles.itemText}>{item}</Text>
                     </TouchableOpacity>
-                }
+                )}
             />
         </View>
         <View style={styles.emptyFooter} />

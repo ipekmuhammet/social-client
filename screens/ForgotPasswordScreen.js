@@ -10,7 +10,7 @@ class ForgotPasswordScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={[styles.child, { flexDirection: 'row' }]}>
+                <View style={[styles.child, styles.inputContainer]}>
                     {
                         //  <TextInput
                         //      keyboardType={'phone-pad'} placeholder={'Country/Region Code'}
@@ -45,6 +45,7 @@ class ForgotPasswordScreen extends React.Component {
 const styles = StyleSheet.create({
     container: { flex: 1, marginVertical: 12 },
     child: { flex: 1, margin: 3 },
+    inputContainer: { flexDirection: 'row' },
     input: { flex: 1, margin: 4, borderRadius: 6, paddingHorizontal: 12, fontSize: 19, borderWidth: .8, borderColor: '#ABABAB' },
     sendCodeButton: { backgroundColor: '#5D3EBD', flex: 1, margin: 4, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
     sendCodeText: { color: 'white', fontSize: 19 }

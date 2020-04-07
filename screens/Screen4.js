@@ -1,4 +1,5 @@
 import React from 'react'
+import { StyleSheet } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { CardStyleInterpolators } from '@react-navigation/stack'
 
@@ -20,9 +21,9 @@ const Screen4 = () => (
                 title: 'Diğer',
                 headerTitleAlign: 'center',
                 headerTintColor: 'white',
-                headerStyle: { backgroundColor: '#5D3EBD' }
+                headerStyle: styles.headerStyle
             }} />
-            
+
         <Stack.Screen
             name='addresses'
             component={AddressesScreen}
@@ -30,7 +31,7 @@ const Screen4 = () => (
                 title: 'Adreslerim',
                 headerTitleAlign: 'center',
                 headerTintColor: 'white',
-                headerStyle: { backgroundColor: '#5D3EBD' }
+                headerStyle: styles.headerStyle
             }} />
 
         <Stack.Screen
@@ -40,30 +41,34 @@ const Screen4 = () => (
                 title: 'Adreslerim',
                 headerTitleAlign: 'center',
                 headerTintColor: 'white',
-                headerStyle: { backgroundColor: '#5D3EBD' }
+                headerStyle: styles.headerStyle
             }} />
 
         <Stack.Screen name='searchAddressScreen' component={SearchAddressScreen} options={{
             title: 'Add New Address',
             headerTitleAlign: 'center',
             headerTintColor: 'white',
-            headerStyle: { backgroundColor: '#5D3EBD' }
+            headerStyle: styles.headerStyle
         }} />
 
         <Stack.Screen name='pinAddressScreen' component={PinAddressScreen} options={{
             title: 'Add New Address',
             headerTitleAlign: 'center',
             headerTintColor: 'white',
-            headerStyle: { backgroundColor: '#5D3EBD' }
+            headerStyle: styles.headerStyle
         }} />
 
         <Stack.Screen name='completeAddressScreen' component={CompleteAddressScreen} options={{
             title: 'Add New Address',
             headerTitleAlign: 'center',
             headerTintColor: 'white',
-            headerStyle: { backgroundColor: '#5D3EBD' }
+            headerStyle: styles.headerStyle
         }} />
     </Stack.Navigator>
 )
+
+const styles = StyleSheet.create({
+    headerStyle: { backgroundColor: '#5D3EBD' }
+})
 
 export default Screen4

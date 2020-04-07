@@ -34,9 +34,7 @@ class LoadingScreen extends React.PureComponent {
 	}
 
 	render() {
-		return (
-			<LoadingComponent />
-		)
+		return <LoadingComponent />
 	}
 }
 

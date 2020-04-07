@@ -22,7 +22,7 @@ class ResetPasswordScreen extends React.PureComponent {
         return (
             <View style={styles.container}>
                 <PasswordChangedPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
-                <View style={[styles.child, { flexDirection: 'row' }]}>
+                <View style={[styles.child, styles.inputContainer]}>
 
                     {
                         //  <TextInput
@@ -40,7 +40,7 @@ class ResetPasswordScreen extends React.PureComponent {
 
                 </View>
 
-                <View style={[styles.child, { flexDirection: 'row' }]}>
+                <View style={[styles.child, styles.inputContainer]}>
                     <TextInput
                         onChangeText={(activationCode) => { this.setState({ activationCode }) }}
                         value={this.state.activationCode}
@@ -50,7 +50,7 @@ class ResetPasswordScreen extends React.PureComponent {
                         style={styles.input} />
                 </View>
 
-                <View style={[styles.child, { flexDirection: 'row' }]}>
+                <View style={[styles.child, styles.inputContainer]}>
                     <TextInput
                         onChangeText={(password) => { this.setState({ password }) }}
                         value={this.state.password}
@@ -95,6 +95,7 @@ class ResetPasswordScreen extends React.PureComponent {
 const styles = StyleSheet.create({
     container: { flex: 1, marginVertical: 12 },
     child: { flex: 1, margin: 3 },
+    inputContainer: { flexDirection: 'row' },
     input: { flex: 1, margin: 4, borderRadius: 6, paddingHorizontal: 12, fontSize: 19, borderWidth: .8, borderColor: '#ABABAB' },
     resetPasswordButton: { backgroundColor: '#5D3EBD', flex: 1, margin: 4, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
     resendContainer: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },

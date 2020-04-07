@@ -18,7 +18,7 @@ class ActivationScreen extends React.PureComponent {
                         onChangeText={(activationCode) => { this.setState({ activationCode }) }}
                         keyboardType={'number-pad'}
                         placeholder={'Activation Code'}
-                        style={{ flex: 1, margin: 4, borderRadius: 6, paddingHorizontal: 12, fontSize: 19, borderWidth: .8, borderColor: '#ABABAB' }} />
+                        style={styles.activationCodeInput} />
                 </View>
 
                 <View style={styles.child}>
@@ -36,9 +36,9 @@ class ActivationScreen extends React.PureComponent {
                                 Alert.alert('err', JSON.stringify(err))
                             })
                         }}
-                        style={{ backgroundColor: '#5D3EBD', flex: 1, margin: 4, borderRadius: 10, alignItems: 'center', justifyContent: 'center' }}
+                        style={styles.registerButton}
                     >
-                        <Text style={{ color: 'white', fontSize: 19 }}>Register</Text>
+                        <Text style={styles.registerText}>Register</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -55,14 +55,11 @@ class ActivationScreen extends React.PureComponent {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginVertical: 12
-    },
-    child: {
-        flex: 1,
-        margin: 3
-    }
+    container: { flex: 1, marginVertical: 12 },
+    child: { flex: 1, margin: 3 },
+    activationCodeInput: { flex: 1, margin: 4, borderRadius: 6, paddingHorizontal: 12, fontSize: 19, borderWidth: .8, borderColor: '#ABABAB' },
+    registerButton: { backgroundColor: '#5D3EBD', flex: 1, margin: 4, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
+    registerText: { color: 'white', fontSize: 19 }
 })
 
 export default ActivationScreen

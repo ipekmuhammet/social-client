@@ -1,18 +1,16 @@
 import React from 'react'
-import { InteractionManager } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import ScrollableTabView, { ScrollableTabBar } from 'react-native-scrollable-tab-view'
 
-import ProductList from '../components/ProductList'
 import RecyclerList from '../components/RecyclerList'
-import LoadingComponent from '../components/LoadingCompenent'
 
 const ProductsScreen = ({ categories, products, selectedCategory }) => (
 	<ScrollableTabView
 		initialPage={selectedCategory}
 		tabBarBackgroundColor={'#7849F7'}
-		tabBarTextStyle={{ color: 'white', fontSize: 16 }}
-		tabBarUnderlineStyle={{ backgroundColor: '#FED110' }}
+		tabBarTextStyle={styles.tabBarTextStyle}
+		tabBarUnderlineStyle={styles.tabBarUnderlineStyle}
 		scrollWithoutAnimation={true}
 		prerenderingSiblingsNumber={0}
 		renderTabBar={() => <ScrollableTabBar />}>
@@ -21,6 +19,11 @@ const ProductsScreen = ({ categories, products, selectedCategory }) => (
 		}
 	</ScrollableTabView>
 )
+
+const styles = StyleSheet.create({
+	tabBarTextStyle: { color: 'white', fontSize: 16 },
+	tabBarUnderlineStyle: { backgroundColor: '#FED110' }
+})
 
 const mapStateToProps = ({
 	reducer3: {

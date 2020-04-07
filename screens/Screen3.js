@@ -1,4 +1,5 @@
 import React from 'react'
+import { StyleSheet } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { CardStyleInterpolators } from '@react-navigation/stack'
 
@@ -19,7 +20,7 @@ const Screen3 = () => (
                 title: 'Cart',
                 headerTitleAlign: 'center',
                 headerTintColor: 'white',
-                headerStyle: { backgroundColor: '#5D3EBD' }
+                headerStyle: styles.headerStyle
             }}
         />
 
@@ -30,7 +31,7 @@ const Screen3 = () => (
                 title: 'Checkout',
                 headerTitleAlign: 'center',
                 headerTintColor: 'white',
-                headerStyle: { backgroundColor: '#5D3EBD' }
+                headerStyle: styles.headerStyle
             }}
         />
 
@@ -41,7 +42,7 @@ const Screen3 = () => (
                 title: 'Ödeme Şekli',
                 headerTitleAlign: 'center',
                 headerTintColor: 'white',
-                headerStyle: { backgroundColor: '#5D3EBD' }
+                headerStyle: styles.headerStyle
             }} />
 
         <Stack.Screen
@@ -51,7 +52,7 @@ const Screen3 = () => (
                 title: 'Online Kredi/Banka Kartı',
                 headerTitleAlign: 'center',
                 headerTintColor: 'white',
-                headerStyle: { backgroundColor: '#5D3EBD' }
+                headerStyle: styles.headerStyle
             }}
         />
 
@@ -64,5 +65,9 @@ const Screen3 = () => (
         />
     </Stack.Navigator>
 )
+
+const styles = StyleSheet.create({
+    headerStyle: { backgroundColor: '#5D3EBD' }
+})
 
 export default Screen3

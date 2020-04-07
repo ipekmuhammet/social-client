@@ -12,19 +12,19 @@ const ThanksScreen = ({ navigation }) => (
         </View>
         <View style={styles.child} />
         <View style={styles.child}>
-            <Text style={{ fontSize: 24, textAlign: 'center' }}>Siparişiniz alınmıştır.</Text>
+            <Text style={styles.orderCompletedText}>Siparişiniz alınmıştır.</Text>
         </View>
         <View style={styles.child} />
-        <View style={[styles.child, { display: 'flex' }]}>
+        <View style={[styles.child, styles.goToHomeButtonContainer]}>
             <TouchableOpacity
                 onPress={() => {
                     navigation.popToTop()
                     navigation.navigate('home')
                 }}
-                style={{ backgroundColor: '#4CAB51', borderRadius: 32, alignItems: 'center', justifyContent: 'center', margin: 18, padding: 18, paddingHorizontal: 48 }}>
+                style={styles.goToHomeButton}>
 
-                <Text style={{ color: 'white', fontSize: 20, alignItems: 'center', justifyContent: 'center' }}>ANASAYFAYA GİT</Text>
-                
+                <Text style={styles.goToHomeButtonText}>ANASAYFAYA GİT</Text>
+
             </TouchableOpacity>
         </View>
         <View style={styles.child} />
@@ -35,7 +35,11 @@ const ThanksScreen = ({ navigation }) => (
 
 const styles = StyleSheet.create({
     emptyCartContainer: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#EDEDED' },
-    child: { flex: 1, alignItems: 'center', justifyContent: 'center' }
+    child: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+    orderCompletedText: { fontSize: 24, textAlign: 'center' },
+    goToHomeButtonContainer: { display: 'flex' },
+    goToHomeButton: { backgroundColor: '#4CAB51', borderRadius: 32, alignItems: 'center', justifyContent: 'center', margin: 18, padding: 18, paddingHorizontal: 48 },
+    goToHomeButtonText: { color: 'white', fontSize: 20, alignItems: 'center', justifyContent: 'center' }
 })
 
 export default ThanksScreen

@@ -1,13 +1,13 @@
 import React from 'react'
-import { View, ScrollView } from 'react-native'
+import { View, ScrollView, StyleSheet } from 'react-native'
 
 import HeadingDivider from '../components/HeadingDivider'
 import CompletePayment from '../components/CompletePayment'
 
 import AddressSelectComponent from '../components/CompletePaymentComponents/AddressSelectComponent'
-import OrderTimeComponent from '../components/CompletePaymentComponents/OrderTimeComponent'
-import PaymentTypeSelectComponent from '../components/CompletePaymentComponents/PaymentTypeSelectComponent'
-import OrderNoteComponent from '../components/CompletePaymentComponents/OrderNoteComponent'
+//  import OrderTimeComponent from '../components/CompletePaymentComponents/OrderTimeComponent'
+//  import PaymentTypeSelectComponent from '../components/CompletePaymentComponents/PaymentTypeSelectComponent'
+//  import OrderNoteComponent from '../components/CompletePaymentComponents/OrderNoteComponent'
 
 const CompletePaymentScreen = ({ navigation }) => (
     <React.Fragment>
@@ -22,10 +22,14 @@ const CompletePaymentScreen = ({ navigation }) => (
                 //  <HeadingDivider title={'Sipariş Notu'} />
                 //  <OrderNoteComponent />
             }
-            <View style={{ height: 90 }} />
+            <View style={styles.footer} />
         </ScrollView>
         <CompletePayment completable={true} navigation={navigation} />
     </React.Fragment>
 )
+
+const styles = StyleSheet.create({
+    footer: { height: 90 }
+})
 
 export default CompletePaymentScreen

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import { View, TouchableOpacity, TextInput, Text, Alert, AsyncStorage, StyleSheet } from 'react-native'
+import { View, TouchableOpacity, TextInput, Text, Alert, StyleSheet } from 'react-native'
 
 import { login } from '../actions/actions4'
 
@@ -26,7 +26,7 @@ class LoginScreen extends React.PureComponent {
                     //      </TouchableOpacity>
                     //  </View>
                 }
-                <View style={[styles.child, { flexDirection: 'row' }]}>
+                <View style={[styles.child, styles.inputContainer]}>
                     {
                         // <TextInput
                         //     value={this.state.countryCode}
@@ -77,7 +77,7 @@ class LoginScreen extends React.PureComponent {
                         <Text style={styles.forgotPasswordText}>Forgot Password</Text>
                     </TouchableOpacity>
                 </View>
-                
+
                 <View style={styles.child} />
                 <View style={styles.child} />
                 <View style={styles.child} />
@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
     registerButton: { backgroundColor: 'white', borderWidth: 1, borderColor: '#5D3EBD', flex: 1, margin: 4, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
     forgotPasswordButton: { flex: 1, alignItems: 'center', justifyContent: 'center' },
     loginButton: { backgroundColor: '#5D3EBD', flex: 1, margin: 4, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
+    inputContainer: { flexDirection: 'row' },
     input: { flex: 1, margin: 4, borderRadius: 6, paddingHorizontal: 12, fontSize: 19, borderWidth: .8, borderColor: '#ABABAB' },
     facebookText: { color: 'white', fontSize: 19 },
     loginText: { color: 'white', fontSize: 19 },
