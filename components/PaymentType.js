@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
         marginHorizontal: RFValue(8, 600),
         padding: RFValue(4, 600),
         height: RFValue(72, 600),
-        flex: RFValue(5, 600),
+        flex: 5,
         borderBottomWidth: RFValue(2, 600),
         borderBottomColor: '#C3C3C3'
     },

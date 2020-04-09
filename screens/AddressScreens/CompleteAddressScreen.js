@@ -108,11 +108,11 @@ class CompleteAddressScreen extends React.Component {
 const styles = StyleSheet.create({
     container: { flex: 1 },
     mapContainer: { flex: 1.4 },
-    body: { flex: RFValue(3, 600), marginVertical: RFValue(12, 600) },
+    body: { flex: 3, marginVertical: RFValue(12, 600) },
     markerContainer: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', zIndex: RFValue(2, 600) },
     marker: { width: RFValue(48, 600), borderColor: '#C3C3C3', height: RFValue(48, 600) },
     inputContainer: { flex: 1, margin: RFValue(2, 600) },
-    input2Container: { flex: RFValue(2, 600), margin: RFValue(2, 600) },
+    input2Container: { flex: 2, margin: RFValue(2, 600) },
     inputContainerChild: { flex: 1, margin: RFValue(2, 600), flexDirection: 'row' },
     input: {
         flex: 1, borderWidth: 1, alignItems: 'center', justifyContent: 'center', margin: RFValue(3, 600),

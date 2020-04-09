@@ -1,7 +1,8 @@
 import React from 'react'
+import { RFValue } from 'react-native-responsive-fontsize'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import { View, FlatList, TouchableOpacity, Text, TextInput  } from 'react-native'
+import { View, FlatList, TouchableOpacity, Text, TextInput } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
 import { setRegionByPlace, setCurrentRegion } from '../../actions/map-actions'
@@ -22,7 +23,7 @@ class SearchAddressScreen extends React.PureComponent {
     render() {
         return (
             <View style={{ flex: 1 }}>
-                <View style={{ flex: RFValue(2, 600), display: 'flex', backgroundColor: 'white' }}>
+                <View style={{ flex: 2, display: 'flex', backgroundColor: 'white' }}>
 
                     <View style={{ flex: 1, display: 'flex', flexDirection: 'row', alignItems: 'center', marginHorizontal: RFValue(6, 600) }}>
                         <View style={{ flex: 1, flexDirection: 'row', marginHorizontal: RFValue(10, 600) }}>
@@ -41,7 +42,7 @@ class SearchAddressScreen extends React.PureComponent {
                     </TouchableOpacity>
 
                 </View>
-                <View style={{ flex: RFValue(6, 600), backgroundColor: '#E5E5E5' }}>
+                <View style={{ flex: 6, backgroundColor: '#E5E5E5' }}>
                     {
                         this.state.locations.length > 0 && <FlatList
                             style={{ flex: 1, backgroundColor: 'white' }}

@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#3D8B40', alignItems: 'center', justifyContent: 'center'
     },
     completePaymentText: { color: 'white', fontSize: RFValue(18, 600), fontWeight: 'bold' },
-    totalPriceContainer: { flex: RFValue(2, 600), justifyContent: 'center' },
+    totalPriceContainer: { flex: 2, justifyContent: 'center' },
     totalPriceText: {
         color: 'white', fontSize: RFValue(18, 600),
         padding: RFValue(12, 600), fontWeight: 'bold'

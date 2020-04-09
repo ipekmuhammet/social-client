@@ -1,4 +1,5 @@
 import React from 'react'
+import { RFValue } from 'react-native-responsive-fontsize'
 import { View, TouchableOpacity, Image, Text, StyleSheet  } from 'react-native'
 
 import ConfirmAccuratePinPopup from '../../components/popups/ConfirmAccuratePinPopup'

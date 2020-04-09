@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     searchHeader: { flex: .8, margin: RFValue(2, 600), flexDirection: 'row', backgroundColor: 'white' },
     mostSearchContainer: { flex: .7, padding: RFValue(2, 600), margin: RFValue(2, 600), alignItems: 'center', justifyContent: 'center', backgroundColor: 'white' },
     iconContainer: { alignItems: 'center', justifyContent: 'center', flex: 1 },
-    inputContainer: { alignItems: 'center', justifyContent: 'center', flex: RFValue(6, 600), display: 'flex', flexDirection: 'row' },
+    inputContainer: { alignItems: 'center', justifyContent: 'center', flex: 6, display: 'flex', flexDirection: 'row' },
     searchInput: { textAlign: 'left', flex: 1, fontSize: 21 },
     mostSearchedItem: { flex: 1, paddingHorizontal: RFValue(12, 600), margin: RFValue(4, 600), backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', borderWidth: .4, borderColor: '#5D3EBD', borderRadius: RFValue(8, 600) },
     itemText: { color: '#5D3EBD', fontSize: RFValue(14, 600) },

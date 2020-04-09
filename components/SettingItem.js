@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         marginHorizontal: RFValue(6, 600)
     },
     iconContainer: { alignItems: 'center', justifyContent: 'center', flex: 1 },
-    titleContainer: { alignItems: 'flex-start', flex: RFValue(6, 600), justifyContent: 'center' },
+    titleContainer: { alignItems: 'flex-start', flex: 6, justifyContent: 'center' },
     title: { marginHorizontal: RFValue(4, 600), fontSize: RFValue(16, 600), color: '#727B8F' },
     rightIconContainer: { alignItems: 'flex-end', justifyContent: 'center', flex: 1 }
 })
