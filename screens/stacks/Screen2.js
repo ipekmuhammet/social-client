@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { CardStyleInterpolators } from '@react-navigation/stack'
 
-import SearchScreen from './SearchScreen'
+import SearchScreen from '../SearchScreen'
 
 const Stack = createStackNavigator()
 

@@ -3,12 +3,12 @@ import { StyleSheet } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { CardStyleInterpolators } from '@react-navigation/stack'
 
-import ProfileScreen from './ProfileScreen'
-import ChangePasswordScreen from './ChangePasswordScreen'
-import AddressesScreen from './SettingsScreens/AddressesScreen'
-import SearchAddressScreen from './AddressScreens/SearchAddressScreen'
-import PinAddressScreen from './AddressScreens/PinAddressScreen'
-import CompleteAddressScreen from './AddressScreens/CompleteAddressScreen'
+import ProfileScreen from '../ProfileScreen'
+import ChangePasswordScreen from '../ChangePasswordScreen'
+import AddressesScreen from '../SettingsScreens/AddressesScreen'
+import SearchAddressScreen from '../AddressScreens/SearchAddressScreen'
+import PinAddressScreen from '../AddressScreens/PinAddressScreen'
+import CompleteAddressScreen from '../AddressScreens/CompleteAddressScreen'
 
 const Stack = createStackNavigator()
 

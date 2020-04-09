@@ -3,8 +3,8 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import { View, Image, StyleSheet  } from 'react-native'
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack'
 
-import HomeScreen from './HomeScreen'
-import ProductScreen from './ProductsScreen'
+import HomeScreen from '../HomeScreen'
+import ProductScreen from '../ProductsScreen'
 
 const Stack = createStackNavigator()
 
@@ -15,7 +15,7 @@ const Screen1 = () => (
 			headerStyle: styles.headerStyle,
 			headerTitle: () => (
 				<View style={styles.headerTitle}>
-					<Image source={require('../assets/logo.png')} resizeMode={'contain'} style={styles.headerImage} />
+					<Image source={require('../../assets/logo.png')} resizeMode={'contain'} style={styles.headerImage} />
 				</View>
 			)
 		}} />

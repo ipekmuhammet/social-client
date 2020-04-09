@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
-import Home from '../screens/Screen1'
-import Search from '../screens/Screen2'
-import Cart from '../screens/Screen3'
-import ProfileScreen from '../screens/Screen4'
+import Home from '../screens/stacks/Screen1'
+import Search from '../screens/stacks/Screen2'
+import Cart from '../screens/stacks/Screen3'
+import ProfileScreen from '../screens/stacks/Screen4'
 import TabBarIcon from './TabBarIcon'
 
 const BottomTab = createBottomTabNavigator()

@@ -9,7 +9,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import rootReducer from './reducers/root-reducer'
 
 import BottomTabNavigator from './navigation/BottomTabNavigator'
-import WelcomeStack from './screens/WelcomeStack'
+import WelcomeStack from './screens/stacks/WelcomeStack'
 import LoadingScreen from './screens/LoadingScreen'
 import useLinking from './navigation/useLinking'
 

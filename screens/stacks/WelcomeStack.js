@@ -4,12 +4,12 @@ import { View, Image, StyleSheet } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { CardStyleInterpolators } from '@react-navigation/stack'
 
-import WelcomeScreen from './WelcomeScreen'
-import LoginScreen from './LoginScreen'
-import RegisterScreen from './RegisterScreen'
-import ForgotPasswordScreen from './ForgotPasswordScreen'
-import ResetPasswordScreen from './ResetPasswordScreen'
-import ActivationScreen from './ActivationScreen'
+import WelcomeScreen from '../WelcomeScreen'
+import LoginScreen from '../LoginScreen'
+import RegisterScreen from '../RegisterScreen'
+import ForgotPasswordScreen from '../ForgotPasswordScreen'
+import ResetPasswordScreen from '../ResetPasswordScreen'
+import ActivationScreen from '../ActivationScreen'
 
 const Stack = createStackNavigator()
 
@@ -20,7 +20,7 @@ const WelcomeStack = () => (
             headerStyle: styles.headerStyle,
             headerTitle: () => (
                 <View style={styles.headerTitle}>
-                    <Image source={require('../assets/logo.png')} resizeMode={'contain'} style={styles.headerImage} />
+                    <Image source={require('../../assets/logo.png')} resizeMode={'contain'} style={styles.headerImage} />
                 </View>
             )
         }} />

@@ -3,11 +3,11 @@ import { StyleSheet } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { CardStyleInterpolators } from '@react-navigation/stack'
 
-import CartScreen from './CartScreen'
-import ChoosePaymentScreen from './ChoosePaymentScreen'
-import CompletePaymentScreen from './CompletePaymentScreen'
-import OnlinePaymentScreen from './OnlinePaymentScreen'
-import ThanksScreen from './ThanksScreen'
+import CartScreen from '../CartScreen'
+import ChoosePaymentScreen from '../ChoosePaymentScreen'
+import CompletePaymentScreen from '../CompletePaymentScreen'
+import OnlinePaymentScreen from '../OnlinePaymentScreen'
+import ThanksScreen from '../ThanksScreen'
 
 const Stack = createStackNavigator()
 
