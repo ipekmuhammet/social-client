@@ -1,4 +1,5 @@
 import React from 'react'
+import { RFValue } from 'react-native-responsive-fontsize'
 import { View, ScrollView, StyleSheet } from 'react-native'
 
 import HeadingDivider from '../components/HeadingDivider'
@@ -29,7 +30,7 @@ const CompletePaymentScreen = ({ navigation }) => (
 )
 
 const styles = StyleSheet.create({
-    footer: { height: 90 }
+    footer: { height: RFValue(90, 600) }
 })
 
 export default CompletePaymentScreen

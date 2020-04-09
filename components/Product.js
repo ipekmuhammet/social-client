@@ -1,4 +1,5 @@
 import React from 'react'
+import { RFValue } from 'react-native-responsive-fontsize'
 import { TouchableOpacity, View, Text, Image, StyleSheet } from 'react-native'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { connect } from 'react-redux'
@@ -53,17 +54,17 @@ const styles = StyleSheet.create({
 		top: -2,
 		right: -2,
 		zIndex: 1,
-		borderRadius: 8,
+		borderRadius: RFValue(8, 600),
 		borderWidth: .6,
-		width: 28,
-		height: 28,
+		width: RFValue(28, 600),
+		height: RFValue(28, 600),
 		borderColor: '#CDCDCD',
 		backgroundColor: 'white',
-		shadowColor: '#000', shadowOffset: { width: 1, height: 1, }, shadowOpacity: .2, shadowRadius: 12, elevation: 4
+		shadowColor: '#000', shadowOffset: { width: 1, height: 1, }, shadowOpacity: .2, shadowRadius: RFValue(12, 600), elevation: 4
 	},
 	addProductIcon: {
 		color: '#5837C2',
-		fontSize: 24
+		fontSize: RFValue(24, 600)
 	},
 	productImageContainer: {
 		borderWidth: .2,
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
 	productImage: {
 		width: RFPercentage(14),
 		height: RFPercentage(14),
-		margin: 12
+		margin: RFValue(12, 600)
 	},
 	productName: {
 		fontSize: RFPercentage(2.8),

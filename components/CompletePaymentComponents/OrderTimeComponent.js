@@ -1,4 +1,5 @@
 import React from 'react'
+import { RFValue } from 'react-native-responsive-fontsize'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 
@@ -30,15 +31,15 @@ const styles = StyleSheet.create({
     iconContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginHorizontal: 8,
-        padding: 4,
+        marginHorizontal: RFValue(8, 600),
+        padding: RFValue(4, 600),
         flex: 1
     },
     paymentInfoContainer: {
         flexDirection: 'column',
-        marginHorizontal: 8,
-        padding: 4,
-        height: 60,
+        marginHorizontal: RFValue(8, 600),
+        padding: RFValue(4, 600),
+        height: RFValue(60, 600),
         flex: 5
     },
     paymentInfoTextContainer: {
@@ -46,12 +47,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     paymentTitle: {
-        fontSize: 18,
-        marginVertical: 4
+        fontSize: RFValue(18, 600),
+        marginVertical: RFValue(4, 600),
     },
     paymentDetail: {
-        fontSize: 15,
-        marginVertical: 4
+        fontSize: RFValue(15, 600),
+        marginVertical: RFValue(4, 600),
     }
 })
 

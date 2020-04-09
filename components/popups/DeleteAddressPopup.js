@@ -1,10 +1,7 @@
 import React from 'react'
+import { RFValue } from 'react-native-responsive-fontsize'
 import { StyleSheet } from 'react-native'
-import Modal, {
-    ModalTitle,
-    ModalButton,
-    ModalFooter
-} from 'react-native-modals'
+import Modal, { ModalTitle, ModalButton, ModalFooter } from 'react-native-modals'
 
 const DeleteAddressPopup = ({ scaleAnimationModal, setPopupState }) => (
     <Modal
@@ -48,11 +45,11 @@ const DeleteAddressPopup = ({ scaleAnimationModal, setPopupState }) => (
 )
 
 const styles = StyleSheet.create({
-    footer: { height: 42 },
+    footer: { height: RFValue(42, 600) },
     buttonNo: { backgroundColor: '#697488' },
     buttonYes: { backgroundColor: '#5D3EBD' },
     buttonText: { color: 'white' },
-    title: { marginVertical: 8 },
+    title: { marginVertical: RFValue(8, 600) },
     titleText: { textAlign: 'center' }
 })
 

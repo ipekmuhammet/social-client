@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Dimensions } from 'react-native'
+import { Dimensions } from 'react-native'
 import { RecyclerListView, DataProvider, LayoutProvider } from 'recyclerlistview'
 
 import Product from './Product'

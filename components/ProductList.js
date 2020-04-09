@@ -1,5 +1,6 @@
 import React from 'react'
-import { FlatList } from 'react-native'
+import { RFValue } from 'react-native-responsive-fontsize'
+import { FlatList, StyleSheet } from 'react-native'
 
 import Product from './Product'
 import EmptyProduct from './EmptyProduct'
@@ -20,7 +21,7 @@ const renderListItem = ({ item }) => item.empty ? <EmptyProduct /> : <Product da
 
 const ProductList = ({ products }) => (
 	<FlatList
-		style={{ flex: 1, margin: 6, backgroundColor: '#F5F5F5' }}
+		style={styles.list}
 		data={formatData(products, 3)}
 		removeClippedSubviews={true}			// Performance
 		windowSize={36}							// Performance
@@ -33,5 +34,9 @@ const ProductList = ({ products }) => (
 		renderItem={renderListItem}
 		numColumns={3} />
 )
+
+const styles = StyleSheet.create({
+	list: { flex: 1, margin: RFValue(6, 600), backgroundColor: '#F5F5F5' }
+})
 
 export default ProductList

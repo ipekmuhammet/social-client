@@ -1,4 +1,5 @@
 import React from 'react'
+import { RFValue } from 'react-native-responsive-fontsize'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -36,10 +37,14 @@ const ThanksScreen = ({ navigation }) => (
 const styles = StyleSheet.create({
     emptyCartContainer: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#EDEDED' },
     child: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-    orderCompletedText: { fontSize: 24, textAlign: 'center' },
+    orderCompletedText: { fontSize: RFValue(24, 600), textAlign: 'center' },
     goToHomeButtonContainer: { display: 'flex' },
-    goToHomeButton: { backgroundColor: '#4CAB51', borderRadius: 32, alignItems: 'center', justifyContent: 'center', margin: 18, padding: 18, paddingHorizontal: 48 },
-    goToHomeButtonText: { color: 'white', fontSize: 20, alignItems: 'center', justifyContent: 'center' }
+    goToHomeButton: {
+        backgroundColor: '#4CAB51', borderRadius: RFValue(32, 600), alignItems: 'center', justifyContent: 'center',
+        margin: RFValue(18, 600), padding: RFValue(18, 600),
+        paddingHorizontal: RFValue(48, 600)
+    },
+    goToHomeButtonText: { color: 'white', fontSize: RFValue(20, 600), alignItems: 'center', justifyContent: 'center' }
 })
 
 export default ThanksScreen

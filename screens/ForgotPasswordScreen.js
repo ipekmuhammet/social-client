@@ -1,4 +1,5 @@
 import React from 'react'
+import { RFValue } from 'react-native-responsive-fontsize'
 import { View, TouchableOpacity, TextInput, Text, StyleSheet } from 'react-native'
 
 class ForgotPasswordScreen extends React.Component {
@@ -43,12 +44,18 @@ class ForgotPasswordScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, marginVertical: 12 },
-    child: { flex: 1, margin: 3 },
+    container: { flex: 1, marginVertical: RFValue(12, 600) },
+    child: { flex: 1, margin: RFValue(3, 600) },
     inputContainer: { flexDirection: 'row' },
-    input: { flex: 1, margin: 4, borderRadius: 6, paddingHorizontal: 12, fontSize: 19, borderWidth: .8, borderColor: '#ABABAB' },
-    sendCodeButton: { backgroundColor: '#5D3EBD', flex: 1, margin: 4, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
-    sendCodeText: { color: 'white', fontSize: 19 }
+    input: {
+        flex: 1, margin: RFValue(4, 600), borderRadius: RFValue(6, 600),
+        paddingHorizontal: RFValue(12, 600), fontSize: RFValue(19, 600), borderWidth: .8, borderColor: '#ABABAB'
+    },
+    sendCodeButton: {
+        backgroundColor: '#5D3EBD', flex: 1, margin: RFValue(4, 600),
+        borderRadius: RFValue(10, 600), alignItems: 'center', justifyContent: 'center'
+    },
+    sendCodeText: { color: 'white', fontSize: RFValue(19, 600) }
 })
 
 export default ForgotPasswordScreen

@@ -1,4 +1,5 @@
 import React from 'react'
+import { RFValue } from 'react-native-responsive-fontsize'
 import { connect } from 'react-redux'
 import { TextInput, StyleSheet } from 'react-native'
 
@@ -14,8 +15,9 @@ const CompleteAddressInput = ({ address }) => (
 
 const styles = StyleSheet.create({
     input: {
-        flex: 1, borderWidth: 1, alignItems: 'center', justifyContent: 'center', margin: 3, borderRadius: 8,
-        borderColor: '#C3C3C3', paddingHorizontal: 13, fontSize: 18
+        flex: 1, borderWidth: 1, alignItems: 'center', justifyContent: 'center', margin: RFValue(3, 600),
+        borderRadius: RFValue(8, 600),
+        borderColor: '#C3C3C3', paddingHorizontal: RFValue(13, 600), fontSize: RFValue(18, 600)
     }
 })
 

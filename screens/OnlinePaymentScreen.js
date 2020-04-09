@@ -1,4 +1,5 @@
 import React from 'react'
+import { RFValue } from 'react-native-responsive-fontsize'
 import { View, TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native'
 import { connect } from 'react-redux'
 
@@ -95,28 +96,32 @@ class OnlinePaymentScreen extends React.PureComponent {
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'column', top: 0, left: 0, height: Dimensions.get('window').height, width: Dimensions.get('window').width,
+        flexDirection: 'column', top: 0, left: 0, height: 600, width: Dimensions.get('window').width,
         backgroundColor: '#EDEDED', display: 'flex', flexDirection: 'column'
     },
     paymentHeader: {
         flex: .16, backgroundColor: 'white', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-        shadowColor: '#000', shadowOffset: { width: 0, height: 4, }, shadowOpacity: 0.32, shadowRadius: 6, elevation: 9
+        shadowColor: '#000', shadowOffset: { width: 0, height: RFValue(4, 600), }, shadowOpacity: 0.32,
+        shadowRadius: RFValue(6, 600), elevation: 9
     },
-    labelInput: { color: '#57A25A', fontSize: 15 },
+    labelInput: { color: '#57A25A', fontSize: RFValue(15, 600) },
     inputContainerChild: { flex: 1 },
     input: { borderWidth: 0, borderBottomWidth: 1.5, borderColor: '#333', color: 'black' },
     totalPriceText: { color: 'black', fontWeight: 'bold', fontSize: 20 },
-    totalPrice: { color: 'black', fontWeight: 'bold', fontSize: 24 },
+    totalPrice: { color: 'black', fontWeight: 'bold', fontSize: RFValue(24, 600) },
     cardInformationContainer: { flex: .3 },
-    inputContainer: { flex: 1, marginHorizontal: 12 },
-    rowInputContainer: { flex: 1, flexDirection: 'row', marginHorizontal: 12 },
+    inputContainer: { flex: 1, marginHorizontal: RFValue(12, 600) },
+    rowInputContainer: { flex: 1, flexDirection: 'row', marginHorizontal: RFValue(12, 600) },
     child: { flex: 1 },
-    completePaymentContainer: { alignItems: 'center', justifyContent: 'center', flex: .6, backgroundColor: '#D3D3D3', margin: 8, borderRadius: 36, flex: .1 },
-    completePaymentText: { fontSize: 22, fontWeight: 'bold', color: '#8D8D8D' },
+    completePaymentContainer: {
+        alignItems: 'center', justifyContent: 'center', flex: .6, backgroundColor: '#D3D3D3', margin: RFValue(8, 600),
+        borderRadius: RFValue(36, 600), flex: .1
+    },
+    completePaymentText: { fontSize: RFValue(22, 600), fontWeight: 'bold', color: '#8D8D8D' },
     cvcInfoContainer: { flex: .1, flexDirection: 'row' },
-    infoIconContainer: { margin: 8 },
+    infoIconContainer: { margin: RFValue(8, 600) },
     cvcInfoTextContainer: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-    cvcInfoText: { fontSize: 14, color: '#A5A5A5' },
+    cvcInfoText: { fontSize: RFValue(14, 600), color: '#A5A5A5' },
     informationContainer: { alignItems: 'center', justifyContent: 'center', display: 'flex', flexDirection: 'row', flex: .1 },
     informationTextContainer: { flex: 7, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }
 })

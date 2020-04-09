@@ -1,12 +1,8 @@
 import React from 'react'
+import { RFValue } from 'react-native-responsive-fontsize'
 import { connect } from 'react-redux'
 import { Text, StyleSheet } from 'react-native'
-import Modal, {
-    ModalTitle,
-    ModalButton,
-    ModalFooter,
-    ModalContent
-} from 'react-native-modals'
+import Modal, { ModalTitle, ModalButton, ModalFooter, ModalContent } from 'react-native-modals'
 
 const ConfirmAddressPopup = ({ address, token, scaleAnimationModal, setPopupState }) => (
     <Modal
@@ -54,14 +50,14 @@ const ConfirmAddressPopup = ({ address, token, scaleAnimationModal, setPopupStat
 )
 
 const styles = StyleSheet.create({
-    footer: { height: 42 },
+    footer: { height: RFValue(42, 600) },
     buttonNo: { backgroundColor: '#697488' },
     buttonYes: { backgroundColor: '#5D3EBD' },
     buttonText: { color: 'white' },
-    title: { marginVertical: 8 },
-    titleText: { textAlign: 'center', color: '#5D3EBD', fontWeight: '600', fontSize: 20 },
+    title: { marginVertical: RFValue(8, 600) },
+    titleText: { textAlign: 'center', color: '#5D3EBD', fontWeight: '600', fontSize: RFValue(20, 600) },
     content: { alignItems: 'center', justifyContent: 'center' },
-    contentText: { fontSize: 17, color: '#303030', fontWeight: 'bold', textAlign: 'center' }
+    contentText: { fontSize: RFValue(17, 600), color: '#303030', fontWeight: 'bold', textAlign: 'center' }
 })
 
 const mapStateToProps = ({

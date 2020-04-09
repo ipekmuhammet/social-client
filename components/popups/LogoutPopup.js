@@ -1,4 +1,5 @@
 import React from 'react'
+import { RFValue } from 'react-native-responsive-fontsize'
 import { StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import Modal, {
@@ -52,12 +53,12 @@ const LogoutPopup = ({ scaleAnimationModal, navigation, setPopupState, logout })
 )
 
 const styles = StyleSheet.create({
-    footer: { height: 42 },
+    footer: { height: RFValue(42, 600) },
     buttonNo: { backgroundColor: '#697488' },
     buttonYes: { backgroundColor: '#5D3EBD' },
     buttonText: { color: 'white' },
-    title: { marginVertical: 6 },
-    titleText: { textAlign: 'center', fontSize: 17 }
+    title: { marginVertical: RFValue(6, 600) },
+    titleText: { textAlign: 'center', fontSize: RFValue(17, 600) }
 })
 
 const mapDispatchToProps = {

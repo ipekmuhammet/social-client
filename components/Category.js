@@ -1,6 +1,6 @@
 import React from 'react'
-import { TouchableOpacity, View, Text, Image, StyleSheet } from 'react-native'
-import { RFPercentage } from 'react-native-responsive-fontsize'
+import { RFValue, RFPercentage } from 'react-native-responsive-fontsize'
+import { TouchableOpacity, View, Text, Image, StyleSheet  } from 'react-native'
 import { connect } from 'react-redux'
 
 import { setSelectedCategory } from '../actions/actions3'
@@ -44,15 +44,15 @@ const styles = StyleSheet.create({
 	},
 	imageContainer: {
 		borderWidth: .2,
-		borderRadius: 12,
+		borderRadius: RFValue(12, 600),
 		borderColor: '#5D3EBD',
 		backgroundColor: 'white',
-		shadowColor: '#000', shadowOffset: { width: 1, height: 1, }, shadowOpacity: .2, shadowRadius: 12, elevation: 2
+		shadowColor: '#000', shadowOffset: { width: 1, height: 1, }, shadowOpacity: .2, shadowRadius: RFValue(12, 600), elevation: 2
 	},
 	productImage: {
 		width: RFPercentage(14),
 		height: RFPercentage(14),
-		margin: 4
+		margin: RFValue(4, 600)
 	},
 	productName: {
 		fontSize: RFPercentage(3),

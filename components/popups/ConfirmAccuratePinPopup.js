@@ -1,12 +1,8 @@
 import React from 'react'
+import { RFValue } from 'react-native-responsive-fontsize'
 import { connect } from 'react-redux'
 import { Image, Text, StyleSheet } from 'react-native'
-
-import Modal, {
-    ModalButton,
-    ModalFooter,
-    ModalContent
-} from 'react-native-modals'
+import Modal, { ModalButton, ModalFooter, ModalContent } from 'react-native-modals'
 
 import { addAddress } from '../../actions/actions4'
 
@@ -50,13 +46,16 @@ const ConfirmAccuratePinPopup = ({ scaleAnimationModal, setPopupState, region })
 )
 
 const styles = StyleSheet.create({
-    footer: { height: 42 },
+    footer: { height: RFValue(42, 600) },
     buttonNo: { backgroundColor: '#697488' },
     buttonYes: { backgroundColor: '#5D3EBD' },
     buttonText: { color: 'white' },
     content: { backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' },
-    contentImage: { height: 92 },
-    contentText: { fontSize: 17, fontWeight: 'bold', marginTop: 12, marginBottom: -6, textAlign: 'center' }
+    contentImage: { height: RFValue(92, 600) },
+    contentText: {
+        fontSize: RFValue(17, 600), fontWeight: 'bold',
+        marginTop: RFValue(12, 600), marginBottom: -6, textAlign: 'center'
+    }
 })
 
 const mapDispatchToProps = {

@@ -1,4 +1,5 @@
 import React from 'react'
+import { RFValue } from 'react-native-responsive-fontsize'
 import { connect } from 'react-redux'
 import { TouchableOpacity, Text, View, StyleSheet } from 'react-native'
 
@@ -22,11 +23,17 @@ const CardProductQuantityComponent = ({ id, cart, decreaseProductCount, increase
 
 const styles = StyleSheet.create({
     child: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-    quantityContainer: { backgroundColor: '#5D3EBD', padding: 4 },
-    quantityButton: { color: '#5D3EBD', fontSize: 18 },
-    quantityText: { color: 'white', fontSize: 18 },
-    decreaseButton: { padding: 4, borderTopLeftRadius: 10, borderBottomLeftRadius: 10 },
-    increaseButton: { padding: 4, borderTopRightRadius: 10, borderBottomRightRadius: 10 }
+    quantityContainer: { backgroundColor: '#5D3EBD', padding: RFValue(4, 600) },
+    quantityButton: { color: '#5D3EBD', fontSize: RFValue(18, 600) },
+    quantityText: { color: 'white', fontSize: RFValue(18, 600) },
+    decreaseButton: {
+        padding: RFValue(4, 600), borderTopLeftRadius: RFValue(10, 600),
+        borderBottomLeftRadius: RFValue(10, 600)
+    },
+    increaseButton: {
+        padding: RFValue(4, 600), borderTopRightRadius: RFValue(10, 600),
+        borderBottomRightRadius: RFValue(10, 600)
+    }
 })
 
 const mapStateToProps = ({

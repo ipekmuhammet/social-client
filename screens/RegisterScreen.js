@@ -1,4 +1,5 @@
 import React from 'react'
+import { RFValue } from 'react-native-responsive-fontsize'
 import { View, CheckBox, TouchableOpacity, TextInput, Text, StyleSheet, Alert } from 'react-native'
 import axios from 'axios'
 
@@ -96,13 +97,13 @@ class RegisterScreen extends React.PureComponent {
                     //      <View style={{ alignItems: 'center', justifyContent: 'flex-start' }}>
                     //          <CheckBox />
                     //      </View>
-                    //      <View style={{ alignItems: 'flex-start', justifyContent: 'flex-start', flexDirection: 'column', marginLeft: 8 }}>
+                    //      <View style={{ alignItems: 'flex-start', justifyContent: 'flex-start', flexDirection: 'column', marginLeft: RFValue(8, 600) }}>
                     //          <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row' }}>
-                    //              <Text style={{ color: 'black', fontSize: 17, fontWeight: 'bold' }}>I give permissions for the use of my personal data for special offers and for receiving electronic communication, within the scope of The Law on Protection of Personal Data clarification document.</Text>
-                    //              <Text style={{ color: '#5D3EBD', fontSize: 17, fontWeight: 'bold' }}>the Terms and</Text>
+                    //              <Text style={{ color: 'black', fontSize: RFValue(17, 600), fontWeight: 'bold' }}>I give permissions for the use of my personal data for special offers and for receiving electronic communication, within the scope of The Law on Protection of Personal Data clarification document.</Text>
+                    //              <Text style={{ color: '#5D3EBD', fontSize: RFValue(17, 600), fontWeight: 'bold' }}>the Terms and</Text>
                     //          </View>
                     //          <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row' }}>
-                    //              <Text style={{ color: '#5D3EBD', fontSize: 17, fontWeight: 'bold' }}>Conditions.</Text>
+                    //              <Text style={{ color: '#5D3EBD', fontSize: RFValue(17, 600), fontWeight: 'bold' }}>Conditions.</Text>
                     //          </View>
                     //      </View>
                     //  </View>
@@ -134,20 +135,30 @@ class RegisterScreen extends React.PureComponent {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, marginVertical: 12 },
-    child: { flex: 1, margin: 3 },
-    input: { flex: 1, margin: 4, borderRadius: 6, paddingHorizontal: 12, fontSize: 19, borderWidth: .8, borderColor: '#ABABAB' },
-    facebookButton: { backgroundColor: '#3B589E', flex: 1, margin: 4, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
-    registerButton: { backgroundColor: '#5D3EBD', flex: 1, margin: 4, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
-    registerText: { color: 'white', fontSize: 19 },
-    facebookText: { color: 'white', fontSize: 19 },
+    container: { flex: 1, marginVertical: RFValue(12, 600) },
+    child: { flex: 1, margin: RFValue(3, 600) },
+    input: {
+        flex: 1, margin: RFValue(4, 600), borderRadius: RFValue(6, 600),
+        paddingHorizontal: RFValue(12, 600), fontSize: RFValue(19, 600),
+        borderWidth: .8, borderColor: '#ABABAB'
+    },
+    facebookButton: {
+        backgroundColor: '#3B589E', flex: 1, margin: RFValue(4, 600),
+        borderRadius: RFValue(10, 600), alignItems: 'center', justifyContent: 'center'
+    },
+    registerButton: {
+        backgroundColor: '#5D3EBD', flex: 1, margin: RFValue(4, 600),
+        borderRadius: RFValue(10, 600), alignItems: 'center', justifyContent: 'center'
+    },
+    registerText: { color: 'white', fontSize: RFValue(19, 600) },
+    facebookText: { color: 'white', fontSize: RFValue(19, 600) },
     termsContainer: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' },
     checkBoxContainer: { alignItems: 'flex-start', justifyContent: 'flex-start' },
     checkBox: { backgroundColor: 'transparent' },
-    termsText: { color: 'black', fontSize: 17, fontWeight: 'bold' },
-    termsLinkText: { color: '#5D3EBD', fontSize: 17, fontWeight: 'bold' },
+    termsText: { color: 'black', fontSize: RFValue(17, 600), fontWeight: 'bold' },
+    termsLinkText: { color: '#5D3EBD', fontSize: RFValue(17, 600), fontWeight: 'bold' },
     termsTextContainer: { alignItems: 'center', justifyContent: 'center', flexDirection: 'row' },
-    termsInfoContainer: { alignItems: 'flex-start', justifyContent: 'flex-start', flexDirection: 'column', marginLeft: 8 }
+    termsInfoContainer: { alignItems: 'flex-start', justifyContent: 'flex-start', flexDirection: 'column', marginLeft: RFValue(8, 600) }
 })
 
 export default RegisterScreen

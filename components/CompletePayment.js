@@ -1,4 +1,5 @@
 import React from 'react'
+import { RFValue } from 'react-native-responsive-fontsize'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 
@@ -35,11 +36,20 @@ const CompletePaymentComponent = ({ completable, cart, paymentType, navigation, 
 
 const styles = StyleSheet.create({
     centeredContainer: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-    completePaymentContainer: { position: 'absolute', bottom: 0, width: '100%', height: 65, backgroundColor: '#4CAB51', flexDirection: 'row' },
-    completePaymentButton: { flex: 1, padding: 20, backgroundColor: '#3D8B40', alignItems: 'center', justifyContent: 'center' },
-    completePaymentText: { color: 'white', fontSize: 18, fontWeight: 'bold' },
-    totalPriceContainer: { flex: 2, justifyContent: 'center' },
-    totalPriceText: { color: 'white', fontSize: 18, padding: 12, fontWeight: 'bold' }
+    completePaymentContainer: {
+        position: 'absolute', bottom: 0, width: '100%', height: RFValue(65, 600),
+        backgroundColor: '#4CAB51', flexDirection: 'row'
+    },
+    completePaymentButton: {
+        flex: 1, padding: RFValue(20, 600),
+        backgroundColor: '#3D8B40', alignItems: 'center', justifyContent: 'center'
+    },
+    completePaymentText: { color: 'white', fontSize: RFValue(18, 600), fontWeight: 'bold' },
+    totalPriceContainer: { flex: RFValue(2, 600), justifyContent: 'center' },
+    totalPriceText: {
+        color: 'white', fontSize: RFValue(18, 600),
+        padding: RFValue(12, 600), fontWeight: 'bold'
+    }
 })
 
 const mapStateToProps = ({

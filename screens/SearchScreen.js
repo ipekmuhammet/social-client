@@ -1,4 +1,5 @@
 import React from 'react'
+import { RFValue } from 'react-native-responsive-fontsize'
 import { View, TouchableOpacity, FlatList, Text, TextInput, StyleSheet, Dimensions } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -36,15 +37,15 @@ const SearchScreen = () => (
 )
 
 const styles = StyleSheet.create({
-    container: { top: 0, left: 0, height: Dimensions.get('window').height, width: Dimensions.get('window').width, flexDirection: 'column' },
-    searchHeader: { flex: .8, margin: 2, flexDirection: 'row', backgroundColor: 'white' },
-    mostSearchContainer: { flex: .7, padding: 2, margin: 2, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white' },
+    container: { top: 0, left: 0, height: 600, width: Dimensions.get('window').width, flexDirection: 'column' },
+    searchHeader: { flex: .8, margin: RFValue(2, 600), flexDirection: 'row', backgroundColor: 'white' },
+    mostSearchContainer: { flex: .7, padding: RFValue(2, 600), margin: RFValue(2, 600), alignItems: 'center', justifyContent: 'center', backgroundColor: 'white' },
     iconContainer: { alignItems: 'center', justifyContent: 'center', flex: 1 },
-    inputContainer: { alignItems: 'center', justifyContent: 'center', flex: 6, display: 'flex', flexDirection: 'row' },
+    inputContainer: { alignItems: 'center', justifyContent: 'center', flex: RFValue(6, 600), display: 'flex', flexDirection: 'row' },
     searchInput: { textAlign: 'left', flex: 1, fontSize: 21 },
-    mostSearchedItem: { flex: 1, paddingHorizontal: 12, margin: 4, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', borderWidth: .4, borderColor: '#5D3EBD', borderRadius: 8 },
-    itemText: { color: '#5D3EBD', fontSize: 14 },
-    emptyFooter: { flex: 7, margin: 2 }
+    mostSearchedItem: { flex: 1, paddingHorizontal: RFValue(12, 600), margin: RFValue(4, 600), backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', borderWidth: .4, borderColor: '#5D3EBD', borderRadius: RFValue(8, 600) },
+    itemText: { color: '#5D3EBD', fontSize: RFValue(14, 600) },
+    emptyFooter: { flex: 7, margin: RFValue(2, 600) }
 })
 
 export default SearchScreen

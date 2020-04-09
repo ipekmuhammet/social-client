@@ -39,14 +39,14 @@ const styles = StyleSheet.create({
     iconContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginHorizontal: 8,
-        padding: 4,
+        marginHorizontal: RFValue(8, 600),
+        padding: RFValue(4, 600),
         flex: 1
     },
     infoContainer: {
         flexDirection: 'column',
-        marginHorizontal: 8,
-        padding: 4,
+        marginHorizontal: RFValue(8, 600),
+        padding: RFValue(4, 600),
         flex: 5
     },
     infoTextContainer: {
@@ -56,8 +56,8 @@ const styles = StyleSheet.create({
         borderBottomColor: '#D8D8D8'
     },
     title: {
-        fontSize: 18,
-        marginVertical: 4,
+        fontSize: RFValue(18, 600),
+        marginVertical: RFValue(4, 600),
         color: '#9C9C9C'
     },
     showSavedNotesContainer: {
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         padding: 4
     },
     showSavedNotesText: {
-        fontSize: 17,
+        fontSize: RFValue(17, 600),
         fontWeight: 'bold',
         marginVertical: 4
     },

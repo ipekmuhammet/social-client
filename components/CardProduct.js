@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Image, Text, StyleSheet } from 'react-native'
-import { RFPercentage } from 'react-native-responsive-fontsize'
+import { RFPercentage, RFValue } from 'react-native-responsive-fontsize'
 
 import CardProductQuantityComponent from './CardProductQuantityComponent'
 
@@ -36,16 +36,22 @@ const CardProduct = ({ data: { id, product_name, price, image } }) => (
 )
 
 const styles = StyleSheet.create({
-	container: { display: 'flex', flexDirection: 'row', padding: 8, paddingVertical: 12, borderBottomWidth: 1, borderBottomColor: '#EFEFEF' },
+	container: {
+		display: 'flex', flexDirection: 'row', padding: RFValue(8, 600),
+		paddingVertical: RFValue(12, 600), borderBottomWidth: 1, borderBottomColor: '#EFEFEF'
+	},
 	child: { flex: 1, alignItems: 'center', justifyContent: 'center' },
 	flex2: { flex: 1.6 },
-	flex3: { flex: 3 },
+	flex3: { flex: RFValue(3, 600) },
 	column: { flexDirection: 'column', display: 'flex' },
-	rowChild: { flex: 2, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', display: 'flex' },
-	textContainer: { width: '100%', paddingHorizontal: 8, justifyContent: 'flex-start', alignItems: 'flex-start' },
+	rowChild: { flex: RFValue(2, 600), alignItems: 'center', justifyContent: 'center', flexDirection: 'row', display: 'flex' },
+	textContainer: { width: '100%', paddingHorizontal: RFValue(8, 600), justifyContent: 'flex-start', alignItems: 'flex-start' },
 	productName: { fontSize: RFPercentage(2.7), fontWeight: '700', color: '#303030', textAlign: 'justify', justifyContent: 'center', letterSpacing: .2 },
 	productPrice: { fontSize: RFPercentage(3.4), fontWeight: '700', color: '#5439B3', textAlign: 'center', justifyContent: 'center', letterSpacing: .2 },
-	imageContainer: { padding: 4, borderWidth: .4, borderColor: '#CDCDCD', borderRadius: 12, backgroundColor: 'white' },
+	imageContainer: {
+		padding: RFValue(4, 600), borderWidth: .4, borderColor: '#CDCDCD',
+		borderRadius: RFValue(12, 600), backgroundColor: 'white'
+	},
 	productImage: { width: RFPercentage(14), height: RFPercentage(14) }
 })
 

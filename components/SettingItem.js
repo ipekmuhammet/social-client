@@ -1,4 +1,5 @@
 import React from 'react'
+import { RFValue } from 'react-native-responsive-fontsize'
 import { View, Text, StyleSheet } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
 
@@ -17,10 +18,13 @@ const SettingItem = ({ children: icon, title }) => (
 )
 
 const styles = StyleSheet.create({
-    container: { flexDirection: 'row', padding: 10, borderBottomWidth: 1, borderBottomColor: '#D2D2D2', marginHorizontal: 6 },
+    container: {
+        flexDirection: 'row', padding: RFValue(10, 600), borderBottomWidth: 1, borderBottomColor: '#D2D2D2',
+        marginHorizontal: RFValue(6, 600)
+    },
     iconContainer: { alignItems: 'center', justifyContent: 'center', flex: 1 },
-    titleContainer: { alignItems: 'flex-start', flex: 6, justifyContent: 'center' },
-    title: { marginHorizontal: 4, fontSize: 16, color: '#727B8F' },
+    titleContainer: { alignItems: 'flex-start', flex: RFValue(6, 600), justifyContent: 'center' },
+    title: { marginHorizontal: RFValue(4, 600), fontSize: RFValue(16, 600), color: '#727B8F' },
     rightIconContainer: { alignItems: 'flex-end', justifyContent: 'center', flex: 1 }
 })
 

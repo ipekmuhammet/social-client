@@ -1,4 +1,5 @@
 import React from 'react'
+import { RFValue } from 'react-native-responsive-fontsize'
 import { View, Image, StyleSheet } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { CardStyleInterpolators } from '@react-navigation/stack'
@@ -63,7 +64,7 @@ const WelcomeStack = () => (
 
 const styles = StyleSheet.create({
     headerStyle: { backgroundColor: '#5D3EBD' },
-    headerTitle: { height: '100%', padding: 8, backgroundColor: '#5D3EBD', display: 'flex' },
+    headerTitle: { height: '100%', padding: RFValue(8, 600), backgroundColor: '#5D3EBD', display: 'flex' },
     headerImage: { flex: 1 }
 })
 

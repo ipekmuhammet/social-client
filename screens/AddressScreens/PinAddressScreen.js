@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, TouchableOpacity, Image, Text, StyleSheet } from 'react-native'
+import { View, TouchableOpacity, Image, Text, StyleSheet  } from 'react-native'
 
 import ConfirmAccuratePinPopup from '../../components/popups/ConfirmAccuratePinPopup'
 
@@ -49,14 +49,14 @@ class PinAddressScreen extends React.PureComponent {
 
 const styles = StyleSheet.create({
     container: { flex: 1, left: 0, right: 0, bottom: 0, justifyContent: 'flex-end', alignItems: 'center' },
-    markerContainer: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', zIndex: 2, },
+    markerContainer: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', zIndex: RFValue(2, 600), },
     marker: { width: 48, height: 48 },
     buttonContainer: {
-        position: 'absolute', bottom: 0, height: 78, left: 0, right: 0, backgroundColor: 'transparent', zIndex: 2, display: 'flex',
-        flexDirection: 'row', alignItems: 'center', paddingHorizontal: 24, paddingVertical: 24
+        position: 'absolute', bottom: 0, height: 78, left: 0, right: 0, backgroundColor: 'transparent', zIndex: RFValue(2, 600), display: 'flex',
+        flexDirection: 'row', alignItems: 'center', paddingHorizontal: RFValue(24, 600), paddingVertical: RFValue(24, 600)
     },
-    button: { flex: 1, padding: 12, backgroundColor: '#5D3EBD', borderRadius: 16 },
-    buttonText: { fontSize: 20, color: 'white', textAlign: 'center', fontWeight: 'bold' }
+    button: { flex: 1, padding: RFValue(12, 600), backgroundColor: '#5D3EBD', borderRadius: 16 },
+    buttonText: { fontSize: RFValue(20, 600), color: 'white', textAlign: 'center', fontWeight: 'bold' }
 })
 
 export default PinAddressScreen

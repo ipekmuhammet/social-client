@@ -1,5 +1,4 @@
 import React from 'react'
-import { AsyncStorage } from 'react-native'
 import { SplashScreen } from 'expo'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'

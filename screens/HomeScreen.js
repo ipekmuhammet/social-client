@@ -57,7 +57,7 @@ const HomeScreen = ({ categories, navigation }) => (
 
 const styles = StyleSheet.create({
 	categoryList: { backgroundColor: '#F5F5F5' },
-	sliderImage: { height: 180, left: 0, right: 0 }
+	sliderImage: { height: RFValue(180, 600), left: 0, right: 0 }
 })
 
 const mapStateToProps = ({

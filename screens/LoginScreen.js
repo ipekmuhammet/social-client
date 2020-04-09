@@ -1,4 +1,5 @@
 import React from 'react'
+import { RFValue } from 'react-native-responsive-fontsize'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import { View, TouchableOpacity, TextInput, Text, Alert, StyleSheet } from 'react-native'
@@ -95,18 +96,18 @@ class LoginScreen extends React.PureComponent {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, marginVertical: 12 },
-    child: { flex: 1, margin: 3 },
-    facebookButton: { backgroundColor: '#3B589E', flex: 1, margin: 4, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
-    registerButton: { backgroundColor: 'white', borderWidth: 1, borderColor: '#5D3EBD', flex: 1, margin: 4, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
+    container: { flex: 1, marginVertical: RFValue(12, 600) },
+    child: { flex: 1, margin: RFValue(3, 600) },
+    facebookButton: { backgroundColor: '#3B589E', flex: 1, margin: RFValue(4, 600), borderRadius: RFValue(10, 600), alignItems: 'center', justifyContent: 'center' },
+    registerButton: { backgroundColor: 'white', borderWidth: 1, borderColor: '#5D3EBD', flex: 1, margin: RFValue(4, 600), borderRadius: RFValue(10, 600), alignItems: 'center', justifyContent: 'center' },
     forgotPasswordButton: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-    loginButton: { backgroundColor: '#5D3EBD', flex: 1, margin: 4, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
+    loginButton: { backgroundColor: '#5D3EBD', flex: 1, margin: RFValue(4, 600), borderRadius: RFValue(10, 600), alignItems: 'center', justifyContent: 'center' },
     inputContainer: { flexDirection: 'row' },
-    input: { flex: 1, margin: 4, borderRadius: 6, paddingHorizontal: 12, fontSize: 19, borderWidth: .8, borderColor: '#ABABAB' },
-    facebookText: { color: 'white', fontSize: 19 },
-    loginText: { color: 'white', fontSize: 19 },
-    forgotPasswordText: { color: '#6E7586', fontSize: 19, fontWeight: 'bold' },
-    registerText: { color: '#5D3EBD', fontSize: 19, fontWeight: 'bold' }
+    input: { flex: 1, margin: RFValue(4, 600), borderRadius: RFValue(6, 600), paddingHorizontal: RFValue(12, 600), fontSize: RFValue(19, 600), borderWidth: .8, borderColor: '#ABABAB' },
+    facebookText: { color: 'white', fontSize: RFValue(19, 600) },
+    loginText: { color: 'white', fontSize: RFValue(19, 600) },
+    forgotPasswordText: { color: '#6E7586', fontSize: RFValue(19, 600), fontWeight: 'bold' },
+    registerText: { color: '#5D3EBD', fontSize: RFValue(19, 600), fontWeight: 'bold' }
 })
 
 const mapDispatchToProps = {

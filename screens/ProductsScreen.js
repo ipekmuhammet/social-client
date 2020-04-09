@@ -1,4 +1,5 @@
 import React from 'react'
+import { RFValue } from 'react-native-responsive-fontsize'
 import { StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import ScrollableTabView, { ScrollableTabBar } from 'react-native-scrollable-tab-view'
@@ -21,7 +22,7 @@ const ProductsScreen = ({ categories, products, selectedCategory }) => (
 )
 
 const styles = StyleSheet.create({
-	tabBarTextStyle: { color: 'white', fontSize: 16 },
+	tabBarTextStyle: { color: 'white', fontSize: RFValue(16, 600) },
 	tabBarUnderlineStyle: { backgroundColor: '#FED110' }
 })
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import { RFValue } from 'react-native-responsive-fontsize'
 import { FlatList, View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons'
@@ -55,11 +56,15 @@ const styles = StyleSheet.create({
     container: { flex: 1, backgroundColor: '#F5F5F5' },
     emptyCartContainer: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#EDEDED' },
     child: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-    emptyCartText: { fontSize: 18, textAlign: 'center' },
+    emptyCartText: { fontSize: RFValue(18, 600), textAlign: 'center' },
     listProductsButtonContainer: { display: 'flex' },
-    listProducts: { backgroundColor: '#4CAB51', borderRadius: 32, alignItems: 'center', justifyContent: 'center', margin: 18, padding: 18, paddingHorizontal: 48 },
-    listProductsText: { color: 'white', fontSize: 20, alignItems: 'center', justifyContent: 'center' },
-    footer: { height: 90 }
+    listProducts: {
+        backgroundColor: '#4CAB51', borderRadius: RFValue(32, 600), alignItems: 'center', justifyContent: 'center',
+        margin: RFValue(18, 600), padding: RFValue(18, 600),
+        paddingHorizontal: RFValue(48, 600)
+    },
+    listProductsText: { color: 'white', fontSize: RFValue(20, 600), alignItems: 'center', justifyContent: 'center' },
+    footer: { height: RFValue(90, 600) }
 })
 
 const mapStateToProps = ({
