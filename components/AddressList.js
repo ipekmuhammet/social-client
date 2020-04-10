@@ -3,7 +3,7 @@ import { FlatList } from 'react-native'
 import { connect } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons'
 
-import { addAddress, deleteAddress } from '../actions/actions4'
+import { deleteAddress, setSelectedAddress } from '../actions/actions2'
 
 import InteractiveSettingItem from './InteractiveSettingItem'
 import DeleteAddressPopup from './popups/DeleteAddressPopup'
@@ -27,12 +27,16 @@ class AddressList extends React.PureComponent {
         return (
             <React.Fragment>
                 <FlatList
-                    data={this.props.user.addresses}
+                    data={this.props.addresses}
                     keyExtractor={item => item._id}
                     renderItem={({ item: address }) => (
-                        <InteractiveSettingItem title={address.open_address} onRightIconClick={() => {
-                            this.setPopupState({ scaleAnimationModal: true, addressId: address._id })
-                        }}>
+                        <InteractiveSettingItem title={address.open_address}
+                            onLeftClick={() => {
+                                this.props.setSelectedAddress(address._id, this.props.navigation)
+                            }}
+                            onRightIconClick={() => {
+                                this.setPopupState({ scaleAnimationModal: true, addressId: address._id })
+                            }}>
                             <Ionicons color={'#4522A0'} name={'md-locate'} size={32} />
                             <Ionicons color={'#4522A0'} name={'md-trash'} size={32} />
                         </InteractiveSettingItem>
@@ -46,17 +50,19 @@ class AddressList extends React.PureComponent {
 }
 
 const mapStateToProps = ({
+    reducer2: {
+        addresses
+    },
     reducer4: {
-        user,
         token
     }
 }) => ({
-    user,
+    addresses,
     token
 })
 
 const mapDispatchToProps = {
-    addAddress,
+    setSelectedAddress,
     deleteAddress
 }
 

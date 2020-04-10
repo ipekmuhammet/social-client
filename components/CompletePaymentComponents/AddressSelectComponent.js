@@ -3,7 +3,7 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 
-const AddressSelectComponent = ({ navigation }) => (
+const AddressSelectComponent = ({ navigation, title, subTitle }) => (
     <TouchableOpacity style={styles.container} onPress={() => {
         navigation.navigate('addresses')
     }}>
@@ -12,10 +12,10 @@ const AddressSelectComponent = ({ navigation }) => (
         </View>
         <View style={styles.paymentInfoContainer}>
             <View style={styles.paymentInfoTextContainer}>
-                <Text style={styles.paymentTitle}>{'Ev'}</Text>
+                <Text numberOfLines={1} style={styles.paymentTitle}>{title}</Text>
             </View>
             <View style={styles.paymentInfoTextContainer}>
-                <Text style={styles.paymentDetail}>{'Fatih (Ayvansaray Mah.)'}</Text>
+                <Text numberOfLines={1} style={styles.paymentDetail}>{subTitle}</Text>
             </View>
         </View>
         <View style={styles.iconContainer}>

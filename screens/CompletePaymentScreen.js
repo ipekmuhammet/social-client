@@ -1,6 +1,7 @@
 import React from 'react'
-import { RFValue } from 'react-native-responsive-fontsize'
+import { connect } from 'react-redux'
 import { View, ScrollView, StyleSheet } from 'react-native'
+import { RFValue } from 'react-native-responsive-fontsize'
 
 import HeadingDivider from '../components/HeadingDivider'
 import CompletePayment from '../components/CompletePayment'
@@ -10,13 +11,21 @@ import PaymentTypeSelectComponent from '../components/CompletePaymentComponents/
 //  import OrderTimeComponent from '../components/CompletePaymentComponents/OrderTimeComponent'
 //  import OrderNoteComponent from '../components/CompletePaymentComponents/OrderNoteComponent'
 
-const CompletePaymentScreen = ({ navigation }) => (
+const CompletePaymentScreen = ({ navigation, cards, addresses, selectedCard, selectedAddress }) => (
     <React.Fragment>
         <ScrollView>
             <HeadingDivider title={'Adres Seçimi'} />
-            <AddressSelectComponent navigation={navigation} />
+            <AddressSelectComponent
+                navigation={navigation}
+                title={(addresses.find(address => address._id === selectedAddress))?.open_address ?? 'Adres seçiniz'}
+                subTitle={(addresses.find(address => address._id === selectedAddress))?.open_address ?? 'Adres seçiniz'}
+            />
             <HeadingDivider title={'Ödeme Şekli'} />
-            <PaymentTypeSelectComponent navigation={navigation} />
+            <PaymentTypeSelectComponent
+                navigation={navigation}
+                title={cards.find(card => card.id === selectedCard).cardLabel || 'Kart Seçiniz'}
+                subTitle={cards.find(card => card.id === selectedCard).cardNumber || 'Kart Seçiniz'}
+            />
             {
                 //  <HeadingDivider title={'Gönderim Zamanı'} />
                 //  <OrderTimeComponent />
@@ -33,4 +42,18 @@ const styles = StyleSheet.create({
     footer: { height: RFValue(90, 600) }
 })
 
-export default CompletePaymentScreen
+const mapStateToProps = ({
+    reducer2: {
+        cards,
+        addresses,
+        selectedCard,
+        selectedAddress
+    }
+}) => ({
+    cards,
+    addresses,
+    selectedCard,
+    selectedAddress
+})
+
+export default connect(mapStateToProps)(CompletePaymentScreen)

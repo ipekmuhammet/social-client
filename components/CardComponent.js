@@ -1,21 +1,27 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { View, TouchableOpacity, Text, Image, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { RFValue } from 'react-native-responsive-fontsize'
+import { setSelectedCard } from '../actions/actions2'
 
-const CardComponent = ({ item, setPopupState }) => (
+const CardComponent = ({ item, navigation, setPopupState, setSelectedCard }) => (
     <View style={styles.container}>
-        <View style={styles.child}>
-            <Image style={styles.cardImage} resizeMode={'contain'} source={require('../assets/visa.png')} />
-        </View>
-        <View style={[styles.child, styles.textContainer]}>
+        <TouchableOpacity style={{ flex: 1, flexDirection: 'row' }} onPress={() => {
+            setSelectedCard(item.id, navigation)
+        }}>
             <View style={styles.child}>
-                <Text style={styles.cardName}>{item.name}</Text>
+                <Image style={styles.cardImage} resizeMode={'contain'} source={require('../assets/visa.png')} />
             </View>
-            <View style={styles.child}>
-                <Text style={styles.cardNumber}>{item.number}</Text>
+            <View style={[styles.child, styles.textContainer]}>
+                <View style={styles.child}>
+                    <Text style={styles.cardName}>{item.cardLabel}</Text>
+                </View>
+                <View style={styles.child}>
+                    <Text style={styles.cardNumber}>{item.cardNumber}</Text>
+                </View>
             </View>
-        </View>
+        </TouchableOpacity>
         <TouchableOpacity style={styles.child} onPress={() => {
             setPopupState({ scaleAnimationModal: true, selectedCard: item.id })
         }}>
@@ -34,4 +40,8 @@ const styles = StyleSheet.create({
     textContainer: { flex: 1, alignItems: 'flex-start', marginHorizontal: 6 }
 })
 
-export default CardComponent
+const mapDispatchToProps = {
+    setSelectedCard
+}
+
+export default connect(null, mapDispatchToProps)(CardComponent)

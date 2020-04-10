@@ -2,7 +2,8 @@ import React from 'react'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { View, TouchableOpacity, Image, Text, TextInput, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
-import { addAddress } from '../../actions/actions4'
+
+import { saveAddress } from '../../actions/actions2'
 
 import ConfirmAddressPopup from '../../components/popups/ConfirmAddressPopup'
 import Map from '../MapScreens/Map'
@@ -22,7 +23,7 @@ class CompleteAddressScreen extends React.Component {
     setPopupState = (scaleAnimationModal, complete, address, token) => {
         this.setState({ scaleAnimationModal })
         if (complete) {
-            this.props.addAddress(address, token)
+            this.props.saveAddress(address, token)
             this.props.navigation.pop(3)
         }
     }
@@ -135,7 +136,7 @@ const mapStateToProps = ({
 })
 
 const mapDispatchToProps = {
-    addAddress
+    saveAddress
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CompleteAddressScreen)

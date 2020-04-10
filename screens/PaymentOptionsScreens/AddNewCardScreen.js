@@ -1,6 +1,9 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { ScrollView, View, Image, TextInput, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
+
+import { saveCard } from '../../actions/actions2'
 
 import TermsComponent from '../../components/TermsComponent'
 
@@ -49,6 +52,7 @@ class AddNewCardScreen extends React.PureComponent {
                 <View>
                     <TouchableOpacity style={styles.continueButton} onPress={() => {
                         console.log('Continue')
+                        this.props.saveCard(this.state, this.props.token, this.props.navigation)
                     }}>
                         <Text style={styles.continueText}>Continue</Text>
                     </TouchableOpacity>
@@ -72,4 +76,16 @@ const styles = StyleSheet.create({
     buttonDivider: { height: RFValue(20, 600), backgroundColor: '#EDEEF0' }
 })
 
-export default AddNewCardScreen
+const mapStateToProps = ({
+    reducer4: {
+        token
+    }
+}) => ({
+    token
+})
+
+const mapDispatchToProps = {
+    saveCard
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddNewCardScreen)

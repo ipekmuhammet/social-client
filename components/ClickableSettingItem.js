@@ -2,20 +2,18 @@ import React from 'react'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 
-const InteractiveSettingItem = ({ children: icons, title, onLeftClick, onRightIconClick }) => (
-    <View style={styles.container}>
-        <TouchableOpacity style={{ flex: 7, flexDirection: 'row' }} onPress={onLeftClick}>
-            <View style={styles.iconContainer}>
-                {icons[0]}
-            </View>
-            <View style={styles.titleContainer}>
-                <Text style={styles.title}>{title}</Text>
-            </View>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.rightIconContainer} onPress={onRightIconClick}>
+const ClickableSettingItem = ({ children: icons, title, onClick }) => (
+    <TouchableOpacity style={styles.container} onPress={onClick}>
+        <View style={styles.iconContainer}>
+            {icons[0]}
+        </View>
+        <View style={styles.titleContainer}>
+            <Text style={styles.title}>{title}</Text>
+        </View>
+        <View style={styles.rightIconContainer} >
             {icons[1]}
-        </TouchableOpacity>
-    </View>
+        </View>
+    </TouchableOpacity>
 )
 
 const styles = StyleSheet.create({
@@ -32,4 +30,4 @@ const styles = StyleSheet.create({
     rightIconContainer: { alignItems: 'flex-end', justifyContent: 'center', flex: 1 }
 })
 
-export default InteractiveSettingItem
+export default ClickableSettingItem

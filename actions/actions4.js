@@ -7,43 +7,6 @@ const getCategories = (token) => axios.get('http://192.168.1.102:3000/user/categ
 
 const getProducts = (token) => axios.get('http://192.168.1.102:3000/user/products', { headers: { Authorization: token } }).then(({ data }) => data)
 
-export const addAddress = (address, token) => {
-	return (dispatch) => {
-
-		axios.put('http://192.168.1.102:3000/user/add-address', { open_address: address }, { headers: { Authorization: token } })
-			.then(({ status, data }) => {
-				if (status === 200) {
-					AsyncStorage.setItem('user', JSON.stringify(data))
-
-					dispatch({
-						type: SET_USER,
-						payload: {
-							user: data
-						}
-					})
-				}
-			})
-	}
-}
-
-export const deleteAddress = (addressId, token) => {
-	return (dispatch) => {
-		axios.put('http://192.168.1.102:3000/user/delete-address', { _id: addressId }, { headers: { Authorization: token } })
-			.then(({ status, data }) => {
-				if (status === 200) {
-					AsyncStorage.setItem('user', JSON.stringify(data))
-
-					dispatch({
-						type: SET_USER,
-						payload: {
-							user: data
-						}
-					})
-				}
-			})
-	}
-}
-
 export const setInitialDatas = () => {
 	return (dispatch) => {
 		AsyncStorage.multiGet(['token', 'user']).then(vals => {

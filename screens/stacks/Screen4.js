@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import { createStackNavigator } from '@react-navigation/stack'
+import { createStackNavigator, HeaderBackButton } from '@react-navigation/stack'
 import { CardStyleInterpolators } from '@react-navigation/stack'
 
 import ProfileScreen from '../ProfileScreen'
@@ -14,7 +14,7 @@ import AddNewCardScreen from '../PaymentOptionsScreens/AddNewCardScreen'
 
 const Stack = createStackNavigator()
 
-const Screen4 = () => (
+const Screen4 = ({ navigation }) => (
     <Stack.Navigator screenOptions={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }}>
         <Stack.Screen
             name='profile'
@@ -30,6 +30,7 @@ const Screen4 = () => (
             name='addresses'
             component={AddressesScreen}
             options={{
+                headerLeft: () => <HeaderBackButton tintColor={'white'} onPress={() => { navigation.goBack() }} />,
                 title: 'Adreslerim',
                 headerTitleAlign: 'center',
                 headerTintColor: 'white',
@@ -68,6 +69,7 @@ const Screen4 = () => (
         }} />
 
         <Stack.Screen name='paymentOptionsScreen' component={PaymentOptionsScreen} options={{
+            headerLeft: () => <HeaderBackButton tintColor={'white'} onPress={() => { navigation.goBack() }} />,
             title: 'Payment Options',
             headerTitleAlign: 'center',
             headerTintColor: 'white',

@@ -5,9 +5,9 @@ import { View, FlatList, StyleSheet } from 'react-native'
 import DeleteCardPopup from '../../components/popups/DeleteCardPopup'
 import CardComponent from '../../components/CardComponent'
 import AddNewCardComponent from '../../components/AddNewCardComponent'
+import { deleteCard } from '../../actions/actions2'
 
 class PaymentOptionsScreen extends React.Component {
-
     state = {
         scaleAnimationModal: false,
         selectedCard: null
@@ -17,7 +17,7 @@ class PaymentOptionsScreen extends React.Component {
         this.setState(state)
 
         if (confirm) {
-            console.log('delete ' + this.state.selectedCard)
+            this.props.deleteCard(this.state.selectedCard, this.props.token)
         }
     }
 
@@ -27,13 +27,10 @@ class PaymentOptionsScreen extends React.Component {
                 <DeleteCardPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
                 <FlatList
                     contentContainerStyle={{ backgroundColor: 'white' }}
-                    data={[
-                        { id: 0, type: 'visa', name: 'Visa Card', number: '4766620000000001', type: 'visa' },
-                        { id: 0, type: 'mastercard', name: 'Master Card', number: '5504720000000003', type: 'mastercard' }
-                    ]}
+                    data={this.props.cards}
                     keyExtractor={item => item.number}
                     renderItem={({ item }) => (
-                        <CardComponent item={item} setPopupState={this.setPopupState} />
+                        <CardComponent item={item} setPopupState={this.setPopupState} navigation={this.props.navigation}/>
                     )}
                     ListFooterComponent={() => <AddNewCardComponent navigation={this.props.navigation} />}
                 />
@@ -45,4 +42,21 @@ class PaymentOptionsScreen extends React.Component {
 const styles = StyleSheet.create({
     container: { flex: 1, backgroundColor: '#F5F5F5' }
 })
-export default connect()(PaymentOptionsScreen)
+
+const mapStateToProps = ({
+    reducer2: {
+        cards
+    },
+    reducer4: {
+        token
+    }
+}) => ({
+    cards,
+    token
+})
+
+const mapDispacthToProps = {
+    deleteCard
+}
+
+export default connect(mapStateToProps, mapDispacthToProps)(PaymentOptionsScreen)
