@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     child: { flex: 1 },
     completePaymentContainer: {
         alignItems: 'center', justifyContent: 'center', flex: .6, backgroundColor: '#D3D3D3', margin: RFValue(8, 600),
-        borderRadius: RFValue(36, 600), flex: .1
+        borderRadius: 36, flex: .1
     },
     completePaymentText: { fontSize: RFValue(22, 600), fontWeight: 'bold', color: '#8D8D8D' },
     cvcInfoContainer: { flex: .1, flexDirection: 'row' },

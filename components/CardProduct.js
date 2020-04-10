@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
 	productPrice: { fontSize: RFPercentage(3.4), fontWeight: '700', color: '#5439B3', textAlign: 'center', justifyContent: 'center', letterSpacing: .2 },
 	imageContainer: {
 		padding: RFValue(4, 600), borderWidth: .4, borderColor: '#CDCDCD',
-		borderRadius: RFValue(12, 600), backgroundColor: 'white'
+		borderRadius: 12, backgroundColor: 'white'
 	},
 	productImage: { width: RFPercentage(14), height: RFPercentage(14) }
 })

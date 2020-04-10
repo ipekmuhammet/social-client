@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     emptyCartText: { fontSize: RFValue(18, 600), textAlign: 'center' },
     listProductsButtonContainer: { display: 'flex' },
     listProducts: {
-        backgroundColor: '#4CAB51', borderRadius: RFValue(32, 600), alignItems: 'center', justifyContent: 'center',
+        backgroundColor: '#4CAB51', borderRadius: 32, alignItems: 'center', justifyContent: 'center',
         margin: RFValue(18, 600), padding: RFValue(18, 600),
         paddingHorizontal: RFValue(48, 600)
     },

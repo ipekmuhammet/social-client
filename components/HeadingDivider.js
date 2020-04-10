@@ -13,7 +13,7 @@ const HeadingDivider = ({ title }) => (
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row', overflow: 'hidden', paddingVertical: RFValue(3, 600),
-        borderRadius: RFValue(8, 600)
+        borderRadius: 8
     },
     titleContainer: {
         flex: 1, justifyContent: 'center', height: RFValue(40, 600),

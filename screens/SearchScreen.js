@@ -43,7 +43,10 @@ const styles = StyleSheet.create({
     iconContainer: { alignItems: 'center', justifyContent: 'center', flex: 1 },
     inputContainer: { alignItems: 'center', justifyContent: 'center', flex: 6, display: 'flex', flexDirection: 'row' },
     searchInput: { textAlign: 'left', flex: 1, fontSize: 21 },
-    mostSearchedItem: { flex: 1, paddingHorizontal: RFValue(12, 600), margin: RFValue(4, 600), backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', borderWidth: .4, borderColor: '#5D3EBD', borderRadius: RFValue(8, 600) },
+    mostSearchedItem: {
+        flex: 1, paddingHorizontal: RFValue(12, 600), margin: RFValue(4, 600), backgroundColor: 'white',
+        alignItems: 'center', justifyContent: 'center', borderWidth: .4, borderColor: '#5D3EBD', borderRadius: 8
+    },
     itemText: { color: '#5D3EBD', fontSize: RFValue(14, 600) },
     emptyFooter: { flex: 7, margin: RFValue(2, 600) }
 })

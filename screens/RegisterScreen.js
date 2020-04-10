@@ -126,17 +126,17 @@ const styles = StyleSheet.create({
     container: { marginVertical: RFValue(12, 600) },
     child: { height: RFValue(60, 600), margin: RFValue(3, 600) },
     input: {
-        flex: 1, margin: RFValue(4, 600), borderRadius: RFValue(6, 600),
+        flex: 1, margin: RFValue(4, 600), borderRadius: 6,
         paddingHorizontal: RFValue(12, 600), fontSize: RFValue(19, 600),
         borderWidth: .8, borderColor: '#ABABAB'
     },
     facebookButton: {
         backgroundColor: '#3B589E', flex: 1, margin: RFValue(4, 600),
-        borderRadius: RFValue(10, 600), alignItems: 'center', justifyContent: 'center'
+        borderRadius: 10, alignItems: 'center', justifyContent: 'center'
     },
     registerButton: {
         backgroundColor: '#5D3EBD', flex: 1, margin: RFValue(4, 600),
-        borderRadius: RFValue(10, 600), alignItems: 'center', justifyContent: 'center'
+        borderRadius: 10, alignItems: 'center', justifyContent: 'center'
     },
     registerText: { color: 'white', fontSize: RFValue(19, 600) },
     facebookText: { color: 'white', fontSize: RFValue(19, 600) },
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     termsLinkText: { color: '#5D3EBD', fontSize: RFValue(17, 600), fontWeight: 'bold' },
     termsTextContainer: { alignItems: 'center', justifyContent: 'center', flexDirection: 'row' },
     termsInfoContainer: { alignItems: 'flex-start', justifyContent: 'flex-start', flexDirection: 'column', marginLeft: RFValue(8, 600) },
-    empty: { height: RFValue(44, 600) },
+    empty: { height: RFValue(28, 600) },
     buttonDivider: { height: RFValue(22, 600), backgroundColor: '#EDEEF0' }
 })
 

@@ -20,7 +20,7 @@ const TermsComponent = () => (
 )
 
 const styles = StyleSheet.create({
-    container: { flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', margin: RFValue(3, 600), marginVertical: RFValue(8, 600) },
+    container: { height: RFValue(60, 600), flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', margin: RFValue(3, 600), marginVertical: RFValue(8, 600) },
     checkBoxContainer: { alignItems: 'flex-start', justifyContent: 'flex-start' },
     checkBox: { backgroundColor: 'transparent' },
     termsText: { color: 'black', fontSize: RFValue(17, 600), fontWeight: 'bold' },

@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     orderCompletedText: { fontSize: RFValue(24, 600), textAlign: 'center' },
     goToHomeButtonContainer: { display: 'flex' },
     goToHomeButton: {
-        backgroundColor: '#4CAB51', borderRadius: RFValue(32, 600), alignItems: 'center', justifyContent: 'center',
+        backgroundColor: '#4CAB51', borderRadius: 32, alignItems: 'center', justifyContent: 'center',
         margin: RFValue(18, 600), padding: RFValue(18, 600),
         paddingHorizontal: RFValue(48, 600)
     },

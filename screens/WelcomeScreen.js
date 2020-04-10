@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     registerButtonContainer: { flex: 1.2 },
     registerButton: {
         backgroundColor: '#5D3EBD', flex: 1, margin: RFValue(4, 600),
-        borderRadius: RFValue(10, 600), alignItems: 'center', justifyContent: 'center'
+        borderRadius: 10, alignItems: 'center', justifyContent: 'center'
     },
     continueWithRegistration: { flex: 1, alignItems: 'center', justifyContent: 'center' },
     buttonText: { color: '#6E7586', fontSize: RFValue(19, 600), fontWeight: 'bold' },

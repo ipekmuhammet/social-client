@@ -16,7 +16,7 @@ const CompleteAddressInput = ({ address }) => (
 const styles = StyleSheet.create({
     input: {
         flex: 1, borderWidth: 1, alignItems: 'center', justifyContent: 'center', margin: RFValue(3, 600),
-        borderRadius: RFValue(8, 600),
+        borderRadius: 8,
         borderColor: '#C3C3C3', paddingHorizontal: RFValue(13, 600), fontSize: RFValue(18, 600)
     }
 })

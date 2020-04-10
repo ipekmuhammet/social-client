@@ -42,12 +42,12 @@ const styles = StyleSheet.create({
     child: { height: RFValue(60, 600), margin: RFValue(3, 600) },
     inputContainer: { flexDirection: 'row' },
     input: {
-        flex: 1, margin: RFValue(4, 600), borderRadius: RFValue(6, 600),
+        flex: 1, margin: RFValue(4, 600), borderRadius: 6,
         paddingHorizontal: RFValue(12, 600), fontSize: RFValue(19, 600), borderWidth: .8, borderColor: '#ABABAB'
     },
     sendCodeButton: {
         backgroundColor: '#5D3EBD', flex: 1, margin: RFValue(4, 600),
-        borderRadius: RFValue(10, 600), alignItems: 'center', justifyContent: 'center'
+        borderRadius: 10, alignItems: 'center', justifyContent: 'center'
     },
     sendCodeText: { color: 'white', fontSize: RFValue(19, 600) }
 })

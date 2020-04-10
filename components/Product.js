@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
 	productImageContainer: {
 		borderWidth: .2,
 		borderColor: '#BCBCBC',
-		borderRadius: RFPercentage(2),
+		borderRadius: 8,
 		backgroundColor: 'white'
 	},
 	productImage: {

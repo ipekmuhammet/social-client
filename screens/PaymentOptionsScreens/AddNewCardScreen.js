@@ -47,7 +47,6 @@ class AddNewCardScreen extends React.PureComponent {
                     </View>
                 </View>
                 <TermsComponent />
-                <View style={styles.empty} />
                 <View style={styles.buttonDivider} />
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity style={styles.continueButton} onPress={() => {
@@ -71,7 +70,7 @@ const styles = StyleSheet.create({
     inputContainer: { marginVertical: 2 },
     input: { borderWidth: .8, borderColor: '#CDCDCD', fontSize: RFValue(20, 600), paddingHorizontal: RFValue(16, 600), paddingVertical: RFValue(12, 600), margin: RFValue(10, 600), marginVertical: 4, borderRadius: 8 },
     buttonContainer: { height: RFValue(60, 600), margin: RFValue(10, 600) },
-    continueButton: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgb(94,63,190)', borderRadius: 18 },
+    continueButton: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgb(94,63,190)', borderRadius: 10 },
     continueText: { fontSize: RFValue(20, 600), color: 'white', fontWeight: 'bold' },
     empty: { height: RFValue(22, 600) },
     buttonDivider: { height: RFValue(20, 600), backgroundColor: '#EDEEF0' }

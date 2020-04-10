@@ -51,12 +51,12 @@ const styles = StyleSheet.create({
     container: { marginVertical: RFValue(12, 600) },
     child: { height: RFValue(60, 600), margin: RFValue(3, 600) },
     activationCodeInput: {
-        flex: 1, margin: RFValue(4, 600), borderRadius: RFValue(6, 600),
+        flex: 1, margin: RFValue(4, 600), borderRadius: 6,
         paddingHorizontal: RFValue(12, 600), fontSize: RFValue(19, 600), borderWidth: .8, borderColor: '#ABABAB'
     },
     registerButton: {
         backgroundColor: '#5D3EBD', flex: 1, margin: RFValue(4, 600),
-        borderRadius: RFValue(10, 600), alignItems: 'center', justifyContent: 'center'
+        borderRadius: 10, alignItems: 'center', justifyContent: 'center'
     },
     registerText: { color: 'white', fontSize: RFValue(19, 600) }
 })
