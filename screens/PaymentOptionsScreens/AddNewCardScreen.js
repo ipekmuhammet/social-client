@@ -49,7 +49,7 @@ class AddNewCardScreen extends React.PureComponent {
                 <TermsComponent />
                 <View style={styles.empty} />
                 <View style={styles.buttonDivider} />
-                <View>
+                <View style={styles.buttonContainer}>
                     <TouchableOpacity style={styles.continueButton} onPress={() => {
                         console.log('Continue')
                         this.props.saveCard(this.state, this.props.token, this.props.navigation)
@@ -70,9 +70,10 @@ const styles = StyleSheet.create({
     securityInformation: { color: '#757889', fontSize: RFValue(16, 600), fontWeight: 'bold' },
     inputContainer: { marginVertical: 2 },
     input: { borderWidth: .8, borderColor: '#CDCDCD', fontSize: RFValue(20, 600), paddingHorizontal: RFValue(16, 600), paddingVertical: RFValue(12, 600), margin: RFValue(10, 600), marginVertical: 4, borderRadius: 8 },
-    continueButton: { paddingVertical: RFValue(20, 600), margin: RFValue(10, 600), alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgb(94,63,190)', borderRadius: 18 },
+    buttonContainer: { height: RFValue(60, 600), margin: RFValue(10, 600) },
+    continueButton: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgb(94,63,190)', borderRadius: 18 },
     continueText: { fontSize: RFValue(20, 600), color: 'white', fontWeight: 'bold' },
-    empty: { height: RFValue(30, 600) },
+    empty: { height: RFValue(22, 600) },
     buttonDivider: { height: RFValue(20, 600), backgroundColor: '#EDEEF0' }
 })
 

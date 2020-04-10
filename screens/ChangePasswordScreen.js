@@ -2,7 +2,7 @@ import React from 'react'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import { View, TouchableOpacity, TextInput, Text, StyleSheet } from 'react-native'
+import { ScrollView, View, TouchableOpacity, TextInput, Text, StyleSheet } from 'react-native'
 
 import PasswordChangedPopup from '../components/popups/PasswordChangedPopup'
 
@@ -19,7 +19,7 @@ class ChangePasswordScreen extends React.PureComponent {
 
     render() {
         return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
                 <PasswordChangedPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
                 <View style={[styles.child, styles.inputContainer]}>
                     <TextInput
@@ -58,20 +58,14 @@ class ChangePasswordScreen extends React.PureComponent {
                         <Text style={styles.resetPasswordText}>Change Password</Text>
                     </TouchableOpacity>
                 </View>
-
-                <View style={styles.child} />
-                <View style={styles.child} />
-                <View style={styles.child} />
-                <View style={styles.child} />
-                <View style={styles.child} />
-            </View>
+            </ScrollView>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, marginVertical: RFValue(12, 600) },
-    child: { flex: 1, margin: RFValue(3, 600) },
+    container: { marginVertical: RFValue(12, 600) },
+    child: { height: RFValue(60, 600), margin: RFValue(3, 600) },
     inputContainer: { flexDirection: 'row' },
     input: {
         flex: 1, margin: RFValue(4, 600), borderRadius: RFValue(6, 600),

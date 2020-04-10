@@ -1,6 +1,6 @@
 import React from 'react'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { View, TouchableOpacity, TextInput, Text, StyleSheet, Alert } from 'react-native'
+import { ScrollView, View, TouchableOpacity, TextInput, Text, StyleSheet, Alert } from 'react-native'
 import axios from 'axios'
 import TermsComponent from '../components/TermsComponent'
 
@@ -16,7 +16,7 @@ class RegisterScreen extends React.PureComponent {
 
     render() {
         return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
 
                 {
                     //  <View style={styles.child}>
@@ -75,9 +75,10 @@ class RegisterScreen extends React.PureComponent {
                         style={styles.input} />
                 </View>
 
-                <View style={styles.child} />
                 <TermsComponent />
                 <View style={styles.child} />
+                <View style={styles.empty} />
+                <View style={styles.buttonDivider} />
 
                 {
                     //  <View style={[styles.child, { flexDirection: 'row' }]}>
@@ -116,14 +117,14 @@ class RegisterScreen extends React.PureComponent {
                         <Text style={styles.registerText}>Register</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
+            </ScrollView>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, marginVertical: RFValue(12, 600) },
-    child: { flex: 1, margin: RFValue(3, 600) },
+    container: { marginVertical: RFValue(12, 600) },
+    child: { height: RFValue(60, 600), margin: RFValue(3, 600) },
     input: {
         flex: 1, margin: RFValue(4, 600), borderRadius: RFValue(6, 600),
         paddingHorizontal: RFValue(12, 600), fontSize: RFValue(19, 600),
@@ -145,7 +146,9 @@ const styles = StyleSheet.create({
     termsText: { color: 'black', fontSize: RFValue(17, 600), fontWeight: 'bold' },
     termsLinkText: { color: '#5D3EBD', fontSize: RFValue(17, 600), fontWeight: 'bold' },
     termsTextContainer: { alignItems: 'center', justifyContent: 'center', flexDirection: 'row' },
-    termsInfoContainer: { alignItems: 'flex-start', justifyContent: 'flex-start', flexDirection: 'column', marginLeft: RFValue(8, 600) }
+    termsInfoContainer: { alignItems: 'flex-start', justifyContent: 'flex-start', flexDirection: 'column', marginLeft: RFValue(8, 600) },
+    empty: { height: RFValue(44, 600) },
+    buttonDivider: { height: RFValue(22, 600), backgroundColor: '#EDEEF0' }
 })
 
 export default RegisterScreen

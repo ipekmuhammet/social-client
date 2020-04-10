@@ -37,7 +37,7 @@ const SearchScreen = () => (
 )
 
 const styles = StyleSheet.create({
-    container: { top: 0, left: 0, height: 600, width: Dimensions.get('window').width, flexDirection: 'column' },
+    container: { top: 0, left: 0, height: Dimensions.get('window').height, width: Dimensions.get('window').width, flexDirection: 'column' },
     searchHeader: { flex: .8, margin: RFValue(2, 600), flexDirection: 'row', backgroundColor: 'white' },
     mostSearchContainer: { flex: .7, padding: RFValue(2, 600), margin: RFValue(2, 600), alignItems: 'center', justifyContent: 'center', backgroundColor: 'white' },
     iconContainer: { alignItems: 'center', justifyContent: 'center', flex: 1 },

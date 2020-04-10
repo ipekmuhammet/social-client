@@ -1,8 +1,8 @@
 import React from 'react'
-import { RFValue } from 'react-native-responsive-fontsize'
 import { connect } from 'react-redux'
+import { ScrollView, View, TouchableOpacity, TextInput, Text, Alert, StyleSheet } from 'react-native'
 import axios from 'axios'
-import { View, TouchableOpacity, TextInput, Text, Alert, StyleSheet } from 'react-native'
+import { RFValue } from 'react-native-responsive-fontsize'
 
 import { login } from '../actions/actions4'
 
@@ -17,7 +17,7 @@ class LoginScreen extends React.PureComponent {
 
     render() {
         return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
                 {
                     //  <View style={styles.child}>
                     //      <TouchableOpacity style={styles.facebookButton} onPress={() => {
@@ -90,14 +90,14 @@ class LoginScreen extends React.PureComponent {
                         <Text style={styles.registerText}>Register</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
+            </ScrollView>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, marginVertical: RFValue(12, 600) },
-    child: { flex: 1, margin: RFValue(3, 600) },
+    container: { marginVertical: RFValue(12, 600) },
+    child: { height: RFValue(60, 600), margin: RFValue(3, 600) },
     facebookButton: { backgroundColor: '#3B589E', flex: 1, margin: RFValue(4, 600), borderRadius: RFValue(10, 600), alignItems: 'center', justifyContent: 'center' },
     registerButton: { backgroundColor: 'white', borderWidth: 1, borderColor: '#5D3EBD', flex: 1, margin: RFValue(4, 600), borderRadius: RFValue(10, 600), alignItems: 'center', justifyContent: 'center' },
     forgotPasswordButton: { flex: 1, alignItems: 'center', justifyContent: 'center' },

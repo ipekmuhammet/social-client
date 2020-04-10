@@ -1,6 +1,6 @@
 import React from 'react'
+import { ScrollView, View, TouchableOpacity, TextInput, Text, StyleSheet } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { View, TouchableOpacity, TextInput, Text, StyleSheet } from 'react-native'
 
 class ForgotPasswordScreen extends React.Component {
 
@@ -10,7 +10,7 @@ class ForgotPasswordScreen extends React.Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
                 <View style={[styles.child, styles.inputContainer]}>
                     {
                         //  <TextInput
@@ -32,20 +32,14 @@ class ForgotPasswordScreen extends React.Component {
                         <Text style={styles.sendCodeText}>Send Code</Text>
                     </TouchableOpacity>
                 </View>
-                <View style={styles.child} />
-                <View style={styles.child} />
-                <View style={styles.child} />
-                <View style={styles.child} />
-                <View style={styles.child} />
-                <View style={styles.child} />
-            </View>
+            </ScrollView>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, marginVertical: RFValue(12, 600) },
-    child: { flex: 1, margin: RFValue(3, 600) },
+    container: { marginVertical: RFValue(12, 600) },
+    child: { height: RFValue(60, 600), margin: RFValue(3, 600) },
     inputContainer: { flexDirection: 'row' },
     input: {
         flex: 1, margin: RFValue(4, 600), borderRadius: RFValue(6, 600),

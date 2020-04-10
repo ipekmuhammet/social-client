@@ -1,6 +1,6 @@
 import React from 'react'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { View, TouchableOpacity, Image, Text, TextInput, StyleSheet } from 'react-native'
+import { ScrollView, View, TouchableOpacity, Image, Text, TextInput, StyleSheet, Dimensions } from 'react-native'
 import { connect } from 'react-redux'
 
 import { saveAddress } from '../../actions/actions2'
@@ -30,7 +30,7 @@ class CompleteAddressScreen extends React.Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <ScrollView>
                 <ConfirmAddressPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
                 <View style={styles.mapContainer}>
 
@@ -101,20 +101,19 @@ class CompleteAddressScreen extends React.Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-            </View>
+            </ScrollView>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1 },
-    mapContainer: { flex: 1.4 },
-    body: { flex: 3, marginVertical: RFValue(12, 600) },
+    mapContainer: { height: RFValue(136, 600) },
+    body: { marginVertical: RFValue(12, 600) },
     markerContainer: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', zIndex: RFValue(2, 600) },
     marker: { width: RFValue(48, 600), borderColor: '#C3C3C3', height: RFValue(48, 600) },
-    inputContainer: { flex: 1, margin: RFValue(2, 600) },
+    inputContainer: { height: RFValue(60, 600), margin: RFValue(2, 600), flex: 1 },
     input2Container: { flex: 2, margin: RFValue(2, 600) },
-    inputContainerChild: { flex: 1, margin: RFValue(2, 600), flexDirection: 'row' },
+    inputContainerChild: { height: 62, margin: RFValue(2, 600), display: 'flex', flexDirection: 'row' },
     input: {
         flex: 1, borderWidth: 1, alignItems: 'center', justifyContent: 'center', margin: RFValue(3, 600),
         borderRadius: RFValue(8, 600),

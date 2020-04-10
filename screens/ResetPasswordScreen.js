@@ -1,7 +1,7 @@
 import React from 'react'
 import { RFValue } from 'react-native-responsive-fontsize'
 import axios from 'axios'
-import { View, TouchableOpacity, TextInput, Text, StyleSheet, Alert } from 'react-native'
+import { ScrollView, View, TouchableOpacity, TextInput, Text, StyleSheet, Alert } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
 import PasswordChangedPopup from '../components/popups/PasswordChangedPopup'
@@ -21,7 +21,7 @@ class ResetPasswordScreen extends React.PureComponent {
 
     render() {
         return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
                 <PasswordChangedPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
                 <View style={[styles.child, styles.inputContainer]}>
 
@@ -85,17 +85,14 @@ class ResetPasswordScreen extends React.PureComponent {
                         <Text style={styles.resendCodeText}>Resend Code</Text>
                     </TouchableOpacity>
                 </View>
-                <View style={styles.child} />
-                <View style={styles.child} />
-                <View style={styles.child} />
-            </View>
+            </ScrollView>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, marginVertical: RFValue(12, 600) },
-    child: { flex: 1, margin: RFValue(3, 600) },
+    container: { marginVertical: RFValue(12, 600) },
+    child: { height: RFValue(60, 600), margin: RFValue(3, 600) },
     inputContainer: { flexDirection: 'row' },
     input: {
         flex: 1, margin: RFValue(4, 600), borderRadius: RFValue(6, 600),

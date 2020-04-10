@@ -1,6 +1,6 @@
 import React from 'react'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { View, TouchableOpacity, TextInput, Text, StyleSheet, AsyncStorage, Alert } from 'react-native'
+import { ScrollView, View, TouchableOpacity, TextInput, Text, StyleSheet, AsyncStorage, Alert } from 'react-native'
 import axios from 'axios'
 
 class ActivationScreen extends React.PureComponent {
@@ -11,7 +11,7 @@ class ActivationScreen extends React.PureComponent {
 
     render() {
         return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
 
                 <View style={styles.child}>
                     <TextInput
@@ -42,22 +42,14 @@ class ActivationScreen extends React.PureComponent {
                         <Text style={styles.registerText}>Register</Text>
                     </TouchableOpacity>
                 </View>
-
-                <View style={styles.child} />
-                <View style={styles.child} />
-                <View style={styles.child} />
-                <View style={styles.child} />
-                <View style={styles.child} />
-                <View style={styles.child} />
-
-            </View>
+            </ScrollView>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, marginVertical: RFValue(12, 600) },
-    child: { flex: 1, margin: RFValue(3, 600) },
+    container: { marginVertical: RFValue(12, 600) },
+    child: { height: RFValue(60, 600), margin: RFValue(3, 600) },
     activationCodeInput: {
         flex: 1, margin: RFValue(4, 600), borderRadius: RFValue(6, 600),
         paddingHorizontal: RFValue(12, 600), fontSize: RFValue(19, 600), borderWidth: .8, borderColor: '#ABABAB'
