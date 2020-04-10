@@ -26,9 +26,11 @@ const ProfileScreen = ({ navigation }) => (
             </SettingItem>
         </TouchableOpacity>
 
-        <SettingItem title={'Payment Options'}>
-            <Ionicons color={'#4522A0'} name={'ios-card'} size={32} />
-        </SettingItem>
+        <TouchableOpacity onPress={() => { navigation.navigate('paymentOptionsScreen') }}>
+            <SettingItem title={'Payment Options'}>
+                <Ionicons color={'#4522A0'} name={'ios-card'} size={32} />
+            </SettingItem>
+        </TouchableOpacity>
 
         {
             //  <SettingItem title={'Favorite Products'}>

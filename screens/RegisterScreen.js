@@ -1,7 +1,8 @@
 import React from 'react'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { View, CheckBox, TouchableOpacity, TextInput, Text, StyleSheet, Alert } from 'react-native'
+import { View, TouchableOpacity, TextInput, Text, StyleSheet, Alert } from 'react-native'
 import axios from 'axios'
+import TermsComponent from '../components/TermsComponent'
 
 class RegisterScreen extends React.PureComponent {
 
@@ -75,21 +76,7 @@ class RegisterScreen extends React.PureComponent {
                 </View>
 
                 <View style={styles.child} />
-
-                <View style={[styles.child, styles.termsContainer]}>
-                    <View style={styles.checkBoxContainer}>
-                        <CheckBox style={styles.checkBox} />
-                    </View>
-                    <View style={styles.termsInfoContainer}>
-                        <View style={styles.termsTextContainer}>
-                            <Text style={styles.termsText}>I have read and accept </Text>
-                            <Text style={styles.termsLinkText}>the Terms and</Text>
-                        </View>
-                        <View style={styles.termsTextContainer}>
-                            <Text style={styles.termsLinkText}>Conditions.</Text>
-                        </View>
-                    </View>
-                </View>
+                <TermsComponent />
                 <View style={styles.child} />
 
                 {

@@ -9,6 +9,8 @@ import AddressesScreen from '../SettingsScreens/AddressesScreen'
 import SearchAddressScreen from '../AddressScreens/SearchAddressScreen'
 import PinAddressScreen from '../AddressScreens/PinAddressScreen'
 import CompleteAddressScreen from '../AddressScreens/CompleteAddressScreen'
+import PaymentOptionsScreen from '../PaymentOptionsScreens/PaymentOptionsScreen'
+import AddNewCardScreen from '../PaymentOptionsScreens/AddNewCardScreen'
 
 const Stack = createStackNavigator()
 
@@ -64,6 +66,21 @@ const Screen4 = () => (
             headerTintColor: 'white',
             headerStyle: styles.headerStyle
         }} />
+
+        <Stack.Screen name='paymentOptionsScreen' component={PaymentOptionsScreen} options={{
+            title: 'Payment Options',
+            headerTitleAlign: 'center',
+            headerTintColor: 'white',
+            headerStyle: styles.headerStyle
+        }} />
+
+        <Stack.Screen name='addNewCardScreen' component={AddNewCardScreen} options={{
+            title: 'Add New Card',
+            headerTitleAlign: 'center',
+            headerTintColor: 'white',
+            headerStyle: styles.headerStyle
+        }} />
+
     </Stack.Navigator>
 )
 

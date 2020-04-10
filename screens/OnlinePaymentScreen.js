@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     input: { borderWidth: 0, borderBottomWidth: 1.5, borderColor: '#333', color: 'black' },
     totalPriceText: { color: 'black', fontWeight: 'bold', fontSize: 20 },
     totalPrice: { color: 'black', fontWeight: 'bold', fontSize: RFValue(24, 600) },
-    cardInformationContainer: { flex: .3 },
+    cardInformationContainer: { flex: .34, marginVertical: RFValue(24, 600) },
     inputContainer: { flex: 1, marginHorizontal: RFValue(12, 600) },
     rowInputContainer: { flex: 1, flexDirection: 'row', marginHorizontal: RFValue(12, 600) },
     child: { flex: 1 },
