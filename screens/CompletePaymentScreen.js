@@ -6,8 +6,8 @@ import HeadingDivider from '../components/HeadingDivider'
 import CompletePayment from '../components/CompletePayment'
 
 import AddressSelectComponent from '../components/CompletePaymentComponents/AddressSelectComponent'
+import PaymentTypeSelectComponent from '../components/CompletePaymentComponents/PaymentTypeSelectComponent'
 //  import OrderTimeComponent from '../components/CompletePaymentComponents/OrderTimeComponent'
-//  import PaymentTypeSelectComponent from '../components/CompletePaymentComponents/PaymentTypeSelectComponent'
 //  import OrderNoteComponent from '../components/CompletePaymentComponents/OrderNoteComponent'
 
 const CompletePaymentScreen = ({ navigation }) => (
@@ -15,11 +15,11 @@ const CompletePaymentScreen = ({ navigation }) => (
         <ScrollView>
             <HeadingDivider title={'Adres Seçimi'} />
             <AddressSelectComponent navigation={navigation} />
+            <HeadingDivider title={'Ödeme Şekli'} />
+            <PaymentTypeSelectComponent navigation={navigation} />
             {
                 //  <HeadingDivider title={'Gönderim Zamanı'} />
                 //  <OrderTimeComponent />
-                //  <HeadingDivider title={'Ödeme Şekli'} />
-                //  <PaymentTypeSelectComponent navigation={navigation} />
                 //  <HeadingDivider title={'Sipariş Notu'} />
                 //  <OrderNoteComponent />
             }
