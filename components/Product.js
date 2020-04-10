@@ -54,13 +54,13 @@ const styles = StyleSheet.create({
 		top: -2,
 		right: -2,
 		zIndex: 1,
-		borderRadius: RFValue(8, 600),
+		borderRadius: 8,
 		borderWidth: .6,
 		width: RFValue(28, 600),
 		height: RFValue(28, 600),
 		borderColor: '#CDCDCD',
 		backgroundColor: 'white',
-		shadowColor: '#000', shadowOffset: { width: 1, height: 1, }, shadowOpacity: .2, shadowRadius: RFValue(12, 600), elevation: 4
+		shadowColor: '#000', shadowOffset: { width: 1, height: 1, }, shadowOpacity: .2, shadowRadius: 12, elevation: 4
 	},
 	addProductIcon: {
 		color: '#5837C2',
