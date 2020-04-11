@@ -6,11 +6,11 @@ import { connect } from 'react-redux'
 
 import { addProduct } from '../actions/actions1'
 
-const Product = ({ data: { id, product_name, kind_name, price, image }, addProduct, token }) => (
+const Product = ({ data: { id, product_name, kind_name, price, image }, addProduct }) => (
 	<View style={styles.container}>
 
 		<TouchableOpacity onPress={() => {
-			addProduct(id, token)
+			addProduct(id)
 		}}
 			style={styles.addProductButton}>
 			<Text style={styles.addProductIcon}>+</Text>
@@ -103,16 +103,8 @@ const styles = StyleSheet.create({
 	}
 })
 
-const mapStateToProps = ({
-	reducer4: {
-		token
-	}
-}) => ({
-	token
-})
-
 const mapDispatchToProps = {
 	addProduct
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Product)
+export default connect(null, mapDispatchToProps)(Product)

@@ -30,9 +30,9 @@ export const makeOrder = (cart, token, selectedCard, selectedAddress, navigation
 	}
 }
 
-export const addProduct = (productId, token) => {
+export const addProduct = (productId) => {
 	return (dispatch) => {
-		axios.get(`http://192.168.1.102:3000/user/productById?id=${productId}`, { headers: { Authorization: token } }).then(({ data }) => {
+		axios.get(`http://192.168.1.102:3000/productById?id=${productId}`).then(({ data }) => {
 			dispatch({
 				type: ADD_PRODUCT,
 				payload: {

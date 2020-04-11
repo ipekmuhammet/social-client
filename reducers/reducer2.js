@@ -1,5 +1,5 @@
 import { SAVE_CARD, DELETE_CARD } from '../actions/actions2'
-import { SET_INITIAL_DATAS } from '../actions/actions4'
+import { SET_USER } from '../actions/actions4'
 
 const INITIAL_STATE = {
     paymentType: 0,
@@ -14,7 +14,7 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case SET_INITIAL_DATAS: return Object.assign({}, state, { addresses: action.payload.user.addresses })
+        case SET_USER: return Object.assign({}, state, { addresses: action.payload.user.addresses })
         case SAVE_CARD: {
             state.cards.push(action.payload.card)
             return Object.assign({}, state, { cards: [...state.cards] })
