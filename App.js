@@ -52,7 +52,7 @@ export default function App(props) {
 		return (
 			<Provider store={store}>
 				<NavigationContainer ref={containerRef} initialState={initialNavigationState}>
-					<Stack.Navigator initialRouteName={'Loading'}>
+					<Stack.Navigator initialRouteName={'Welcome'}>
 						<Stack.Screen name='Welcome' component={WelcomeStack} options={{ headerShown: false }} />
 						<Stack.Screen name='Loading' component={LoadingScreen} options={{ headerShown: false }} />
 						<Stack.Screen name='Root' component={BottomTabNavigator} />

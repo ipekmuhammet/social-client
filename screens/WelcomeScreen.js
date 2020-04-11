@@ -15,7 +15,7 @@ const WelcomeScreen = ({ navigation }) => (
 
         <View style={styles.child}>
             <TouchableOpacity style={styles.continueWithRegistration} onPress={() => {
-                console.log('Continue without registration')
+                navigation.navigate('Loading', { next: true })
             }}>
                 <Text style={styles.buttonText}>Continue Without Registration</Text>
             </TouchableOpacity>

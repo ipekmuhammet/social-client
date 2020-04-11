@@ -1,7 +1,7 @@
 import { AsyncStorage } from 'react-native'
 import axios from 'axios'
 
-export const SET_INITIAL_DATAS = 'SET_INITIAL_DATAS', SET_USER = 'SET_USER'
+export const SET_INITIAL_DATAS = 'SET_INITIAL_DATAS', SET_USER = 'SET_USER', LOGOUT = 'LOGOUT'
 
 const getCategories = () => axios.get('http://192.168.1.102:3000/categories').then(({ data }) => data)
 
@@ -9,15 +9,15 @@ const getProducts = () => axios.get('http://192.168.1.102:3000/products').then((
 
 export const setInitialDatas = () => {
 	return (dispatch) => {
-			Promise.all([getCategories(), getProducts()]).then(res => {
-				dispatch({
-					type: SET_INITIAL_DATAS,
-					payload: {
-						categories: res[0],
-						products: res[1]
-					}
-				})
+		Promise.all([getCategories(), getProducts()]).then(res => {
+			dispatch({
+				type: SET_INITIAL_DATAS,
+				payload: {
+					categories: res[0],
+					products: res[1]
+				}
 			})
+		})
 
 		//	AsyncStorage.multiGet(['token', 'user']).then(vals => {
 		//		Promise.all([getCategories(vals[0][1]), getProducts(vals[0][1])]).then(res => {
@@ -55,7 +55,7 @@ export const logout = (navigation) => {
 	return (dispatch) => {
 		AsyncStorage.multiRemove(['token', 'user']).then(vals => {
 			dispatch({
-				type: SET_INITIAL_DATAS,
+				type: LOGOUT,
 				payload: {
 					categories: [],
 					products: [],

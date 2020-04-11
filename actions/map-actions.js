@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const SET_REGION = 'SET_REGION', SET_ADDRESS = 'SET_ADDRESS', SET_REGION_BY_PLACE = 'SET_REGION_BY_PLACE', SET_CURRENT_REGION = 'SET_CURRENT_REGION'
+export const SET_REGION = 'SET_REGION', SET_ADDRESS = 'SET_ADDRESS', SET_REGION_BY_PLACE = 'SET_REGION_BY_PLACE', SET_CURRENT_REGION = 'SET_CURRENT_REGION'
 
 const getAddress = (region) => (
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${region.latitude},${region.longitude}&key=AIzaSyDOKcW0tFvi_T9vFyERfUDh20IxfTfBsmA`)

@@ -7,6 +7,7 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case SET_SELECTED_CATEGORY: return Object.assign({}, state, { selectedCategory: action.payload.selectedCategory })
+        
         default: return state
     }
 }

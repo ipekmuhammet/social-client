@@ -1,10 +1,17 @@
+import { SET_REGION, SET_ADDRESS, SET_REGION_BY_PLACE, SET_CURRENT_REGION } from '../actions/map-actions'
+
 const INITIAL_STATE = {
     region: {},
     address: ''
 }
 
 export default (state = INITIAL_STATE, action) => {
-    switch (state) {
-        default: return Object.assign({}, state, action.payload)
+    switch (action.type) {
+        case SET_REGION:
+        case SET_ADDRESS:
+        case SET_REGION_BY_PLACE:
+        case SET_CURRENT_REGION: return Object.assign({}, state, action.payload)
+        
+        default: return state
     }
 }
