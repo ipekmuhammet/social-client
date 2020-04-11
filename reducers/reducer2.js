@@ -1,5 +1,6 @@
 import { SAVE_CARD, DELETE_CARD, DELETE_ADDRESS, SAVE_ADDRESS, SET_SELECTED_ADDRESS, SET_SELECTED_CARD, SET_PAYMENT_TYPE } from '../actions/actions2'
 import { SET_USER, LOGOUT } from '../actions/actions4'
+import { MAKE_ORDER } from '../actions/actions1'
 
 const INITIAL_STATE = {
     paymentType: 0,
@@ -14,6 +15,9 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
+
+        case MAKE_ORDER: return Object.assign({}, state, { selectedCard: null, selectedAddress: null })
+
         case LOGOUT: return Object.assign({}, state, { addresses: [] })
 
         case SET_USER: return Object.assign({}, state, { addresses: action.payload.user.addresses })
@@ -33,7 +37,7 @@ export default (state = INITIAL_STATE, action) => {
         case SET_SELECTED_ADDRESS:
         case SET_SELECTED_CARD:
         case SET_PAYMENT_TYPE: return Object.assign({}, state, action.payload)
-        
+
         default: return state
     }
 }
