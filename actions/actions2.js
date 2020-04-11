@@ -57,9 +57,18 @@ export const deleteCard = (cardId, token) => {
     }
 }
 
-export const saveAddress = (address, token) => {
+export const saveAddress = (address, details, token) => {
+    const body = {
+        open_address: address,
+        address_title: details.addressTitle,
+        building_no: details.buildingNo,
+        floor: details.floor,
+        apt_no: details.aptNo,
+        directions: details.directions
+    }
+
     return (dispatch) => {
-        axios.put('http://192.168.1.102:3000/user/add-address', { open_address: address }, { headers: { Authorization: token } })
+        axios.put('http://192.168.1.102:3000/user/add-address', body, { headers: { Authorization: token } })
             .then(({ status, data }) => {
                 if (status === 200) {
                     // AsyncStorage.setItem('user', JSON.stringify(data)) // User serverda güncellenince, güncellenenen tüm user'ı geri dönüyor.

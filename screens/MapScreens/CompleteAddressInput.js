@@ -5,18 +5,17 @@ import { TextInput, StyleSheet } from 'react-native'
 
 import { setAddress } from '../../actions/map-actions'
 
-const CompleteAddressInput = ({ address }) => (
+const CompleteAddressInput = ({ address, setAddress }) => (
     <TextInput
         value={address}
-        onChangeText={(address) => { this.setState({ address }) }}
+        onChangeText={setAddress}
         placeholder={'Address'}
         style={styles.input} />
 )
 
 const styles = StyleSheet.create({
     input: {
-        flex: 1, borderWidth: 1, alignItems: 'center', justifyContent: 'center', margin: RFValue(3, 600),
-        borderRadius: 8,
+        flex: 1, borderWidth: 1, alignItems: 'center', justifyContent: 'center', margin: RFValue(3, 600), borderRadius: 8,
         borderColor: '#C3C3C3', paddingHorizontal: RFValue(13, 600), fontSize: RFValue(18, 600)
     }
 })

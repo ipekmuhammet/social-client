@@ -23,7 +23,7 @@ class CompleteAddressScreen extends React.Component {
     setPopupState = (scaleAnimationModal, complete, address, token) => {
         this.setState({ scaleAnimationModal })
         if (complete) {
-            this.props.saveAddress(address, token)
+            this.props.saveAddress(address, this.state, token)
             this.props.navigation.pop(3)
         }
     }
@@ -43,12 +43,14 @@ class CompleteAddressScreen extends React.Component {
                 </View>
                 <View style={styles.body}>
                     <View style={styles.inputContainerChild}>
+                        {
+                            //  <View style={styles.inputContainer}>
+                            //      <TextInput
+                            //          placeholder={'Address Icon'}
+                            //          style={styles.input} />
+                            //  </View>
+                        }
                         <View style={styles.inputContainer}>
-                            <TextInput
-                                placeholder={'Address Icon'}
-                                style={styles.input} />
-                        </View>
-                        <View style={styles.input2container}>
                             <TextInput
                                 onChangeText={(addressTitle) => { this.setState({ addressTitle }) }}
                                 value={this.state.addressTitle} placeholder={'Address title (Home, Work)'}

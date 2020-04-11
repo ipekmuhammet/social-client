@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 
 import { addProduct } from '../actions/actions1'
 
-const Product = ({ data: { id, product_name, kind_name, price, image }, addProduct }) => (
+const Product = ({ data: { id, product_name, kind_name, price, image }, addProduct, token }) => (
 	<View style={styles.container}>
 
 		<TouchableOpacity onPress={() => {

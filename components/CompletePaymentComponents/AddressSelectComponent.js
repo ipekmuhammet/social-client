@@ -15,7 +15,7 @@ const AddressSelectComponent = ({ navigation, title, subTitle }) => (
                 <Text numberOfLines={1} style={styles.paymentTitle}>{title}</Text>
             </View>
             <View style={styles.paymentInfoTextContainer}>
-                <Text numberOfLines={1} style={styles.paymentDetail}>{subTitle}</Text>
+                <Text numberOfLines={2} style={styles.paymentDetail}>{subTitle}</Text>
             </View>
         </View>
         <View style={styles.iconContainer}>
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         marginHorizontal: RFValue(8, 600),
         padding: RFValue(4, 600),
-        height: RFValue(60, 600),
+        height: RFValue(72, 600),
         flex: 5
     },
     paymentInfoTextContainer: {
