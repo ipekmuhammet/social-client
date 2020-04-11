@@ -10,7 +10,7 @@ const Product = ({ data: { id, product_name, kind_name, price, image }, addProdu
 	<View style={styles.container}>
 
 		<TouchableOpacity onPress={() => {
-			addProduct(id)
+			addProduct(id, token)
 		}}
 			style={styles.addProductButton}>
 			<Text style={styles.addProductIcon}>+</Text>
@@ -103,8 +103,16 @@ const styles = StyleSheet.create({
 	}
 })
 
+const mapStateToProps = ({
+	reducer4: {
+		token
+	}
+}) => ({
+	token
+})
+
 const mapDispatchToProps = {
 	addProduct
 }
 
-export default connect(null, mapDispatchToProps)(Product)
+export default connect(mapStateToProps, mapDispatchToProps)(Product)

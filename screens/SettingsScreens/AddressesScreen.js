@@ -6,9 +6,9 @@ import ClickableSettingItem from '../../components/ClickableSettingItem'
 import HeadingDivider from '../../components/HeadingDivider'
 import AddressList from '../../components/AddressList'
 
-const AddressesScreen = ({ navigation }) => (
+const AddressesScreen = ({ navigation, route }) => (
     <View style={styles.container}>
-        <AddressList navigation={navigation} footer={() => (
+        <AddressList navigation={route.params.navigation} footer={() => (
             <React.Fragment>
                 <HeadingDivider title={'Add Address'} />
 

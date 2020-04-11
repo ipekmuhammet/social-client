@@ -23,8 +23,8 @@ const CompletePaymentScreen = ({ navigation, cards, addresses, selectedCard, sel
             <HeadingDivider title={'Ödeme Şekli'} />
             <PaymentTypeSelectComponent
                 navigation={navigation}
-                title={cards.find(card => card.id === selectedCard).cardLabel || 'Kart Seçiniz'}
-                subTitle={cards.find(card => card.id === selectedCard).cardNumber || 'Kart Seçiniz'}
+                title={(cards.find(card => card.id === selectedCard))?.cardLabel ?? 'Kart Seçiniz'}
+                subTitle={(cards.find(card => card.id === selectedCard))?.cardNumber ?? 'Kart Seçiniz'}
             />
             {
                 //  <HeadingDivider title={'Gönderim Zamanı'} />

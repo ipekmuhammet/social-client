@@ -5,33 +5,50 @@ import { connect } from 'react-redux'
 
 import { makeOrder } from '../actions/actions1'
 
-const CompletePaymentComponent = ({ completable, cart, paymentType, navigation, makeOrder }) => {
-    const products = Object.values(cart)
-    const totalPrice = products.reduce((previousValue, currentValue) => previousValue + parseFloat(currentValue.price) * currentValue.count, 0).toFixed(2)
+class CompletePaymentComponent extends React.PureComponent {
 
-    const onCompletePaymentClick = () => {
+    onCompletePaymentClick = () => {
+        const { completable, cart, token, paymentType, navigation, makeOrder, selectedCard, selectedAddress } = this.props
         if (completable) {
-            if (paymentType === 0)
-                navigation.navigate('onlinePaymentScreen')
-            else
-                makeOrder(cart, navigation)
+            if (selectedCard && selectedAddress) {
+                makeOrder(cart, token, selectedCard, selectedAddress, navigation)
+            } else {
+                if (!selectedAddress) {
+                    console.log('Lütfen adres seçiniz')
+                } else {
+                    console.log('Lütfen cart seçiniz')
+                }
+            }
         } else {
             navigation.navigate('completePayment')
         }
+
+        //  if (completable) {
+        //      if (paymentType === 0)
+        //          navigation.navigate('onlinePaymentScreen')
+        //      else
+        //          makeOrder(cart, navigation)
+        //  } else {
+        //      navigation.navigate('completePayment')
+        //  }
     }
 
-    return (
-        <View style={styles.completePaymentContainer}>
-            <View style={styles.totalPriceContainer}>
-                <Text style={styles.totalPriceText}>
-                    {`Toplam: ${totalPrice} TL`}
-                </Text>
+    render() {
+        const products = Object.values(this.props.cart)
+        const totalPrice = products.reduce((previousValue, currentValue) => previousValue + parseFloat(currentValue.price) * currentValue.count, 0).toFixed(2)
+        return (
+            <View style={styles.completePaymentContainer}>
+                <View style={styles.totalPriceContainer}>
+                    <Text style={styles.totalPriceText}>
+                        {`Toplam: ${totalPrice} TL`}
+                    </Text>
+                </View>
+                <TouchableOpacity onPress={this.onCompletePaymentClick} style={styles.completePaymentButton}>
+                    <Text style={styles.completePaymentText}>SİPARİŞ VER</Text>
+                </TouchableOpacity>
             </View>
-            <TouchableOpacity onPress={onCompletePaymentClick} style={styles.completePaymentButton}>
-                <Text style={styles.completePaymentText}>SİPARİŞ VER</Text>
-            </TouchableOpacity>
-        </View>
-    )
+        )
+    }
 }
 
 const styles = StyleSheet.create({
@@ -57,11 +74,19 @@ const mapStateToProps = ({
         cart
     },
     reducer2: {
-        paymentType
+        paymentType,
+        selectedCard,
+        selectedAddress
+    },
+    reducer4: {
+        token
     }
 }) => ({
     cart,
-    paymentType
+    paymentType,
+    selectedCard,
+    selectedAddress,
+    token
 })
 
 const mapDispatchToProps = {

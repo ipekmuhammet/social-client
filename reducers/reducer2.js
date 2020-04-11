@@ -4,12 +4,12 @@ import { SET_INITIAL_DATAS } from '../actions/actions4'
 const INITIAL_STATE = {
     paymentType: 0,
     cards: [
-        { id: 0, type: 'visa', cardLabel: 'Visa Card', cardNumber: '4766620000000001', type: 'visa' },
-        { id: 1, type: 'mastercard', cardLabel: 'Master Card', cardNumber: '5504720000000003', type: 'mastercard' }
+        { id: '0', type: 'visa', cardLabel: 'Visa Card', cardNumber: '4766620000000001', type: 'visa' },
+        { id: '1', type: 'mastercard', cardLabel: 'Master Card', cardNumber: '5504720000000003', type: 'mastercard' }
     ],
     addresses: [],
-    selectedCard: 0,
-    selectedAddress: 0
+    selectedCard: null,
+    selectedAddress: null
 }
 
 export default (state = INITIAL_STATE, action) => {

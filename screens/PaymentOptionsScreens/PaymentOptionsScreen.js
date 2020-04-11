@@ -30,7 +30,9 @@ class PaymentOptionsScreen extends React.Component {
                     data={this.props.cards}
                     keyExtractor={item => item.number}
                     renderItem={({ item }) => (
-                        <CardComponent item={item} setPopupState={this.setPopupState} navigation={this.props.navigation}/>
+                        <CardComponent item={item}
+                            setPopupState={this.setPopupState}
+                            navigation={this.props.route.params.navigation} />
                     )}
                     ListFooterComponent={() => <AddNewCardComponent navigation={this.props.navigation} />}
                 />

@@ -100,7 +100,8 @@ export const setSelectedCard = (selectedCard, navigation) => {
                 selectedCard
             }
         })
-        navigation.goBack()
+        console.log(navigation.state)
+        navigation.goBack('completePayment')
     }
 }
 
@@ -112,6 +113,6 @@ export const setSelectedAddress = (selectedAddress, navigation) => {
                 selectedAddress
             }
         })
-        navigation.goBack()
+        navigation.goBack('completePayment')
     }
 }
