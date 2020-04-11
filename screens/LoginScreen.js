@@ -3,8 +3,10 @@ import { connect } from 'react-redux'
 import { ScrollView, View, TouchableOpacity, TextInput, Text, Alert, StyleSheet } from 'react-native'
 import axios from 'axios'
 import { RFValue } from 'react-native-responsive-fontsize'
+import { showMessage, hideMessage } from "react-native-flash-message"
 
 import { login } from '../actions/actions4'
+import WrongPassword from '../components/popups/WrongPassword'
 
 class LoginScreen extends React.PureComponent {
 
@@ -18,6 +20,8 @@ class LoginScreen extends React.PureComponent {
     render() {
         return (
             <ScrollView style={styles.container}>
+                <WrongPassword />
+
                 {
                     //  <View style={styles.child}>
                     //      <TouchableOpacity style={styles.facebookButton} onPress={() => {
@@ -64,7 +68,8 @@ class LoginScreen extends React.PureComponent {
                                 }
                             }).catch((err) => {
                                 console.log(err)
-                                Alert.alert('err2', JSON.stringify(err))
+
+                                showMessage({ message: "Simple message" })
                             })
                         }}>
                         <Text style={styles.loginText}>Login</Text>
@@ -104,13 +109,17 @@ const styles = StyleSheet.create({
     forgotPasswordButton: { flex: 1, alignItems: 'center', justifyContent: 'center' },
     loginButton: { backgroundColor: '#5D3EBD', flex: 1, margin: RFValue(4, 600), borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
     inputContainer: { flexDirection: 'row' },
-    input: { flex: 1, margin: RFValue(4, 600), borderRadius: 6, paddingHorizontal: RFValue(12, 600), fontSize: RFValue(19, 600), borderWidth: .8, borderColor: '#ABABAB' },
+    input: { flex: 1, margin: RFValue(4, 600), zIndex: -1, borderRadius: 6, paddingHorizontal: RFValue(12, 600), fontSize: RFValue(19, 600), borderWidth: .8, borderColor: '#ABABAB' },
     facebookText: { color: 'white', fontSize: RFValue(19, 600) },
     loginText: { color: 'white', fontSize: RFValue(19, 600) },
     forgotPasswordText: { color: '#6E7586', fontSize: RFValue(19, 600), fontWeight: 'bold' },
     registerText: { color: '#5D3EBD', fontSize: RFValue(19, 600), fontWeight: 'bold' },
     empty: { height: RFValue(28, 600) },
-    buttonDivider: { height: RFValue(22, 600), backgroundColor: '#EDEEF0' }
+    buttonDivider: { height: RFValue(22, 600), backgroundColor: '#EDEEF0' },
+    view: {
+        justifyContent: 'flex-end',
+        margin: 0,
+    }
 })
 
 const mapDispatchToProps = {
