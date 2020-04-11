@@ -12,12 +12,12 @@ class List extends React.PureComponent {
         let { width } = Dimensions.get('window')
 
         let dataProvider = new DataProvider((r1, r2) => r1 !== r2)
-        
+
         this.layoutProvider = new LayoutProvider(index => {
             return 0
         }, (type, dim) => {
-            dim.width = width / 3
-            dim.height = 240
+            dim.width = width / 3.1
+            dim.height = 260
         })
 
         this.state = {

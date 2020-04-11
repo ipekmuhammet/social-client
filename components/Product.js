@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'column',
 		padding: RFPercentage(1),
-		margin: RFPercentage(1),
 		marginVertical: RFPercentage(2),
 		zIndex: -1,
 		backgroundColor: 'transparent'
