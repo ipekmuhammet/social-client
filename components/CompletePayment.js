@@ -8,15 +8,15 @@ import { makeOrder } from '../actions/actions1'
 class CompletePaymentComponent extends React.PureComponent {
 
     onCompletePaymentClick = () => {
-        const { completable, cart, token, paymentType, navigation, makeOrder, selectedCard, selectedAddress } = this.props
+        const { completable, cart, token, paymentType, navigation, makeOrder, selectedCard, selectedAddress, kartRef, addressRef } = this.props
         if (completable) {
             if (selectedCard && selectedAddress) {
                 makeOrder(cart, token, selectedCard, selectedAddress, navigation)
             } else {
                 if (!selectedAddress) {
-                    console.log('Lütfen adres seçiniz')
+                    addressRef.showMessage({ message: '' })
                 } else {
-                    console.log('Lütfen cart seçiniz')
+                    kartRef.showMessage({ message: '' })
                 }
             }
         } else {
@@ -43,9 +43,11 @@ class CompletePaymentComponent extends React.PureComponent {
                         {`Toplam: ${totalPrice} TL`}
                     </Text>
                 </View>
+
                 <TouchableOpacity onPress={this.onCompletePaymentClick} style={styles.completePaymentButton}>
                     <Text style={styles.completePaymentText}>SİPARİŞ VER</Text>
                 </TouchableOpacity>
+
             </View>
         )
     }

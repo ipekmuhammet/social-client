@@ -1,20 +1,19 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import FlashMessage from 'react-native-flash-message'
-import { Ionicons } from '@expo/vector-icons'
 import { RFValue } from 'react-native-responsive-fontsize'
 
-const WrongPassword = () => (
+const MessagePopup = ({ children, text, onRef }) => (
     <FlashMessage
-        renderCustomContent={true}
+        ref={onRef}
         position='top'
         MessageComponent={() => (
             <View style={styles.container}>
                 <View style={styles.iconContainer}>
-                    <Ionicons name={'md-warning'} size={48} color={'red'} />
+                    {children}
                 </View>
                 <View style={styles.titleContainer}>
-                    <Text style={styles.title}>Wrong GSM or password.</Text>
+                    <Text style={styles.title}>{text}</Text>
                 </View>
             </View>
         )}
@@ -28,4 +27,4 @@ const styles = StyleSheet.create({
     title: { fontSize: RFValue(20, 600) }
 })
 
-export default WrongPassword
+export default MessagePopup

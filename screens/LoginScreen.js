@@ -3,24 +3,31 @@ import { connect } from 'react-redux'
 import { ScrollView, View, TouchableOpacity, TextInput, Text, Alert, StyleSheet } from 'react-native'
 import axios from 'axios'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { showMessage, hideMessage } from "react-native-flash-message"
+import { Ionicons } from '@expo/vector-icons'
 
 import { login } from '../actions/actions4'
-import WrongPassword from '../components/popups/WrongPassword'
+import MessagePopup from '../components/popups/MessagePopup'
 
 class LoginScreen extends React.PureComponent {
 
     state = {
         // countryCode: '+90',
         phoneNumber: '905468133198',
-        password: '1234'
+        password: '1234',
+        popupRef: null
     }
 
 
     render() {
         return (
             <ScrollView style={styles.container}>
-                <WrongPassword />
+                <MessagePopup
+                    onRef={(ref) => {
+                        this.setState({ popupRef: ref })
+                    }}
+                    text={'Wrong GSM or password.'}>
+                    <Ionicons name={'md-warning'} size={48} color={'red'} />
+                </MessagePopup>
 
                 {
                     //  <View style={styles.child}>
@@ -69,7 +76,7 @@ class LoginScreen extends React.PureComponent {
                             }).catch((err) => {
                                 console.log(err)
 
-                                showMessage({ message: "Simple message" })
+                                this.state.popupRef.showMessage({ message: '' })
                             })
                         }}>
                         <Text style={styles.loginText}>Login</Text>
