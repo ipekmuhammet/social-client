@@ -32,7 +32,10 @@ class AddressList extends React.PureComponent {
                     renderItem={({ item: address }) => (
                         <InteractiveSettingItem title={address.open_address}
                             onLeftClick={() => {
-                                this.props.setSelectedAddress(address._id, this.props.navigation)
+                                this.props.setSelectedAddress(address._id, () => {
+                                    this.props.navigation.goBack()
+                                    this.props.stackNavigation.popToTop()
+                                })
                             }}
                             onRightIconClick={() => {
                                 this.setPopupState({ scaleAnimationModal: true, addressId: address._id })

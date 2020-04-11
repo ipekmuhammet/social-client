@@ -3,12 +3,17 @@ import { connect } from 'react-redux'
 import { View, TouchableOpacity, Text, Image, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { RFValue } from 'react-native-responsive-fontsize'
+import { CommonActions } from '@react-navigation/native'
+
 import { setSelectedCard } from '../actions/actions2'
 
-const CardComponent = ({ item, navigation, setPopupState, setSelectedCard }) => (
+const CardComponent = ({ item, navigation, stackNavigation, setPopupState, setSelectedCard }) => (
     <View style={styles.container}>
         <TouchableOpacity style={{ flex: 1, flexDirection: 'row' }} onPress={() => {
-            setSelectedCard(item.id, navigation)
+            setSelectedCard(item.id, () => {
+                navigation.goBack()
+                stackNavigation.popToTop()
+            })
         }}>
             <View style={styles.child}>
                 <Image style={styles.cardImage} resizeMode={'contain'} source={require('../assets/visa.png')} />

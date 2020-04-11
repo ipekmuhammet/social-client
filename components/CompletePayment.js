@@ -11,7 +11,9 @@ class CompletePaymentComponent extends React.PureComponent {
         const { completable, cart, token, paymentType, navigation, makeOrder, selectedCard, selectedAddress, kartRef, addressRef } = this.props
         if (completable) {
             if (selectedCard && selectedAddress) {
-                makeOrder(cart, token, selectedCard, selectedAddress, navigation)
+                makeOrder(cart, token, selectedCard, selectedAddress, () => {
+                    navigation.navigate('thanksScreen')
+                })
             } else {
                 if (!selectedAddress) {
                     addressRef.showMessage({ message: '' })
@@ -22,15 +24,6 @@ class CompletePaymentComponent extends React.PureComponent {
         } else {
             navigation.navigate('completePayment')
         }
-
-        //  if (completable) {
-        //      if (paymentType === 0)
-        //          navigation.navigate('onlinePaymentScreen')
-        //      else
-        //          makeOrder(cart, navigation)
-        //  } else {
-        //      navigation.navigate('completePayment')
-        //  }
     }
 
     render() {

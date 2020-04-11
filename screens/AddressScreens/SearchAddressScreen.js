@@ -22,6 +22,17 @@ class SearchAddressScreen extends React.PureComponent {
             })
     }
 
+    onAddressClick = (item) => {
+        this.props.setRegionByPlace(item.place_id, (data) => {
+            this.props.navigation.navigate('pinAddressScreen', {
+                region: {
+                    latitude: data.result.geometry.location.lat,
+                    longitude: data.result.geometry.location.lng,
+                }
+            })
+        })
+    }
+
     //  shouldComponentUpdate(_, nextState) {
     //      //  if (this.state.locations[0]?.id !== nextState.locations[0]?.id)
     //      //      return true
@@ -36,7 +47,7 @@ class SearchAddressScreen extends React.PureComponent {
                     data={this.state.locations}
                     renderItem={({ item }) => (
                         <TouchableOpacity
-                            onPress={() => { this.props.setRegionByPlace(item.place_id, this.props.navigation) }}
+                            onPress={() => this.onAddressClick(item)}
                             style={{ height: 70, paddingVertical: RFValue(16, 600), display: 'flex', flexDirection: 'row', alignItems: 'center', margin: RFValue(6, 600) }}>
                             <View style={{ flex: 1, flexDirection: 'row', marginHorizontal: RFValue(10, 600), alignItems: 'center' }}>
                                 <Ionicons size={32} name={'md-pin'} color={'#6B788B'} />
@@ -58,7 +69,13 @@ class SearchAddressScreen extends React.PureComponent {
                             </View>
 
                             <TouchableOpacity
-                                onPress={() => { this.props.setCurrentRegion(this.props.navigation) }}
+                                onPress={() => {
+                                    this.props.setCurrentRegion((region) => {
+                                        this.props.navigation.navigate('pinAddressScreen', {
+                                            region
+                                        })
+                                    })
+                                }}
                                 style={{ flex: 1, display: 'flex', flexDirection: 'row', alignItems: 'center', marginHorizontal: RFValue(6, 600) }}>
                                 <View style={{ flex: 1, flexDirection: 'row', marginHorizontal: RFValue(10, 600), alignItems: 'center' }}>
                                     <Ionicons size={32} name={'md-locate'} color={'#5E3FBE'} />

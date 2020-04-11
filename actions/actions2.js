@@ -21,7 +21,7 @@ export const setPaymentType = (paymentType) => {
     }
 }
 
-export const saveCard = (card, token, navigation) => {
+export const saveCard = (card, token, cb) => {
     return (dispatch) => {
         //  axios.put(`${SERVER_URL}/user/save-card`, { card }, { headers: { Authorization: token } })
         //      .then(({ status, data }) => {
@@ -36,7 +36,7 @@ export const saveCard = (card, token, navigation) => {
                 // card: data
             }
         })
-        navigation.goBack()
+        cb()
         //        }
         //    })
     }
@@ -102,7 +102,7 @@ export const deleteAddress = (addressId, token) => {
     }
 }
 
-export const setSelectedCard = (selectedCard, navigation) => {
+export const setSelectedCard = (selectedCard, cb) => {
     return (dispatch) => {
         dispatch({
             type: SET_SELECTED_CARD,
@@ -110,11 +110,11 @@ export const setSelectedCard = (selectedCard, navigation) => {
                 selectedCard
             }
         })
-        navigation.goBack('completePayment')
+        cb()
     }
 }
 
-export const setSelectedAddress = (selectedAddress, navigation) => {
+export const setSelectedAddress = (selectedAddress, cb) => {
     return (dispatch) => {
         dispatch({
             type: SET_SELECTED_ADDRESS,
@@ -122,6 +122,6 @@ export const setSelectedAddress = (selectedAddress, navigation) => {
                 selectedAddress
             }
         })
-        navigation.goBack('completePayment')
+        cb()
     }
 }

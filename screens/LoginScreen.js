@@ -69,7 +69,9 @@ class LoginScreen extends React.PureComponent {
                         onPress={() => {
                             axios.post(`http://192.168.1.102:3000/login`, { phone_number: this.state.phoneNumber, password: this.state.password }).then(res => {
                                 if (res.status === 200) {
-                                    this.props.login(res.data.token, res.data.user, this.props.navigation)
+                                    this.props.login(res.data.token, res.data.user, () => {
+                                        this.props.navigation.navigate('Loading')
+                                    })
                                 } else {
                                     Alert.alert('err1', JSON.stringify(res))
                                 }

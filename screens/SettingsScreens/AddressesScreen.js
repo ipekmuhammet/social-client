@@ -8,7 +8,7 @@ import AddressList from '../../components/AddressList'
 
 const AddressesScreen = ({ navigation, route }) => (
     <View style={styles.container}>
-        <AddressList navigation={route.params.navigation} footer={() => (
+        <AddressList stackNavigation={navigation} navigation={route.params.navigation} footer={() => (
             <React.Fragment>
                 <HeadingDivider title={'Add Address'} />
 

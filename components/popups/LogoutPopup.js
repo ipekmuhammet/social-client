@@ -45,7 +45,9 @@ const LogoutPopup = ({ scaleAnimationModal, navigation, setPopupState, logout })
                     style={styles.buttonYes}
                     onPress={() => {
                         setPopupState({ scaleAnimationModal: false })
-                        logout(navigation)
+                        logout(() => {
+                            navigation.navigate('Welcome')
+                        })
                     }}
                     key='button-2' />
             </ModalFooter>

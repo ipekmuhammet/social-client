@@ -7,11 +7,11 @@ export const DECREASE_PRODUCT_COUNT = 'DECREASE_PRODUCT_COUNT'
 export const INCREASE_PRODUCT_COUNT = 'INCREASE_PRODUCT_COUNT'
 export const MAKE_ORDER = 'MAKE_ORDER'
 
-export const makeOrder = (cart, token, selectedCard, selectedAddress, navigation) => {
+export const makeOrder = (cart, token, selectedCard, selectedAddress, cb) => {
 	return (dispatch) => {
 		const body = { cart, selected_card: selectedCard, selected_address: selectedAddress }
 		axios.post(`${SERVER_URL}/user/makeOrder`, body, { headers: { Authorization: token } }).then(() => {
-			navigation.navigate('thanksScreen')
+			cb()
 
 			dispatch({
 				type: MAKE_ORDER,

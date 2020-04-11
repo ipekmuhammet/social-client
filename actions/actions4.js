@@ -36,7 +36,7 @@ export const setInitialDatas = () => {
 	}
 }
 
-export const login = (token, user, navigation) => {
+export const login = (token, user, cb) => {
 	return (dispatch) => {
 		AsyncStorage.multiSet([['token', token], ['user', JSON.stringify(user)]]).then((res) => {
 			dispatch({
@@ -46,13 +46,12 @@ export const login = (token, user, navigation) => {
 					token
 				}
 			})
-
-			navigation.navigate('Loading')
+			cb()
 		})
 	}
 }
 
-export const logout = (navigation) => {
+export const logout = (cb) => {
 	return (dispatch) => {
 		AsyncStorage.multiRemove(['token', 'user']).then(vals => {
 			dispatch({
@@ -64,7 +63,7 @@ export const logout = (navigation) => {
 					token: null
 				}
 			})
-			navigation.navigate('Welcome')
+			cb()
 		})
 	}
 }
