@@ -1,5 +1,6 @@
 import { AsyncStorage } from 'react-native'
 import axios from 'axios'
+import { SERVER_URL } from 'react-native-dotenv'
 
 export const ADD_PRODUCT = 'ADD_PRODUCT'
 export const DECREASE_PRODUCT_COUNT = 'DECREASE_PRODUCT_COUNT'
@@ -9,7 +10,7 @@ export const MAKE_ORDER = 'MAKE_ORDER'
 export const makeOrder = (cart, token, selectedCard, selectedAddress, navigation) => {
 	return (dispatch) => {
 		const body = { cart, selected_card: selectedCard, selected_address: selectedAddress }
-		axios.post('http://192.168.1.102:3000/user/makeOrder', body, { headers: { Authorization: token } }).then(() => {
+		axios.post(`${SERVER_URL}/user/makeOrder`, body, { headers: { Authorization: token } }).then(() => {
 			navigation.navigate('thanksScreen')
 
 			dispatch({

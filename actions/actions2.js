@@ -1,5 +1,6 @@
 import { AsyncStorage } from 'react-native'
 import axios from 'axios'
+import { SERVER_URL } from 'react-native-dotenv'
 
 export const SET_PAYMENT_TYPE = 'SET_PAYMENT_TYPE',
     SAVE_CARD = 'SAVE_CARD',
@@ -22,7 +23,7 @@ export const setPaymentType = (paymentType) => {
 
 export const saveCard = (card, token, navigation) => {
     return (dispatch) => {
-        //  axios.put('http://192.168.1.102:3000/user/save-card', { card }, { headers: { Authorization: token } })
+        //  axios.put(`${SERVER_URL}/user/save-card`, { card }, { headers: { Authorization: token } })
         //      .then(({ status, data }) => {
         //          if (status === 200) {
         dispatch({
@@ -43,7 +44,7 @@ export const saveCard = (card, token, navigation) => {
 
 export const deleteCard = (cardId, token) => {
     return (dispatch) => {
-        //  axios.put('http://192.168.1.102:3000/user/delete-card', { id: cardId }, { headers: { Authorization: token } })
+        //  axios.put(`${SERVER_URL}/user/delete-card`, { id: cardId }, { headers: { Authorization: token } })
         //      .then(({ status }) => {
         //          if (status === 200) {
         dispatch({
@@ -68,7 +69,7 @@ export const saveAddress = (address, details, token) => {
     }
 
     return (dispatch) => {
-        axios.put('http://192.168.1.102:3000/user/add-address', body, { headers: { Authorization: token } })
+        axios.put(`${SERVER_URL}/user/add-address`, body, { headers: { Authorization: token } })
             .then(({ status, data }) => {
                 if (status === 200) {
                     // AsyncStorage.setItem('user', JSON.stringify(data)) // User serverda güncellenince, güncellenenen tüm user'ı geri dönüyor.
@@ -85,7 +86,7 @@ export const saveAddress = (address, details, token) => {
 
 export const deleteAddress = (addressId, token) => {
     return (dispatch) => {
-        axios.put('http://192.168.1.102:3000/user/delete-address', { _id: addressId }, { headers: { Authorization: token } })
+        axios.put(`${SERVER_URL}/user/delete-address`, { _id: addressId }, { headers: { Authorization: token } })
             .then(({ status, data }) => {
                 if (status === 200) {
                     // AsyncStorage.setItem('user', JSON.stringify(data)) // User serverda güncellenince, güncellenenen tüm user'ı geri dönüyor.
@@ -109,7 +110,6 @@ export const setSelectedCard = (selectedCard, navigation) => {
                 selectedCard
             }
         })
-        console.log(navigation.state)
         navigation.goBack('completePayment')
     }
 }

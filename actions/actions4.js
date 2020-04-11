@@ -1,11 +1,12 @@
 import { AsyncStorage } from 'react-native'
 import axios from 'axios'
+import { SERVER_URL } from 'react-native-dotenv'
 
 export const SET_INITIAL_DATAS = 'SET_INITIAL_DATAS', SET_USER = 'SET_USER', LOGOUT = 'LOGOUT'
 
-const getCategories = () => axios.get('http://192.168.1.102:3000/categories').then(({ data }) => data)
+const getCategories = () => axios.get(`${SERVER_URL}/categories`).then(({ data }) => data)
 
-const getProducts = () => axios.get('http://192.168.1.102:3000/products').then(({ data }) => data)
+const getProducts = () => axios.get(`${SERVER_URL}/products`).then(({ data }) => data)
 
 export const setInitialDatas = () => {
 	return (dispatch) => {

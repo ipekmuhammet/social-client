@@ -43,7 +43,7 @@ class ChangePasswordScreen extends React.PureComponent {
                     <TouchableOpacity
                         style={styles.resetPasswordButton}
                         onPress={() => {
-                            axios.put('http://192.168.1.102:3000/change-password', {
+                            axios.put(`${SERVER_URL}/change-password`, {
                                 phone_number: this.props.user.phone_number, old_password: this.state.oldPassword, new_password: this.state.password
                             }).then(({ status }) => {
                                 if (status === 200) {

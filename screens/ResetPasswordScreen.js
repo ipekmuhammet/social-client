@@ -64,7 +64,7 @@ class ResetPasswordScreen extends React.PureComponent {
                     <TouchableOpacity
                         style={styles.resetPasswordButton}
                         onPress={() => {
-                            axios.put('http://192.168.1.102:3000/send-activation-code',
+                            axios.put(`${SERVER_URL}/send-activation-code`,
                                 { activation_code: this.state.activationCode, phone_number: this.state.phoneNumber, new_password: this.state.password }
                             ).then(({ status }) => {
                                 if (status === 200) {
@@ -79,7 +79,7 @@ class ResetPasswordScreen extends React.PureComponent {
                 </View>
                 <View style={styles.child}>
                     <TouchableOpacity style={styles.resendContainer} onPress={() => {
-                        axios.post('http://192.168.1.102:3000/send-activation-code', { phone_number: this.state.phoneNumber })
+                        axios.post(`${SERVER_URL}/send-activation-code`, { phone_number: this.state.phoneNumber })
                     }}>
                         <Ionicons name={'md-refresh'} size={32} color={'#6E7586'} />
                         <Text style={styles.resendCodeText}>Resend Code</Text>
