@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
+import NetInfo from '@react-native-community/netinfo'
 
 import rootReducer from './reducers/root-reducer'
 
@@ -13,10 +14,26 @@ import WelcomeStack from './screens/stacks/WelcomeStack'
 import LoadingScreen from './screens/LoadingScreen'
 import useLinking from './navigation/useLinking'
 
+import { SET_NETWORK_STATUS } from './actions/network-actions'
+
 const store = createStore(rootReducer, applyMiddleware(thunk))
 const Stack = createStackNavigator()
 
+const networkListener = () => {
+	NetInfo.addEventListener(state => {
+		store.dispatch({
+			type: SET_NETWORK_STATUS,
+			payload: {
+				status: state.isConnected
+			}
+		})
+		console.log('Is connected?', state.isConnected);
+	})
+}
+
 export default function App(props) {
+
+	networkListener()
 
 	const [isLoadingComplete, setLoadingComplete] = React.useState(false)
 	const [initialNavigationState, setInitialNavigationState] = React.useState()
