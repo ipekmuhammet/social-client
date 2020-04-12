@@ -24,7 +24,7 @@ const networkListener = () => {
 		store.dispatch({
 			type: SET_NETWORK_STATUS,
 			payload: {
-				status: state.isConnected
+				networkStatus: state.isConnected
 			}
 		})
 		console.log('Is connected?', state.isConnected);

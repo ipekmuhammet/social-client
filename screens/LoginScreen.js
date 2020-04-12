@@ -4,9 +4,11 @@ import { ScrollView, View, TouchableOpacity, TextInput, Text, Alert, StyleSheet 
 import axios from 'axios'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { Ionicons } from '@expo/vector-icons'
+import { SERVER_URL } from 'react-native-dotenv'
 
 import { login } from '../actions/actions4'
 import MessagePopup from '../components/popups/MessagePopup'
+import ConnectionPopup from '../components/popups/ConnectionPopup'
 
 class LoginScreen extends React.PureComponent {
 
@@ -14,13 +16,47 @@ class LoginScreen extends React.PureComponent {
         // countryCode: '+90',
         phoneNumber: '905468133198',
         password: '1234',
-        popupRef: null
+        popupRef: null,
+        scaleAnimationModal: false
     }
 
+    setPopupState = (scaleAnimationModal) => {
+        this.setState({ scaleAnimationModal })
+    }
+
+    onLoginClick = () => {
+        if (this.props.networkStatus) {
+            axios.post(`${SERVER_URL}/login`, { phone_number: this.state.phoneNumber, password: this.state.password }).then(res => {
+                if (res.status === 200) {
+                    this.props.login(res.data.token, res.data.user, () => {
+                        this.props.navigation.navigate('Loading')
+                    })
+                } else {
+                    Alert.alert('err1', JSON.stringify(res))
+                }
+            }).catch((err) => {
+                console.log(err)
+                this.state.popupRef.showMessage({ message: '' })
+            })
+        } else {
+            this.setState({ scaleAnimationModal: true })
+        }
+    }
+
+    goToRegister = () => {
+        this.props.navigation.navigate('register')
+    }
+
+    goToForgotPassword = () => {
+        this.props.navigation.navigate('forgotPassword')
+    }
 
     render() {
         return (
             <ScrollView style={styles.container}>
+
+                <ConnectionPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
+
                 <MessagePopup
                     onRef={(ref) => {
                         this.setState({ popupRef: ref })
@@ -66,29 +102,13 @@ class LoginScreen extends React.PureComponent {
                 <View style={styles.child}>
                     <TouchableOpacity
                         style={styles.loginButton}
-                        onPress={() => {
-                            axios.post(`http://192.168.1.102:3000/login`, { phone_number: this.state.phoneNumber, password: this.state.password }).then(res => {
-                                if (res.status === 200) {
-                                    this.props.login(res.data.token, res.data.user, () => {
-                                        this.props.navigation.navigate('Loading')
-                                    })
-                                } else {
-                                    Alert.alert('err1', JSON.stringify(res))
-                                }
-                            }).catch((err) => {
-                                console.log(err)
-
-                                this.state.popupRef.showMessage({ message: '' })
-                            })
-                        }}>
+                        onPress={this.onLoginClick}>
                         <Text style={styles.loginText}>Login</Text>
                     </TouchableOpacity>
                 </View>
 
                 <View style={styles.child}>
-                    <TouchableOpacity style={styles.forgotPasswordButton} onPress={() => {
-                        this.props.navigation.navigate('forgotPassword')
-                    }}>
+                    <TouchableOpacity style={styles.forgotPasswordButton} onPress={this.goToForgotPassword}>
                         <Text style={styles.forgotPasswordText}>Forgot Password</Text>
                     </TouchableOpacity>
                 </View>
@@ -100,7 +120,7 @@ class LoginScreen extends React.PureComponent {
 
                 <View style={styles.child}>
                     <TouchableOpacity
-                        onPress={() => { this.props.navigation.navigate('register') }}
+                        onPress={this.goToRegister}
                         style={styles.registerButton}>
                         <Text style={styles.registerText}>Register</Text>
                     </TouchableOpacity>
@@ -131,8 +151,16 @@ const styles = StyleSheet.create({
     }
 })
 
+const mapStateToProps = ({
+    networkReducer: {
+        networkStatus
+    }
+}) => ({
+    networkStatus
+})
+
 const mapDispatchToProps = {
     login
 }
 
-export default connect(null, mapDispatchToProps)(LoginScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)
