@@ -3,6 +3,7 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import { TouchableOpacity, View, Text, Image, StyleSheet } from 'react-native'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { connect } from 'react-redux'
+import { SERVER_URL } from 'react-native-dotenv'
 
 import { addProduct } from '../actions/actions1'
 
@@ -17,7 +18,7 @@ const Product = ({ data: { id, product_name, kind_name, price, image }, addProdu
 		</TouchableOpacity>
 
 		<View style={[styles.child, styles.productImageContainer]}>
-			<Image source={{ uri: `http://192.168.1.102:3000/assets/products/${image}.png` }} resizeMode={'contain'} style={styles.productImage} />
+			<Image source={{ uri: `${SERVER_URL}/assets/products/${image}.png` }} resizeMode={'contain'} style={styles.productImage} />
 		</View>
 
 		<Text style={[styles.child, styles.productPrice, { alignItems: 'flex-start' }]}>{'₺' + price.toFixed(2).toString().replace('.', ',')}</Text>

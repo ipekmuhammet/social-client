@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Image, Text, StyleSheet } from 'react-native'
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize'
+import { SERVER_URL } from 'react-native-dotenv'
 
 import CardProductQuantityComponent from './CardProductQuantityComponent'
 
@@ -10,7 +11,7 @@ const CardProduct = ({ data: { id, product_name, price, image } }) => (
 		<View style={[styles.child, styles.flex2, styles.imageContainer]}>
 			<Image style={styles.productImage}
 				resizeMode={'contain'}
-				source={{ uri: `http://192.168.1.102:3000/assets/products/${image}.png` }} />
+				source={{ uri: `${SERVER_URL}/assets/products/${image}.png` }} />
 		</View>
 
 		<View style={[styles.child, styles.flex3, styles.column]}>
