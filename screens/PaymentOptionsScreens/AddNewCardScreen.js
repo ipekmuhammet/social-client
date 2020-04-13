@@ -50,7 +50,7 @@ class AddNewCardScreen extends React.PureComponent {
                 <View style={styles.buttonDivider} />
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity style={styles.continueButton} onPress={() => {
-                        this.props.saveCard(this.state, this.props.token, () => {
+                        this.props.saveCard(this.state, () => {
                             this.props.navigation.goBack()
                         })
                     }}>

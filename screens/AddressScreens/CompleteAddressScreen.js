@@ -20,10 +20,10 @@ class CompleteAddressScreen extends React.Component {
         directions: ''
     }
 
-    setPopupState = (scaleAnimationModal, complete, address, token) => {
+    setPopupState = (scaleAnimationModal, complete, address) => {
         this.setState({ scaleAnimationModal })
         if (complete) {
-            this.props.saveAddress(address, this.state, token)
+            this.props.saveAddress(address, this.state)
             this.props.navigation.pop(3)
         }
     }
@@ -128,16 +128,8 @@ const styles = StyleSheet.create({
     buttonText: { fontSize: RFValue(18, 600), color: 'white' }
 })
 
-const mapStateToProps = ({
-    reducer4: {
-        token
-    }
-}) => ({
-    token
-})
-
 const mapDispatchToProps = {
     saveAddress
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CompleteAddressScreen)
+export default connect(null, mapDispatchToProps)(CompleteAddressScreen)

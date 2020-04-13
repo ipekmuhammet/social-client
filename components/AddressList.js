@@ -19,7 +19,7 @@ class AddressList extends React.PureComponent {
         this.setState(state)
 
         if (deleteStatus) {
-            this.props.deleteAddress(this.state.addressId, this.props.token)
+            this.props.deleteAddress(this.state.addressId)
         }
     }
 
@@ -55,13 +55,9 @@ class AddressList extends React.PureComponent {
 const mapStateToProps = ({
     reducer2: {
         addresses
-    },
-    reducer4: {
-        token
     }
 }) => ({
-    addresses,
-    token
+    addresses
 })
 
 const mapDispatchToProps = {

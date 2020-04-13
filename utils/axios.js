@@ -18,6 +18,8 @@ export default (store) => {
                 cancel = c;
             })
         }
+        
+        config.headers.Authorization = store.getState().reducer4.token
         return config
     }, (error) => { // Do something with request error
         console.log('----------------')

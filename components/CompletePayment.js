@@ -13,7 +13,7 @@ class CompletePaymentComponent extends React.PureComponent {
 
         if (completable) {
             if (selectedCard && selectedAddress) {
-                makeOrder(cart, token, selectedCard, selectedAddress, () => {
+                makeOrder(cart, selectedCard, selectedAddress, () => {
                     navigation.navigate('thanksScreen')
                 })
             } else {
@@ -81,9 +81,6 @@ const mapStateToProps = ({
     },
     reducer4: {
         token
-    },
-    networkReducer: {
-        networkStatus
     }
 }) => ({
     cart,

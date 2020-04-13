@@ -17,7 +17,7 @@ class PaymentOptionsScreen extends React.Component {
         this.setState(state)
 
         if (confirm) {
-            this.props.deleteCard(this.state.selectedCard, this.props.token)
+            this.props.deleteCard(this.state.selectedCard)
         }
     }
 
@@ -49,13 +49,9 @@ const styles = StyleSheet.create({
 const mapStateToProps = ({
     reducer2: {
         cards
-    },
-    reducer4: {
-        token
     }
 }) => ({
-    cards,
-    token
+    cards
 })
 
 const mapDispacthToProps = {
