@@ -38,14 +38,14 @@ export const setInitialDatas = () => {
 
 export const login = (body, popupRef, cb) => {
 	return (dispatch) => {
-		axios.post(`${SERVER_URL}/login`, body).then(res => {
-			if (res.status === 200) {
-				AsyncStorage.multiSet([['token', token], ['user', JSON.stringify(user)]]).then((res) => {
+		axios.post(`${SERVER_URL}/login`, body).then(({ status, data }) => {
+			if (status === 200) {
+				AsyncStorage.multiSet([['token', data.token], ['user', JSON.stringify(data.user)]]).then((res) => {
 					dispatch({
 						type: SET_USER,
 						payload: {
-							user,
-							token
+							user: data.user,
+							token: data.token
 						}
 					})
 					cb()
