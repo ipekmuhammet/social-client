@@ -33,6 +33,8 @@ const NeedToLoginPopup = ({ needToLoginPopupState, setNeedToLoginPopupState }) =
                     style={styles.buttonOk}
                     onPress={() => {
                         setNeedToLoginPopupState(false)
+
+                        console.log('Move to login') // TODO
                     }}
                     key='button-2' />
             </ModalFooter>
