@@ -36,17 +36,26 @@ export const setInitialDatas = () => {
 	}
 }
 
-export const login = (token, user, cb) => {
+export const login = (body, popupRef, cb) => {
 	return (dispatch) => {
-		AsyncStorage.multiSet([['token', token], ['user', JSON.stringify(user)]]).then((res) => {
-			dispatch({
-				type: SET_USER,
-				payload: {
-					user,
-					token
-				}
-			})
-			cb()
+		axios.post(`${SERVER_URL}/login`, body).then(res => {
+			if (res.status === 200) {
+				AsyncStorage.multiSet([['token', token], ['user', JSON.stringify(user)]]).then((res) => {
+					dispatch({
+						type: SET_USER,
+						payload: {
+							user,
+							token
+						}
+					})
+					cb()
+				})
+			} else {
+				Alert.alert('err1', JSON.stringify(res)) // TODO
+			}
+		}).catch((err) => {
+			console.log('err', err)
+			popupRef.showMessage({ message: '' })
 		})
 	}
 }

@@ -6,9 +6,10 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import { Ionicons } from '@expo/vector-icons'
 import { SERVER_URL } from 'react-native-dotenv'
 
-import { login } from '../actions/actions4'
 import MessagePopup from '../components/popups/MessagePopup'
-import ConnectionPopup from '../components/popups/ConnectionPopup'
+
+import { login } from '../actions/actions4'
+import { setConnectionPopupState } from '../actions/global-actions'
 
 class LoginScreen extends React.PureComponent {
 
@@ -16,31 +17,13 @@ class LoginScreen extends React.PureComponent {
         // countryCode: '+90',
         phoneNumber: '905468133198',
         password: '1234',
-        popupRef: null,
-        scaleAnimationModal: false
-    }
-
-    setPopupState = (scaleAnimationModal) => {
-        this.setState({ scaleAnimationModal })
+        popupRef: null
     }
 
     onLoginClick = () => {
-        if (this.props.networkStatus) {
-            axios.post(`${SERVER_URL}/login`, { phone_number: this.state.phoneNumber, password: this.state.password }).then(res => {
-                if (res.status === 200) {
-                    this.props.login(res.data.token, res.data.user, () => {
-                        this.props.navigation.navigate('Loading')
-                    })
-                } else {
-                    Alert.alert('err1', JSON.stringify(res))
-                }
-            }).catch((err) => {
-                console.log(err)
-                this.state.popupRef.showMessage({ message: '' })
-            })
-        } else {
-            this.setState({ scaleAnimationModal: true })
-        }
+        this.props.login({ phone_number: this.state.phoneNumber, password: this.state.password }, this.state.popupRef, () => {
+            this.props.navigation.navigate('Loading')
+        })
     }
 
     goToRegister = () => {
@@ -54,8 +37,6 @@ class LoginScreen extends React.PureComponent {
     render() {
         return (
             <ScrollView style={styles.container}>
-
-                <ConnectionPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
 
                 <MessagePopup
                     onRef={(ref) => {
@@ -145,10 +126,7 @@ const styles = StyleSheet.create({
     registerText: { color: '#5D3EBD', fontSize: RFValue(19, 600), fontWeight: 'bold' },
     empty: { height: RFValue(28, 600) },
     buttonDivider: { height: RFValue(22, 600), backgroundColor: '#EDEEF0' },
-    view: {
-        justifyContent: 'flex-end',
-        margin: 0,
-    }
+    view: { justifyContent: 'flex-end', margin: 0, }
 })
 
 const mapStateToProps = ({
@@ -160,7 +138,8 @@ const mapStateToProps = ({
 })
 
 const mapDispatchToProps = {
-    login
+    login,
+    setConnectionPopupState
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)

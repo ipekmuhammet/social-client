@@ -2,6 +2,8 @@ import React from 'react'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { ScrollView, View, TouchableOpacity, TextInput, Text, StyleSheet, Alert } from 'react-native'
 import axios from 'axios'
+import { SERVER_URL } from 'react-native-dotenv'
+
 import TermsComponent from '../components/TermsComponent'
 
 class RegisterScreen extends React.PureComponent {
