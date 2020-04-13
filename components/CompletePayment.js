@@ -4,17 +4,18 @@ import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 
 import { makeOrder } from '../actions/actions1'
+import { setNeedToLoginPopupState } from '../actions/global-actions'
 
 class CompletePaymentComponent extends React.PureComponent {
 
     onCompletePaymentClick = () => {
-        const { completable, cart, token, paymentType, navigation, makeOrder, selectedCard, selectedAddress, kartRef, addressRef } = this.props
+        const { completable, cart, token, paymentType, navigation, makeOrder, selectedCard, selectedAddress, kartRef, addressRef, setNeedToLoginPopupState } = this.props
 
         if (completable) {
             if (selectedCard && selectedAddress) {
-                    makeOrder(cart, token, selectedCard, selectedAddress, () => {
-                        navigation.navigate('thanksScreen')
-                    })
+                makeOrder(cart, token, selectedCard, selectedAddress, () => {
+                    navigation.navigate('thanksScreen')
+                })
             } else {
                 if (!selectedAddress) {
                     addressRef.showMessage({ message: '' })
@@ -23,7 +24,11 @@ class CompletePaymentComponent extends React.PureComponent {
                 }
             }
         } else {
-            navigation.navigate('completePayment')
+            if (token) {
+                navigation.navigate('completePayment')
+            } else {
+                setNeedToLoginPopupState(true)
+            }
         }
     }
 
@@ -89,7 +94,8 @@ const mapStateToProps = ({
 })
 
 const mapDispatchToProps = {
-    makeOrder
+    makeOrder,
+    setNeedToLoginPopupState
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CompletePaymentComponent)
