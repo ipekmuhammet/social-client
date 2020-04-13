@@ -1,13 +1,14 @@
 import React from 'react'
+import { RFValue, RFPercentage } from 'react-native-responsive-fontsize'
 import { TouchableOpacity, View, Text, Image, StyleSheet } from 'react-native'
-import { RFPercentage } from 'react-native-responsive-fontsize'
 import { connect } from 'react-redux'
+import { SERVER_URL } from 'react-native-dotenv'
 
 import { setSelectedCategory } from '../actions/actions3'
 
 const Category = ({ data: { id, name }, index, navigation, setSelectedCategory }) => {
 
-	const imageUrl = `http://192.168.1.102:3000/assets/categories/${id}.jpg`
+	const imageUrl = `${SERVER_URL}/assets/categories/${id}.jpg`
 
 	const onCategoryClick = () => {
 		setSelectedCategory(index)
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
 	productImage: {
 		width: RFPercentage(14),
 		height: RFPercentage(14),
-		margin: 4
+		margin: RFValue(4, 600)
 	},
 	productName: {
 		fontSize: RFPercentage(3),

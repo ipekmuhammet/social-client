@@ -1,14 +1,17 @@
 import React from 'react'
+import { RFValue } from 'react-native-responsive-fontsize'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 
-const InteractiveSettingItem = ({ children: icons, title, onRightIconClick }) => (
+const InteractiveSettingItem = ({ children: icons, title, onLeftClick, onRightIconClick }) => (
     <View style={styles.container}>
-        <View style={styles.iconContainer}>
-            {icons[0]}
-        </View>
-        <View style={styles.titleContainer}>
-            <Text style={styles.title}>{title}</Text>
-        </View>
+        <TouchableOpacity style={{ flex: 7, flexDirection: 'row' }} onPress={onLeftClick}>
+            <View style={styles.iconContainer}>
+                {icons[0]}
+            </View>
+            <View style={styles.titleContainer}>
+                <Text style={styles.title}>{title}</Text>
+            </View>
+        </TouchableOpacity>
         <TouchableOpacity style={styles.rightIconContainer} onPress={onRightIconClick}>
             {icons[1]}
         </TouchableOpacity>
@@ -16,10 +19,16 @@ const InteractiveSettingItem = ({ children: icons, title, onRightIconClick }) =>
 )
 
 const styles = StyleSheet.create({
-    container: { flexDirection: 'row', padding: 10, borderBottomWidth: .8, borderBottomColor: '#D2D2D2', marginHorizontal: 6 },
+    container: {
+        flexDirection: 'row', padding: RFValue(10, 600), borderBottomWidth: .8,
+        borderBottomColor: '#D2D2D2', marginHorizontal: RFValue(6, 600)
+    },
     iconContainer: { alignItems: 'center', justifyContent: 'center', flex: 1 },
     titleContainer: { alignItems: 'flex-start', flex: 6, justifyContent: 'center' },
-    title: { marginHorizontal: 4, fontSize: 16, fontWeight: 'bold', color: 'black' },
+    title: {
+        marginHorizontal: RFValue(4, 600), fontSize: RFValue(16, 600),
+        fontWeight: 'bold', color: 'black'
+    },
     rightIconContainer: { alignItems: 'flex-end', justifyContent: 'center', flex: 1 }
 })
 

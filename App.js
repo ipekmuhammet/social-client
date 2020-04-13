@@ -1,23 +1,58 @@
 import React from 'react'
-import { AsyncStorage } from 'react-native'
 import { SplashScreen } from 'expo'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
+import NetInfo from '@react-native-community/netinfo'
 
 import rootReducer from './reducers/root-reducer'
 
 import BottomTabNavigator from './navigation/BottomTabNavigator'
-import WelcomeStack from './screens/WelcomeStack'
+import WelcomeStack from './screens/stacks/WelcomeStack'
 import LoadingScreen from './screens/LoadingScreen'
+import GlobalScreen from './screens/GlobalScreen'
 import useLinking from './navigation/useLinking'
+
+import axiosMiddleware from './utils/axios'
+
+import { SET_NETWORK_STATUS } from './actions/network-actions'
+import { SET_CONNECTION_POPUP_STATE } from './actions/global-actions'
+
+//	const networkMiddleWare = store => next => action => {
+//		console.log(store.getState().networkReducer.networkStatus)
+//		console.log(action.type === SET_NETWORK_STATUS || store.getState().networkReducer.networkStatus)
+//		if (action.type === SET_NETWORK_STATUS || store.getState().networkReducer.networkStatus) {
+//			next(action)
+//		} else {
+//			next({
+//				type: SET_CONNECTION_POPUP_STATE, payload: {
+//					connectionPopupState: true
+//				}
+//			})
+//		}
+//	}
 
 const store = createStore(rootReducer, applyMiddleware(thunk))
 const Stack = createStackNavigator()
 
+axiosMiddleware(store)
+
+const networkListener = () => {
+	NetInfo.addEventListener(state => {
+		store.dispatch({
+			type: SET_NETWORK_STATUS,
+			payload: {
+				networkStatus: state.isConnected
+			}
+		})
+	})
+}
+
 export default function App(props) {
+
+	networkListener()
 
 	const [isLoadingComplete, setLoadingComplete] = React.useState(false)
 	const [initialNavigationState, setInitialNavigationState] = React.useState()
@@ -52,8 +87,9 @@ export default function App(props) {
 	} else {
 		return (
 			<Provider store={store}>
+				<GlobalScreen />
 				<NavigationContainer ref={containerRef} initialState={initialNavigationState}>
-					<Stack.Navigator initialRouteName={'Loading'}>
+					<Stack.Navigator initialRouteName={'Welcome'}>
 						<Stack.Screen name='Welcome' component={WelcomeStack} options={{ headerShown: false }} />
 						<Stack.Screen name='Loading' component={LoadingScreen} options={{ headerShown: false }} />
 						<Stack.Screen name='Root' component={BottomTabNavigator} />

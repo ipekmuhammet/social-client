@@ -1,4 +1,5 @@
 import React from 'react'
+import { RFValue } from 'react-native-responsive-fontsize'
 import { View, Text, StyleSheet } from 'react-native'
 
 const HeadingDivider = ({ title }) => (
@@ -10,12 +11,16 @@ const HeadingDivider = ({ title }) => (
 )
 
 const styles = StyleSheet.create({
-    container: { flexDirection: 'row', overflow: 'hidden', paddingVertical: 3, borderRadius: 8 },
-    titleContainer: {
-        flex: 1, justifyContent: 'center', height: 40, paddingHorizontal: 16, backgroundColor: '#EDEDED',
-        shadowColor: '#000', shadowOffset: { width: 1, height: 1, }, shadowOpacity: .2, shadowRadius: 12, elevation: 8
+    container: {
+        flexDirection: 'row', overflow: 'hidden', paddingVertical: RFValue(3, 600),
+        borderRadius: 8
     },
-    title: { color: '#A8A8A8', fontSize: 18, fontWeight: 'bold' }
+    titleContainer: {
+        flex: 1, justifyContent: 'center', height: RFValue(40, 600),
+        paddingHorizontal: RFValue(16, 600), backgroundColor: '#EDEDED',
+        shadowColor: '#000', shadowOffset: { width: 1, height: 1, }, shadowOpacity: .2, shadowRadius: RFValue(12, 600), elevation: 8
+    },
+    title: { color: '#A8A8A8', fontSize: RFValue(18, 600), fontWeight: 'bold' }
 })
 
 export default HeadingDivider

@@ -19,6 +19,7 @@ export default (state = INITIAL_STATE, action) => {
                 return Object.assign({}, state, { cart: Object.assign({}, state.cart, action.payload) })
             }
         }
+
         case DECREASE_PRODUCT_COUNT: {
             if (state.cart[action.payload.productId].count <= 1) {
                 delete state.cart[action.payload.productId]
@@ -28,10 +29,12 @@ export default (state = INITIAL_STATE, action) => {
 
             return Object.assign({}, { cart: Object.assign({}, state.cart) })
         }
+
         case INCREASE_PRODUCT_COUNT: {
             state.cart[action.payload.productId].count += 1
             return Object.assign({}, { cart: Object.assign({}, state.cart) })
         }
+        
         default: return state
     }
 }

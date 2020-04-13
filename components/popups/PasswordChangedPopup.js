@@ -1,11 +1,7 @@
 import React from 'react'
-import { Image, Text } from 'react-native'
-
-import Modal, {
-    ModalButton,
-    ModalFooter,
-    ModalContent
-} from 'react-native-modals'
+import { RFValue } from 'react-native-responsive-fontsize'
+import { Image, Text, StyleSheet } from 'react-native'
+import Modal, { ModalButton, ModalFooter, ModalContent } from 'react-native-modals'
 
 const PasswordChangedPopup = ({ scaleAnimationModal, setPopupState }) => (
     <Modal
@@ -20,11 +16,11 @@ const PasswordChangedPopup = ({ scaleAnimationModal, setPopupState }) => (
             return true
         }}
         footer={
-            <ModalFooter style={{ height: 42 }}>
+            <ModalFooter style={styles.footer}>
                 <ModalButton
                     text='OK'
-                    textStyle={{ color: 'white' }}
-                    style={{ backgroundColor: '#5D3EBD' }}
+                    textStyle={styles.buttonText}
+                    style={styles.button}
                     onPress={() => {
                         console.log('Close')
                         setPopupState({ scaleAnimationModal: false })
@@ -32,11 +28,20 @@ const PasswordChangedPopup = ({ scaleAnimationModal, setPopupState }) => (
                     key='button-1' />
             </ModalFooter>
         }>
-        <ModalContent style={{ backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' }}>
-            <Image style={{ height: 72 }} source={require('../../assets/verify-image.jpeg')} />
-            <Text style={{ fontSize: 17, fontWeight: 'bold', marginTop: 12, marginBottom: -6 }}>Your password is changed</Text>
+        <ModalContent style={styles.content}>
+            <Image style={styles.image} source={require('../../assets/verify-image.jpeg')} />
+            <Text style={styles.text}>Your password is changed</Text>
         </ModalContent>
     </Modal>
 )
+
+const styles = StyleSheet.create({
+    footer: { height: RFValue(42, 600) },
+    content: { backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' },
+    image: { height: RFValue(72, 600) },
+    text: { fontSize: RFValue(17, 600), fontWeight: 'bold', marginTop: RFValue(12, 600), marginBottom: -6 },
+    button: { backgroundColor: '#5D3EBD' },
+    buttonText: { color: 'white' }
+})
 
 export default PasswordChangedPopup

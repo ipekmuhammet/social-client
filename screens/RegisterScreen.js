@@ -1,6 +1,10 @@
 import React from 'react'
-import { View, CheckBox, TouchableOpacity, TextInput, Text, StyleSheet, Alert } from 'react-native'
+import { RFValue } from 'react-native-responsive-fontsize'
+import { ScrollView, View, TouchableOpacity, TextInput, Text, StyleSheet, Alert } from 'react-native'
 import axios from 'axios'
+import { SERVER_URL } from 'react-native-dotenv'
+
+import TermsComponent from '../components/TermsComponent'
 
 class RegisterScreen extends React.PureComponent {
 
@@ -14,17 +18,19 @@ class RegisterScreen extends React.PureComponent {
 
     render() {
         return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
 
-                <View style={styles.child}>
-                    <TouchableOpacity
-                        style={styles.facebookButton}
-                        onPress={() => {
-                            console.log('Connect with Facebook')
-                        }}>
-                        <Text style={styles.facebookText}>Connect with Facebook</Text>
-                    </TouchableOpacity>
-                </View>
+                {
+                    //  <View style={styles.child}>
+                    //      <TouchableOpacity
+                    //          style={styles.facebookButton}
+                    //          onPress={() => {
+                    //              console.log('Connect with Facebook')
+                    //          }}>
+                    //          <Text style={styles.facebookText}>Connect with Facebook</Text>
+                    //      </TouchableOpacity>
+                    //  </View>
+                }
 
                 <View style={[styles.child, { flexDirection: 'row' }]}>
                     {
@@ -53,7 +59,6 @@ class RegisterScreen extends React.PureComponent {
                         placeholder={'Password (min 4 characters)'}
                         style={styles.input} />
                 </View>
-
                 <View style={styles.child}>
                     <TextInput
                         value={this.state.nameSurname}
@@ -72,34 +77,23 @@ class RegisterScreen extends React.PureComponent {
                         style={styles.input} />
                 </View>
 
-
-                <View style={[styles.child, { flex: 2, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' }]}>
-                    <View style={{ alignItems: 'flex-start', justifyContent: 'flex-start', }}>
-                        <CheckBox style={{ backgroundColor: 'transparent' }} />
-                    </View>
-                    <View style={{ alignItems: 'flex-start', justifyContent: 'flex-start', flexDirection: 'column', marginLeft: 8 }}>
-                        <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row' }}>
-                            <Text style={{ color: 'black', fontSize: 17, fontWeight: 'bold' }}>I have read and accept </Text>
-                            <Text style={{ color: '#5D3EBD', fontSize: 17, fontWeight: 'bold' }}>the Terms and</Text>
-                        </View>
-                        <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row' }}>
-                            <Text style={{ color: '#5D3EBD', fontSize: 17, fontWeight: 'bold' }}>Conditions.</Text>
-                        </View>
-                    </View>
-                </View>
+                <TermsComponent />
+                <View style={styles.child} />
+                <View style={styles.empty} />
+                <View style={styles.buttonDivider} />
 
                 {
                     //  <View style={[styles.child, { flexDirection: 'row' }]}>
                     //      <View style={{ alignItems: 'center', justifyContent: 'flex-start' }}>
                     //          <CheckBox />
                     //      </View>
-                    //      <View style={{ alignItems: 'flex-start', justifyContent: 'flex-start', flexDirection: 'column', marginLeft: 8 }}>
+                    //      <View style={{ alignItems: 'flex-start', justifyContent: 'flex-start', flexDirection: 'column', marginLeft: RFValue(8, 600) }}>
                     //          <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row' }}>
-                    //              <Text style={{ color: 'black', fontSize: 17, fontWeight: 'bold' }}>I give permissions for the use of my personal data for special offers and for receiving electronic communication, within the scope of The Law on Protection of Personal Data clarification document.</Text>
-                    //              <Text style={{ color: '#5D3EBD', fontSize: 17, fontWeight: 'bold' }}>the Terms and</Text>
+                    //              <Text style={{ color: 'black', fontSize: RFValue(17, 600), fontWeight: 'bold' }}>I give permissions for the use of my personal data for special offers and for receiving electronic communication, within the scope of The Law on Protection of Personal Data clarification document.</Text>
+                    //              <Text style={{ color: '#5D3EBD', fontSize: RFValue(17, 600), fontWeight: 'bold' }}>the Terms and</Text>
                     //          </View>
                     //          <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row' }}>
-                    //              <Text style={{ color: '#5D3EBD', fontSize: 17, fontWeight: 'bold' }}>Conditions.</Text>
+                    //              <Text style={{ color: '#5D3EBD', fontSize: RFValue(17, 600), fontWeight: 'bold' }}>Conditions.</Text>
                     //          </View>
                     //      </View>
                     //  </View>
@@ -108,7 +102,7 @@ class RegisterScreen extends React.PureComponent {
                 <View style={styles.child}>
                     <TouchableOpacity
                         onPress={() => {
-                            axios.post('http://192.168.1.102:3000/send-activation-code', { phone_number: this.state.phoneNumber }).then(res => {
+                            axios.post(`${SERVER_URL}/send-activation-code`, { phone_number: this.state.phoneNumber }).then(res => {
                                 if (res.status === 200) {
                                     this.props.navigation.navigate('activationScreen', {
                                         phone_number: this.state.phoneNumber,
@@ -125,19 +119,38 @@ class RegisterScreen extends React.PureComponent {
                         <Text style={styles.registerText}>Register</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
+            </ScrollView>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, marginVertical: 12 },
-    child: { flex: 1, margin: 3 },
-    input: { flex: 1, margin: 4, borderRadius: 6, paddingHorizontal: 12, fontSize: 19, borderWidth: .8, borderColor: '#ABABAB' },
-    facebookButton: { backgroundColor: '#3B589E', flex: 1, margin: 4, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
-    registerButton: { backgroundColor: '#5D3EBD', flex: 1, margin: 4, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
-    registerText: { color: 'white', fontSize: 19 },
-    facebookText: { color: 'white', fontSize: 19 }
+    container: { marginVertical: RFValue(12, 600) },
+    child: { height: RFValue(60, 600), margin: RFValue(3, 600) },
+    input: {
+        flex: 1, margin: RFValue(4, 600), borderRadius: 6,
+        paddingHorizontal: RFValue(12, 600), fontSize: RFValue(19, 600),
+        borderWidth: .8, borderColor: '#ABABAB'
+    },
+    facebookButton: {
+        backgroundColor: '#3B589E', flex: 1, margin: RFValue(4, 600),
+        borderRadius: 10, alignItems: 'center', justifyContent: 'center'
+    },
+    registerButton: {
+        backgroundColor: '#5D3EBD', flex: 1, margin: RFValue(4, 600),
+        borderRadius: 10, alignItems: 'center', justifyContent: 'center'
+    },
+    registerText: { color: 'white', fontSize: RFValue(19, 600) },
+    facebookText: { color: 'white', fontSize: RFValue(19, 600) },
+    termsContainer: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' },
+    checkBoxContainer: { alignItems: 'flex-start', justifyContent: 'flex-start' },
+    checkBox: { backgroundColor: 'transparent' },
+    termsText: { color: 'black', fontSize: RFValue(17, 600), fontWeight: 'bold' },
+    termsLinkText: { color: '#5D3EBD', fontSize: RFValue(17, 600), fontWeight: 'bold' },
+    termsTextContainer: { alignItems: 'center', justifyContent: 'center', flexDirection: 'row' },
+    termsInfoContainer: { alignItems: 'flex-start', justifyContent: 'flex-start', flexDirection: 'column', marginLeft: RFValue(8, 600) },
+    empty: { height: RFValue(28, 600) },
+    buttonDivider: { height: RFValue(22, 600), backgroundColor: '#EDEEF0' }
 })
 
 export default RegisterScreen

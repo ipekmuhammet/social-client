@@ -1,7 +1,9 @@
 import React from 'react'
-import { View, TouchableOpacity, Image, Text, TextInput, StyleSheet } from 'react-native'
+import { RFValue } from 'react-native-responsive-fontsize'
+import { ScrollView, View, TouchableOpacity, Image, Text, TextInput, StyleSheet, Dimensions } from 'react-native'
 import { connect } from 'react-redux'
-import { addAddress } from '../../actions/actions4'
+
+import { saveAddress } from '../../actions/actions2'
 
 import ConfirmAddressPopup from '../../components/popups/ConfirmAddressPopup'
 import Map from '../MapScreens/Map'
@@ -21,18 +23,18 @@ class CompleteAddressScreen extends React.Component {
     setPopupState = (scaleAnimationModal, complete, address, token) => {
         this.setState({ scaleAnimationModal })
         if (complete) {
-            this.props.addAddress(address, token)
+            this.props.saveAddress(address, this.state, token)
             this.props.navigation.pop(3)
         }
     }
 
     render() {
         return (
-            <View style={styles.container}>
+            <ScrollView>
                 <ConfirmAddressPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
                 <View style={styles.mapContainer}>
 
-                    <Map region={this.props.route.params.region}/>
+                    <Map region={this.props.route.params.region} />
 
                     <View style={styles.markerContainer} pointerEvents='none'>
                         <Image style={styles.marker} source={require('../../assets/map-marker.png')} />
@@ -41,12 +43,14 @@ class CompleteAddressScreen extends React.Component {
                 </View>
                 <View style={styles.body}>
                     <View style={styles.inputContainerChild}>
+                        {
+                            //  <View style={styles.inputContainer}>
+                            //      <TextInput
+                            //          placeholder={'Address Icon'}
+                            //          style={styles.input} />
+                            //  </View>
+                        }
                         <View style={styles.inputContainer}>
-                            <TextInput
-                                placeholder={'Address Icon'}
-                                style={styles.input} />
-                        </View>
-                        <View style={styles.input2container}>
                             <TextInput
                                 onChangeText={(addressTitle) => { this.setState({ addressTitle }) }}
                                 value={this.state.addressTitle} placeholder={'Address title (Home, Work)'}
@@ -99,26 +103,29 @@ class CompleteAddressScreen extends React.Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-            </View>
+            </ScrollView>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1 },
-    mapContainer: { flex: 1.4 },
-    body: { flex: 3, marginVertical: 12 },
-    markerContainer: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', zIndex: 2 },
-    marker: { width: 48, borderColor: '#C3C3C3', height: 48 },
-    inputContainer: { flex: 1, margin: 2 },
-    input2Container: { flex: 2, margin: 2 },
-    inputContainerChild: { flex: 1, margin: 2, flexDirection: 'row' },
+    mapContainer: { height: RFValue(136, 600) },
+    body: { marginVertical: RFValue(12, 600) },
+    markerContainer: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', zIndex: RFValue(2, 600) },
+    marker: { width: RFValue(48, 600), borderColor: '#C3C3C3', height: RFValue(48, 600) },
+    inputContainer: { height: RFValue(60, 600), margin: RFValue(2, 600), flex: 1 },
+    input2Container: { flex: 2, margin: RFValue(2, 600) },
+    inputContainerChild: { height: 62, margin: RFValue(2, 600), display: 'flex', flexDirection: 'row' },
     input: {
-        flex: 1, borderWidth: 1, alignItems: 'center', justifyContent: 'center', margin: 3, borderRadius: 8,
-        borderColor: '#C3C3C3', paddingHorizontal: 13, fontSize: 18
+        flex: 1, borderWidth: 1, alignItems: 'center', justifyContent: 'center', margin: RFValue(3, 600),
+        borderRadius: 8,
+        borderColor: '#C3C3C3', paddingHorizontal: RFValue(13, 600), fontSize: RFValue(18, 600)
     },
-    button: { flex: 1, backgroundColor: '#5D3EBD', alignItems: 'center', justifyContent: 'center', margin: 3, borderRadius: 8 },
-    buttonText: { fontSize: 18, color: 'white' }
+    button: {
+        flex: 1, backgroundColor: '#5D3EBD', alignItems: 'center', justifyContent: 'center', margin: RFValue(3, 600),
+        borderRadius: 8
+    },
+    buttonText: { fontSize: RFValue(18, 600), color: 'white' }
 })
 
 const mapStateToProps = ({
@@ -130,7 +137,7 @@ const mapStateToProps = ({
 })
 
 const mapDispatchToProps = {
-    addAddress
+    saveAddress
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CompleteAddressScreen)

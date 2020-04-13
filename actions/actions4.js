@@ -1,88 +1,70 @@
 import { AsyncStorage } from 'react-native'
 import axios from 'axios'
+import { SERVER_URL } from 'react-native-dotenv'
 
-export const SET_INITIAL_DATAS = 'SET_INITIAL_DATAS', SET_USER = 'SET_USER'
+export const SET_INITIAL_DATAS = 'SET_INITIAL_DATAS', SET_USER = 'SET_USER', LOGOUT = 'LOGOUT'
 
-const getCategories = (token) => axios.get('http://192.168.1.102:3000/user/categories', { headers: { Authorization: token } }).then(({ data }) => data)
+const getCategories = () => axios.get(`${SERVER_URL}/categories`).then(({ data }) => data)
 
-const getProducts = (token) => axios.get('http://192.168.1.102:3000/user/products', { headers: { Authorization: token } }).then(({ data }) => data)
-
-export const addAddress = (address, token) => {
-	return (dispatch) => {
-
-		axios.put('http://192.168.1.102:3000/user/add-address', { open_address: address }, { headers: { Authorization: token } })
-			.then(({ status, data }) => {
-				if (status === 200) {
-					AsyncStorage.setItem('user', JSON.stringify(data))
-
-					dispatch({
-						type: SET_USER,
-						payload: {
-							user: data
-						}
-					})
-				}
-			})
-	}
-}
-
-export const deleteAddress = (addressId, token) => {
-	return (dispatch) => {
-		axios.put('http://192.168.1.102:3000/user/delete-address', { _id: addressId }, { headers: { Authorization: token } })
-			.then(({ status, data }) => {
-				if (status === 200) {
-					AsyncStorage.setItem('user', JSON.stringify(data))
-
-					dispatch({
-						type: SET_USER,
-						payload: {
-							user: data
-						}
-					})
-				}
-			})
-	}
-}
+const getProducts = () => axios.get(`${SERVER_URL}/products`).then(({ data }) => data)
 
 export const setInitialDatas = () => {
 	return (dispatch) => {
-		AsyncStorage.multiGet(['token', 'user']).then(vals => {
-			Promise.all([getCategories(vals[0][1]), getProducts(vals[0][1])]).then(res => {
-				dispatch({
-					type: SET_INITIAL_DATAS,
-					payload: {
-						categories: res[0],
-						products: res[1],
-						token: vals[0][1],
-						user: JSON.parse(vals[1][1])
-					}
-				})
-			})
-		})
-	}
-}
-
-export const login = (token, user, navigation) => {
-	return (dispatch) => {
-		AsyncStorage.multiSet([['token', token], ['user', JSON.stringify(user)]]).then((res) => {
+		Promise.all([getCategories(), getProducts()]).then(res => {
 			dispatch({
 				type: SET_INITIAL_DATAS,
 				payload: {
-					user,
-					token
+					categories: res[0],
+					products: res[1]
 				}
 			})
+		})
 
-			navigation.navigate('Loading')
+		//	AsyncStorage.multiGet(['token', 'user']).then(vals => {
+		//		Promise.all([getCategories(vals[0][1]), getProducts(vals[0][1])]).then(res => {
+		//			dispatch({
+		//				type: SET_INITIAL_DATAS,
+		//				payload: {
+		//					categories: res[0],
+		//					products: res[1],
+		//					token: vals[0][1],
+		//					user: JSON.parse(vals[1][1])
+		//				}
+		//			})
+		//		})
+		//	})
+	}
+}
+
+export const login = (body, popupRef, cb) => {
+	return (dispatch) => {
+		axios.post(`${SERVER_URL}/login`, body).then(res => {
+			if (res.status === 200) {
+				AsyncStorage.multiSet([['token', token], ['user', JSON.stringify(user)]]).then((res) => {
+					dispatch({
+						type: SET_USER,
+						payload: {
+							user,
+							token
+						}
+					})
+					cb()
+				})
+			} else {
+				Alert.alert('err1', JSON.stringify(res)) // TODO
+			}
+		}).catch((err) => {
+			console.log('err', err)
+			popupRef.showMessage({ message: '' })
 		})
 	}
 }
 
-export const logout = (navigation) => {
+export const logout = (cb) => {
 	return (dispatch) => {
 		AsyncStorage.multiRemove(['token', 'user']).then(vals => {
 			dispatch({
-				type: SET_INITIAL_DATAS,
+				type: LOGOUT,
 				payload: {
 					categories: [],
 					products: [],
@@ -90,7 +72,7 @@ export const logout = (navigation) => {
 					token: null
 				}
 			})
-			navigation.navigate('Welcome')
+			cb()
 		})
 	}
 }

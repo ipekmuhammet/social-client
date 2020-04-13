@@ -2,40 +2,40 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
-import InteractiveSettingItem from '../../components/InteractiveSettingItem'
+import ClickableSettingItem from '../../components/ClickableSettingItem'
 import HeadingDivider from '../../components/HeadingDivider'
 import AddressList from '../../components/AddressList'
 
-const AddressesScreen = ({ navigation }) => (
+const AddressesScreen = ({ navigation, route }) => (
     <View style={styles.container}>
-        <AddressList footer={() => (
+        <AddressList stackNavigation={navigation} navigation={route.params.navigation} footer={() => (
             <React.Fragment>
                 <HeadingDivider title={'Add Address'} />
 
-                <InteractiveSettingItem title={'Add address'} onRightIconClick={() => {
+                <ClickableSettingItem title={'Add address'} onClick={() => {
                     navigation.navigate('searchAddressScreen')
                 }}>
                     <Ionicons color={'#4522A0'} name={'md-locate'} size={32} />
                     <Ionicons color={'#4522A0'} name={'md-add'} size={32} />
-                </InteractiveSettingItem>
+                </ClickableSettingItem>
 
                 {
-                    //  <InteractiveSettingItem title={'Add home address'} onRightIconClick={() => {
+                    //  <ClickableSettingItem title={'Add home address'} onClick={() => {
                     //      navigation.navigate('searchAddressScreen')
                     //  }}>
                     //      <Ionicons color={'#4522A0'} name={'md-home'} size={32} />
                     //      <Ionicons color={'#4522A0'} name={'md-add'} size={32} />
-                    //  </InteractiveSettingItem>
+                    //  </ClickableSettingItem>
                     //  
-                    //  <InteractiveSettingItem title={'Add work address'} onRightIconClick={() => { console.log('Add work address') }}>
+                    //  <ClickableSettingItem title={'Add work address'} onClick={() => { console.log('Add work address') }}>
                     //      <Ionicons color={'#4522A0'} name={'md-business'} size={32} />
                     //      <Ionicons color={'#4522A0'} name={'md-add'} size={32} />
-                    //  </InteractiveSettingItem>
+                    //  </ClickableSettingItem>
                     //  
-                    //  <InteractiveSettingItem title={'Add other address'} onRightIconClick={() => { console.log('Add other address') }}>
+                    //  <ClickableSettingItem title={'Add other address'} onClick={() => { console.log('Add other address') }}>
                     //      <Ionicons color={'#4522A0'} name={'md-locate'} size={32} />
                     //      <Ionicons color={'#4522A0'} name={'md-add'} size={32} />
-                    //  </InteractiveSettingItem>
+                    //  </ClickableSettingItem>
                 }
             </React.Fragment>
         )} />

@@ -1,3 +1,5 @@
+import { SET_INITIAL_DATAS, SET_USER, LOGOUT } from "../actions/actions4"
+
 const INITIAL_STATE = {
 	categories: [],
 	products: [],
@@ -7,6 +9,9 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
 	switch (action.type) {
-		default: return Object.assign({}, state, action.payload)
+		case SET_INITIAL_DATAS:
+		case SET_USER:
+		case LOGOUT: return Object.assign({}, state, action.payload)
+		default: return state
 	}
 }

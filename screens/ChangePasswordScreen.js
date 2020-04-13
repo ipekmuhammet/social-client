@@ -1,7 +1,8 @@
 import React from 'react'
+import { RFValue } from 'react-native-responsive-fontsize'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import { View, TouchableOpacity, TextInput, Text, StyleSheet } from 'react-native'
+import { ScrollView, View, TouchableOpacity, TextInput, Text, StyleSheet } from 'react-native'
 
 import PasswordChangedPopup from '../components/popups/PasswordChangedPopup'
 
@@ -18,9 +19,9 @@ class ChangePasswordScreen extends React.PureComponent {
 
     render() {
         return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
                 <PasswordChangedPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
-                <View style={[styles.child, { flexDirection: 'row' }]}>
+                <View style={[styles.child, styles.inputContainer]}>
                     <TextInput
                         onChangeText={(oldPassword) => { this.setState({ oldPassword }) }}
                         value={this.state.oldPassword}
@@ -29,7 +30,7 @@ class ChangePasswordScreen extends React.PureComponent {
                         style={styles.input} />
                 </View>
 
-                <View style={[styles.child, { flexDirection: 'row' }]}>
+                <View style={[styles.child, styles.inputContainer]}>
                     <TextInput
                         onChangeText={(password) => { this.setState({ password }) }}
                         value={this.state.password}
@@ -42,7 +43,7 @@ class ChangePasswordScreen extends React.PureComponent {
                     <TouchableOpacity
                         style={styles.resetPasswordButton}
                         onPress={() => {
-                            axios.put('http://192.168.1.102:3000/change-password', {
+                            axios.put(`${SERVER_URL}/change-password`, {
                                 phone_number: this.props.user.phone_number, old_password: this.state.oldPassword, new_password: this.state.password
                             }).then(({ status }) => {
                                 if (status === 200) {
@@ -57,25 +58,26 @@ class ChangePasswordScreen extends React.PureComponent {
                         <Text style={styles.resetPasswordText}>Change Password</Text>
                     </TouchableOpacity>
                 </View>
-
-                <View style={styles.child} />
-                <View style={styles.child} />
-                <View style={styles.child} />
-                <View style={styles.child} />
-                <View style={styles.child} />
-            </View>
+            </ScrollView>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, marginVertical: 12 },
-    child: { flex: 1, margin: 3 },
-    input: { flex: 1, margin: 4, borderRadius: 6, paddingHorizontal: 12, fontSize: 19, borderWidth: .8, borderColor: '#ABABAB' },
-    resetPasswordButton: { backgroundColor: '#5D3EBD', flex: 1, margin: 4, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
+    container: { marginVertical: RFValue(12, 600) },
+    child: { height: RFValue(60, 600), margin: RFValue(3, 600) },
+    inputContainer: { flexDirection: 'row' },
+    input: {
+        flex: 1, margin: RFValue(4, 600), borderRadius: 6,
+        paddingHorizontal: RFValue(12, 600), fontSize: RFValue(19, 600), borderWidth: .8, borderColor: '#ABABAB'
+    },
+    resetPasswordButton: {
+        backgroundColor: '#5D3EBD', flex: 1, margin: RFValue(4, 600),
+        borderRadius: 10, alignItems: 'center', justifyContent: 'center'
+    },
     resendContainer: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
-    resendCodeText: { fontSize: 22, paddingHorizontal: 12, color: '#6E7586' },
-    resetPasswordText: { color: 'white', fontSize: 19 }
+    resendCodeText: { fontSize: RFValue(22, 600), paddingHorizontal: RFValue(12, 600), color: '#6E7586' },
+    resetPasswordText: { color: 'white', fontSize: RFValue(19, 600) }
 })
 
 const mapStateToProps = ({

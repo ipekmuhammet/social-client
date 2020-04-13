@@ -2,9 +2,7 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 
-const EmptyProduct = () => (
-    <View style={styles.container} />
-)
+const EmptyProduct = () => <View style={styles.container} />
 
 const styles = StyleSheet.create({
     container: {
