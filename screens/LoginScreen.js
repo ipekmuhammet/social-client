@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { ScrollView, View, TouchableOpacity, TextInput, Text, Alert, StyleSheet } from 'react-native'
+import { ScrollView, View, TouchableOpacity, TextInput, Text, AsyncStorage, StyleSheet } from 'react-native'
 import axios from 'axios'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { Ionicons } from '@expo/vector-icons'
@@ -9,9 +9,8 @@ import { SERVER_URL } from 'react-native-dotenv'
 import MessagePopup from '../components/popups/MessagePopup'
 
 import { login } from '../actions/actions4'
-import { setConnectionPopupState } from '../actions/global-actions'
 
-class LoginScreen extends React.PureComponent {
+class LoginScreen extends React.Component {
 
     state = {
         // countryCode: '+90',
@@ -20,8 +19,21 @@ class LoginScreen extends React.PureComponent {
         popupRef: null
     }
 
+    shouldComponentUpdate = (nextProps, nextState) => (
+        this.state.phoneNumber !== nextState.phoneNumber || this.state.password !== nextState.password
+    )
+
+    saveCart = () => {
+        const { cart, token } = this.props
+        if (token) {
+            axios.post(`${SERVER_URL}/user/cart`, cart)
+        }
+        AsyncStorage.setItem('cart', JSON.stringify(cart))
+    }
+
     onLoginClick = () => {
         this.props.login({ phone_number: this.state.phoneNumber, password: this.state.password }, this.state.popupRef, () => {
+            this.saveCart()
             this.props.navigation.navigate('Loading', { next: true })
         })
     }
@@ -35,6 +47,7 @@ class LoginScreen extends React.PureComponent {
     }
 
     render() {
+        console.log('xd')
         return (
             <ScrollView style={styles.container}>
 
@@ -130,16 +143,19 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = ({
-    networkReducer: {
-        networkStatus
+    reducer1: {
+        cart
+    },
+    reducer4: {
+        token
     }
 }) => ({
-    networkStatus
+    cart,
+    token
 })
 
 const mapDispatchToProps = {
-    login,
-    setConnectionPopupState
+    login
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)
