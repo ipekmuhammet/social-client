@@ -1,5 +1,6 @@
 import React from 'react'
 import { AppState, AsyncStorage } from 'react-native'
+import axios from 'axios'
 import { SplashScreen } from 'expo'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
@@ -7,6 +8,7 @@ import thunk from 'redux-thunk'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import NetInfo from '@react-native-community/netinfo'
+import { SERVER_URL } from 'react-native-dotenv'
 
 import rootReducer from './reducers/root-reducer'
 
@@ -52,8 +54,13 @@ const networkListener = () => {
 }
 
 const handleAppStateChange = (nextAppState) => {
+	const { cart } = store.getState().reducer1
+	const { token } = store.getState().reducer4
 	if (nextAppState.match(/inactive|background/)) {
-		AsyncStorage.setItem('cart', JSON.stringify(store.getState().reducer1.cart))
+		if (token) {
+			axios.post(`${SERVER_URL}/user/cart`, cart)
+		}
+		AsyncStorage.setItem('cart', JSON.stringify(cart))
 	}
 }
 

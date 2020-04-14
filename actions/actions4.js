@@ -8,20 +8,38 @@ const getCategories = () => axios.get(`${SERVER_URL}/categories`).then(({ data }
 
 const getProducts = () => axios.get(`${SERVER_URL}/products`).then(({ data }) => data)
 
+const getCart = (token) => axios.get(`${SERVER_URL}/user/cart`, { headers: { Authorization: token } }).then(({ data }) => data)
+
 export const setInitialDatas = () => {
 	return (dispatch) => {
 		AsyncStorage.multiGet(['token', 'user', 'cart']).then(vals => {
 			Promise.all([getCategories(), getProducts()]).then(res => {
-				dispatch({
-					type: SET_INITIAL_DATAS,
-					payload: {
-						categories: res[0],
-						products: res[1],
-						token: vals[0][1],
-						user: JSON.parse(vals[1][1]),
-						cart: JSON.parse(vals[2][1])
-					}
-				})
+				if (vals[0][1]) {
+					getCart(vals[0][1]).then((cart) => {
+						console.log(cart)
+						dispatch({
+							type: SET_INITIAL_DATAS,
+							payload: {
+								categories: res[0],
+								products: res[1],
+								token: vals[0][1],
+								user: JSON.parse(vals[1][1]),
+								cart: cart
+							}
+						})
+					})
+				} else {
+					dispatch({
+						type: SET_INITIAL_DATAS,
+						payload: {
+							categories: res[0],
+							products: res[1],
+							token: vals[0][1],
+							user: JSON.parse(vals[1][1]),
+							cart: JSON.parse(vals[2][1])
+						}
+					})
+				}
 			}).catch((err) => {
 				console.log('err, actions 4 - 45', err)
 			})
