@@ -10,29 +10,32 @@ const getProducts = () => axios.get(`${SERVER_URL}/products`).then(({ data }) =>
 
 export const setInitialDatas = () => {
 	return (dispatch) => {
-		Promise.all([getCategories(), getProducts()]).then(res => {
-			dispatch({
-				type: SET_INITIAL_DATAS,
-				payload: {
-					categories: res[0],
-					products: res[1]
-				}
+		AsyncStorage.multiGet(['token', 'user']).then(vals => {
+			Promise.all([getCategories(), getProducts()]).then(res => {
+				dispatch({
+					type: SET_INITIAL_DATAS,
+					payload: {
+						categories: res[0],
+						products: res[1],
+						token: vals[0][1],
+						user: JSON.parse(vals[1][1])
+					}
+				})
+			}).catch((err) => {
+				console.log('err, actions 4 - 45', err)
 			})
 		})
 
-		//	AsyncStorage.multiGet(['token', 'user']).then(vals => {
-		//		Promise.all([getCategories(vals[0][1]), getProducts(vals[0][1])]).then(res => {
-		//			dispatch({
-		//				type: SET_INITIAL_DATAS,
-		//				payload: {
-		//					categories: res[0],
-		//					products: res[1],
-		//					token: vals[0][1],
-		//					user: JSON.parse(vals[1][1])
-		//				}
-		//			})
+		//	Promise.all([getCategories(), getProducts()]).then(res => {
+		//		dispatch({
+		//			type: SET_INITIAL_DATAS,
+		//			payload: {
+		//				categories: res[0],
+		//				products: res[1]
+		//			}
 		//		})
 		//	})
+
 	}
 }
 
@@ -60,19 +63,18 @@ export const login = (body, popupRef, cb) => {
 	}
 }
 
-export const logout = (cb) => {
+export const logout = () => {
 	return (dispatch) => {
 		AsyncStorage.multiRemove(['token', 'user']).then(vals => {
 			dispatch({
 				type: LOGOUT,
 				payload: {
-					categories: [],
-					products: [],
+					// categories: [],
+					// products: [],
 					user: {},
 					token: null
 				}
 			})
-			cb()
 		})
 	}
 }

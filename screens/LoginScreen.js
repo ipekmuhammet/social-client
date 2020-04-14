@@ -22,7 +22,7 @@ class LoginScreen extends React.PureComponent {
 
     onLoginClick = () => {
         this.props.login({ phone_number: this.state.phoneNumber, password: this.state.password }, this.state.popupRef, () => {
-            this.props.navigation.navigate('Loading')
+            this.props.navigation.navigate('Loading', { next: true })
         })
     }
 

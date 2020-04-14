@@ -1,26 +1,31 @@
 import React from 'react'
+import { AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
 
 import { setInitialDatas } from '../actions/actions4'
 import LoadingComponent from '../components/LoadingCompenent'
 
 class LoadingScreen extends React.PureComponent {
-
 	UNSAFE_componentWillMount() {
-		//	if (this.props.token) {
-		if (this.props.categories.length > 0) {
-			this.props.navigation.navigate('Root')
-		} else {
-			this.props.setInitialDatas()
-		}
-		//	} else {
-		//		this.props.navigation.navigate('Welcome')
-		//	}
+		AsyncStorage.getItem('init').then((init) => {
+			if (init) {
+				//	if (this.props.token) {
+				if (this.props.categories.length > 0) {
+					this.props.navigation.navigate('Root')
+				} else {
+					this.props.setInitialDatas()
+				}
+
+			} else {
+				this.props.navigation.navigate('Welcome')
+			}
+		})
 	}
 
 	UNSAFE_componentWillReceiveProps(nextProps) {
 		// if (nextProps.token) {
 		if (this.props.categories.length > 0) {
+			AsyncStorage.setItem('init', 'true')
 			this.props.navigation.navigate('Root')
 		} else {
 			// if (this.props.token !== nextProps.token) {

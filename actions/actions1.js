@@ -33,7 +33,7 @@ export const makeOrder = (cart, selectedCard, selectedAddress, cb) => {
 
 export const addProduct = (productId) => {
 	return (dispatch) => {
-		axios.get(`http://192.168.1.102:3000/productById?id=${productId}`).then(({ data }) => {
+		axios.get(`http://192.168.1.102:3000/product/${productId}`).then(({ data }) => {
 			dispatch({
 				type: ADD_PRODUCT,
 				payload: {

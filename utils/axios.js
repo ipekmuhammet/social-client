@@ -15,11 +15,14 @@ export default (store) => {
             // throw new Error('Network Error')
         } else {
             config.cancelToken = new axios.CancelToken((c) => {
-                cancel = c;
+                cancel = c
             })
         }
-        
-        config.headers.Authorization = store.getState().reducer4.token
+
+        if (store.getState().reducer4.token) {
+            config.headers.Authorization = store.getState().reducer4.token
+        }
+
         return config
     }, (error) => { // Do something with request error
         console.log('----------------')

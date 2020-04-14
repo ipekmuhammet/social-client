@@ -75,7 +75,7 @@ const ProfileScreen = ({ navigation, token }) => (
                     </React.Fragment>
                 ) :
                 (
-                    <TouchableOpacity onPress={() => { navigation.navigate('login') }}>
+                    <TouchableOpacity onPress={() => { navigation.navigate('Welcome', { screen: 'login' }) }}>
                         <SettingItem title={'Login'}>
                             <Ionicons color={'#4522A0'} name={'md-person'} size={32} />
                         </SettingItem>
