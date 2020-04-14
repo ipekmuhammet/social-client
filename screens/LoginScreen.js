@@ -19,8 +19,10 @@ class LoginScreen extends React.Component {
         popupRef: null
     }
 
-    shouldComponentUpdate = (nextProps, nextState) => (
-        this.state.phoneNumber !== nextState.phoneNumber || this.state.password !== nextState.password
+    shouldComponentUpdate = (nextProps, nextState) => ( // Update only state change, not props
+        this.state.phoneNumber !== nextState.phoneNumber ||
+        this.state.password !== nextState.password ||
+        this.state.popupRef !== nextState.popupRef
     )
 
     saveCart = () => {
@@ -47,7 +49,6 @@ class LoginScreen extends React.Component {
     }
 
     render() {
-        console.log('xd')
         return (
             <ScrollView style={styles.container}>
 
