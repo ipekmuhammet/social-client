@@ -1,6 +1,17 @@
 import axios from 'axios'
+import * as Permissions from 'expo-permissions'
+import * as Location from 'expo-location'
 
 export const SET_REGION = 'SET_REGION', SET_ADDRESS = 'SET_ADDRESS', SET_REGION_BY_PLACE = 'SET_REGION_BY_PLACE', SET_CURRENT_REGION = 'SET_CURRENT_REGION'
+
+const getLocationAsync = async () => {
+    const { status } = await Permissions.askAsync(Permissions.LOCATION)
+    if (status !== 'granted') {
+        throw new Error()
+    }
+    const { coords } = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.High, enableHighAccuracy: true })
+    return coords
+}
 
 const getAddress = (region) => (
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${region.latitude},${region.longitude}&key=AIzaSyDOKcW0tFvi_T9vFyERfUDh20IxfTfBsmA`)
@@ -45,18 +56,16 @@ export const setRegionByPlace = (placeId, cb) => ((dispatch) => {
 })
 
 export const setCurrentRegion = (cb) => ((dispatch) => {
+    getLocationAsync().then(region => {
+        dispatch({
+            type: SET_CURRENT_REGION,
+            payload: {
+                region
+            }
+        })
 
-    const region = { // TODO
-        latitude: 41.0381665,
-        longitude: 28.9417276
-    }
-
-    dispatch({
-        type: SET_CURRENT_REGION,
-        payload: {
-            region
-        }
+        cb(region)
+    }).catch((err) => {
+        cb(null, err)
     })
-    
-    cb(region)
 })

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { ScrollView, View, FlatList, TouchableOpacity, Text, TextInput } from 'react-native'
+import { ScrollView, View, FlatList, TouchableOpacity, Text, TextInput, Alert } from 'react-native'
 import axios from 'axios'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { Ionicons } from '@expo/vector-icons'
@@ -70,10 +70,14 @@ class SearchAddressScreen extends React.PureComponent {
 
                             <TouchableOpacity
                                 onPress={() => {
-                                    this.props.setCurrentRegion((region) => {
-                                        this.props.navigation.navigate('pinAddressScreen', {
-                                            region
-                                        })
+                                    this.props.setCurrentRegion((region, err) => {
+                                        if (err) {
+                                            Alert.alert('need permission') // TODO
+                                        } else {
+                                            this.props.navigation.navigate('pinAddressScreen', {
+                                                region
+                                            })
+                                        }
                                     })
                                 }}
                                 style={{ flex: 1, display: 'flex', flexDirection: 'row', alignItems: 'center', marginHorizontal: RFValue(6, 600) }}>
