@@ -1,4 +1,5 @@
 import React from 'react'
+import { AppState, AsyncStorage } from 'react-native'
 import { SplashScreen } from 'expo'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
@@ -50,9 +51,16 @@ const networkListener = () => {
 	})
 }
 
+const handleAppStateChange = (nextAppState) => {
+	if (nextAppState.match(/inactive|background/)) {
+		AsyncStorage.setItem('cart', JSON.stringify(store.getState().reducer1.cart))
+	}
+}
+
 export default function App(props) {
 
 	networkListener()
+	AppState.addEventListener('change', handleAppStateChange)
 
 	const [isLoadingComplete, setLoadingComplete] = React.useState(false)
 	const [initialNavigationState, setInitialNavigationState] = React.useState()

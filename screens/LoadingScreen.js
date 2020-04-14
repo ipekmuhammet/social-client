@@ -24,7 +24,7 @@ class LoadingScreen extends React.PureComponent {
 
 	UNSAFE_componentWillReceiveProps(nextProps) {
 		// if (nextProps.token) {
-		if (this.props.categories.length > 0) {
+		if (nextProps.categories.length > 0) {
 			AsyncStorage.setItem('init', 'true')
 			this.props.navigation.navigate('Root')
 		} else {

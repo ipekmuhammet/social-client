@@ -10,7 +10,7 @@ const getProducts = () => axios.get(`${SERVER_URL}/products`).then(({ data }) =>
 
 export const setInitialDatas = () => {
 	return (dispatch) => {
-		AsyncStorage.multiGet(['token', 'user']).then(vals => {
+		AsyncStorage.multiGet(['token', 'user', 'cart']).then(vals => {
 			Promise.all([getCategories(), getProducts()]).then(res => {
 				dispatch({
 					type: SET_INITIAL_DATAS,
@@ -18,7 +18,8 @@ export const setInitialDatas = () => {
 						categories: res[0],
 						products: res[1],
 						token: vals[0][1],
-						user: JSON.parse(vals[1][1])
+						user: JSON.parse(vals[1][1]),
+						cart: JSON.parse(vals[2][1])
 					}
 				})
 			}).catch((err) => {

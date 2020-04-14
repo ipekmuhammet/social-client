@@ -3,8 +3,8 @@ import axios from 'axios'
 import { SERVER_URL } from 'react-native-dotenv'
 
 export const ADD_PRODUCT = 'ADD_PRODUCT'
-export const DECREASE_PRODUCT_COUNT = 'DECREASE_PRODUCT_COUNT'
-export const INCREASE_PRODUCT_COUNT = 'INCREASE_PRODUCT_COUNT'
+export const DECREASE_PRODUCT_QUANTITY = 'DECREASE_PRODUCT_QUANTITY'
+export const INCREASE_PRODUCT_QUANTITY = 'INCREASE_PRODUCT_QUANTITY'
 export const MAKE_ORDER = 'MAKE_ORDER'
 
 export const makeOrder = (cart, selectedCard, selectedAddress, cb) => {
@@ -44,10 +44,10 @@ export const addProduct = (productId) => {
 	}
 }
 
-export const decreaseProductCount = (productId) => {
+export const decreaseProductQuantity = (productId) => {
 	return (dispatch) => {
 		dispatch({
-			type: DECREASE_PRODUCT_COUNT,
+			type: DECREASE_PRODUCT_QUANTITY,
 			payload: {
 				productId
 			}
@@ -55,10 +55,10 @@ export const decreaseProductCount = (productId) => {
 	}
 }
 
-export const increaseProductCount = (productId) => {
+export const increaseProductQuantity = (productId) => {
 	return (dispatch) => {
 		dispatch({
-			type: INCREASE_PRODUCT_COUNT,
+			type: INCREASE_PRODUCT_QUANTITY,
 			payload: {
 				productId
 			}

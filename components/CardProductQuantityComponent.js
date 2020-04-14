@@ -3,19 +3,19 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import { connect } from 'react-redux'
 import { TouchableOpacity, Text, View, StyleSheet } from 'react-native'
 
-import { decreaseProductCount, increaseProductCount } from '../actions/actions1'
+import { decreaseProductQuantity, increaseProductQuantity } from '../actions/actions1'
 
-const CardProductQuantityComponent = ({ id, cart, decreaseProductCount, increaseProductCount }) => (
+const CardProductQuantityComponent = ({ id, cart, decreaseProductQuantity, increaseProductQuantity }) => (
     <React.Fragment>
-        <TouchableOpacity onPress={() => { decreaseProductCount(id) }} style={[styles.child, styles.decreaseButton]}>
+        <TouchableOpacity onPress={() => { decreaseProductQuantity(id) }} style={[styles.child, styles.decreaseButton]}>
             <Text style={styles.quantityButton}>{'-'}</Text>
         </TouchableOpacity>
 
         <View style={[styles.child, styles.quantityContainer]}>
-            <Text style={styles.quantityText}>{cart[id].count}</Text>
+            <Text style={styles.quantityText}>{cart[id].quantity}</Text>
         </View>
 
-        <TouchableOpacity onPress={() => { increaseProductCount(id) }} style={[styles.child, styles.increaseButton]}>
+        <TouchableOpacity onPress={() => { increaseProductQuantity(id) }} style={[styles.child, styles.increaseButton]}>
             <Text style={styles.quantityButton}>{'+'}</Text>
         </TouchableOpacity>
     </React.Fragment>
@@ -45,8 +45,8 @@ const mapStateToProps = ({
 })
 
 const mapDispatchToProps = {
-    decreaseProductCount,
-    increaseProductCount
+    decreaseProductQuantity,
+    increaseProductQuantity
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardProductQuantityComponent)
