@@ -23,7 +23,7 @@ export const setPaymentType = (paymentType) => {
 
 export const saveCard = (card, cb) => {
     return (dispatch) => {
-        //  axios.put(`${SERVER_URL}/user/save-card`, { card })
+        //  axios.put(`${SERVER_URL}/user/card`, { card })
         //      .then(({ status, data }) => {
         //          if (status === 200) {
         dispatch({
@@ -44,7 +44,7 @@ export const saveCard = (card, cb) => {
 
 export const deleteCard = (cardId) => {
     return (dispatch) => {
-        //  axios.put(`${SERVER_URL}/user/delete-card`, { id: cardId })
+        //  axios.delete(`${SERVER_URL}/user/card`, { id: cardId })
         //      .then(({ status }) => {
         //          if (status === 200) {
         dispatch({
@@ -69,7 +69,7 @@ export const saveAddress = (address, details) => {
     }
 
     return (dispatch) => {
-        axios.put(`${SERVER_URL}/user/add-address`, body)
+        axios.post(`${SERVER_URL}/user/address`, body)
             .then(({ status, data }) => {
                 if (status === 200) {
                     // AsyncStorage.setItem('user', JSON.stringify(data)) // User serverda güncellenince, güncellenenen tüm user'ı geri dönüyor.
@@ -86,7 +86,7 @@ export const saveAddress = (address, details) => {
 
 export const deleteAddress = (addressId) => {
     return (dispatch) => {
-        axios.put(`${SERVER_URL}/user/delete-address`, { _id: addressId })
+        axios.delete(`${SERVER_URL}/user/address/${addressId}`)
             .then(({ status, data }) => {
                 if (status === 200) {
                     // AsyncStorage.setItem('user', JSON.stringify(data)) // User serverda güncellenince, güncellenenen tüm user'ı geri dönüyor.

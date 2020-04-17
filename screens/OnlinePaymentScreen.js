@@ -17,7 +17,7 @@ class OnlinePaymentScreen extends React.PureComponent {
     }
 
     makeOrder = () => {
-        this.props.makeOrder(this.props.cart, this.props.navigation)
+        this.props.makeOrder(this.props.navigation)
     }
 
     render() {

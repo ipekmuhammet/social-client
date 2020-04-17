@@ -16,7 +16,6 @@ export const setInitialDatas = () => {
 			Promise.all([getCategories(), getProducts()]).then(res => {
 				if (vals[0][1]) {
 					getCart(vals[0][1]).then((cart) => {
-						console.log(cart)
 						dispatch({
 							type: SET_INITIAL_DATAS,
 							payload: {
@@ -24,9 +23,22 @@ export const setInitialDatas = () => {
 								products: res[1],
 								token: vals[0][1],
 								user: JSON.parse(vals[1][1]),
-								cart: cart
+								cart
 							}
 						})
+					}).catch((reason) => {
+						console.log('err ->', reason.message)
+
+						//	dispatch({
+						//		type: SET_INITIAL_DATAS,
+						//		payload: {
+						//			categories: res[0],
+						//			products: res[1],
+						//			token: vals[0][1],
+						//			user: JSON.parse(vals[1][1]),
+						//			cart: {}
+						//		}
+						//	})
 					})
 				} else {
 					dispatch({
@@ -43,18 +55,7 @@ export const setInitialDatas = () => {
 			}).catch((err) => {
 				console.log('err, actions 4 - 45', err)
 			})
-		})
-
-		//	Promise.all([getCategories(), getProducts()]).then(res => {
-		//		dispatch({
-		//			type: SET_INITIAL_DATAS,
-		//			payload: {
-		//				categories: res[0],
-		//				products: res[1]
-		//			}
-		//		})
-		//	})
-
+		}).catch((err) => console.log(err))
 	}
 }
 

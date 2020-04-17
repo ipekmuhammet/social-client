@@ -9,11 +9,11 @@ import { setNeedToLoginPopupState } from '../actions/global-actions'
 class CompletePaymentComponent extends React.PureComponent {
 
     onCompletePaymentClick = () => {
-        const { completable, cart, token, paymentType, navigation, makeOrder, selectedCard, selectedAddress, kartRef, addressRef, setNeedToLoginPopupState } = this.props
+        const { completable, token, navigation, makeOrder, selectedCard, selectedAddress, kartRef, addressRef, setNeedToLoginPopupState } = this.props
 
         if (completable) {
             if (selectedCard && selectedAddress) {
-                makeOrder(cart, selectedCard, selectedAddress, () => {
+                makeOrder(selectedCard, selectedAddress, () => {
                     navigation.navigate('thanksScreen')
                 })
             } else {

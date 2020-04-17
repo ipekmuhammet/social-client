@@ -64,7 +64,7 @@ class ResetPasswordScreen extends React.PureComponent {
                     <TouchableOpacity
                         style={styles.resetPasswordButton}
                         onPress={() => {
-                            axios.put(`${SERVER_URL}/send-activation-code`,
+                            axios.post(`${SERVER_URL}/send-activation-code`,
                                 { activation_code: this.state.activationCode, phone_number: this.state.phoneNumber, new_password: this.state.password }
                             ).then(({ status }) => {
                                 if (status === 200) {

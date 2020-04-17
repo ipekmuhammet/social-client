@@ -7,10 +7,10 @@ export const DECREASE_PRODUCT_QUANTITY = 'DECREASE_PRODUCT_QUANTITY'
 export const INCREASE_PRODUCT_QUANTITY = 'INCREASE_PRODUCT_QUANTITY'
 export const MAKE_ORDER = 'MAKE_ORDER'
 
-export const makeOrder = (cart, selectedCard, selectedAddress, cb) => {
+export const makeOrder = (selectedCard, selectedAddress, cb) => {
 	return (dispatch) => {
-		const body = { cart, selected_card: selectedCard, selected_address: selectedAddress }
-		axios.post(`${SERVER_URL}/user/makeOrder`, body).then(() => {
+		const body = { card: selectedCard, address: selectedAddress }
+		axios.post(`${SERVER_URL}/user/order`, body).then(() => {
 			cb()
 
 			dispatch({

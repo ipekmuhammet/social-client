@@ -9,7 +9,6 @@ class LoadingScreen extends React.PureComponent {
 	UNSAFE_componentWillMount() {
 		AsyncStorage.getItem('init').then((init) => {
 			if (init) {
-				//	if (this.props.token) {
 				if (this.props.categories.length > 0) {
 					this.props.navigation.navigate('Root')
 				} else {

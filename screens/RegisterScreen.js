@@ -103,7 +103,7 @@ class RegisterScreen extends React.PureComponent {
                     <TouchableOpacity
                         onPress={() => {
                             axios.post(`${SERVER_URL}/send-activation-code`, { phone_number: this.state.phoneNumber }).then(res => {
-                                if (res.status === 200) {
+                                if (res.status === 202) {
                                     this.props.navigation.navigate('activationScreen', {
                                         phone_number: this.state.phoneNumber,
                                         password: this.state.password,
