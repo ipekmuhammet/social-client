@@ -3,6 +3,7 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import axios from 'axios'
 import { ScrollView, View, TouchableOpacity, TextInput, Text, StyleSheet, Alert } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
+import { SERVER_URL } from 'react-native-dotenv'
 
 import PasswordChangedPopup from '../components/popups/PasswordChangedPopup'
 
@@ -10,13 +11,16 @@ class ResetPasswordScreen extends React.PureComponent {
 
     state = {
         scaleAnimationModal: false,
-        phoneNumber: '905468133198',
+        phoneNumber: this.props.route.params.phoneNumber || '905468133100',
         activationCode: '',
         password: '1234'
     }
 
     setPopupState = (state) => {
         this.setState(state)
+        if (!state.scaleAnimationModal) {
+            this.props.navigation.navigate('Welcome', { screen: 'login' })
+        }
     }
 
     render() {
@@ -64,8 +68,8 @@ class ResetPasswordScreen extends React.PureComponent {
                     <TouchableOpacity
                         style={styles.resetPasswordButton}
                         onPress={() => {
-                            axios.post(`${SERVER_URL}/send-activation-code`,
-                                { activation_code: this.state.activationCode, phone_number: this.state.phoneNumber, new_password: this.state.password }
+                            axios.put(`${SERVER_URL}/reset-password`,
+                                { activationCode: this.state.activationCode, phone_number: this.state.phoneNumber, new_password: this.state.password }
                             ).then(({ status }) => {
                                 if (status === 200) {
                                     this.setState({ scaleAnimationModal: true })

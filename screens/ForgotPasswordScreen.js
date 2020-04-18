@@ -1,6 +1,8 @@
 import React from 'react'
+import axios from 'axios'
 import { ScrollView, View, TouchableOpacity, TextInput, Text, StyleSheet } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
+import { SERVER_URL } from 'react-native-dotenv'
 
 class ForgotPasswordScreen extends React.Component {
 
@@ -27,7 +29,15 @@ class ForgotPasswordScreen extends React.Component {
                 </View>
                 <View style={styles.child}>
                     <TouchableOpacity
-                        onPress={() => { this.props.navigation.navigate('resetPassword') }}
+                        onPress={() => {
+                            axios.post(`${SERVER_URL}/send-activation-code`, {
+                                phone_number: this.state.phoneNumber
+                            }).then(({ status }) => {
+                                if (status === 202) {
+                                    this.props.navigation.navigate('resetPassword', { phoneNumber: this.state.phoneNumber })
+                                }
+                            })
+                        }}
                         style={styles.sendCodeButton}>
                         <Text style={styles.sendCodeText}>Send Code</Text>
                     </TouchableOpacity>
