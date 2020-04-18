@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     container: { flex: 1, height: RFValue(80, 600), margin: RFValue(12, 600), borderRadius: 12, backgroundColor: 'white', display: 'flex', flexDirection: 'row' },
     iconContainer: { alignItems: 'center', justifyContent: 'center', marginHorizontal: RFValue(12, 600) },
     titleContainer: { alignItems: 'center', justifyContent: 'center', marginHorizontal: RFValue(12, 600) },
-    title: { fontSize: RFValue(19, 600) }
+    title: { fontSize: RFValue(18, 600) }
 })
 
 export default MessagePopup
