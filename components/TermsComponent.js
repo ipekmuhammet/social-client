@@ -23,8 +23,8 @@ const styles = StyleSheet.create({
     container: { height: RFValue(60, 600), flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', margin: RFValue(3, 600), marginVertical: RFValue(8, 600) },
     checkBoxContainer: { alignItems: 'flex-start', justifyContent: 'flex-start' },
     checkBox: { backgroundColor: 'transparent' },
-    termsText: { color: 'black', fontSize: RFValue(17, 600), fontWeight: 'bold' },
-    termsLinkText: { color: '#5D3EBD', fontSize: RFValue(17, 600), fontWeight: 'bold' },
+    termsText: { color: 'black', fontSize: RFValue(16, 600), fontWeight: 'bold' },
+    termsLinkText: { color: '#5D3EBD', fontSize: RFValue(16, 600), fontWeight: 'bold' },
     termsTextContainer: { alignItems: 'center', justifyContent: 'center', flexDirection: 'row' },
     termsInfoContainer: { alignItems: 'flex-start', justifyContent: 'flex-start', flexDirection: 'column', marginLeft: RFValue(8, 600) }
 })

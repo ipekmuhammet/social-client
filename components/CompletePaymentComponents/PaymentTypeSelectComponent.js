@@ -44,11 +44,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     paymentTitle: {
-        fontSize: RFValue(18, 600),
+        fontSize: RFValue(17, 600),
         marginVertical: RFValue(4, 600)
     },
     paymentDetail: {
-        fontSize: RFValue(15, 600),
+        fontSize: RFValue(17, 600),
         marginVertical: RFValue(4, 600)
     }
 })

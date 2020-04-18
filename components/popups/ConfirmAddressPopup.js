@@ -55,9 +55,9 @@ const styles = StyleSheet.create({
     buttonYes: { backgroundColor: '#5D3EBD' },
     buttonText: { color: 'white' },
     title: { marginVertical: RFValue(8, 600) },
-    titleText: { textAlign: 'center', color: '#5D3EBD', fontWeight: '600', fontSize: RFValue(20, 600) },
+    titleText: { textAlign: 'center', color: '#5D3EBD', fontWeight: '600', fontSize: RFValue(19, 600) },
     content: { alignItems: 'center', justifyContent: 'center' },
-    contentText: { fontSize: RFValue(17, 600), color: '#303030', fontWeight: 'bold', textAlign: 'center' }
+    contentText: { fontSize: RFValue(16, 600), color: '#303030', fontWeight: 'bold', textAlign: 'center' }
 })
 
 const mapStateToProps = ({

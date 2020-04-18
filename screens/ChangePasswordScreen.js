@@ -69,15 +69,15 @@ const styles = StyleSheet.create({
     inputContainer: { flexDirection: 'row' },
     input: {
         flex: 1, margin: RFValue(4, 600), borderRadius: 6,
-        paddingHorizontal: RFValue(12, 600), fontSize: RFValue(19, 600), borderWidth: .8, borderColor: '#ABABAB'
+        paddingHorizontal: RFValue(12, 600), fontSize: RFValue(18, 600), borderWidth: .8, borderColor: '#ABABAB'
     },
     resetPasswordButton: {
         backgroundColor: '#5D3EBD', flex: 1, margin: RFValue(4, 600),
         borderRadius: 10, alignItems: 'center', justifyContent: 'center'
     },
     resendContainer: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
-    resendCodeText: { fontSize: RFValue(22, 600), paddingHorizontal: RFValue(12, 600), color: '#6E7586' },
-    resetPasswordText: { color: 'white', fontSize: RFValue(19, 600) }
+    resendCodeText: { fontSize: RFValue(20, 600), paddingHorizontal: RFValue(12, 600), color: '#6E7586' },
+    resetPasswordText: { color: 'white', fontSize: RFValue(18, 600) }
 })
 
 const mapStateToProps = ({

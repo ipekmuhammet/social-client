@@ -53,13 +53,13 @@ const styles = StyleSheet.create({
     inputContainer: { flexDirection: 'row' },
     input: {
         flex: 1, margin: RFValue(4, 600), borderRadius: 6,
-        paddingHorizontal: RFValue(12, 600), fontSize: RFValue(19, 600), borderWidth: .8, borderColor: '#ABABAB'
+        paddingHorizontal: RFValue(12, 600), fontSize: RFValue(18, 600), borderWidth: .8, borderColor: '#ABABAB'
     },
     sendCodeButton: {
         backgroundColor: '#5D3EBD', flex: 1, margin: RFValue(4, 600),
         borderRadius: 10, alignItems: 'center', justifyContent: 'center'
     },
-    sendCodeText: { color: 'white', fontSize: RFValue(19, 600) }
+    sendCodeText: { color: 'white', fontSize: RFValue(18, 600) }
 })
 
 export default ForgotPasswordScreen

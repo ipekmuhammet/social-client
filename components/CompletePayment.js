@@ -62,10 +62,10 @@ const styles = StyleSheet.create({
         flex: 1, padding: RFValue(20, 600),
         backgroundColor: '#3D8B40', alignItems: 'center', justifyContent: 'center'
     },
-    completePaymentText: { color: 'white', fontSize: RFValue(18, 600), fontWeight: 'bold' },
+    completePaymentText: { color: 'white', fontSize: RFValue(17, 600), fontWeight: 'bold' },
     totalPriceContainer: { flex: 2, justifyContent: 'center' },
     totalPriceText: {
-        color: 'white', fontSize: RFValue(18, 600),
+        color: 'white', fontSize: RFValue(17, 600),
         padding: RFValue(12, 600), fontWeight: 'bold'
     }
 })

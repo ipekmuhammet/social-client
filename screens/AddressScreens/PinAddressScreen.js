@@ -56,8 +56,8 @@ const styles = StyleSheet.create({
         position: 'absolute', bottom: 0, height: 78, left: 0, right: 0, backgroundColor: 'transparent', zIndex: RFValue(2, 600), display: 'flex',
         flexDirection: 'row', alignItems: 'center', paddingHorizontal: RFValue(24, 600), paddingVertical: RFValue(24, 600)
     },
-    button: { flex: 1, padding: RFValue(12, 600), backgroundColor: '#5D3EBD', borderRadius: 16 },
-    buttonText: { fontSize: RFValue(20, 600), color: 'white', textAlign: 'center', fontWeight: 'bold' }
+    button: { flex: 1, padding: RFValue(12, 600), backgroundColor: '#5D3EBD', borderRadius: 10 },
+    buttonText: { fontSize: RFValue(20, 600), color: 'white', textAlign: 'center' }
 })
 
 export default PinAddressScreen

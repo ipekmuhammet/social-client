@@ -51,8 +51,8 @@ class SearchAddressScreen extends React.PureComponent {
                             style={{ height: 70, paddingVertical: RFValue(16, 600), display: 'flex', flexDirection: 'row', alignItems: 'center', margin: RFValue(6, 600) }}>
                             <View style={{ flex: 1, flexDirection: 'row', marginHorizontal: RFValue(10, 600), alignItems: 'center' }}>
                                 <Ionicons size={32} name={'md-pin'} color={'#6B788B'} />
-                                <Text numberOfLines={3} style={{ flex: 1, paddingHorizontal: RFValue(16, 600), fontSize: RFValue(16, 600), color: '#6B788B', fontWeight: '500' }}>{item.description}</Text>
-                                <Text numberOfLines={3} style={{ paddingHorizontal: RFValue(4, 600), fontSize: RFValue(14, 600), color: '#6B788B', fontWeight: '500' }}>
+                                <Text numberOfLines={3} style={{ flex: 1, paddingHorizontal: RFValue(16, 600), fontSize: RFValue(15, 600), color: '#6B788B', fontWeight: '500' }}>{item.description}</Text>
+                                <Text numberOfLines={3} style={{ paddingHorizontal: RFValue(4, 600), fontSize: RFValue(13, 600), color: '#6B788B', fontWeight: '500' }}>
                                     {item.distance_meters && (parseInt(item.distance_meters) > 1000 ? (parseInt(item.distance_meters) / 1000).toFixed(2) + 'km' : item.distance_meters + 'm')}
                                 </Text>
                             </View>
@@ -64,7 +64,7 @@ class SearchAddressScreen extends React.PureComponent {
                             <View style={{ flex: 1, display: 'flex', flexDirection: 'row', alignItems: 'center', marginHorizontal: RFValue(6, 600) }}>
                                 <View style={{ flex: 1, flexDirection: 'row', marginHorizontal: RFValue(10, 600) }}>
                                     <Ionicons size={32} name={'md-search'} color={'#5E3FBE'} />
-                                    <TextInput value={this.state.searchVal} onChangeText={this.search} placeholder={'Search Address'} style={{ flex: 1, paddingHorizontal: RFValue(16, 600), fontSize: 18 }} />
+                                    <TextInput value={this.state.searchVal} onChangeText={this.search} placeholder={'Search Address'} style={{ flex: 1, paddingHorizontal: RFValue(16, 600), fontSize: 17 }} />
                                 </View>
                             </View>
 
@@ -83,7 +83,7 @@ class SearchAddressScreen extends React.PureComponent {
                                 style={{ flex: 1, display: 'flex', flexDirection: 'row', alignItems: 'center', marginHorizontal: RFValue(6, 600) }}>
                                 <View style={{ flex: 1, flexDirection: 'row', marginHorizontal: RFValue(10, 600), alignItems: 'center' }}>
                                     <Ionicons size={32} name={'md-locate'} color={'#5E3FBE'} />
-                                    <Text style={{ flex: 1, paddingHorizontal: RFValue(16, 600), fontSize: 18 }}>Use current location</Text>
+                                    <Text style={{ flex: 1, paddingHorizontal: RFValue(16, 600), fontSize: 17 }}>Use current location</Text>
                                 </View>
                             </TouchableOpacity>
 

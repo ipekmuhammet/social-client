@@ -119,13 +119,13 @@ const styles = StyleSheet.create({
     input: {
         flex: 1, borderWidth: 1, alignItems: 'center', justifyContent: 'center', margin: RFValue(3, 600),
         borderRadius: 8,
-        borderColor: '#C3C3C3', paddingHorizontal: RFValue(13, 600), fontSize: RFValue(18, 600)
+        borderColor: '#C3C3C3', paddingHorizontal: RFValue(13, 600), fontSize: RFValue(17, 600)
     },
     button: {
         flex: 1, backgroundColor: '#5D3EBD', alignItems: 'center', justifyContent: 'center', margin: RFValue(3, 600),
         borderRadius: 8
     },
-    buttonText: { fontSize: RFValue(18, 600), color: 'white' }
+    buttonText: { fontSize: RFValue(20, 600), color: 'white' }
 })
 
 const mapDispatchToProps = {

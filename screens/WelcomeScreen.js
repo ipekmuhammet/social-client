@@ -50,11 +50,11 @@ const styles = StyleSheet.create({
         borderRadius: 10, alignItems: 'center', justifyContent: 'center'
     },
     continueWithRegistration: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-    buttonText: { color: '#6E7586', fontSize: RFValue(19, 600), fontWeight: 'bold' },
-    registerButtonText: { color: 'white', fontSize: RFValue(19, 600), fontWeight: 'bold' },
+    buttonText: { color: '#6E7586', fontSize: RFValue(20, 600) },
+    registerButtonText: { color: 'white', fontSize: RFValue(20, 600) },
     goToLoginPageContainer: { flex: 1, alignItems: 'center', justifyContent: 'center', flexDirection: 'row' },
     loginText: {
-        color: '#5D3EBD', fontSize: RFValue(19, 600), fontWeight: 'bold',
+        color: '#5D3EBD', fontSize: RFValue(18, 600),
         marginHorizontal: RFValue(10, 600)
     }
 })

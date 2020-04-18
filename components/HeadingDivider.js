@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: RFValue(16, 600), backgroundColor: '#EDEDED',
         shadowColor: '#000', shadowOffset: { width: 1, height: 1, }, shadowOpacity: .2, shadowRadius: RFValue(12, 600), elevation: 8
     },
-    title: { color: '#A8A8A8', fontSize: RFValue(18, 600), fontWeight: 'bold' }
+    title: { color: '#A8A8A8', fontSize: RFValue(17, 600), fontWeight: 'bold' }
 })
 
 export default HeadingDivider

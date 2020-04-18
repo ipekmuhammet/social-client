@@ -47,8 +47,8 @@ const styles = StyleSheet.create({
 	column: { flexDirection: 'column', display: 'flex' },
 	rowChild: { flex: 2, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', display: 'flex' },
 	textContainer: { width: '100%', paddingHorizontal: RFValue(8, 600), justifyContent: 'flex-start', alignItems: 'flex-start' },
-	productName: { fontSize: RFPercentage(2.7), fontWeight: '700', color: '#303030', textAlign: 'justify', justifyContent: 'center', letterSpacing: .2 },
-	productPrice: { fontSize: RFPercentage(3.4), fontWeight: '700', color: '#5439B3', textAlign: 'center', justifyContent: 'center', letterSpacing: .2 },
+	productName: { fontSize: RFPercentage(2.4), fontWeight: '700', color: '#303030', textAlign: 'justify', justifyContent: 'center', letterSpacing: .2 },
+	productPrice: { fontSize: RFPercentage(3.1), fontWeight: '700', color: '#5439B3', textAlign: 'center', justifyContent: 'center', letterSpacing: .2 },
 	imageContainer: {
 		padding: RFValue(4, 600), borderWidth: .4, borderColor: '#CDCDCD',
 		borderRadius: 12, backgroundColor: 'white'

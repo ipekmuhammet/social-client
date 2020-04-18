@@ -22,8 +22,8 @@ const Category = ({ data: { id, name }, index, navigation, setSelectedCategory }
 				<Image source={{ uri: imageUrl }} resizeMode={'contain'} style={styles.productImage} />
 			</View>
 
-			<View style={styles.child}>
-				<Text style={styles.productName}>{name}</Text>
+			<View style={[styles.child, { minHeight: 50 }]}>
+				<Text style={styles.categoryName}>{name}</Text>
 			</View>
 
 		</TouchableOpacity>
@@ -55,17 +55,11 @@ const styles = StyleSheet.create({
 		height: RFPercentage(14),
 		margin: RFValue(4, 600)
 	},
-	productName: {
+	categoryName: {
 		fontSize: RFPercentage(3),
+		marginVertical: 8,
 		fontWeight: '300',
 		color: '#707070',
-		textAlign: 'center',
-		justifyContent: 'center'
-	},
-	productPrice: {
-		fontSize: RFPercentage(3),
-		fontWeight: '300',
-		color: '#7070D5',
 		textAlign: 'center',
 		justifyContent: 'center'
 	}

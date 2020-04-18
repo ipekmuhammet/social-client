@@ -53,13 +53,13 @@ const styles = StyleSheet.create({
     child: { height: RFValue(60, 600), margin: RFValue(3, 600) },
     activationCodeInput: {
         flex: 1, margin: RFValue(4, 600), borderRadius: 6,
-        paddingHorizontal: RFValue(12, 600), fontSize: RFValue(19, 600), borderWidth: .8, borderColor: '#ABABAB'
+        paddingHorizontal: RFValue(12, 600), fontSize: RFValue(18, 600), borderWidth: .8, borderColor: '#ABABAB'
     },
     registerButton: {
         backgroundColor: '#5D3EBD', flex: 1, margin: RFValue(4, 600),
         borderRadius: 10, alignItems: 'center', justifyContent: 'center'
     },
-    registerText: { color: 'white', fontSize: RFValue(19, 600) }
+    registerText: { color: 'white', fontSize: RFValue(18, 600) }
 })
 
 export default ActivationScreen

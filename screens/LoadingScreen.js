@@ -7,6 +7,7 @@ import LoadingComponent from '../components/LoadingCompenent'
 
 class LoadingScreen extends React.PureComponent {
 	UNSAFE_componentWillMount() {
+		// AsyncStorage.removeItem('init')
 		AsyncStorage.getItem('init').then((init) => {
 			if (init) {
 				if (this.props.categories.length > 0) {

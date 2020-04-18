@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
         borderBottomColor: '#D8D8D8'
     },
     title: {
-        fontSize: RFValue(18, 600),
+        fontSize: RFValue(17, 600),
         marginVertical: RFValue(4, 600),
         color: '#9C9C9C'
     },
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         padding: 4
     },
     showSavedNotesText: {
-        fontSize: RFValue(17, 600),
+        fontSize: RFValue(16, 600),
         fontWeight: 'bold',
         marginVertical: 4
     },

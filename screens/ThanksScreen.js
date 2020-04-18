@@ -37,7 +37,7 @@ const ThanksScreen = ({ navigation }) => (
 const styles = StyleSheet.create({
     emptyCartContainer: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#EDEDED' },
     child: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-    orderCompletedText: { fontSize: RFValue(24, 600), textAlign: 'center' },
+    orderCompletedText: { fontSize: RFValue(22, 600), textAlign: 'center' },
     goToHomeButtonContainer: { display: 'flex' },
     goToHomeButton: {
         backgroundColor: '#4CAB51', borderRadius: 32, alignItems: 'center', justifyContent: 'center',

@@ -89,11 +89,11 @@ class RegisterScreen extends React.PureComponent {
                     //      </View>
                     //      <View style={{ alignItems: 'flex-start', justifyContent: 'flex-start', flexDirection: 'column', marginLeft: RFValue(8, 600) }}>
                     //          <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row' }}>
-                    //              <Text style={{ color: 'black', fontSize: RFValue(17, 600), fontWeight: 'bold' }}>I give permissions for the use of my personal data for special offers and for receiving electronic communication, within the scope of The Law on Protection of Personal Data clarification document.</Text>
-                    //              <Text style={{ color: '#5D3EBD', fontSize: RFValue(17, 600), fontWeight: 'bold' }}>the Terms and</Text>
+                    //              <Text style={{ color: 'black', fontSize: RFValue(16, 600), fontWeight: 'bold' }}>I give permissions for the use of my personal data for special offers and for receiving electronic communication, within the scope of The Law on Protection of Personal Data clarification document.</Text>
+                    //              <Text style={{ color: '#5D3EBD', fontSize: RFValue(16, 600), fontWeight: 'bold' }}>the Terms and</Text>
                     //          </View>
                     //          <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row' }}>
-                    //              <Text style={{ color: '#5D3EBD', fontSize: RFValue(17, 600), fontWeight: 'bold' }}>Conditions.</Text>
+                    //              <Text style={{ color: '#5D3EBD', fontSize: RFValue(16, 600), fontWeight: 'bold' }}>Conditions.</Text>
                     //          </View>
                     //      </View>
                     //  </View>
@@ -140,13 +140,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#5D3EBD', flex: 1, margin: RFValue(4, 600),
         borderRadius: 10, alignItems: 'center', justifyContent: 'center'
     },
-    registerText: { color: 'white', fontSize: RFValue(19, 600) },
-    facebookText: { color: 'white', fontSize: RFValue(19, 600) },
+    registerText: { color: 'white', fontSize: RFValue(18, 600) },
+    facebookText: { color: 'white', fontSize: RFValue(18, 600) },
     termsContainer: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' },
     checkBoxContainer: { alignItems: 'flex-start', justifyContent: 'flex-start' },
     checkBox: { backgroundColor: 'transparent' },
-    termsText: { color: 'black', fontSize: RFValue(17, 600), fontWeight: 'bold' },
-    termsLinkText: { color: '#5D3EBD', fontSize: RFValue(17, 600), fontWeight: 'bold' },
+    termsText: { color: 'black', fontSize: RFValue(16, 600), fontWeight: 'bold' },
+    termsLinkText: { color: '#5D3EBD', fontSize: RFValue(16, 600), fontWeight: 'bold' },
     termsTextContainer: { alignItems: 'center', justifyContent: 'center', flexDirection: 'row' },
     termsInfoContainer: { alignItems: 'flex-start', justifyContent: 'flex-start', flexDirection: 'column', marginLeft: RFValue(8, 600) },
     empty: { height: RFValue(28, 600) },

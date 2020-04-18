@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
         margin: RFValue(18, 600), padding: RFValue(18, 600),
         paddingHorizontal: RFValue(48, 600)
     },
-    listProductsText: { color: 'white', fontSize: RFValue(20, 600), alignItems: 'center', justifyContent: 'center' },
+    listProductsText: { color: 'white', fontSize: RFValue(19, 600), alignItems: 'center', justifyContent: 'center' },
     footer: { height: RFValue(90, 600) }
 })
 

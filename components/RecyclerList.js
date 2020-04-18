@@ -18,7 +18,7 @@ class List extends React.PureComponent {
             return 0
         }, (type, dim) => {
             dim.width = width / 3.1
-            dim.height = 260
+            dim.height = 236
         })
 
         this.state = {

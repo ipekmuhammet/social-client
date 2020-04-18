@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
 	},
 	addProductIcon: {
 		color: '#5837C2',
-		fontSize: RFValue(24, 600)
+		fontSize: RFValue(23, 600)
 	},
 	productImageContainer: {
 		borderWidth: .2,
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
 		margin: RFValue(12, 600)
 	},
 	productName: {
-		fontSize: RFPercentage(2.8),
+		fontSize: RFPercentage(2.5),
 		fontWeight: '300',
 		color: '#303030',
 		textAlign: 'left',
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
 		letterSpacing: .2
 	},
 	kindText: {
-		fontSize: RFPercentage(2.6),
+		fontSize: RFPercentage(2.3),
 		fontWeight: '700',
 		color: '#B1B1B1',
 		textAlign: 'left',
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
 		letterSpacing: .2
 	},
 	productPrice: {
-		fontSize: RFPercentage(3.2),
+		fontSize: RFPercentage(2.9),
 		fontWeight: '700',
 		color: '#5837C2',
 		textAlign: 'left',

@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     mostSearchContainer: { flex: .7, padding: RFValue(2, 600), margin: RFValue(2, 600), alignItems: 'center', justifyContent: 'center', backgroundColor: 'white' },
     iconContainer: { alignItems: 'center', justifyContent: 'center', flex: 1 },
     inputContainer: { alignItems: 'center', justifyContent: 'center', flex: 6, display: 'flex', flexDirection: 'row' },
-    searchInput: { textAlign: 'left', flex: 1, fontSize: 21 },
+    searchInput: { textAlign: 'left', flex: 1, fontSize: 20 },
     emptyFooter: { flex: 7, margin: RFValue(2, 600) }
 })
 

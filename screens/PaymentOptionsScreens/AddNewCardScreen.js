@@ -65,14 +65,14 @@ const styles = StyleSheet.create({
     header: { flexDirection: 'row' },
     imageContainer: { margin: RFValue(10, 600), marginLeft: RFValue(12, 600) },
     caseImage: { width: RFValue(95, 600), height: RFValue(105, 600), borderRadius: 8 },
-    securityText: { color: '#5E3FBE', fontSize: RFValue(20, 600), fontWeight: 'bold' },
+    securityText: { color: '#5E3FBE', fontSize: RFValue(19, 600), fontWeight: 'bold' },
     infoContainer: { flex: 1, flexDirection: 'column', margin: RFValue(10, 600), marginRight: RFValue(12, 600) },
-    securityInformation: { color: '#757889', fontSize: RFValue(16, 600), fontWeight: 'bold' },
+    securityInformation: { color: '#757889', fontSize: RFValue(15, 600), fontWeight: 'bold' },
     inputContainer: { marginVertical: 2 },
-    input: { borderWidth: .8, borderColor: '#CDCDCD', fontSize: RFValue(20, 600), paddingHorizontal: RFValue(16, 600), paddingVertical: RFValue(12, 600), margin: RFValue(10, 600), marginVertical: 4, borderRadius: 8 },
+    input: { borderWidth: .8, borderColor: '#CDCDCD', fontSize: RFValue(19, 600), paddingHorizontal: RFValue(16, 600), paddingVertical: RFValue(12, 600), margin: RFValue(10, 600), marginVertical: 4, borderRadius: 8 },
     buttonContainer: { height: RFValue(60, 600), margin: RFValue(10, 600) },
     continueButton: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgb(94,63,190)', borderRadius: 10 },
-    continueText: { fontSize: RFValue(20, 600), color: 'white', fontWeight: 'bold' },
+    continueText: { fontSize: RFValue(20, 600), color: 'white' },
     empty: { height: RFValue(22, 600) },
     buttonDivider: { height: RFValue(20, 600), backgroundColor: '#EDEEF0' }
 })

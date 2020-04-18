@@ -22,7 +22,7 @@ const ProductsScreen = ({ categories, products, selectedCategory }) => (
 )
 
 const styles = StyleSheet.create({
-	tabBarTextStyle: { color: 'white', fontSize: RFValue(16, 600) },
+	tabBarTextStyle: { color: 'white', fontSize: RFValue(15, 600) },
 	tabBarUnderlineStyle: { backgroundColor: '#FED110' }
 })
 

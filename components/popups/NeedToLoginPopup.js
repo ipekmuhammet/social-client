@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     buttonOk: { backgroundColor: '#5D3EBD' },
     buttonText: { color: 'white' },
     title: { marginVertical: RFValue(8, 600) },
-    titleText: { textAlign: 'center', fontSize: 17 }
+    titleText: { textAlign: 'center', fontSize: 16 }
 })
 
 const mapStateToProps = ({
