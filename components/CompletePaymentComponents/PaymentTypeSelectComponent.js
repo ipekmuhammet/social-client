@@ -3,10 +3,14 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 
-const PaymentTypeSelectComponent = ({ navigation, title }) => (
-    <TouchableOpacity style={styles.container} onPress={() => [
-        navigation.navigate('paymentOptionsScreen')
-    ]}>
+const PaymentTypeSelectComponent = ({ navigation, title, token, setNeedToLoginPopupState }) => (
+    <TouchableOpacity style={styles.container} onPress={() => {
+        if (!token) {
+            setNeedToLoginPopupState(true)
+        } else {
+            navigation.navigate('paymentOptionsScreen')
+        }
+    }}>
         <View style={styles.iconContainer}>
             <Ionicons size={32} name={'ios-wallet'} />
         </View>

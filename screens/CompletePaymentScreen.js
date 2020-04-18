@@ -10,6 +10,7 @@ import CompletePayment from '../components/CompletePayment'
 
 import AddressSelectComponent from '../components/CompletePaymentComponents/AddressSelectComponent'
 import PaymentTypeSelectComponent from '../components/CompletePaymentComponents/PaymentTypeSelectComponent'
+import { setNeedToLoginPopupState } from '../actions/global-actions'
 //  import OrderTimeComponent from '../components/CompletePaymentComponents/OrderTimeComponent'
 //  import OrderNoteComponent from '../components/CompletePaymentComponents/OrderNoteComponent'
 
@@ -21,7 +22,7 @@ class CompletePaymentScreen extends React.PureComponent {
     }
 
     render() {
-        const { navigation, cards, addresses, selectedCard, selectedAddress } = this.props
+        const { navigation, cards, addresses, selectedCard, selectedAddress, token, setNeedToLoginPopupState } = this.props
 
         return (
             <React.Fragment>
@@ -47,6 +48,8 @@ class CompletePaymentScreen extends React.PureComponent {
 
                     <AddressSelectComponent
                         navigation={navigation}
+                        token={token}
+                        setNeedToLoginPopupState={setNeedToLoginPopupState}
                         title={(addresses.find(address => address._id === selectedAddress))?.open_address ?? 'Adres seçiniz'}
                         subTitle={(addresses.find(address => address._id === selectedAddress))?.open_address ?? 'Adres seçiniz'} />
 
@@ -54,6 +57,8 @@ class CompletePaymentScreen extends React.PureComponent {
 
                     <PaymentTypeSelectComponent
                         navigation={navigation}
+                        token={token}
+                        setNeedToLoginPopupState={setNeedToLoginPopupState}
                         title={(cards.find(card => card.id === selectedCard))?.cardLabel ?? 'Kart Seçiniz'}
                         subTitle={(cards.find(card => card.id === selectedCard))?.cardNumber ?? 'Kart Seçiniz'} />
 
@@ -87,12 +92,20 @@ const mapStateToProps = ({
         addresses,
         selectedCard,
         selectedAddress
+    },
+    reducer4: {
+        token
     }
 }) => ({
     cards,
     addresses,
     selectedCard,
-    selectedAddress
+    selectedAddress,
+    token
 })
 
-export default connect(mapStateToProps)(CompletePaymentScreen)
+const mapDispatchToProps = {
+    setNeedToLoginPopupState
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CompletePaymentScreen)

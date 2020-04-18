@@ -1,35 +1,41 @@
 import React from 'react'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { View, Image, StyleSheet  } from 'react-native'
+import { View, Image, StyleSheet } from 'react-native'
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack'
 
 import HomeScreen from '../HomeScreen'
 import ProductScreen from '../ProductsScreen'
+import { connect } from 'react-redux'
+import { setRootNavigation } from '../../actions/global-actions'
 
 const Stack = createStackNavigator()
 
-const Screen1 = () => (
-	<Stack.Navigator screenOptions={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }}>
-		<Stack.Screen name='home' component={HomeScreen} options={{
-			headerTitleAlign: 'center',
-			headerStyle: styles.headerStyle,
-			headerTitle: () => (
-				<View style={styles.headerTitle}>
-					<Image source={require('../../assets/logo.png')} resizeMode={'contain'} style={styles.headerImage} />
-				</View>
-			)
-		}} />
-		<Stack.Screen
-			name='products'
-			options={{
-				title: 'Products',
+const Screen1 = ({ navigation, setRootNavigation }) => {
+	setRootNavigation(navigation)
+	
+	return (
+		<Stack.Navigator screenOptions={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }}>
+			<Stack.Screen name='home' component={HomeScreen} options={{
 				headerTitleAlign: 'center',
-				headerTintColor: 'white',
-				headerStyle: styles.headerStyle
-			}}
-			component={ProductScreen} />
-	</Stack.Navigator>
-)
+				headerStyle: styles.headerStyle,
+				headerTitle: () => (
+					<View style={styles.headerTitle}>
+						<Image source={require('../../assets/logo.png')} resizeMode={'contain'} style={styles.headerImage} />
+					</View>
+				)
+			}} />
+			<Stack.Screen
+				name='products'
+				options={{
+					title: 'Products',
+					headerTitleAlign: 'center',
+					headerTintColor: 'white',
+					headerStyle: styles.headerStyle
+				}}
+				component={ProductScreen} />
+		</Stack.Navigator>
+	)
+}
 
 const styles = StyleSheet.create({
 	headerStyle: { backgroundColor: '#5D3EBD' },
@@ -37,4 +43,8 @@ const styles = StyleSheet.create({
 	headerImage: { flex: 1 }
 })
 
-export default Screen1
+const mapDispatchToProps = {
+	setRootNavigation
+}
+
+export default connect(null, mapDispatchToProps)(Screen1)

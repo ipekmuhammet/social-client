@@ -49,10 +49,10 @@ class ChangePasswordScreen extends React.PureComponent {
                                 if (status === 200) {
                                     this.props.navigation.pop()
                                 } else {
-                                    console.log(status)
+                                    console.log(status) // TODO
                                 }
                             }).catch((reason) => {
-                                console.log(reason)
+                                console.log(reason) // TODO
                             })
                         }}>
                         <Text style={styles.resetPasswordText}>Change Password</Text>

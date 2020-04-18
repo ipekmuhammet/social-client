@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 
 import { setNeedToLoginPopupState } from '../../actions/global-actions'
 
-const NeedToLoginPopup = ({ needToLoginPopupState, setNeedToLoginPopupState }) => (
+const NeedToLoginPopup = ({ navigation, needToLoginPopupState, setNeedToLoginPopupState }) => (
     <Modal
         onTouchOutside={() => {
             setNeedToLoginPopupState(false)
@@ -33,8 +33,9 @@ const NeedToLoginPopup = ({ needToLoginPopupState, setNeedToLoginPopupState }) =
                     style={styles.buttonOk}
                     onPress={() => {
                         setNeedToLoginPopupState(false)
-
-                        console.log('Move to login') // TODO
+                        if (navigation) {
+                            navigation.navigate('Welcome', { screen: 'login' })
+                        }
                     }}
                     key='button-2' />
             </ModalFooter>
@@ -51,10 +52,12 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = ({
     globalReducer: {
-        needToLoginPopupState
+        needToLoginPopupState,
+        navigation
     }
 }) => ({
-    needToLoginPopupState
+    needToLoginPopupState,
+    navigation
 })
 
 const mapDispatchToProps = {

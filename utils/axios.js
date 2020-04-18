@@ -25,7 +25,6 @@ export default (store) => {
 
         return config
     }, (error) => { // Do something with request error
-        console.log('----------------')
         return Promise.reject(error)
     })
 

@@ -22,7 +22,6 @@ const PasswordChangedPopup = ({ scaleAnimationModal, setPopupState }) => (
                     textStyle={styles.buttonText}
                     style={styles.button}
                     onPress={() => {
-                        console.log('Close')
                         setPopupState({ scaleAnimationModal: false })
                     }}
                     key='button-1' />

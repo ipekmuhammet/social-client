@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     inputContainer: { flexDirection: 'row' },
     input: { flex: 1, margin: RFValue(4, 600), zIndex: -1, borderRadius: 6, paddingHorizontal: RFValue(12, 600), fontSize: RFValue(18, 600), borderWidth: .8, borderColor: '#ABABAB' },
     facebookText: { color: 'white', fontSize: RFValue(18, 600) },
-    loginText: { color: 'white', fontSize: RFValue(18, 600) },
+    loginText: { color: 'white', fontSize: RFValue(20, 600) },
     forgotPasswordText: { color: '#6E7586', fontSize: RFValue(18, 600), fontWeight: 'bold' },
     registerText: { color: '#5D3EBD', fontSize: RFValue(20, 600) },
     empty: { height: RFValue(28, 600) },

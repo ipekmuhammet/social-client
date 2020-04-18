@@ -11,24 +11,24 @@ class CompletePaymentComponent extends React.PureComponent {
     onCompletePaymentClick = () => {
         const { completable, token, navigation, makeOrder, selectedCard, selectedAddress, kartRef, addressRef, setNeedToLoginPopupState } = this.props
 
-        if (completable) {
-            if (selectedCard && selectedAddress) {
-                makeOrder(selectedCard, selectedAddress, () => {
-                    navigation.navigate('thanksScreen')
-                })
-            } else {
-                if (!selectedAddress) {
-                    addressRef.showMessage({ message: '' })
+        if (token) {
+            if (completable) {
+                if (selectedCard && selectedAddress) {
+                    makeOrder(selectedCard, selectedAddress, () => {
+                        navigation.navigate('thanksScreen')
+                    })
                 } else {
-                    kartRef.showMessage({ message: '' })
+                    if (!selectedAddress) {
+                        addressRef.showMessage({ message: '' })
+                    } else {
+                        kartRef.showMessage({ message: '' })
+                    }
                 }
+            } else {
+                navigation.navigate('completePayment')
             }
         } else {
-            if (token) {
-                navigation.navigate('completePayment')
-            } else {
-                setNeedToLoginPopupState(true)
-            }
+            setNeedToLoginPopupState(true)
         }
     }
 
