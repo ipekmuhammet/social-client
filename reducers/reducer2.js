@@ -20,7 +20,7 @@ export default (state = INITIAL_STATE, action) => {
 
         case LOGOUT: return Object.assign({}, state, { addresses: [] })
 
-        case SET_INITIAL_DATAS: return Object.assign({}, state, { addresses: action.payload.user.addresses })
+        case SET_INITIAL_DATAS: return Object.assign({}, state, { addresses: action.payload?.user?.addresses ?? [] })
 
         case SAVE_CARD: {
             state.cards.push(action.payload.card)

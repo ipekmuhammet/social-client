@@ -6,27 +6,64 @@ import { Ionicons } from '@expo/vector-icons'
 import { SERVER_URL } from 'react-native-dotenv'
 
 import PasswordChangedPopup from '../components/popups/PasswordChangedPopup'
+import MessagePopup from '../components/popups/MessagePopup'
 
 class ResetPasswordScreen extends React.PureComponent {
 
     state = {
         scaleAnimationModal: false,
-        phoneNumber: this.props.route.params.phoneNumber || '905468133100',
+        phoneNumber: this.props.route.params.phoneNumber,
         activationCode: '',
-        password: '1234'
+        password: '',
+        requiredPopup: null,
+        invalidPasswordPopup: null,
+        errorPopupFromResponse: null,
+        errorMessage: ''
     }
 
     setPopupState = (state) => {
-        this.setState(state)
+        this.setState({ scaleAnimationModal: state.scaleAnimationModal })
         if (!state.scaleAnimationModal) {
             this.props.navigation.navigate('Welcome', { screen: 'login' })
         }
     }
 
+    showMessagePopupFromError = (errorMessage) => {
+        this.setState({ errorMessage }, () => {
+            this.state.errorPopupFromResponse.showMessage({ message: '' })
+        })
+    }
+
     render() {
         return (
             <ScrollView style={styles.container}>
+
                 <PasswordChangedPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
+
+                <MessagePopup
+                    onRef={(ref) => {
+                        this.setState({ errorPopupFromResponse: ref })
+                    }}
+                    text={this.state.errorMessage}>
+                    <Ionicons name={'md-warning'} size={48} color={'red'} />
+                </MessagePopup>
+
+                <MessagePopup
+                    onRef={(ref) => {
+                        this.setState({ requiredPopup: ref })
+                    }}
+                    text={'Lütfen gerekli alanlarını doldurunuz.'}>
+                    <Ionicons name={'md-warning'} size={48} color={'red'} />
+                </MessagePopup>
+
+                <MessagePopup
+                    onRef={(ref) => {
+                        this.setState({ invalidPasswordPopup: ref })
+                    }}
+                    text={'Yeni şifreniz en az 4 haneli olmalı.'}>
+                    <Ionicons name={'md-warning'} size={48} color={'red'} />
+                </MessagePopup>
+
                 <View style={[styles.child, styles.inputContainer]}>
 
                     {
@@ -68,15 +105,28 @@ class ResetPasswordScreen extends React.PureComponent {
                     <TouchableOpacity
                         style={styles.resetPasswordButton}
                         onPress={() => {
-                            axios.put(`${SERVER_URL}/reset-password`,
-                                { activationCode: this.state.activationCode, phone_number: this.state.phoneNumber, new_password: this.state.password }
-                            ).then(({ status }) => {
-                                if (status === 200) {
-                                    this.setState({ scaleAnimationModal: true })
-                                }
-                            }).catch((reason) => {
-                                Alert.alert(JSON.stringify(reason)) // TDOO
-                            })
+                            if (this.state.activationCode === '' || this.state.password === '' || this.state.phoneNumber === '') {
+
+                                this.state.requiredPopup.showMessage({ message: '' })
+
+                            } else if (this.state.password.length < 4) {
+
+                                this.state.invalidPasswordPopup.showMessage({ message: '' })
+
+                            } else {
+
+                                axios.put(`${SERVER_URL}/reset-password`,
+                                    { activationCode: this.state.activationCode, phone_number: this.state.phoneNumber, new_password: this.state.password }
+                                ).then(({ status }) => {
+                                    if (status === 200) {
+                                        this.setState({ scaleAnimationModal: true })
+                                    }
+                                }).catch(({ response }) => {
+                                    console.log(response.data) // TODO
+                                    this.showMessagePopupFromError(response.data.error)
+                                })
+
+                            }
                         }}>
                         <Text style={styles.resetPasswordText}>Reset Password</Text>
                     </TouchableOpacity>
@@ -96,7 +146,7 @@ class ResetPasswordScreen extends React.PureComponent {
 
 const styles = StyleSheet.create({
     container: { marginVertical: RFValue(12, 600) },
-    child: { height: RFValue(60, 600), margin: RFValue(3, 600) },
+    child: { height: RFValue(60, 600), margin: RFValue(3, 600), zIndex: -1 },
     inputContainer: { flexDirection: 'row' },
     input: {
         flex: 1, margin: RFValue(4, 600), borderRadius: 6,
