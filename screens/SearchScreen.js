@@ -1,9 +1,10 @@
 import React from 'react'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { View, TouchableOpacity, FlatList, Text, TextInput, StyleSheet, Dimensions } from 'react-native'
+import { View, TextInput, StyleSheet, Dimensions } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
 import HeadingDivider from '../components/HeadingDivider'
+import SearchFilter from '../components/SearchFilter'
 
 const SearchScreen = () => (
     <View style={styles.container} behavior={'height'}>
@@ -19,19 +20,7 @@ const SearchScreen = () => (
             </View>
         </View>
         <HeadingDivider title={'Popular Searches'} />
-        <View style={styles.mostSearchContainer}>
-            <FlatList
-                data={['water', 'milk', 'bread', 'egg', 'yogurt', 'coffee']}
-                keyExtractor={(_, index) => 'most_searched' + index}
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-                renderItem={({ item }) => (
-                    <TouchableOpacity style={styles.mostSearchedItem}>
-                        <Text style={styles.itemText}>{item}</Text>
-                    </TouchableOpacity>
-                )}
-            />
-        </View>
+        <SearchFilter />
         <View style={styles.emptyFooter} />
     </View>
 )
@@ -43,11 +32,6 @@ const styles = StyleSheet.create({
     iconContainer: { alignItems: 'center', justifyContent: 'center', flex: 1 },
     inputContainer: { alignItems: 'center', justifyContent: 'center', flex: 6, display: 'flex', flexDirection: 'row' },
     searchInput: { textAlign: 'left', flex: 1, fontSize: 21 },
-    mostSearchedItem: {
-        flex: 1, paddingHorizontal: RFValue(12, 600), margin: RFValue(4, 600), backgroundColor: 'white',
-        alignItems: 'center', justifyContent: 'center', borderWidth: .4, borderColor: '#5D3EBD', borderRadius: 8
-    },
-    itemText: { color: '#5D3EBD', fontSize: RFValue(14, 600) },
     emptyFooter: { flex: 7, margin: RFValue(2, 600) }
 })
 

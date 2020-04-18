@@ -4,6 +4,7 @@ import { RecyclerListView, DataProvider, LayoutProvider } from 'recyclerlistview
 
 import Product from './Product'
 import EmptyProduct from './EmptyProduct'
+import SearchFilter from '../components/SearchFilter'
 
 class List extends React.PureComponent {
     constructor(args) {
@@ -27,11 +28,20 @@ class List extends React.PureComponent {
 
     rowRenderer = (type, item) => item.empty ? <EmptyProduct /> : <Product key={item.id} data={item} />
 
+    setRef = (ref) => {
+        this.setState({ ref })
+    }
+
     render() {
-        return <RecyclerListView
-            layoutProvider={this.layoutProvider}
-            dataProvider={this.state.dataProvider}
-            rowRenderer={this.rowRenderer} />
+        return <React.Fragment>
+            <SearchFilter listRef={this.state.ref}/>
+            <RecyclerListView
+                ref={this.setRef}
+                layoutProvider={this.layoutProvider}
+                dataProvider={this.state.dataProvider}
+                rowRenderer={this.rowRenderer} />
+        </React.Fragment>
+
     }
 }
 
