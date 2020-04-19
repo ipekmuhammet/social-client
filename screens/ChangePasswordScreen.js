@@ -8,6 +8,7 @@ import { SERVER_URL } from 'react-native-dotenv'
 
 import PasswordChangedPopup from '../components/popups/PasswordChangedPopup'
 import MessagePopup from '../components/popups/MessagePopup'
+import ButtonComponent from '../components/ButtonComponent'
 
 class ChangePasswordScreen extends React.PureComponent {
 
@@ -25,6 +26,36 @@ class ChangePasswordScreen extends React.PureComponent {
 
         if (!state.scaleAnimationModal) {
             this.props.navigation.pop()
+        }
+    }
+
+    onChangePasswordClick = () => {
+        if (this.state.oldPassword === '' || this.state.password === '') {
+
+            this.state.emptyPasswordPopup.showMessage({ message: '' })
+
+        } else if (this.state.password.length < 4) {
+
+            this.state.invalidPasswordPopup.showMessage({ message: '' })
+
+        } else if (this.state.oldPassword === this.state.password) {
+
+            this.state.samePasswordPopup.showMessage({ message: '' })
+
+        } else {
+
+            axios.put(`${SERVER_URL}/user/change-password`, {
+                phone_number: this.props.user.phone_number, old_password: this.state.oldPassword, new_password: this.state.password
+            }).then(({ status }) => {
+                if (status === 200) {
+                    this.setState({ scaleAnimationModal: true })
+                } else {
+                    console.log(status) // TODO
+                }
+            }).catch((reason) => {
+                console.log(reason) // TODO
+            })
+
         }
     }
 
@@ -77,39 +108,7 @@ class ChangePasswordScreen extends React.PureComponent {
                 </View>
 
                 <View style={styles.child}>
-                    <TouchableOpacity
-                        style={styles.resetPasswordButton}
-                        onPress={() => {
-                            if (this.state.oldPassword === '' || this.state.password === '') {
-
-                                this.state.emptyPasswordPopup.showMessage({ message: '' })
-
-                            } else if (this.state.password.length < 4) {
-
-                                this.state.invalidPasswordPopup.showMessage({ message: '' })
-
-                            } else if (this.state.oldPassword === this.state.password) {
-
-                                this.state.samePasswordPopup.showMessage({ message: '' })
-
-                            } else {
-
-                                axios.put(`${SERVER_URL}/user/change-password`, {
-                                    phone_number: this.props.user.phone_number, old_password: this.state.oldPassword, new_password: this.state.password
-                                }).then(({ status }) => {
-                                    if (status === 200) {
-                                        this.setState({ scaleAnimationModal: true })
-                                    } else {
-                                        console.log(status) // TODO
-                                    }
-                                }).catch((reason) => {
-                                    console.log(reason) // TODO
-                                })
-
-                            }
-                        }}>
-                        <Text style={styles.resetPasswordText}>Change Password</Text>
-                    </TouchableOpacity>
+                    <ButtonComponent text={'Change Password'} onClick={this.onChangePasswordClick} />
                 </View>
             </ScrollView>
         )
@@ -124,13 +123,8 @@ const styles = StyleSheet.create({
         flex: 1, margin: RFValue(4, 600), borderRadius: 6,
         paddingHorizontal: RFValue(12, 600), fontSize: RFValue(18, 600), borderWidth: .8, borderColor: '#ABABAB'
     },
-    resetPasswordButton: {
-        backgroundColor: '#5D3EBD', flex: 1, margin: RFValue(4, 600),
-        borderRadius: 10, alignItems: 'center', justifyContent: 'center'
-    },
     resendContainer: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
-    resendCodeText: { fontSize: RFValue(20, 600), paddingHorizontal: RFValue(12, 600), color: '#6E7586' },
-    resetPasswordText: { color: 'white', fontSize: RFValue(18, 600) }
+    resendCodeText: { fontSize: RFValue(20, 600), paddingHorizontal: RFValue(12, 600), color: '#6E7586' }
 })
 
 const mapStateToProps = ({

@@ -7,6 +7,7 @@ import { SERVER_URL } from 'react-native-dotenv'
 
 import PasswordChangedPopup from '../components/popups/PasswordChangedPopup'
 import MessagePopup from '../components/popups/MessagePopup'
+import ButtonComponent from '../components/ButtonComponent'
 
 class ResetPasswordScreen extends React.PureComponent {
 
@@ -32,6 +33,31 @@ class ResetPasswordScreen extends React.PureComponent {
         this.setState({ errorMessage }, () => {
             this.state.errorPopupFromResponse.showMessage({ message: '' })
         })
+    }
+
+    onResetPasswordClick = () => {
+        if (this.state.activationCode === '' || this.state.password === '' || this.state.phoneNumber === '') {
+
+            this.state.requiredPopup.showMessage({ message: '' })
+
+        } else if (this.state.password.length < 4) {
+
+            this.state.invalidPasswordPopup.showMessage({ message: '' })
+
+        } else {
+
+            axios.put(`${SERVER_URL}/reset-password`,
+                { activationCode: this.state.activationCode, phone_number: this.state.phoneNumber, new_password: this.state.password }
+            ).then(({ status }) => {
+                if (status === 200) {
+                    this.setState({ scaleAnimationModal: true })
+                }
+            }).catch(({ response }) => {
+                console.log(response.data) // TODO
+                this.showMessagePopupFromError(response.data.error)
+            })
+
+        }
     }
 
     render() {
@@ -102,34 +128,7 @@ class ResetPasswordScreen extends React.PureComponent {
                 </View>
 
                 <View style={styles.child}>
-                    <TouchableOpacity
-                        style={styles.resetPasswordButton}
-                        onPress={() => {
-                            if (this.state.activationCode === '' || this.state.password === '' || this.state.phoneNumber === '') {
-
-                                this.state.requiredPopup.showMessage({ message: '' })
-
-                            } else if (this.state.password.length < 4) {
-
-                                this.state.invalidPasswordPopup.showMessage({ message: '' })
-
-                            } else {
-
-                                axios.put(`${SERVER_URL}/reset-password`,
-                                    { activationCode: this.state.activationCode, phone_number: this.state.phoneNumber, new_password: this.state.password }
-                                ).then(({ status }) => {
-                                    if (status === 200) {
-                                        this.setState({ scaleAnimationModal: true })
-                                    }
-                                }).catch(({ response }) => {
-                                    console.log(response.data) // TODO
-                                    this.showMessagePopupFromError(response.data.error)
-                                })
-
-                            }
-                        }}>
-                        <Text style={styles.resetPasswordText}>Reset Password</Text>
-                    </TouchableOpacity>
+                    <ButtonComponent text={'Reset Password'} onClick={this.onResetPasswordClick} />
                 </View>
                 <View style={styles.child}>
                     <TouchableOpacity style={styles.resendContainer} onPress={() => {
@@ -152,13 +151,8 @@ const styles = StyleSheet.create({
         flex: 1, margin: RFValue(4, 600), borderRadius: 6,
         paddingHorizontal: RFValue(12, 600), fontSize: RFValue(18, 600), borderWidth: .8, borderColor: '#ABABAB'
     },
-    resetPasswordButton: {
-        backgroundColor: '#5D3EBD', flex: 1, margin: RFValue(4, 600),
-        borderRadius: 10, alignItems: 'center', justifyContent: 'center'
-    },
     resendContainer: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
     resendCodeText: { fontSize: RFValue(19, 600), paddingHorizontal: RFValue(12, 600), color: '#6E7586' },
-    resetPasswordText: { color: 'white', fontSize: RFValue(18, 600) }
 })
 
 export default ResetPasswordScreen

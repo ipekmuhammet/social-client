@@ -8,6 +8,7 @@ import { saveAddress } from '../../actions/actions2'
 import ConfirmAddressPopup from '../../components/popups/ConfirmAddressPopup'
 import Map from '../MapScreens/Map'
 import CompleteAddressInput from '../MapScreens/CompleteAddressInput'
+import ButtonComponent from '../../components/ButtonComponent'
 
 class CompleteAddressScreen extends React.Component {
 
@@ -96,11 +97,9 @@ class CompleteAddressScreen extends React.Component {
                             style={styles.input} />
                     </View>
                     <View style={styles.inputContainer}>
-                        <TouchableOpacity
-                            onPress={() => { this.setPopupState(true) }}
-                            style={styles.button}>
-                            <Text style={styles.buttonText}>Save</Text>
-                        </TouchableOpacity>
+                        <ButtonComponent text={'Save'} onClick={() => {
+                            this.setPopupState(true)
+                        }} />
                     </View>
                 </View>
             </ScrollView>
@@ -120,12 +119,7 @@ const styles = StyleSheet.create({
         flex: 1, borderWidth: 1, alignItems: 'center', justifyContent: 'center', margin: RFValue(3, 600),
         borderRadius: 8,
         borderColor: '#C3C3C3', paddingHorizontal: RFValue(13, 600), fontSize: RFValue(17, 600)
-    },
-    button: {
-        flex: 1, backgroundColor: '#5D3EBD', alignItems: 'center', justifyContent: 'center', margin: RFValue(3, 600),
-        borderRadius: 8
-    },
-    buttonText: { fontSize: RFValue(20, 600), color: 'white' }
+    }
 })
 
 const mapDispatchToProps = {

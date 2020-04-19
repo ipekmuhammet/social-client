@@ -5,6 +5,7 @@ import axios from 'axios'
 import { SERVER_URL } from 'react-native-dotenv'
 
 import TermsComponent from '../components/TermsComponent'
+import ButtonComponent from '../components/ButtonComponent'
 
 class RegisterScreen extends React.PureComponent {
 
@@ -14,6 +15,21 @@ class RegisterScreen extends React.PureComponent {
         password: '1234',
         nameSurname: 'Muhammet İpek',
         email: 'muhammetipek57@hotmail.com'
+    }
+
+    onRegisterClick = () => {
+        axios.post(`${SERVER_URL}/send-activation-code`, { phone_number: this.state.phoneNumber }).then(res => {
+            if (res.status === 202) {
+                this.props.navigation.navigate('activationScreen', {
+                    phone_number: this.state.phoneNumber,
+                    password: this.state.password,
+                    name_surname: this.state.nameSurname,
+                    email: this.state.email
+                })
+            } else {
+                Alert.alert('err')
+            }
+        })
     }
 
     render() {
@@ -100,24 +116,7 @@ class RegisterScreen extends React.PureComponent {
                 }
 
                 <View style={styles.child}>
-                    <TouchableOpacity
-                        onPress={() => {
-                            axios.post(`${SERVER_URL}/send-activation-code`, { phone_number: this.state.phoneNumber }).then(res => {
-                                if (res.status === 202) {
-                                    this.props.navigation.navigate('activationScreen', {
-                                        phone_number: this.state.phoneNumber,
-                                        password: this.state.password,
-                                        name_surname: this.state.nameSurname,
-                                        email: this.state.email
-                                    })
-                                } else {
-                                    Alert.alert('err')
-                                }
-                            })
-                        }}
-                        style={styles.registerButton}>
-                        <Text style={styles.registerText}>Register</Text>
-                    </TouchableOpacity>
+                    <ButtonComponent text={'Register'} onClick={this.onRegisterClick} />
                 </View>
             </ScrollView>
         )
@@ -136,11 +135,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#3B589E', flex: 1, margin: RFValue(4, 600),
         borderRadius: 10, alignItems: 'center', justifyContent: 'center'
     },
-    registerButton: {
-        backgroundColor: '#5D3EBD', flex: 1, margin: RFValue(4, 600),
-        borderRadius: 10, alignItems: 'center', justifyContent: 'center'
-    },
-    registerText: { color: 'white', fontSize: RFValue(18, 600) },
     facebookText: { color: 'white', fontSize: RFValue(18, 600) },
     termsContainer: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start' },
     checkBoxContainer: { alignItems: 'flex-start', justifyContent: 'flex-start' },
