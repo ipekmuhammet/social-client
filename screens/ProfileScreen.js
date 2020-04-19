@@ -87,9 +87,11 @@ const ProfileScreen = ({ navigation, token }) => (
                 )
         }
 
-        <TouchableOpacity onPress={() => { navigation.navigate('changeLanguageScreen') }}>
-            <SettingItem title={'English'} />
-        </TouchableOpacity>
+        {
+            //  <TouchableOpacity onPress={() => { navigation.navigate('changeLanguageScreen') }}>
+            //      <SettingItem title={'English'} />
+            //  </TouchableOpacity>
+        }
 
         <SettingItem title={'1.0.0'} version />
 
