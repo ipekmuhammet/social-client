@@ -63,8 +63,8 @@ class CompletePaymentScreen extends React.PureComponent {
                         navigation={navigation}
                         token={token}
                         setNeedToLoginPopupState={setNeedToLoginPopupState}
-                        title={(cards.find(card => card.id === selectedCard))?.cardLabel ?? 'Kart Seçiniz'}
-                        subTitle={(cards.find(card => card.id === selectedCard))?.cardNumber ?? 'Kart Seçiniz'} />
+                        title={(cards.find(card => card.cardToken === selectedCard))?.cardAlias ?? 'Kart Seçiniz'}
+                        subTitle={(cards.find(card => card.cardToken === selectedCard))?.cardNumber ?? 'Kart Seçiniz'} />
 
                     {
                         //  <HeadingDivider title={'Gönderim Zamanı'} />

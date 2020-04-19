@@ -18,7 +18,7 @@ class CardComponent extends React.PureComponent {
     onClick = () => {
         const { item, navigation, stackNavigation, setSelectedCard } = this.props
 
-        setSelectedCard(item.id, () => {
+        setSelectedCard(item.cardToken, () => {
             navigation.goBack()
             stackNavigation.popToTop()
         })
