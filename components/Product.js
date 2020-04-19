@@ -7,32 +7,42 @@ import { SERVER_URL } from 'react-native-dotenv'
 
 import { addProduct } from '../actions/actions1'
 
-const Product = ({ data: { id, product_name, kind_name, price, image }, addProduct }) => (
-	<View style={styles.container}>
+class Product extends React.PureComponent {
 
-		<TouchableOpacity onPress={() => {
-			addProduct(id)
-		}}
-			style={styles.addProductButton}>
-			<Text style={styles.addProductIcon}>+</Text>
-		</TouchableOpacity>
+	onAddProductClick = () => {
+		const { data: { id }, addProduct } = this.props
+		addProduct(id)
+	}
 
-		<View style={[styles.child, styles.productImageContainer]}>
-			<Image source={{ uri: `${SERVER_URL}/assets/products/${image}.png` }} resizeMode={'contain'} style={styles.productImage} />
-		</View>
+	render() {
+		const { data: { product_name, kind_name, price, image } } = this.props
 
-		<Text style={[styles.child, styles.productPrice, { alignItems: 'flex-start' }]}>{'₺' + price.toFixed(2).toString().replace('.', ',')}</Text>
+		return (
+			<View style={styles.container}>
 
-		<Text numberOfLines={3} style={[styles.productName, styles.child]}>{product_name}</Text>
+				<TouchableOpacity onPress={this.onAddProductClick}
+					style={styles.addProductButton}>
+					<Text style={styles.addProductIcon}>+</Text>
+				</TouchableOpacity>
 
-		{
-			//	<View style={[styles.child, { alignItems: 'flex-start' }]}>
-			//		<Text numberOfLines={3} style={styles.kindText}>{kind_name}</Text>
-			//	</View>
-		}
+				<View style={[styles.child, styles.productImageContainer]}>
+					<Image source={{ uri: `${SERVER_URL}/assets/products/${image}.png` }} resizeMode={'contain'} style={styles.productImage} />
+				</View>
 
-	</View>
-)
+				<Text style={[styles.child, styles.productPrice, { alignItems: 'flex-start' }]}>{'₺' + price.toFixed(2).toString().replace('.', ',')}</Text>
+
+				<Text numberOfLines={3} style={[styles.productName, styles.child]}>{product_name}</Text>
+
+				{
+					//	<View style={[styles.child, { alignItems: 'flex-start' }]}>
+					//		<Text numberOfLines={3} style={styles.kindText}>{kind_name}</Text>
+					//	</View>
+				}
+
+			</View>
+		)
+	}
+}
 
 const styles = StyleSheet.create({
 	container: {

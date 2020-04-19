@@ -5,35 +5,44 @@ import { TouchableOpacity, Text, View, StyleSheet } from 'react-native'
 
 import { decreaseProductQuantity, increaseProductQuantity } from '../actions/actions1'
 
-const CardProductQuantityComponent = ({ id, cart, decreaseProductQuantity, increaseProductQuantity }) => (
-    <React.Fragment>
-        <TouchableOpacity onPress={() => { decreaseProductQuantity(id) }} style={[styles.child, styles.decreaseButton]}>
-            <Text style={styles.quantityButton}>{'-'}</Text>
-        </TouchableOpacity>
+class CardProductQuantityComponent extends React.PureComponent {
 
-        <View style={[styles.child, styles.quantityContainer]}>
-            <Text style={styles.quantityText}>{cart[id].quantity}</Text>
-        </View>
+    onDecreaseClick = () => {
+        this.props.decreaseProductQuantity(this.props.id)
+    }
 
-        <TouchableOpacity onPress={() => { increaseProductQuantity(id) }} style={[styles.child, styles.increaseButton]}>
-            <Text style={styles.quantityButton}>{'+'}</Text>
-        </TouchableOpacity>
-    </React.Fragment>
-)
+    onIncreaseClick = () => {
+        this.props.increaseProductQuantity(this.props.id)
+    }
+
+    render() {
+        const { id, cart } = this.props
+
+        return (
+            <React.Fragment>
+                <TouchableOpacity onPress={this.onDecreaseClick} style={[styles.child, styles.decreaseButton]}>
+                    <Text style={styles.quantityButton}>{'-'}</Text>
+                </TouchableOpacity>
+
+                <View style={[styles.child, styles.quantityContainer]}>
+                    <Text style={styles.quantityText}>{cart[id].quantity}</Text>
+                </View>
+
+                <TouchableOpacity onPress={this.onIncreaseClick} style={[styles.child, styles.increaseButton]}>
+                    <Text style={styles.quantityButton}>{'+'}</Text>
+                </TouchableOpacity>
+            </React.Fragment>
+        )
+    }
+}
 
 const styles = StyleSheet.create({
     child: { flex: 1, alignItems: 'center', justifyContent: 'center' },
     quantityContainer: { backgroundColor: '#5D3EBD', padding: RFValue(4, 600) },
     quantityButton: { color: '#5D3EBD', fontSize: RFValue(17, 600) },
     quantityText: { color: 'white', fontSize: RFValue(17, 600) },
-    decreaseButton: {
-        padding: RFValue(4, 600), borderTopLeftRadius: RFValue(10, 600),
-        borderBottomLeftRadius: RFValue(10, 600)
-    },
-    increaseButton: {
-        padding: RFValue(4, 600), borderTopRightRadius: RFValue(10, 600),
-        borderBottomRightRadius: RFValue(10, 600)
-    }
+    decreaseButton: { padding: RFValue(4, 600), borderTopLeftRadius: RFValue(10, 600), borderBottomLeftRadius: RFValue(10, 600) },
+    increaseButton: { padding: RFValue(4, 600), borderTopRightRadius: RFValue(10, 600), borderBottomRightRadius: RFValue(10, 600) }
 })
 
 const mapStateToProps = ({

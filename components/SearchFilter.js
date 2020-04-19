@@ -2,24 +2,35 @@ import React from 'react'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { View, FlatList, TouchableOpacity, Text, StyleSheet } from 'react-native'
 
-const SearchFilter = ({ listRef }) => (
-    <View>
-        <FlatList
-            contentContainerStyle={styles.list}
-            data={['water', 'milk', 'bread', 'egg', 'yogurt', 'coffee']}
-            keyExtractor={(_, index) => 'most_searched' + index}
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            renderItem={({ item }) => (
-                <TouchableOpacity style={styles.mostSearchedItem} onPress={() => {
-                    listRef.scrollToOffset(0, 236 * 3)
-                }}>
-                    <Text style={styles.itemText}>{item}</Text>
-                </TouchableOpacity>
-            )}
-        />
-    </View>
-)
+class SearchFilter extends React.PureComponent {
+
+    onItemClick = () => {
+        this.props.listRef.scrollToOffset(0, 236 * 3)
+    }
+
+    renderItem = ({ item }) => (
+        <TouchableOpacity style={styles.mostSearchedItem} onPress={this.onItemClick}>
+            <Text style={styles.itemText}>{item}</Text>
+        </TouchableOpacity>
+    )
+
+    keyExtractor = (_, index) => 'most_searched' + Math.random()
+
+    render() {
+        return (
+            <View>
+                <FlatList
+                    contentContainerStyle={styles.list}
+                    data={['water', 'milk', 'bread', 'egg', 'yogurt', 'coffee']}
+                    keyExtractor={this.keyExtractor}
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    renderItem={this.renderItem}
+                />
+            </View>
+        )
+    }
+}
 
 const styles = StyleSheet.create({
     list: {
