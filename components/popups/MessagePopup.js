@@ -13,7 +13,7 @@ const MessagePopup = ({ children, text, onRef }) => (
                     {children}
                 </View>
                 <View style={styles.titleContainer}>
-                    <Text style={styles.title}>{text}</Text>
+                    <Text numberOfLines={3} style={styles.title}>{text}</Text>
                 </View>
             </View>
         )}
@@ -23,7 +23,7 @@ const MessagePopup = ({ children, text, onRef }) => (
 const styles = StyleSheet.create({
     container: { flex: 1, height: RFValue(80, 600), margin: RFValue(12, 600), borderRadius: 12, backgroundColor: 'white', display: 'flex', flexDirection: 'row' },
     iconContainer: { alignItems: 'center', justifyContent: 'center', marginHorizontal: RFValue(12, 600) },
-    titleContainer: { alignItems: 'center', justifyContent: 'center', marginHorizontal: RFValue(12, 600) },
+    titleContainer: { flex: 1, alignItems: 'flex-start', justifyContent: 'center', marginHorizontal: RFValue(12, 600), backgroundColor: 'white' },
     title: { fontSize: RFValue(18, 600) }
 })
 
