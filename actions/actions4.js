@@ -10,37 +10,29 @@ const getProducts = () => axios.get(`${SERVER_URL}/products`).then(({ data }) =>
 
 const getCart = (token) => axios.get(`${SERVER_URL}/user/cart`, { headers: { Authorization: token } }).then(({ data }) => data)
 
+const getPaymentCards = (token) => axios.get(`${SERVER_URL}/user/list-cards`, { headers: { Authorization: token } }).then(({ data }) => data)
+
 export const setInitialDatas = () => {
 	return (dispatch) => {
 		AsyncStorage.multiGet(['token', 'user', 'cart']).then(vals => {
-			Promise.all([getCategories(), getProducts()]).then(res => {
-				if (vals[0][1]) {
-					getCart(vals[0][1]).then((cart) => {
-						dispatch({
-							type: SET_INITIAL_DATAS,
-							payload: {
-								categories: res[0],
-								products: res[1],
-								token: vals[0][1],
-								user: JSON.parse(vals[1][1]),
-								cart
-							}
-						})
-					}).catch((reason) => {
-						console.log('err ->', reason.message)
-
-						//	dispatch({
-						//		type: SET_INITIAL_DATAS,
-						//		payload: {
-						//			categories: res[0],
-						//			products: res[1],
-						//			token: vals[0][1],
-						//			user: JSON.parse(vals[1][1]),
-						//			cart: {}
-						//		}
-						//	})
+			if (vals[0][1]) {
+				Promise.all([getCategories(), getProducts(), getCart(vals[0][1]), getPaymentCards(vals[0][1])]).then(res => {
+					dispatch({
+						type: SET_INITIAL_DATAS,
+						payload: {
+							categories: res[0],
+							products: res[1],
+							token: vals[0][1],
+							user: JSON.parse(vals[1][1]),
+							cart: res[2],
+							cards: res[3].cardDetails
+						}
 					})
-				} else {
+				}).catch((err) => {
+					console.log('err, actions 4 - 45', err)
+				})
+			} else {
+				Promise.all([getCategories(), getProducts()]).then(res => {
 					dispatch({
 						type: SET_INITIAL_DATAS,
 						payload: {
@@ -51,10 +43,10 @@ export const setInitialDatas = () => {
 							cart: JSON.parse(vals[2][1])
 						}
 					})
-				}
-			}).catch((err) => {
-				console.log('err, actions 4 - 45', err)
-			})
+				}).catch((err) => {
+					console.log('err, actions 4 - 45', err)
+				})
+			}
 		}).catch((err) => console.log(err))
 	}
 }

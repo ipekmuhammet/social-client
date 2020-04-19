@@ -4,10 +4,7 @@ import { MAKE_ORDER } from '../actions/actions1'
 
 const INITIAL_STATE = {
     paymentType: 0,
-    cards: [
-        { id: '0', type: 'visa', cardLabel: 'Visa Card', cardNumber: '4766620000000001', type: 'visa' },
-        { id: '1', type: 'mastercard', cardLabel: 'Master Card', cardNumber: '5504720000000003', type: 'mastercard' }
-    ],
+    cards: [],
     addresses: [],
     selectedCard: null,
     selectedAddress: null
@@ -20,7 +17,10 @@ export default (state = INITIAL_STATE, action) => {
 
         case LOGOUT: return Object.assign({}, state, { addresses: [] })
 
-        case SET_INITIAL_DATAS: return Object.assign({}, state, { addresses: action.payload?.user?.addresses ?? [] })
+        case SET_INITIAL_DATAS: return Object.assign({}, state, {
+            addresses: action.payload?.user?.addresses ?? [],
+            cards: action.payload?.cards ?? []
+        })
 
         case SAVE_CARD: {
             state.cards.push(action.payload.card)
@@ -28,7 +28,7 @@ export default (state = INITIAL_STATE, action) => {
         }
 
         case DELETE_CARD: {
-            state.cards.splice(state.cards.indexOf(state.cards.find(card => card.id === action.payload.cardId)), 1)
+            state.cards.splice(state.cards.indexOf(state.cards.find(card => card.cardToken === action.payload.cardToken)), 1)
             return Object.assign({}, state, { cards: [...state.cards] })
         }
 

@@ -42,7 +42,7 @@ export const saveCard = (card, cb) => {
     }
 }
 
-export const deleteCard = (cardId) => {
+export const deleteCard = (cardToken) => {
     return (dispatch) => {
         //  axios.delete(`${SERVER_URL}/user/card`, { id: cardId })
         //      .then(({ status }) => {
@@ -50,7 +50,7 @@ export const deleteCard = (cardId) => {
         dispatch({
             type: DELETE_CARD,
             payload: {
-                cardId
+                cardToken
             }
         })
         //        }
