@@ -13,17 +13,21 @@ const ProfileScreen = ({ navigation, token }) => (
                 (
                     <React.Fragment>
 
-                        <SettingItem title={'Muhammet Ipek'}>
-                            <Ionicons color={'#4522A0'} name={'md-person'} size={32} />
-                        </SettingItem>
+                        <TouchableOpacity onPress={() => { navigation.navigate('editProfileScreen') }}>
+                            <SettingItem title={'Muhammet Ipek'}>
+                                <Ionicons color={'#4522A0'} name={'md-person'} size={32} />
+                            </SettingItem>
+                        </TouchableOpacity>
 
-                        <SettingItem title={'muhammetipek57@hotmail.com'}>
-                            <Ionicons color={'#4522A0'} name={'md-mail-open'} size={32} />
-                        </SettingItem>
-
-                        <SettingItem title={'(546) 813-3198'}>
-                            <Ionicons color={'#4522A0'} name={'md-phone-portrait'} size={32} />
-                        </SettingItem>
+                        {
+                            //  <SettingItem title={'muhammetipek57@hotmail.com'}>
+                            //      <Ionicons color={'#4522A0'} name={'md-mail-open'} size={32} />
+                            //  </SettingItem>
+                            //  
+                            //  <SettingItem title={'(546) 813-3198'}>
+                            //      <Ionicons color={'#4522A0'} name={'md-phone-portrait'} size={32} />
+                            //  </SettingItem>
+                        }
 
                         <TouchableOpacity onPress={() => { navigation.navigate('addresses') }}>
                             <SettingItem title={'Addresses'}>
@@ -83,11 +87,11 @@ const ProfileScreen = ({ navigation, token }) => (
                 )
         }
 
-        <TouchableOpacity onPress={() => { navigation.navigate('changePasswordScreen') }}>
+        <TouchableOpacity onPress={() => { navigation.navigate('changeLanguageScreen') }}>
             <SettingItem title={'English'} />
         </TouchableOpacity>
 
-        <SettingItem title={'1.0.0'} />
+        <SettingItem title={'1.0.0'} version />
 
     </ScrollView>
 )
