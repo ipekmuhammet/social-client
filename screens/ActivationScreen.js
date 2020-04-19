@@ -25,6 +25,10 @@ class ActivationScreen extends React.PureComponent {
         })
     }
 
+    onActivationCodeChange = (activationCode) => {
+        this.setState({ activationCode })
+    }
+
     render() {
         return (
             <ScrollView style={styles.container}>
@@ -32,7 +36,7 @@ class ActivationScreen extends React.PureComponent {
                 <View style={styles.child}>
                     <TextInput
                         value={this.state.activationCode}
-                        onChangeText={(activationCode) => { this.setState({ activationCode }) }}
+                        onChangeText={this.onActivationCodeChange}
                         keyboardType={'number-pad'}
                         placeholder={'Activation Code'}
                         style={styles.activationCodeInput} />

@@ -29,6 +29,30 @@ class CompleteAddressScreen extends React.Component {
         }
     }
 
+    onAddressTitleChange = (addressTitle) => {
+        this.setState({ addressTitle })
+    }
+
+    onBuildingNoChange = (buildingNo) => {
+        this.setState({ buildingNo })
+    }
+
+    onFloorChange = (floor) => {
+        this.setState({ floor })
+    }
+
+    onAptNoChange = (aptNo) => {
+        this.setState({ aptNo })
+    }
+
+    onDirectionsChange = (directions) => {
+        this.setState({ directions })
+    }
+
+    onSaveClick = () => {
+        this.setPopupState(true)
+    }
+
     render() {
         return (
             <ScrollView>
@@ -53,7 +77,7 @@ class CompleteAddressScreen extends React.Component {
                         }
                         <View style={styles.inputContainer}>
                             <TextInput
-                                onChangeText={(addressTitle) => { this.setState({ addressTitle }) }}
+                                onChangeText={this.onAddressTitleChange}
                                 value={this.state.addressTitle} placeholder={'Address title (Home, Work)'}
                                 style={styles.input} />
                         </View>
@@ -68,7 +92,7 @@ class CompleteAddressScreen extends React.Component {
                             <TextInput
                                 value={this.state.buildingNo}
                                 keyboardType={'number-pad'}
-                                onChangeText={(buildingNo) => { this.setState({ buildingNo }) }}
+                                onChangeText={this.onBuildingNoChange}
                                 placeholder={'Building No'}
                                 style={styles.input} />
                         </View>
@@ -76,7 +100,7 @@ class CompleteAddressScreen extends React.Component {
                             <TextInput
                                 value={this.state.floor}
                                 keyboardType={'number-pad'}
-                                onChangeText={(floor) => { this.setState({ floor }) }}
+                                onChangeText={this.onFloorChange}
                                 placeholder={'Floor'}
                                 style={styles.input} />
                         </View>
@@ -84,22 +108,20 @@ class CompleteAddressScreen extends React.Component {
                             <TextInput
                                 value={this.state.aptNo}
                                 keyboardType={'number-pad'}
-                                onChangeText={(aptNo) => { this.setState({ aptNo }) }}
+                                onChangeText={this.onAptNoChange}
                                 placeholder={'Apt No'}
                                 style={styles.input} />
                         </View>
                     </View>
                     <View style={styles.inputContainer}>
                         <TextInput
-                            onChangeText={(directions) => { this.setState({ directions }) }}
+                            onChangeText={this.onDirectionsChange}
                             value={this.state.directions}
                             placeholder={'Directions'}
                             style={styles.input} />
                     </View>
                     <View style={styles.inputContainer}>
-                        <ButtonComponent text={'Save'} onClick={() => {
-                            this.setPopupState(true)
-                        }} />
+                        <ButtonComponent text={'Save'} onClick={this.onSaveClick} />
                     </View>
                 </View>
             </ScrollView>

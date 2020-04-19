@@ -21,6 +21,10 @@ class ForgotPasswordScreen extends React.Component {
         })
     }
 
+    onPhoneNumberChange = (phoneNumber) => {
+        this.setState({ phoneNumber })
+    }
+
     render() {
         return (
             <ScrollView style={styles.container}>
@@ -32,13 +36,13 @@ class ForgotPasswordScreen extends React.Component {
                     }
 
                     <TextInput
-                        onChangeText={(phoneNumber) => this.setState({ phoneNumber })}
+                        onChangeText={this.onPhoneNumberChange}
                         value={this.state.phoneNumber}
                         keyboardType={'phone-pad'}
                         placeholder={'Phone Number'}
                         style={styles.input} />
                 </View>
-                
+
                 <View style={styles.child}>
                     <ButtonComponent text={'Send Code'} onClick={this.onSendCodeClick} />
                 </View>

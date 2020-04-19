@@ -32,6 +32,22 @@ class RegisterScreen extends React.PureComponent {
         })
     }
 
+    onPhoneChange = (phoneNumber) => {
+        this.setState({ phoneNumber })
+    }
+
+    onPasswordChange = (password) => {
+        this.setState({ password })
+    }
+
+    onNameSurnameChange = (nameSurname) => {
+        this.setState({ nameSurname })
+    }
+
+    onEmailChange = (email) => {
+        this.setState({ email })
+    }
+
     render() {
         return (
             <ScrollView style={styles.container}>
@@ -59,7 +75,7 @@ class RegisterScreen extends React.PureComponent {
 
                     <TextInput
                         value={this.state.phoneNumber}
-                        onChangeText={phoneNumber => { this.setState({ phoneNumber }) }}
+                        onChangeText={this.onPhoneChange}
                         textContentType={'telephoneNumber'}
                         placeholder={'Phone Number'}
                         keyboardType={'phone-pad'}
@@ -69,16 +85,17 @@ class RegisterScreen extends React.PureComponent {
                 <View style={styles.child}>
                     <TextInput
                         value={this.state.password}
-                        onChangeText={password => { this.setState({ password }) }}
+                        onChangeText={this.onPasswordChange}
                         textContentType={'password'}
                         secureTextEntry={true}
                         placeholder={'Password (min 4 characters)'}
                         style={styles.input} />
                 </View>
+
                 <View style={styles.child}>
                     <TextInput
                         value={this.state.nameSurname}
-                        onChangeText={nameSurname => { this.setState({ nameSurname }) }}
+                        onChangeText={this.onNameSurnameChange}
                         placeholder={'Name Surname'}
                         style={styles.input} />
                 </View>
@@ -86,7 +103,7 @@ class RegisterScreen extends React.PureComponent {
                 <View style={styles.child}>
                     <TextInput
                         value={this.state.email}
-                        onChangeText={email => { this.setState({ email }) }}
+                        onChangeText={this.onEmailChange}
                         keyboardType={'email-address'}
                         textContentType={'emailAddress'}
                         placeholder={'E-mail'}

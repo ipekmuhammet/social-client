@@ -19,6 +19,32 @@ class AddNewCardScreen extends React.PureComponent {
         CVC2: '333'
     }
 
+    onAliasChange = (cardAlias) => {
+        this.setState({ cardAlias })
+    }
+
+    onContinueClick = () => {
+        this.props.saveCard(this.state, () => {
+            this.props.navigation.goBack()
+        })
+    }
+
+    onCardNumberChange = (cardNumber) => {
+        this.setState({ cardNumber })
+    }
+
+    onCvcChange = (CVC2) => {
+        this.setState({ CVC2 })
+    }
+
+    onExpireMonthChange = (expireMonth) => {
+        this.setState({ expireMonth })
+    }
+
+    onExpireYearChange = (expireYear) => {
+        this.setState({ expireYear })
+    }
+
     render() {
         return (
             <ScrollView>
@@ -30,43 +56,54 @@ class AddNewCardScreen extends React.PureComponent {
                     </View>
 
                     <View style={styles.infoContainer}>
+
                         <View>
                             <Text style={styles.securityText}>Security</Text>
                         </View>
+
                         <View>
                             <Text style={styles.securityInformation}>
                                 Our payment insfrastructure is provided by MasterPass and the transaction security is guaranteed by MasterCard.
                             </Text>
                         </View>
+                        
                     </View>
 
                 </View>
 
                 <View style={styles.inputContainer}>
-                    <TextInput value={this.state.cardAlias} onChangeText={(cardAlias) => { this.setState({ cardAlias }) }} placeholder={'Card Label (Personal etc.)'} style={styles.input} />
+                    <TextInput
+                        value={this.state.cardAlias}
+                        onChangeText={this.onAliasChange}
+                        placeholder={'Card Label (Personal etc.)'}
+                        style={styles.input} />
                 </View>
 
                 <View style={styles.inputContainer}>
-                    <TextInput value={this.state.cardNumber} onChangeText={(cardNumber) => { this.setState({ cardNumber }) }} placeholder={'Card No'} style={styles.input} />
+                    <TextInput
+                        value={this.state.cardNumber}
+                        onChangeText={this.onCardNumberChange}
+                        placeholder={'Card No'}
+                        style={styles.input} />
                 </View>
 
                 <View style={[styles.inputContainer, { flexDirection: 'row' }]}>
 
                     <TextInput
                         value={this.state.CVC2}
-                        onChangeText={(CVC2) => { this.setState({ CVC2 }) }}
+                        onChangeText={this.onCvcChange}
                         placeholder={'CVC2'}
                         style={[styles.input, { flex: 1, marginRight: 4 }]} />
 
                     <TextInput
                         value={this.state.expireMonth}
-                        onChangeText={(expireMonth) => { this.setState({ expireMonth }) }}
+                        onChangeText={this.onExpireMonthChange}
                         placeholder={'Month'}
                         style={[styles.input, { flex: 1, marginRight: 4 }]} />
 
                     <TextInput
                         value={this.state.expireYear}
-                        onChangeText={(expireYear) => { this.setState({ expireYear }) }}
+                        onChangeText={this.onExpireYearChange}
                         placeholder={'Year'}
                         style={[styles.input, { flex: 1, marginLeft: 4 }]} />
 
@@ -76,11 +113,7 @@ class AddNewCardScreen extends React.PureComponent {
 
                 <View style={styles.buttonDivider} />
 
-                <ButtonComponent text={'Continue'} onClick={() => {
-                    this.props.saveCard(this.state, () => {
-                        this.props.navigation.goBack()
-                    })
-                }} />
+                <ButtonComponent text={'Continue'} onClick={this.onContinueClick} />
 
             </ScrollView>
         )
@@ -94,7 +127,10 @@ const styles = StyleSheet.create({
     infoContainer: { flex: 1, flexDirection: 'column', margin: RFValue(10, 600), marginRight: RFValue(12, 600) },
     securityInformation: { color: '#757889', fontSize: RFValue(15, 600), fontWeight: 'bold' },
     inputContainer: { marginVertical: 2 },
-    input: { borderWidth: .8, borderColor: '#CDCDCD', fontSize: RFValue(19, 600), paddingHorizontal: RFValue(16, 600), paddingVertical: RFValue(12, 600), margin: RFValue(10, 600), marginVertical: 4, borderRadius: 8 },
+    input: {
+        borderWidth: .8, borderColor: '#CDCDCD', fontSize: RFValue(19, 600), paddingHorizontal: RFValue(16, 600),
+        paddingVertical: RFValue(12, 600), margin: RFValue(10, 600), marginVertical: 4, borderRadius: 8
+    },
     continueButton: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgb(94,63,190)', borderRadius: 10 },
     continueText: { fontSize: RFValue(20, 600), color: 'white' },
     empty: { height: RFValue(22, 600) },

@@ -16,9 +16,14 @@ class PinAddressScreen extends React.PureComponent {
 
     setPopupState = (scaleAnimationModal, navigate, region) => {
         this.setState({ scaleAnimationModal })
+
         if (navigate) {
             this.props.navigation.navigate('completeAddressScreen', { region })
         }
+    }
+
+    onUseThisAddressClick = () => {
+        this.setPopupState(true)
     }
 
     render() {
@@ -36,10 +41,9 @@ class PinAddressScreen extends React.PureComponent {
                 </View>
 
                 <View style={styles.buttonContainer}>
-                    <ButtonComponent text={'Use this address'} onClick={() => {
-                        this.setPopupState(true)
-                    }} />
+                    <ButtonComponent text={'Use this address'} onClick={this.onUseThisAddressClick} />
                 </View>
+                
             </View>
         )
     }

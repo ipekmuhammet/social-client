@@ -38,7 +38,9 @@ class PaymentOptionsScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+
                 <DeleteCardPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
+
                 <FlatList
                     contentContainerStyle={styles.list}
                     data={this.props.cards}
@@ -46,6 +48,7 @@ class PaymentOptionsScreen extends React.Component {
                     renderItem={this.renderCardComponent}
                     ListFooterComponent={this.renderListFooter}
                 />
+
             </View>
         )
     }

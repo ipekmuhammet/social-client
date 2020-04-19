@@ -60,6 +60,34 @@ class ResetPasswordScreen extends React.PureComponent {
         }
     }
 
+    onResendClick = () => {
+        axios.post(`${SERVER_URL}/send-activation-code`, { phone_number: this.state.phoneNumber })
+    }
+
+    onErrorPopupRef = (ref) => {
+        this.setState({ errorPopupFromResponse: ref })
+    }
+
+    onRequiredPopupRef = (ref) => {
+        this.setState({ requiredPopup: ref })
+    }
+
+    onInvalidPopupRef = (ref) => {
+        this.setState({ invalidPasswordPopup: ref })
+    }
+
+    onPhoneChange = (phoneNumber) => {
+        this.setState({ phoneNumber })
+    }
+
+    onActivationCodeChange = (activationCode) => {
+        this.setState({ activationCode })
+    }
+
+    onPasswordChange = (password) => {
+        this.setState({ password })
+    }
+
     render() {
         return (
             <ScrollView style={styles.container}>
@@ -67,25 +95,19 @@ class ResetPasswordScreen extends React.PureComponent {
                 <PasswordChangedPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
 
                 <MessagePopup
-                    onRef={(ref) => {
-                        this.setState({ errorPopupFromResponse: ref })
-                    }}
+                    onRef={this.onErrorPopupRef}
                     text={this.state.errorMessage}>
                     <Ionicons name={'md-warning'} size={48} color={'red'} />
                 </MessagePopup>
 
                 <MessagePopup
-                    onRef={(ref) => {
-                        this.setState({ requiredPopup: ref })
-                    }}
+                    onRef={this.onRequiredPopupRef}
                     text={'Lütfen gerekli alanlarını doldurunuz.'}>
                     <Ionicons name={'md-warning'} size={48} color={'red'} />
                 </MessagePopup>
 
                 <MessagePopup
-                    onRef={(ref) => {
-                        this.setState({ invalidPasswordPopup: ref })
-                    }}
+                    onRef={this.onInvalidPopupRef}
                     text={'Yeni şifreniz en az 4 haneli olmalı.'}>
                     <Ionicons name={'md-warning'} size={48} color={'red'} />
                 </MessagePopup>
@@ -100,7 +122,7 @@ class ResetPasswordScreen extends React.PureComponent {
                     }
 
                     <TextInput
-                        onChangeText={(phoneNumber) => { this.setState({ phoneNumber }) }}
+                        onChangeText={this.onPhoneChange}
                         value={this.state.phoneNumber}
                         keyboardType={'phone-pad'}
                         placeholder={'Phone Number'}
@@ -110,7 +132,7 @@ class ResetPasswordScreen extends React.PureComponent {
 
                 <View style={[styles.child, styles.inputContainer]}>
                     <TextInput
-                        onChangeText={(activationCode) => { this.setState({ activationCode }) }}
+                        onChangeText={this.onActivationCodeChange}
                         value={this.state.activationCode}
                         keyboardType={'number-pad'}
                         maxLength={4}
@@ -120,7 +142,7 @@ class ResetPasswordScreen extends React.PureComponent {
 
                 <View style={[styles.child, styles.inputContainer]}>
                     <TextInput
-                        onChangeText={(password) => { this.setState({ password }) }}
+                        onChangeText={this.onPasswordChange}
                         value={this.state.password}
                         secureTextEntry={true}
                         placeholder={'New Password (min 4 characters)'}
@@ -130,14 +152,14 @@ class ResetPasswordScreen extends React.PureComponent {
                 <View style={styles.child}>
                     <ButtonComponent text={'Reset Password'} onClick={this.onResetPasswordClick} />
                 </View>
+
                 <View style={styles.child}>
-                    <TouchableOpacity style={styles.resendContainer} onPress={() => {
-                        axios.post(`${SERVER_URL}/send-activation-code`, { phone_number: this.state.phoneNumber })
-                    }}>
+                    <TouchableOpacity style={styles.resendContainer} onPress={this.onResendClick}>
                         <Ionicons name={'md-refresh'} size={28} color={'#6E7586'} />
                         <Text style={styles.resendCodeText}>Resend Code</Text>
                     </TouchableOpacity>
                 </View>
+                
             </ScrollView>
         )
     }

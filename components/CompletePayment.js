@@ -35,8 +35,10 @@ class CompletePaymentComponent extends React.PureComponent {
     render() {
         const products = Object.values(this.props.cart)
         const totalPrice = products.reduce((previousValue, currentValue) => previousValue + parseFloat(currentValue.price) * currentValue.quantity, 0).toFixed(2)
+
         return (
             <View style={styles.completePaymentContainer}>
+            
                 <View style={styles.totalPriceContainer}>
                     <Text style={styles.totalPriceText}>
                         {`Toplam: ${totalPrice} TL`}

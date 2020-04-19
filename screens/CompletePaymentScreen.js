@@ -21,6 +21,14 @@ class CompletePaymentScreen extends React.PureComponent {
         addressRef: null
     }
 
+    onKartRef = (ref) => {
+        this.setState({ kartRef: ref })
+    }
+
+    onAddressRef = (ref) => {
+        this.setState({ addressRef: ref })
+    }
+
     render() {
         const { navigation, cards, addresses, selectedCard, selectedAddress, token, setNeedToLoginPopupState } = this.props
 
@@ -28,17 +36,13 @@ class CompletePaymentScreen extends React.PureComponent {
             <React.Fragment>
 
                 <MessagePopup
-                    onRef={(ref) => {
-                        this.setState({ kartRef: ref })
-                    }}
+                    onRef={this.onKartRef}
                     text={'Lütfen kart seçiniz.'}>
                     <Ionicons name={'md-warning'} size={48} color={'red'} />
                 </MessagePopup>
 
                 <MessagePopup
-                    onRef={(ref) => {
-                        this.setState({ addressRef: ref })
-                    }}
+                    onRef={this.onAddressRef}
                     text={'Lütfen adres seçiniz.'}>
                     <Ionicons name={'md-warning'} size={48} color={'red'} />
                 </MessagePopup>
@@ -71,12 +75,13 @@ class CompletePaymentScreen extends React.PureComponent {
 
                     <View style={styles.footer} />
                 </ScrollView>
+
                 <CompletePayment
                     kartRef={this.state.kartRef}
                     addressRef={this.state.addressRef}
                     completable={true}
-                    navigation={navigation}
-                />
+                    navigation={navigation} />
+
             </React.Fragment>
         )
     }

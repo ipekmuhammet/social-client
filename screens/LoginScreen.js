@@ -49,14 +49,24 @@ class LoginScreen extends React.Component {
         this.props.navigation.navigate('forgotPassword')
     }
 
+    onPopupRef = (ref) => {
+        this.setState({ popupRef: ref })
+    }
+
+    onPhoneChange = (phoneNumber) => {
+        this.setState({ phoneNumber })
+    }
+
+    onPasswordChange = (password) => {
+        this.setState({ password })
+    }
+
     render() {
         return (
             <ScrollView style={styles.container}>
 
                 <MessagePopup
-                    onRef={(ref) => {
-                        this.setState({ popupRef: ref })
-                    }}
+                    onRef={this.onPopupRef}
                     text={'Wrong GSM or password.'}>
                     <Ionicons name={'md-warning'} size={48} color={'red'} />
                 </MessagePopup>
@@ -79,7 +89,7 @@ class LoginScreen extends React.Component {
                     }
                     <TextInput
                         value={this.state.phoneNumber}
-                        onChangeText={(phoneNumber) => { this.setState({ phoneNumber }) }}
+                        onChangeText={this.onPhoneChange}
                         keyboardType={'phone-pad'}
                         textContentType={'telephoneNumber'}
                         placeholder={'Phone Number'}
@@ -88,7 +98,7 @@ class LoginScreen extends React.Component {
                 <View style={styles.child}>
                     <TextInput
                         value={this.state.password}
-                        onChangeText={password => { this.setState({ password }) }}
+                        onChangeText={this.onPasswordChange}
                         secureTextEntry={true}
                         textContentType={'password'}
                         placeholder={'Password (min 4 characters)'}

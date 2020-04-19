@@ -44,19 +44,38 @@ class ChangePasswordScreen extends React.PureComponent {
 
         } else {
 
-            axios.put(`${SERVER_URL}/user/change-password`, {
-                phone_number: this.props.user.phone_number, old_password: this.state.oldPassword, new_password: this.state.password
-            }).then(({ status }) => {
-                if (status === 200) {
-                    this.setState({ scaleAnimationModal: true })
-                } else {
-                    console.log(status) // TODO
-                }
-            }).catch((reason) => {
-                console.log(reason) // TODO
-            })
+            axios.put(`${SERVER_URL}/user/change-password`, { old_password: this.state.oldPassword, new_password: this.state.password })
+                .then(({ status }) => {
+                    if (status === 200) {
+                        this.setState({ scaleAnimationModal: true })
+                    } else {
+                        console.log(status) // TODO
+                    }
+                }).catch((reason) => {
+                    console.log(reason) // TODO
+                })
 
         }
+    }
+
+    onSamePasswordPopupRef = (ref) => {
+        this.setState({ samePasswordPopup: ref })
+    }
+
+    onEmptyPasswordPopupRef = (ref) => {
+        this.setState({ emptyPasswordPopup: ref })
+    }
+
+    onInvalidPasswordPopupRef = (ref) => {
+        this.setState({ invalidPasswordPopup: ref })
+    }
+
+    onOldPasswordChange = (oldPassword) => {
+        this.setState({ oldPassword })
+    }
+
+    onPasswordChange = (password) => {
+        this.setState({ password })
     }
 
     render() {
@@ -66,32 +85,26 @@ class ChangePasswordScreen extends React.PureComponent {
                 <PasswordChangedPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
 
                 <MessagePopup
-                    onRef={(ref) => {
-                        this.setState({ samePasswordPopup: ref })
-                    }}
+                    onRef={this.onSamePasswordPopupRef}
                     text={'Yeni şifre eskisi ise aynı olamaz.'}>
                     <Ionicons name={'md-warning'} size={48} color={'red'} />
                 </MessagePopup>
 
                 <MessagePopup
-                    onRef={(ref) => {
-                        this.setState({ emptyPasswordPopup: ref })
-                    }}
+                    onRef={this.onEmptyPasswordPopupRef}
                     text={'Lütfen eski ve yeni şifre alanlarını doldurunuz.'}>
                     <Ionicons name={'md-warning'} size={48} color={'red'} />
                 </MessagePopup>
 
                 <MessagePopup
-                    onRef={(ref) => {
-                        this.setState({ invalidPasswordPopup: ref })
-                    }}
+                    onRef={this.onInvalidPasswordPopupRef}
                     text={'Yeni şifreniz en az 4 haneli olmalı.'}>
                     <Ionicons name={'md-warning'} size={48} color={'red'} />
                 </MessagePopup>
 
                 <View style={[styles.child, styles.inputContainer]}>
                     <TextInput
-                        onChangeText={(oldPassword) => { this.setState({ oldPassword }) }}
+                        onChangeText={this.onOldPasswordChange}
                         value={this.state.oldPassword}
                         secureTextEntry={true}
                         placeholder={'Current Password'}
@@ -100,7 +113,7 @@ class ChangePasswordScreen extends React.PureComponent {
 
                 <View style={[styles.child, styles.inputContainer]}>
                     <TextInput
-                        onChangeText={(password) => { this.setState({ password }) }}
+                        onChangeText={this.onPasswordChange}
                         value={this.state.password}
                         secureTextEntry={true}
                         placeholder={'New Password (min 4 characters)'}
@@ -127,12 +140,4 @@ const styles = StyleSheet.create({
     resendCodeText: { fontSize: RFValue(20, 600), paddingHorizontal: RFValue(12, 600), color: '#6E7586' }
 })
 
-const mapStateToProps = ({
-    reducer4: {
-        user
-    }
-}) => ({
-    user
-})
-
-export default connect(mapStateToProps)(ChangePasswordScreen)
+export default ChangePasswordScreen

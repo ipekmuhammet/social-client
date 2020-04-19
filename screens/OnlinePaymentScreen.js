@@ -20,6 +20,18 @@ class OnlinePaymentScreen extends React.PureComponent {
         this.props.makeOrder(this.props.navigation)
     }
 
+    onCardNumberChange = (cardNumber) => {
+        this.setState({ cardNumber })
+    }
+
+    onExpirationDateChange = (expirationDate) => {
+        this.setState({ expirationDate })
+    }
+
+    onCvcChange = (CVC2) => {
+        this.setState({ CVC2 })
+    }
+
     render() {
 
         const products = Object.values(this.props.cart)
@@ -44,7 +56,7 @@ class OnlinePaymentScreen extends React.PureComponent {
                             labelStyle={styles.labelInput}
                             inputStyle={styles.input}
                             style={styles.formInput}
-                            onChangeText={(cardNumber) => this.setState({ cardNumber })}
+                            onChangeText={this.onCardNumberChange}
                             value={this.state.cardNumber}>Kart Numarası *</FloatingInput>
                     </View>
 
@@ -54,7 +66,7 @@ class OnlinePaymentScreen extends React.PureComponent {
                                 labelStyle={styles.labelInput}
                                 inputStyle={styles.input}
                                 style={styles.formInput}
-                                onChangeText={(expirationDate) => this.setState({ expirationDate })}
+                                onChangeText={this.onExpirationDateChange}
                                 value={this.state.expirationDate}>Son Kullanma Tarihi *</FloatingInput>
                         </View>
 
@@ -63,7 +75,7 @@ class OnlinePaymentScreen extends React.PureComponent {
                                 labelStyle={styles.labelInput}
                                 inputStyle={styles.input}
                                 style={styles.formInput}
-                                onChangeText={(CVC2) => this.setState({ CVC2 })}
+                                onChangeText={this.onCvcChange}
                                 value={this.state.CVC2}>Güvenlik Kodu (CVC2) *</FloatingInput>
                         </View>
                     </View>
