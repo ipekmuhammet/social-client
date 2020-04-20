@@ -1,17 +1,19 @@
 import React from 'react'
-import { ScrollView } from 'react-native'
+import { connect } from 'react-redux'
+import { ScrollView, View, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
 import InputComponent from '../components/InputComponent'
 import ButtonComponent from '../components/ButtonComponent'
 import InputIcon from '../components/InputIcon'
+import { updateProfile } from '../actions/actions4'
 
-class EditProfileScreen extends React.PureComponent {
+class EditProfileScreen extends React.Component {
 
     state = {
-        nameSurname: 'Muhammet Ipek',
-        phoneNumber: '905468133198',
-        email: 'muhammetipek57@hotmail.com',
+        nameSurname: this.props.user.name_surname,
+        phoneNumber: this.props.user.phone_number,
+        email: this.props.user.email,
     }
 
     onNameSurnameChange = (nameSurname) => {
@@ -27,52 +29,58 @@ class EditProfileScreen extends React.PureComponent {
     }
 
     onSaveClick = () => {
-        console.log(2)
+        this.props.updateProfile({
+            name_surname: this.state.nameSurname,
+            phone_number: this.state.phoneNumber,
+            email: this.state.email
+        })
     }
 
     render() {
         return (
-            <ScrollView>
+            <ScrollView contentContainerStyle={styles.container}>
 
-                <InputComponent
-                    value={this.state.nameSurname}
-                    onChange={this.onNameSurnameChange}>
+                <View>
+                    <InputComponent
+                        value={this.state.nameSurname}
+                        onChange={this.onNameSurnameChange}>
 
-                    <InputIcon>
-                        <Ionicons size={32} name={'md-person'} />
-                    </InputIcon>
+                        <InputIcon>
+                            <Ionicons size={32} name={'md-person'} />
+                        </InputIcon>
 
-                </InputComponent>
+                    </InputComponent>
 
-                <InputComponent
-                    options={{
-                        keyboardType: 'phone-pad',
-                        textContentType: 'telephoneNumber',
-                        placeholder: 'Phone Number'
-                    }}
-                    value={this.state.phoneNumber}
-                    onChange={this.onPhoneChange}>
+                    <InputComponent
+                        options={{
+                            keyboardType: 'phone-pad',
+                            textContentType: 'telephoneNumber',
+                            placeholder: 'Phone Number'
+                        }}
+                        value={this.state.phoneNumber}
+                        onChange={this.onPhoneChange}>
 
-                    <InputIcon>
-                        <Ionicons size={32} name={'md-phone-portrait'} />
-                    </InputIcon>
+                        <InputIcon>
+                            <Ionicons size={32} name={'md-phone-portrait'} />
+                        </InputIcon>
 
-                </InputComponent>
+                    </InputComponent>
 
-                <InputComponent
-                    options={{
-                        keyboardType: 'email-address',
-                        textContentType: 'emailAddress',
-                        placeholder: 'E-mail'
-                    }}
-                    value={this.state.email}
-                    onChange={this.onEmailChange}>
+                    <InputComponent
+                        options={{
+                            keyboardType: 'email-address',
+                            textContentType: 'emailAddress',
+                            placeholder: 'E-mail'
+                        }}
+                        value={this.state.email}
+                        onChange={this.onEmailChange}>
 
-                    <InputIcon>
-                        <Ionicons size={32} name={'md-mail-open'} />
-                    </InputIcon>
+                        <InputIcon>
+                            <Ionicons size={32} name={'md-mail-open'} />
+                        </InputIcon>
 
-                </InputComponent>
+                    </InputComponent>
+                </View>
 
                 <ButtonComponent text={'Kaydet'} onClick={this.onSaveClick} />
 
@@ -81,4 +89,20 @@ class EditProfileScreen extends React.PureComponent {
     }
 }
 
-export default EditProfileScreen
+const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'space-between' }
+})
+
+const mapStateToProps = ({
+    reducer4: {
+        user
+    }
+}) => ({
+    user
+})
+
+const mapDispatchToProps = {
+    updateProfile
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfileScreen)

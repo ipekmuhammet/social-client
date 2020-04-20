@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         flex: 1, margin: RFValue(4, 600), zIndex: -1, borderRadius: 10, paddingHorizontal: RFValue(12, 600),
         fontSize: RFValue(18, 600), borderWidth: .8, borderColor: '#ABABAB'
     },
-    withIcon: { paddingHorizontal: RFValue(48, 600) }
+    withIcon: { paddingLeft: RFValue(48, 600) }
 })
 
 export default InputComponent

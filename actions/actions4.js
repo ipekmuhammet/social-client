@@ -2,7 +2,10 @@ import { AsyncStorage } from 'react-native'
 import axios from 'axios'
 import { SERVER_URL } from 'react-native-dotenv'
 
-export const SET_INITIAL_DATAS = 'SET_INITIAL_DATAS', SET_USER = 'SET_USER', LOGOUT = 'LOGOUT'
+export const SET_INITIAL_DATAS = 'SET_INITIAL_DATAS'
+export const SET_USER = 'SET_USER'
+export const LOGOUT = 'LOGOUT'
+export const UPDATE_PROFILE = 'UPDATE_PROFILE'
 
 const getCategories = () => axios.get(`${SERVER_URL}/categories`).then(({ data }) => data)
 
@@ -11,6 +14,22 @@ const getProducts = () => axios.get(`${SERVER_URL}/products`).then(({ data }) =>
 const getCart = (token) => axios.get(`${SERVER_URL}/user/cart`, { headers: { Authorization: token } }).then(({ data }) => data)
 
 const getPaymentCards = (token) => axios.get(`${SERVER_URL}/user/list-cards`, { headers: { Authorization: token } }).then(({ data }) => data)
+
+export const updateProfile = (body) => {
+	return (dispatch) => {
+		axios.put(`${SERVER_URL}/user/profile`, body)
+			.then(({ data, status }) => {
+				if (status === 200) {
+					console.log(data)
+				} else {
+					console.log('err, actions 4 - 45', err)
+				}
+			})
+			.catch((err) => {
+				console.log('err, actions 4 - 45', err)
+			})
+	}
+}
 
 export const setInitialDatas = () => {
 	return (dispatch) => {
