@@ -7,7 +7,7 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import { setMessagePopupRef } from '../../actions/global-actions'
 
 const GlobalMessagePopup = ({ children, setMessagePopupRef }) => (
-    <View style={{
+    <View pointerEvents='none' style={{
         ...StyleSheet.absoluteFillObject,
         zIndex: 1000,
         elevation: 0.01,

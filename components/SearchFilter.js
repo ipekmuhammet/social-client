@@ -5,11 +5,13 @@ import { View, FlatList, TouchableOpacity, Text, StyleSheet } from 'react-native
 class SearchFilter extends React.PureComponent {
 
     onItemClick = () => {
-        this.props.listRef.scrollToOffset(0, 236 * 3)
+        // this.props.listRef.scrollToOffset(0, 236 * 3)
     }
 
     renderItem = ({ item }) => (
-        <TouchableOpacity style={styles.mostSearchedItem} onPress={this.onItemClick}>
+        <TouchableOpacity style={styles.mostSearchedItem} onPress={() => {
+            this.props.onClick(item)
+        }}>
             <Text style={styles.itemText}>{item}</Text>
         </TouchableOpacity>
     )

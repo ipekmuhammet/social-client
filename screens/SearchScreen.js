@@ -1,33 +1,92 @@
 import React from 'react'
+import axios from 'axios'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { View, TextInput, StyleSheet, Dimensions } from 'react-native'
+import { ScrollView, View, TouchableOpacity, ActivityIndicator, TextInput, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
+import { SERVER_URL } from 'react-native-dotenv'
 
 import HeadingDivider from '../components/HeadingDivider'
 import SearchFilter from '../components/SearchFilter'
+import RecyclerList from '../components/RecyclerList'
 
-const SearchScreen = () => (
-    <View style={styles.container} behavior={'height'}>
-        <View style={styles.searchHeader}>
-            <View style={styles.iconContainer}>
-                <Ionicons name={'md-search'} size={32} color={'#5D3EBD'} />
-            </View>
-            <View style={styles.inputContainer}>
-                <TextInput style={styles.searchInput} placeholder={'Search Product'} />
-            </View>
-            <View style={styles.iconContainer}>
-                <Ionicons name={'md-microphone'} size={32} color={'#6D7891'} />
-            </View>
-        </View>
-        <HeadingDivider title={'Popular Searches'} />
-        <SearchFilter />
-        <View style={styles.emptyFooter} />
-    </View>
-)
+class SearchScreen extends React.PureComponent {
+
+    state = {
+        fetch: false,
+        products: [],
+        text: ''
+    }
+
+    search = (text) => {
+        console.log(text.length)
+        if (text.length > 0) {
+            this.setState({ fetch: true, text })
+
+            axios.get(`${SERVER_URL}/search-product?name=${text}`).then((response) => {
+                this.setState({ products: response.data.map(({ _source }) => _source), fetch: false })
+            }).catch(() => {
+                this.setState({ fetch: false })
+            })
+        } else {
+            this.setState({ fetch: false, products: [], text })
+        }
+    }
+
+    render() {
+        return (
+            <ScrollView contentContainerStyle={styles.container} behavior={'height'}>
+                <View style={styles.searchHeader}>
+                    <View style={styles.iconContainer}>
+                        <Ionicons name={'md-search'} size={32} color={'#5D3EBD'} />
+                    </View>
+                    <View style={styles.inputContainer}>
+                        <TextInput
+                            value={this.state.text}
+                            onChangeText={this.search}
+                            style={styles.searchInput} placeholder={'Search Product'} />
+                    </View>
+                    {
+                        this.state.text.length > 0 && (
+                            <TouchableOpacity style={styles.iconContainer} onPress={() => {
+                                this.search('')
+                            }}>
+                                <Ionicons name={'md-close'} size={32} color={'#6D7891'} />
+                            </TouchableOpacity>
+                        )
+                        //  <View style={styles.iconContainer}>
+                        //      <Ionicons name={'md-microphone'} size={32} color={'#6D7891'} />
+                        //  </View>
+                    }
+                </View>
+
+                {
+                    this.state.fetch ? (
+                        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                            <ActivityIndicator color={'red'} size={'large'} />
+                        </View>
+                    ) : (
+                            !this.state.products.length > 0 ?
+                                (
+                                    <React.Fragment>
+                                        <HeadingDivider title={'Popular Searches'} />
+                                        <SearchFilter onClick={this.search} />
+                                    </React.Fragment>
+                                ) :
+                                (
+                                    <View style={{ flex: 1 }}>
+                                        <RecyclerList list={this.state.products} fromSearch />
+                                    </View>
+                                )
+                        )
+                }
+            </ScrollView>
+        )
+    }
+}
 
 const styles = StyleSheet.create({
-    container: { top: 0, left: 0, height: Dimensions.get('window').height, width: Dimensions.get('window').width, flexDirection: 'column' },
-    searchHeader: { flex: .8, margin: RFValue(2, 600), flexDirection: 'row', backgroundColor: 'white' },
+    container: { flex: 1 },
+    searchHeader: { height: 50, margin: RFValue(2, 600), flexDirection: 'row', backgroundColor: 'white' },
     mostSearchContainer: { flex: .7, padding: RFValue(2, 600), margin: RFValue(2, 600), alignItems: 'center', justifyContent: 'center', backgroundColor: 'white' },
     iconContainer: { alignItems: 'center', justifyContent: 'center', flex: 1 },
     inputContainer: { alignItems: 'center', justifyContent: 'center', flex: 6, display: 'flex', flexDirection: 'row' },
