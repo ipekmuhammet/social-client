@@ -3,17 +3,18 @@ import { connect } from 'react-redux'
 import { ScrollView, View, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
+import { updateProfile } from '../actions/actions4'
+
 import InputComponent from '../components/InputComponent'
 import ButtonComponent from '../components/ButtonComponent'
 import InputIcon from '../components/InputIcon'
-import { updateProfile } from '../actions/actions4'
 
-class EditProfileScreen extends React.Component {
+class EditProfileScreen extends React.PureComponent {
 
     state = {
         nameSurname: this.props.user.name_surname,
         phoneNumber: this.props.user.phone_number,
-        email: this.props.user.email,
+        email: this.props.user.email
     }
 
     onNameSurnameChange = (nameSurname) => {

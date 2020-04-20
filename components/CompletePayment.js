@@ -9,7 +9,7 @@ import { setNeedToLoginPopupState } from '../actions/global-actions'
 class CompletePaymentComponent extends React.PureComponent {
 
     onCompletePaymentClick = () => {
-        const { completable, token, navigation, makeOrder, selectedCard, selectedAddress, kartRef, addressRef, setNeedToLoginPopupState } = this.props
+        const { completable, token, navigation, makeOrder, selectedCard, selectedAddress, messagePopupRef, setNeedToLoginPopupState } = this.props
 
         if (token) {
             if (completable) {
@@ -19,9 +19,9 @@ class CompletePaymentComponent extends React.PureComponent {
                     })
                 } else {
                     if (!selectedAddress) {
-                        addressRef.showMessage({ message: '' })
+                        messagePopupRef.showMessage({ message: 'Lütfen adres seçiniz' })
                     } else {
-                        kartRef.showMessage({ message: '' })
+                        messagePopupRef.showMessage({ message: 'Lütfen kart seçiniz' })
                     }
                 }
             } else {
@@ -38,7 +38,7 @@ class CompletePaymentComponent extends React.PureComponent {
 
         return (
             <View style={styles.completePaymentContainer}>
-            
+
                 <View style={styles.totalPriceContainer}>
                     <Text style={styles.totalPriceText}>
                         {`Toplam: ${totalPrice} TL`}
@@ -83,13 +83,17 @@ const mapStateToProps = ({
     },
     reducer4: {
         token
+    },
+    globalReducer: {
+        messagePopupRef
     }
 }) => ({
     cart,
     paymentType,
     selectedCard,
     selectedAddress,
-    token
+    token,
+    messagePopupRef
 })
 
 const mapDispatchToProps = {

@@ -1,9 +1,11 @@
 import React from 'react'
-import { RFValue } from 'react-native-responsive-fontsize'
-import { ScrollView, View, TouchableOpacity, TextInput, Text, StyleSheet, AsyncStorage, Alert } from 'react-native'
+import { ScrollView, StyleSheet, AsyncStorage } from 'react-native'
 import axios from 'axios'
+import { RFValue } from 'react-native-responsive-fontsize'
 import { SERVER_URL } from 'react-native-dotenv'
+
 import ButtonComponent from '../components/ButtonComponent'
+import InputComponent from '../components/InputComponent'
 
 class ActivationScreen extends React.PureComponent {
 
@@ -18,10 +20,10 @@ class ActivationScreen extends React.PureComponent {
                     this.props.navigation.navigate('Loading')
                 })
             } else {
-                Alert.alert('err') // TODO
+                // Alert.alert('err') // TODO
             }
         }).catch((err) => {
-            Alert.alert('err', JSON.stringify(err)) // TODO
+            // Alert.alert('err', JSON.stringify(err)) // TODO
         })
     }
 
@@ -33,28 +35,23 @@ class ActivationScreen extends React.PureComponent {
         return (
             <ScrollView style={styles.container}>
 
-                <View style={styles.child}>
-                    <TextInput
-                        value={this.state.activationCode}
-                        onChangeText={this.onActivationCodeChange}
-                        keyboardType={'number-pad'}
-                        placeholder={'Activation Code'}
-                        style={styles.activationCodeInput} />
-                </View>
+                <InputComponent
+                    value={this.state.activationCode}
+                    onChange={this.onActivationCodeChange}
+                    options={{
+                        keyboardType: 'number-pad',
+                        placeholder: 'Activation Code'
+                    }} />
 
                 <ButtonComponent text={'Register'} onClick={this.onRegisterClick} />
+
             </ScrollView>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container: { marginVertical: RFValue(12, 600) },
-    child: { height: RFValue(60, 600), margin: RFValue(3, 600) },
-    activationCodeInput: {
-        flex: 1, margin: RFValue(4, 600), borderRadius: 6,
-        paddingHorizontal: RFValue(12, 600), fontSize: RFValue(18, 600), borderWidth: .8, borderColor: '#ABABAB'
-    }
+    container: { marginVertical: RFValue(12, 600) }
 })
 
 export default ActivationScreen

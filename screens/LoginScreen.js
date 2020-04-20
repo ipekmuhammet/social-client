@@ -3,10 +3,7 @@ import { connect } from 'react-redux'
 import { ScrollView, View, TouchableOpacity, TextInput, Text, AsyncStorage, StyleSheet } from 'react-native'
 import axios from 'axios'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { Ionicons } from '@expo/vector-icons'
 import { SERVER_URL } from 'react-native-dotenv'
-
-import MessagePopup from '../components/popups/MessagePopup'
 
 import { login } from '../actions/actions4'
 import ButtonComponent from '../components/ButtonComponent'
@@ -16,14 +13,12 @@ class LoginScreen extends React.Component {
     state = {
         // countryCode: '+90',
         phoneNumber: '905468133198',
-        password: '1234',
-        popupRef: null
+        password: '1234'
     }
 
     shouldComponentUpdate = (nextProps, nextState) => ( // Update only state change, not props
         this.state.phoneNumber !== nextState.phoneNumber ||
-        this.state.password !== nextState.password ||
-        this.state.popupRef !== nextState.popupRef
+        this.state.password !== nextState.password
     )
 
     saveCart = () => {
@@ -35,7 +30,7 @@ class LoginScreen extends React.Component {
     }
 
     onLoginClick = () => {
-        this.props.login({ phone_number: this.state.phoneNumber, password: this.state.password }, this.state.popupRef, () => {
+        this.props.login({ phone_number: this.state.phoneNumber, password: this.state.password }, this.props.messagePopupRef, () => {
             this.saveCart()
             this.props.navigation.navigate('Loading', { next: true })
         })
@@ -47,10 +42,6 @@ class LoginScreen extends React.Component {
 
     goToForgotPassword = () => {
         this.props.navigation.navigate('forgotPassword')
-    }
-
-    onPopupRef = (ref) => {
-        this.setState({ popupRef: ref })
     }
 
     onPhoneChange = (phoneNumber) => {
@@ -66,11 +57,6 @@ class LoginScreen extends React.Component {
             <ScrollView contentContainerStyle={styles.container}>
 
                 <View>
-                    <MessagePopup
-                        onRef={this.onPopupRef}
-                        text={'Wrong GSM or password.'}>
-                        <Ionicons name={'md-warning'} size={48} color={'red'} />
-                    </MessagePopup>
 
                     {
                         //  <View style={styles.child}>
@@ -145,10 +131,14 @@ const mapStateToProps = ({
     },
     reducer4: {
         token
+    },
+    globalReducer: {
+        messagePopupRef
     }
 }) => ({
     cart,
-    token
+    token,
+    messagePopupRef
 })
 
 const mapDispatchToProps = {

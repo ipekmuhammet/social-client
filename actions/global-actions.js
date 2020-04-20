@@ -1,6 +1,18 @@
-export const SET_CONNECTION_POPUP_STATE = 'SET_CONNECTION_POPUP_STATE',
-    NEED_TO_LOGIN_POPUP_STATE = 'NEED_TO_LOGIN_POPUP_STATE',
-    SET_ROOT_NAVIGATION = 'SET_ROOT_NAVIGATION'
+export const SET_CONNECTION_POPUP_STATE = 'SET_CONNECTION_POPUP_STATE'
+export const NEED_TO_LOGIN_POPUP_STATE = 'NEED_TO_LOGIN_POPUP_STATE'
+export const SET_ROOT_NAVIGATION = 'SET_ROOT_NAVIGATION'
+export const SET_MESSAGE_POPUP_REF = 'SET_MESSAGE_POPUP_REF'
+
+export const setMessagePopupRef = (messagePopupRef) => {
+    return (dispatch) => {
+        dispatch({
+            type: SET_MESSAGE_POPUP_REF,
+            payload: {
+                messagePopupRef
+            }
+        })
+    }
+}
 
 export const setRootNavigation = (navigation) => {
     return (dispatch) => {

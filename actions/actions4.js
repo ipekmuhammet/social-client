@@ -33,6 +33,7 @@ export const updateProfile = (body) => {
 
 export const setInitialDatas = () => {
 	return (dispatch) => {
+		// AsyncStorage.removeItem('cart')
 		AsyncStorage.multiGet(['token', 'user', 'cart']).then(vals => {
 			if (vals[0][1]) {
 				Promise.all([getCategories(), getProducts(), getCart(vals[0][1]), getPaymentCards(vals[0][1])]).then(res => {
@@ -51,6 +52,7 @@ export const setInitialDatas = () => {
 					console.log('err, actions 4 - 45', err)
 				})
 			} else {
+				console.log(vals[2][1])
 				Promise.all([getCategories(), getProducts()]).then(res => {
 					dispatch({
 						type: SET_INITIAL_DATAS,
@@ -89,7 +91,7 @@ export const login = (body, popupRef, cb) => {
 			}
 		}).catch((err) => {
 			console.log('err', err)
-			popupRef.showMessage({ message: '' })
+			popupRef.showMessage({ message: 'Wrong GSM or password' })
 		})
 	}
 }

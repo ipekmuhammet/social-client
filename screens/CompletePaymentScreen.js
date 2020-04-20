@@ -2,9 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { View, ScrollView, StyleSheet } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { Ionicons } from '@expo/vector-icons'
 
-import MessagePopup from '../components/popups/MessagePopup'
 import HeadingDivider from '../components/HeadingDivider'
 import CompletePayment from '../components/CompletePayment'
 
@@ -16,36 +14,11 @@ import { setNeedToLoginPopupState } from '../actions/global-actions'
 
 class CompletePaymentScreen extends React.PureComponent {
 
-    state = {
-        kartRef: null,
-        addressRef: null
-    }
-
-    onKartRef = (ref) => {
-        this.setState({ kartRef: ref })
-    }
-
-    onAddressRef = (ref) => {
-        this.setState({ addressRef: ref })
-    }
-
     render() {
         const { navigation, cards, addresses, selectedCard, selectedAddress, token, setNeedToLoginPopupState } = this.props
 
         return (
             <React.Fragment>
-
-                <MessagePopup
-                    onRef={this.onKartRef}
-                    text={'Lütfen kart seçiniz.'}>
-                    <Ionicons name={'md-warning'} size={48} color={'red'} />
-                </MessagePopup>
-
-                <MessagePopup
-                    onRef={this.onAddressRef}
-                    text={'Lütfen adres seçiniz.'}>
-                    <Ionicons name={'md-warning'} size={48} color={'red'} />
-                </MessagePopup>
 
                 <ScrollView style={{ zIndex: -1 }}>
                     <HeadingDivider title={'Adres Seçimi'} />
@@ -77,8 +50,6 @@ class CompletePaymentScreen extends React.PureComponent {
                 </ScrollView>
 
                 <CompletePayment
-                    kartRef={this.state.kartRef}
-                    addressRef={this.state.addressRef}
                     completable={true}
                     navigation={navigation} />
 

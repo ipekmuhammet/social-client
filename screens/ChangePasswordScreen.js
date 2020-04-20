@@ -1,13 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { ScrollView, View, TouchableOpacity, TextInput, Text, StyleSheet } from 'react-native'
+import { ScrollView, View, TextInput, StyleSheet } from 'react-native'
 import axios from 'axios'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { Ionicons } from '@expo/vector-icons'
 import { SERVER_URL } from 'react-native-dotenv'
 
 import PasswordChangedPopup from '../components/popups/PasswordChangedPopup'
-import MessagePopup from '../components/popups/MessagePopup'
 import ButtonComponent from '../components/ButtonComponent'
 
 class ChangePasswordScreen extends React.PureComponent {
@@ -32,15 +30,15 @@ class ChangePasswordScreen extends React.PureComponent {
     onChangePasswordClick = () => {
         if (this.state.oldPassword === '' || this.state.password === '') {
 
-            this.state.emptyPasswordPopup.showMessage({ message: '' })
+            this.props.messagePopupRef.showMessage({ message: 'Lütfen gerekli alanlarını doldurunuz' })
 
         } else if (this.state.password.length < 4) {
 
-            this.state.invalidPasswordPopup.showMessage({ message: '' })
+            this.props.messagePopupRef.showMessage({ message: 'Yeni şifreniz en az 4 haneli olmalı' })
 
         } else if (this.state.oldPassword === this.state.password) {
 
-            this.state.samePasswordPopup.showMessage({ message: '' })
+            this.props.messagePopupRef.showMessage({ message: 'Yeni şifre eskisi ise aynı olamaz' })
 
         } else {
 
@@ -58,18 +56,6 @@ class ChangePasswordScreen extends React.PureComponent {
         }
     }
 
-    onSamePasswordPopupRef = (ref) => {
-        this.setState({ samePasswordPopup: ref })
-    }
-
-    onEmptyPasswordPopupRef = (ref) => {
-        this.setState({ emptyPasswordPopup: ref })
-    }
-
-    onInvalidPasswordPopupRef = (ref) => {
-        this.setState({ invalidPasswordPopup: ref })
-    }
-
     onOldPasswordChange = (oldPassword) => {
         this.setState({ oldPassword })
     }
@@ -83,24 +69,6 @@ class ChangePasswordScreen extends React.PureComponent {
             <ScrollView style={styles.container}>
 
                 <PasswordChangedPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
-
-                <MessagePopup
-                    onRef={this.onSamePasswordPopupRef}
-                    text={'Yeni şifre eskisi ise aynı olamaz.'}>
-                    <Ionicons name={'md-warning'} size={48} color={'red'} />
-                </MessagePopup>
-
-                <MessagePopup
-                    onRef={this.onEmptyPasswordPopupRef}
-                    text={'Lütfen eski ve yeni şifre alanlarını doldurunuz.'}>
-                    <Ionicons name={'md-warning'} size={48} color={'red'} />
-                </MessagePopup>
-
-                <MessagePopup
-                    onRef={this.onInvalidPasswordPopupRef}
-                    text={'Yeni şifreniz en az 4 haneli olmalı.'}>
-                    <Ionicons name={'md-warning'} size={48} color={'red'} />
-                </MessagePopup>
 
                 <View style={[styles.child, styles.inputContainer]}>
                     <TextInput
@@ -138,4 +106,12 @@ const styles = StyleSheet.create({
     resendCodeText: { fontSize: RFValue(20, 600), paddingHorizontal: RFValue(12, 600), color: '#6E7586' }
 })
 
-export default ChangePasswordScreen
+const mapStateToProps = ({
+    globalReducer: {
+        messagePopupRef
+    }
+}) => ({
+    messagePopupRef
+})
+
+export default connect(mapStateToProps)(ChangePasswordScreen)

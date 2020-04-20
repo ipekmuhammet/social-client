@@ -1,12 +1,12 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { RFValue } from 'react-native-responsive-fontsize'
 import axios from 'axios'
-import { ScrollView, View, TouchableOpacity, TextInput, Text, StyleSheet, Alert } from 'react-native'
+import { ScrollView, View, TouchableOpacity, TextInput, Text, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { SERVER_URL } from 'react-native-dotenv'
 
 import PasswordChangedPopup from '../components/popups/PasswordChangedPopup'
-import MessagePopup from '../components/popups/MessagePopup'
 import ButtonComponent from '../components/ButtonComponent'
 
 class ResetPasswordScreen extends React.PureComponent {
@@ -16,9 +16,6 @@ class ResetPasswordScreen extends React.PureComponent {
         phoneNumber: this.props.route.params.phoneNumber,
         activationCode: '',
         password: '',
-        requiredPopup: null,
-        invalidPasswordPopup: null,
-        errorPopupFromResponse: null,
         errorMessage: ''
     }
 
@@ -31,18 +28,18 @@ class ResetPasswordScreen extends React.PureComponent {
 
     showMessagePopupFromError = (errorMessage) => {
         this.setState({ errorMessage }, () => {
-            this.state.errorPopupFromResponse.showMessage({ message: '' })
+            this.props.messagePopupRef.showMessage({ message: this.state.errorMessage })
         })
     }
 
     onResetPasswordClick = () => {
         if (this.state.activationCode === '' || this.state.password === '' || this.state.phoneNumber === '') {
 
-            this.state.requiredPopup.showMessage({ message: '' })
+            this.props.messagePopupRef.showMessage({ message: 'Lütfen gerekli alanlarını doldurunuz' })
 
         } else if (this.state.password.length < 4) {
 
-            this.state.invalidPasswordPopup.showMessage({ message: '' })
+            this.props.messagePopupRef.showMessage({ message: 'Yeni şifreniz en az 4 haneli olmalı' })
 
         } else {
 
@@ -64,18 +61,6 @@ class ResetPasswordScreen extends React.PureComponent {
         axios.post(`${SERVER_URL}/send-activation-code`, { phone_number: this.state.phoneNumber })
     }
 
-    onErrorPopupRef = (ref) => {
-        this.setState({ errorPopupFromResponse: ref })
-    }
-
-    onRequiredPopupRef = (ref) => {
-        this.setState({ requiredPopup: ref })
-    }
-
-    onInvalidPopupRef = (ref) => {
-        this.setState({ invalidPasswordPopup: ref })
-    }
-
     onPhoneChange = (phoneNumber) => {
         this.setState({ phoneNumber })
     }
@@ -93,24 +78,6 @@ class ResetPasswordScreen extends React.PureComponent {
             <ScrollView style={styles.container}>
 
                 <PasswordChangedPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
-
-                <MessagePopup
-                    onRef={this.onErrorPopupRef}
-                    text={this.state.errorMessage}>
-                    <Ionicons name={'md-warning'} size={48} color={'red'} />
-                </MessagePopup>
-
-                <MessagePopup
-                    onRef={this.onRequiredPopupRef}
-                    text={'Lütfen gerekli alanlarını doldurunuz.'}>
-                    <Ionicons name={'md-warning'} size={48} color={'red'} />
-                </MessagePopup>
-
-                <MessagePopup
-                    onRef={this.onInvalidPopupRef}
-                    text={'Yeni şifreniz en az 4 haneli olmalı.'}>
-                    <Ionicons name={'md-warning'} size={48} color={'red'} />
-                </MessagePopup>
 
                 <View style={[styles.child, styles.inputContainer]}>
 
@@ -175,4 +142,12 @@ const styles = StyleSheet.create({
     resendCodeText: { fontSize: RFValue(19, 600), paddingHorizontal: RFValue(12, 600), color: '#6E7586' },
 })
 
-export default ResetPasswordScreen
+const mapStateToProps = ({
+    globalReducer: {
+        messagePopupRef
+    }
+}) => ({
+    messagePopupRef
+})
+
+export default connect(mapStateToProps)(ResetPasswordScreen)
