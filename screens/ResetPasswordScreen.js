@@ -2,12 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { RFValue } from 'react-native-responsive-fontsize'
 import axios from 'axios'
-import { ScrollView, View, TouchableOpacity, TextInput, Text, StyleSheet } from 'react-native'
+import { ScrollView, View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { SERVER_URL } from 'react-native-dotenv'
 
 import PasswordChangedPopup from '../components/popups/PasswordChangedPopup'
 import ButtonComponent from '../components/ButtonComponent'
+import InputComponent from '../components/InputComponent'
 
 class ResetPasswordScreen extends React.PureComponent {
 
@@ -79,51 +80,45 @@ class ResetPasswordScreen extends React.PureComponent {
 
                 <PasswordChangedPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
 
-                <View style={[styles.child, styles.inputContainer]}>
+                {
+                    //  <TextInput
+                    //      keyboardType={'phone-pad'}
+                    //      placeholder={'Country/Region Code'}
+                    //      style={styles.input} />
+                }
 
-                    {
-                        //  <TextInput
-                        //      keyboardType={'phone-pad'}
-                        //      placeholder={'Country/Region Code'}
-                        //      style={styles.input} />
-                    }
+                <InputComponent
+                    options={{
+                        keyboardType: 'phone-pad',
+                        placeholder: 'Phone Number',
+                    }}
+                    value={this.state.phoneNumber}
+                    onChange={this.onPhoneChange} />
 
-                    <TextInput
-                        onChangeText={this.onPhoneChange}
-                        value={this.state.phoneNumber}
-                        keyboardType={'phone-pad'}
-                        placeholder={'Phone Number'}
-                        style={styles.input} />
+                <InputComponent
+                    options={{
+                        maxLength: 4,
+                        keyboardType: 'number-pad',
+                        placeholder: 'Activation Code',
+                    }}
+                    value={this.state.activationCode}
+                    onChange={this.onActivationCodeChange} />
 
-                </View>
-
-                <View style={[styles.child, styles.inputContainer]}>
-                    <TextInput
-                        onChangeText={this.onActivationCodeChange}
-                        value={this.state.activationCode}
-                        keyboardType={'number-pad'}
-                        maxLength={4}
-                        placeholder={'Activation Code'}
-                        style={styles.input} />
-                </View>
-
-                <View style={[styles.child, styles.inputContainer]}>
-                    <TextInput
-                        onChangeText={this.onPasswordChange}
-                        value={this.state.password}
-                        secureTextEntry={true}
-                        placeholder={'New Password (min 4 characters)'}
-                        style={styles.input} />
-                </View>
+                <InputComponent
+                    options={{
+                        secureTextEntry: true,
+                        textContentType: 'password',
+                        placeholder: 'New Password (min 4 characters)',
+                    }}
+                    value={this.state.password}
+                    onChange={this.onPasswordChange} />
 
                 <ButtonComponent text={'Reset Password'} onClick={this.onResetPasswordClick} />
 
-                <View style={styles.child}>
-                    <TouchableOpacity style={styles.resendContainer} onPress={this.onResendClick}>
-                        <Ionicons name={'md-refresh'} size={28} color={'#6E7586'} />
-                        <Text style={styles.resendCodeText}>Resend Code</Text>
-                    </TouchableOpacity>
-                </View>
+                <TouchableOpacity style={styles.resendContainer} onPress={this.onResendClick}>
+                    <Ionicons name={'md-refresh'} size={28} color={'#6E7586'} />
+                    <Text style={styles.resendCodeText}>Resend Code</Text>
+                </TouchableOpacity>
 
             </ScrollView>
         )
@@ -132,12 +127,6 @@ class ResetPasswordScreen extends React.PureComponent {
 
 const styles = StyleSheet.create({
     container: { marginVertical: RFValue(12, 600) },
-    child: { height: RFValue(60, 600), margin: RFValue(3, 600), zIndex: -1 },
-    inputContainer: { flexDirection: 'row' },
-    input: {
-        flex: 1, margin: RFValue(4, 600), borderRadius: 6,
-        paddingHorizontal: RFValue(12, 600), fontSize: RFValue(18, 600), borderWidth: .8, borderColor: '#ABABAB'
-    },
     resendContainer: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
     resendCodeText: { fontSize: RFValue(19, 600), paddingHorizontal: RFValue(12, 600), color: '#6E7586' },
 })

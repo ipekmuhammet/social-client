@@ -1,9 +1,11 @@
 import React from 'react'
 import axios from 'axios'
-import { ScrollView, View, TouchableOpacity, TextInput, Text, StyleSheet } from 'react-native'
+import { ScrollView, StyleSheet } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { SERVER_URL } from 'react-native-dotenv'
+
 import ButtonComponent from '../components/ButtonComponent'
+import InputComponent from '../components/InputComponent'
 
 class ForgotPasswordScreen extends React.Component {
 
@@ -28,21 +30,13 @@ class ForgotPasswordScreen extends React.Component {
     render() {
         return (
             <ScrollView style={styles.container}>
-                <View style={[styles.child, styles.inputContainer]}>
-                    {
-                        //  <TextInput
-                        //      keyboardType={'phone-pad'} placeholder={'Country/Region Code'}
-                        //      style={styles.input} />
-                    }
-
-                    <TextInput
-                        onChangeText={this.onPhoneNumberChange}
-                        value={this.state.phoneNumber}
-                        keyboardType={'phone-pad'}
-                        placeholder={'Phone Number'}
-                        style={styles.input} />
-                </View>
-
+                <InputComponent
+                    options={{
+                        keyboardType: 'phone-pad',
+                        placeholder: 'Phone Number'
+                    }}
+                    value={this.state.phoneNumber}
+                    onChange={this.onPhoneNumberChange} />
                 <ButtonComponent text={'Send Code'} onClick={this.onSendCodeClick} />
 
             </ScrollView>
@@ -51,13 +45,7 @@ class ForgotPasswordScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    container: { marginVertical: RFValue(12, 600) },
-    child: { height: RFValue(60, 600), margin: RFValue(3, 600) },
-    inputContainer: { flexDirection: 'row' },
-    input: {
-        flex: 1, margin: RFValue(4, 600), borderRadius: 6,
-        paddingHorizontal: RFValue(12, 600), fontSize: RFValue(18, 600), borderWidth: .8, borderColor: '#ABABAB'
-    }
+    container: { marginVertical: RFValue(12, 600) }
 })
 
 export default ForgotPasswordScreen

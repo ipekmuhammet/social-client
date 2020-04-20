@@ -1,12 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { ScrollView, View, TextInput, StyleSheet } from 'react-native'
+import { ScrollView, StyleSheet } from 'react-native'
 import axios from 'axios'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { SERVER_URL } from 'react-native-dotenv'
 
 import PasswordChangedPopup from '../components/popups/PasswordChangedPopup'
 import ButtonComponent from '../components/ButtonComponent'
+import InputComponent from '../components/InputComponent'
 
 class ChangePasswordScreen extends React.PureComponent {
 
@@ -70,25 +71,26 @@ class ChangePasswordScreen extends React.PureComponent {
 
                 <PasswordChangedPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
 
-                <View style={[styles.child, styles.inputContainer]}>
-                    <TextInput
-                        onChangeText={this.onOldPasswordChange}
-                        value={this.state.oldPassword}
-                        secureTextEntry={true}
-                        placeholder={'Current Password'}
-                        style={styles.input} />
-                </View>
+                <InputComponent
+                    options={{
+                        secureTextEntry: true,
+                        textContentType: 'password',
+                        placeholder: 'Current Password',
+                    }}
+                    value={this.state.oldPassword}
+                    onChange={this.onOldPasswordChange} />
 
-                <View style={[styles.child, styles.inputContainer]}>
-                    <TextInput
-                        onChangeText={this.onPasswordChange}
-                        value={this.state.password}
-                        secureTextEntry={true}
-                        placeholder={'New Password (min 4 characters)'}
-                        style={styles.input} />
-                </View>
+                <InputComponent
+                    options={{
+                        secureTextEntry: true,
+                        textContentType: 'password',
+                        placeholder: 'New Password (min 4 characters)',
+                    }}
+                    value={this.state.password}
+                    onChange={this.onPasswordChange} />
 
                 <ButtonComponent text={'Change Password'} onClick={this.onChangePasswordClick} />
+
             </ScrollView>
         )
     }
@@ -96,12 +98,6 @@ class ChangePasswordScreen extends React.PureComponent {
 
 const styles = StyleSheet.create({
     container: { marginVertical: RFValue(12, 600) },
-    child: { height: RFValue(60, 600), margin: RFValue(3, 600), zIndex: -1 },
-    inputContainer: { flexDirection: 'row' },
-    input: {
-        flex: 1, margin: RFValue(4, 600), borderRadius: 6,
-        paddingHorizontal: RFValue(12, 600), fontSize: RFValue(18, 600), borderWidth: .8, borderColor: '#ABABAB'
-    },
     resendContainer: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
     resendCodeText: { fontSize: RFValue(20, 600), paddingHorizontal: RFValue(12, 600), color: '#6E7586' }
 })

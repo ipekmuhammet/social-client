@@ -1,11 +1,14 @@
 import React from 'react'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { ScrollView, View, TouchableOpacity, TextInput, Text, StyleSheet, Alert } from 'react-native'
+import { ScrollView, View, StyleSheet, Alert } from 'react-native'
 import axios from 'axios'
 import { SERVER_URL } from 'react-native-dotenv'
+import { Ionicons } from '@expo/vector-icons'
 
 import TermsComponent from '../components/TermsComponent'
 import ButtonComponent from '../components/ButtonComponent'
+import InputComponent from '../components/InputComponent'
+import InputIcon from '../components/InputIcon'
 
 class RegisterScreen extends React.PureComponent {
 
@@ -64,57 +67,69 @@ class RegisterScreen extends React.PureComponent {
                         //  </View>
                     }
 
-                    <View style={[styles.child, { flexDirection: 'row' }]}>
-                        {
-                            //  <TextInput
-                            //      value={this.state.countryCode}
-                            //      onChangeText={countryCode => { this.setState({ countryCode }) }}
-                            //      placeholder={'Country/Region Code'}
-                            //      style={styles.input} />
-                        }
+                    <InputComponent
+                        options={{
+                            keyboardType: 'phone-pad',
+                            textContentType: 'telephoneNumber',
+                            placeholder: 'Phone Number'
+                        }}
+                        value={this.state.phoneNumber}
+                        onChange={this.onPhoneChange}>
 
-                        <TextInput
-                            value={this.state.phoneNumber}
-                            onChangeText={this.onPhoneChange}
-                            textContentType={'telephoneNumber'}
-                            placeholder={'Phone Number'}
-                            keyboardType={'phone-pad'}
-                            style={styles.input} />
-                    </View>
+                        <InputIcon>
+                            <Ionicons size={32} name={'md-phone-portrait'} />
+                        </InputIcon>
 
-                    <View style={styles.child}>
-                        <TextInput
-                            value={this.state.password}
-                            onChangeText={this.onPasswordChange}
-                            textContentType={'password'}
-                            secureTextEntry={true}
-                            placeholder={'Password (min 4 characters)'}
-                            style={styles.input} />
-                    </View>
+                    </InputComponent>
 
-                    <View style={styles.child}>
-                        <TextInput
-                            value={this.state.nameSurname}
-                            onChangeText={this.onNameSurnameChange}
-                            placeholder={'Name Surname'}
-                            style={styles.input} />
-                    </View>
+                    <InputComponent
+                        options={{
+                            secureTextEntry: true,
+                            textContentType: 'password',
+                            placeholder: 'Password (min 4 characters)',
+                        }}
+                        value={this.state.password}
+                        onChange={this.onPasswordChange}>
 
-                    <View style={styles.child}>
-                        <TextInput
-                            value={this.state.email}
-                            onChangeText={this.onEmailChange}
-                            keyboardType={'email-address'}
-                            textContentType={'emailAddress'}
-                            placeholder={'E-mail'}
-                            style={styles.input} />
-                    </View>
+                        <InputIcon>
+                            <Ionicons size={32} name={'md-lock'} />
+                        </InputIcon>
+
+                    </InputComponent>
+
+                    <InputComponent
+                        options={{
+                            textContentType: 'name',
+                            placeholder: 'Name Surname'
+                        }}
+                        value={this.state.nameSurname}
+                        onChange={this.onNameSurnameChange}>
+
+                        <InputIcon>
+                            <Ionicons size={32} name={'md-person'} />
+                        </InputIcon>
+
+                    </InputComponent>
+
+                    <InputComponent
+                        options={{
+                            keyboardType: 'email-address',
+                            textContentType: 'emailAddress',
+                            placeholder: 'E-mail'
+                        }}
+                        value={this.state.email}
+                        onChange={this.onEmailChange}>
+
+                        <InputIcon>
+                            <Ionicons size={32} name={'md-mail-open'} />
+                        </InputIcon>
+
+                    </InputComponent>
 
                     <TermsComponent />
                 </View>
 
                 <View>
-                    <View style={styles.buttonDivider} />
 
                     {
                         //  <View style={[styles.child, { flexDirection: 'row' }]}>
@@ -132,6 +147,7 @@ class RegisterScreen extends React.PureComponent {
                         //      </View>
                         //  </View>
                     }
+                    <View style={styles.buttonDivider} />
 
                     <ButtonComponent text={'Register'} onClick={this.onRegisterClick} />
                 </View>
@@ -142,12 +158,6 @@ class RegisterScreen extends React.PureComponent {
 
 const styles = StyleSheet.create({
     container: { flex: 1, justifyContent: 'space-between', marginVertical: RFValue(12, 600) },
-    child: { height: RFValue(60, 600), margin: RFValue(3, 600) },
-    input: {
-        flex: 1, margin: RFValue(4, 600), borderRadius: 6,
-        paddingHorizontal: RFValue(12, 600), fontSize: RFValue(19, 600),
-        borderWidth: .8, borderColor: '#ABABAB'
-    },
     facebookButton: {
         backgroundColor: '#3B589E', flex: 1, margin: RFValue(4, 600),
         borderRadius: 10, alignItems: 'center', justifyContent: 'center'
@@ -160,7 +170,6 @@ const styles = StyleSheet.create({
     termsLinkText: { color: '#5D3EBD', fontSize: RFValue(16, 600), fontWeight: 'bold' },
     termsTextContainer: { alignItems: 'center', justifyContent: 'center', flexDirection: 'row' },
     termsInfoContainer: { alignItems: 'flex-start', justifyContent: 'flex-start', flexDirection: 'column', marginLeft: RFValue(8, 600) },
-    empty: { height: RFValue(28, 600) },
     buttonDivider: { height: RFValue(22, 600), backgroundColor: '#EDEEF0' }
 })
 

@@ -7,6 +7,7 @@ import { SERVER_URL } from 'react-native-dotenv'
 
 import { login } from '../actions/actions4'
 import ButtonComponent from '../components/ButtonComponent'
+import InputComponent from '../components/InputComponent'
 
 class LoginScreen extends React.Component {
 
@@ -67,30 +68,30 @@ class LoginScreen extends React.Component {
                         //      </TouchableOpacity>
                         //  </View>
                     }
-                    <View style={[styles.child, styles.inputContainer]}>
-                        {
-                            // <TextInput
-                            //     value={this.state.countryCode}
-                            //     placeholder={'Country/Region Code'}
-                            //     style={styles.input} />
-                        }
-                        <TextInput
-                            value={this.state.phoneNumber}
-                            onChangeText={this.onPhoneChange}
-                            keyboardType={'phone-pad'}
-                            textContentType={'telephoneNumber'}
-                            placeholder={'Phone Number'}
-                            style={styles.input} />
-                    </View>
-                    <View style={styles.child}>
-                        <TextInput
-                            value={this.state.password}
-                            onChangeText={this.onPasswordChange}
-                            secureTextEntry={true}
-                            textContentType={'password'}
-                            placeholder={'Password (min 4 characters)'}
-                            style={styles.input} />
-                    </View>
+                    {
+                        // <TextInput
+                        //     value={this.state.countryCode}
+                        //     placeholder={'Country/Region Code'}
+                        //     style={styles.input} />
+                    }
+
+                    <InputComponent
+                        options={{
+                            keyboardType: 'phone-pad',
+                            textContentType: 'telephoneNumber',
+                            placeholder: 'Phone Number'
+                        }}
+                        value={this.state.phoneNumber}
+                        onChange={this.onPhoneChange} />
+
+                    <InputComponent
+                        options={{
+                            secureTextEntry: true,
+                            textContentType: 'password',
+                            placeholder: 'Password (min 4 characters)',
+                        }}
+                        value={this.state.password}
+                        onChange={this.onPasswordChange} />
 
                     <ButtonComponent text={'Login'} onClick={this.onLoginClick} />
 
