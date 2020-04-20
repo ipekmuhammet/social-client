@@ -120,9 +120,7 @@ class ChangePasswordScreen extends React.PureComponent {
                         style={styles.input} />
                 </View>
 
-                <View style={styles.child}>
-                    <ButtonComponent text={'Change Password'} onClick={this.onChangePasswordClick} />
-                </View>
+                <ButtonComponent text={'Change Password'} onClick={this.onChangePasswordClick} />
             </ScrollView>
         )
     }

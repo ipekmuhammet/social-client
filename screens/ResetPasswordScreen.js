@@ -149,9 +149,7 @@ class ResetPasswordScreen extends React.PureComponent {
                         style={styles.input} />
                 </View>
 
-                <View style={styles.child}>
-                    <ButtonComponent text={'Reset Password'} onClick={this.onResetPasswordClick} />
-                </View>
+                <ButtonComponent text={'Reset Password'} onClick={this.onResetPasswordClick} />
 
                 <View style={styles.child}>
                     <TouchableOpacity style={styles.resendContainer} onPress={this.onResendClick}>
@@ -159,7 +157,7 @@ class ResetPasswordScreen extends React.PureComponent {
                         <Text style={styles.resendCodeText}>Resend Code</Text>
                     </TouchableOpacity>
                 </View>
-                
+
             </ScrollView>
         )
     }

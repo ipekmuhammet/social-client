@@ -11,8 +11,6 @@ const InputComponent = ({ value, onChange, options, children: icon }) => (
             {...options}
             value={value}
             onChangeText={onChange}
-            textContentType={'name'}
-            placeholder={'Name Surname'}
             style={[styles.input, icon ? styles.withIcon : {}]} />
     </View>
 )

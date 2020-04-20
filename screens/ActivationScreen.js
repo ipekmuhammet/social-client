@@ -42,9 +42,7 @@ class ActivationScreen extends React.PureComponent {
                         style={styles.activationCodeInput} />
                 </View>
 
-                <View style={styles.child}>
-                    <ButtonComponent text={'Register'} onClick={this.onRegisterClick} />
-                </View>
+                <ButtonComponent text={'Register'} onClick={this.onRegisterClick} />
             </ScrollView>
         )
     }

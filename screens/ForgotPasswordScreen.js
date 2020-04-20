@@ -43,9 +43,7 @@ class ForgotPasswordScreen extends React.Component {
                         style={styles.input} />
                 </View>
 
-                <View style={styles.child}>
-                    <ButtonComponent text={'Send Code'} onClick={this.onSendCodeClick} />
-                </View>
+                <ButtonComponent text={'Send Code'} onClick={this.onSendCodeClick} />
 
             </ScrollView>
         )

@@ -63,64 +63,61 @@ class LoginScreen extends React.Component {
 
     render() {
         return (
-            <ScrollView style={styles.container}>
+            <ScrollView contentContainerStyle={styles.container}>
 
-                <MessagePopup
-                    onRef={this.onPopupRef}
-                    text={'Wrong GSM or password.'}>
-                    <Ionicons name={'md-warning'} size={48} color={'red'} />
-                </MessagePopup>
+                <View>
+                    <MessagePopup
+                        onRef={this.onPopupRef}
+                        text={'Wrong GSM or password.'}>
+                        <Ionicons name={'md-warning'} size={48} color={'red'} />
+                    </MessagePopup>
 
-                {
-                    //  <View style={styles.child}>
-                    //      <TouchableOpacity style={styles.facebookButton} onPress={() => {
-                    //          console.log('Connect with Facebook')
-                    //      }}>
-                    //          <Text style={styles.facebookText}>Connect with Facebook</Text>
-                    //      </TouchableOpacity>
-                    //  </View>
-                }
-                <View style={[styles.child, styles.inputContainer]}>
                     {
-                        // <TextInput
-                        //     value={this.state.countryCode}
-                        //     placeholder={'Country/Region Code'}
-                        //     style={styles.input} />
+                        //  <View style={styles.child}>
+                        //      <TouchableOpacity style={styles.facebookButton} onPress={() => {
+                        //          console.log('Connect with Facebook')
+                        //      }}>
+                        //          <Text style={styles.facebookText}>Connect with Facebook</Text>
+                        //      </TouchableOpacity>
+                        //  </View>
                     }
-                    <TextInput
-                        value={this.state.phoneNumber}
-                        onChangeText={this.onPhoneChange}
-                        keyboardType={'phone-pad'}
-                        textContentType={'telephoneNumber'}
-                        placeholder={'Phone Number'}
-                        style={styles.input} />
-                </View>
-                <View style={styles.child}>
-                    <TextInput
-                        value={this.state.password}
-                        onChangeText={this.onPasswordChange}
-                        secureTextEntry={true}
-                        textContentType={'password'}
-                        placeholder={'Password (min 4 characters)'}
-                        style={styles.input} />
-                </View>
+                    <View style={[styles.child, styles.inputContainer]}>
+                        {
+                            // <TextInput
+                            //     value={this.state.countryCode}
+                            //     placeholder={'Country/Region Code'}
+                            //     style={styles.input} />
+                        }
+                        <TextInput
+                            value={this.state.phoneNumber}
+                            onChangeText={this.onPhoneChange}
+                            keyboardType={'phone-pad'}
+                            textContentType={'telephoneNumber'}
+                            placeholder={'Phone Number'}
+                            style={styles.input} />
+                    </View>
+                    <View style={styles.child}>
+                        <TextInput
+                            value={this.state.password}
+                            onChangeText={this.onPasswordChange}
+                            secureTextEntry={true}
+                            textContentType={'password'}
+                            placeholder={'Password (min 4 characters)'}
+                            style={styles.input} />
+                    </View>
 
-                <View style={styles.child}>
                     <ButtonComponent text={'Login'} onClick={this.onLoginClick} />
+
+                    <View style={styles.child}>
+                        <TouchableOpacity style={styles.forgotPasswordButton} onPress={this.goToForgotPassword}>
+                            <Text style={styles.forgotPasswordText}>Forgot Password</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
 
-                <View style={styles.child}>
-                    <TouchableOpacity style={styles.forgotPasswordButton} onPress={this.goToForgotPassword}>
-                        <Text style={styles.forgotPasswordText}>Forgot Password</Text>
-                    </TouchableOpacity>
-                </View>
+                <View>
+                    <View style={styles.buttonDivider} />
 
-                <View style={styles.child} />
-                <View style={styles.child} />
-                <View style={styles.empty} />
-                <View style={styles.buttonDivider} />
-
-                <View style={styles.child}>
                     <ButtonComponent text={'Register'} onClick={this.goToRegister} opposite />
                 </View>
             </ScrollView>
@@ -129,7 +126,7 @@ class LoginScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    container: { marginVertical: RFValue(12, 600) },
+    container: { flex: 1, justifyContent: 'space-between', marginVertical: RFValue(12, 600) },
     child: { height: RFValue(60, 600), margin: RFValue(3, 600) },
     facebookButton: { backgroundColor: '#3B589E', flex: 1, margin: RFValue(4, 600), borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
     forgotPasswordButton: { flex: 1, alignItems: 'center', justifyContent: 'center' },

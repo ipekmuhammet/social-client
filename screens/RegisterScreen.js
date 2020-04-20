@@ -50,89 +50,89 @@ class RegisterScreen extends React.PureComponent {
 
     render() {
         return (
-            <ScrollView style={styles.container}>
-
-                {
-                    //  <View style={styles.child}>
-                    //      <TouchableOpacity
-                    //          style={styles.facebookButton}
-                    //          onPress={() => {
-                    //              console.log('Connect with Facebook')
-                    //          }}>
-                    //          <Text style={styles.facebookText}>Connect with Facebook</Text>
-                    //      </TouchableOpacity>
-                    //  </View>
-                }
-
-                <View style={[styles.child, { flexDirection: 'row' }]}>
+            <ScrollView contentContainerStyle={styles.container}>
+                <View>
                     {
-                        //  <TextInput
-                        //      value={this.state.countryCode}
-                        //      onChangeText={countryCode => { this.setState({ countryCode }) }}
-                        //      placeholder={'Country/Region Code'}
-                        //      style={styles.input} />
+                        //  <View style={styles.child}>
+                        //      <TouchableOpacity
+                        //          style={styles.facebookButton}
+                        //          onPress={() => {
+                        //              console.log('Connect with Facebook')
+                        //          }}>
+                        //          <Text style={styles.facebookText}>Connect with Facebook</Text>
+                        //      </TouchableOpacity>
+                        //  </View>
                     }
 
-                    <TextInput
-                        value={this.state.phoneNumber}
-                        onChangeText={this.onPhoneChange}
-                        textContentType={'telephoneNumber'}
-                        placeholder={'Phone Number'}
-                        keyboardType={'phone-pad'}
-                        style={styles.input} />
+                    <View style={[styles.child, { flexDirection: 'row' }]}>
+                        {
+                            //  <TextInput
+                            //      value={this.state.countryCode}
+                            //      onChangeText={countryCode => { this.setState({ countryCode }) }}
+                            //      placeholder={'Country/Region Code'}
+                            //      style={styles.input} />
+                        }
+
+                        <TextInput
+                            value={this.state.phoneNumber}
+                            onChangeText={this.onPhoneChange}
+                            textContentType={'telephoneNumber'}
+                            placeholder={'Phone Number'}
+                            keyboardType={'phone-pad'}
+                            style={styles.input} />
+                    </View>
+
+                    <View style={styles.child}>
+                        <TextInput
+                            value={this.state.password}
+                            onChangeText={this.onPasswordChange}
+                            textContentType={'password'}
+                            secureTextEntry={true}
+                            placeholder={'Password (min 4 characters)'}
+                            style={styles.input} />
+                    </View>
+
+                    <View style={styles.child}>
+                        <TextInput
+                            value={this.state.nameSurname}
+                            onChangeText={this.onNameSurnameChange}
+                            placeholder={'Name Surname'}
+                            style={styles.input} />
+                    </View>
+
+                    <View style={styles.child}>
+                        <TextInput
+                            value={this.state.email}
+                            onChangeText={this.onEmailChange}
+                            keyboardType={'email-address'}
+                            textContentType={'emailAddress'}
+                            placeholder={'E-mail'}
+                            style={styles.input} />
+                    </View>
+
+                    <TermsComponent />
                 </View>
 
-                <View style={styles.child}>
-                    <TextInput
-                        value={this.state.password}
-                        onChangeText={this.onPasswordChange}
-                        textContentType={'password'}
-                        secureTextEntry={true}
-                        placeholder={'Password (min 4 characters)'}
-                        style={styles.input} />
-                </View>
+                <View>
+                    <View style={styles.buttonDivider} />
 
-                <View style={styles.child}>
-                    <TextInput
-                        value={this.state.nameSurname}
-                        onChangeText={this.onNameSurnameChange}
-                        placeholder={'Name Surname'}
-                        style={styles.input} />
-                </View>
+                    {
+                        //  <View style={[styles.child, { flexDirection: 'row' }]}>
+                        //      <View style={{ alignItems: 'center', justifyContent: 'flex-start' }}>
+                        //          <CheckBox />
+                        //      </View>
+                        //      <View style={{ alignItems: 'flex-start', justifyContent: 'flex-start', flexDirection: 'column', marginLeft: RFValue(8, 600) }}>
+                        //          <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row' }}>
+                        //              <Text style={{ color: 'black', fontSize: RFValue(16, 600), fontWeight: 'bold' }}>I give permissions for the use of my personal data for special offers and for receiving electronic communication, within the scope of The Law on Protection of Personal Data clarification document.</Text>
+                        //              <Text style={{ color: '#5D3EBD', fontSize: RFValue(16, 600), fontWeight: 'bold' }}>the Terms and</Text>
+                        //          </View>
+                        //          <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row' }}>
+                        //              <Text style={{ color: '#5D3EBD', fontSize: RFValue(16, 600), fontWeight: 'bold' }}>Conditions.</Text>
+                        //          </View>
+                        //      </View>
+                        //  </View>
+                    }
 
-                <View style={styles.child}>
-                    <TextInput
-                        value={this.state.email}
-                        onChangeText={this.onEmailChange}
-                        keyboardType={'email-address'}
-                        textContentType={'emailAddress'}
-                        placeholder={'E-mail'}
-                        style={styles.input} />
-                </View>
-
-                <TermsComponent />
-                <View style={styles.child} />
-                <View style={styles.empty} />
-                <View style={styles.buttonDivider} />
-
-                {
-                    //  <View style={[styles.child, { flexDirection: 'row' }]}>
-                    //      <View style={{ alignItems: 'center', justifyContent: 'flex-start' }}>
-                    //          <CheckBox />
-                    //      </View>
-                    //      <View style={{ alignItems: 'flex-start', justifyContent: 'flex-start', flexDirection: 'column', marginLeft: RFValue(8, 600) }}>
-                    //          <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row' }}>
-                    //              <Text style={{ color: 'black', fontSize: RFValue(16, 600), fontWeight: 'bold' }}>I give permissions for the use of my personal data for special offers and for receiving electronic communication, within the scope of The Law on Protection of Personal Data clarification document.</Text>
-                    //              <Text style={{ color: '#5D3EBD', fontSize: RFValue(16, 600), fontWeight: 'bold' }}>the Terms and</Text>
-                    //          </View>
-                    //          <View style={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'row' }}>
-                    //              <Text style={{ color: '#5D3EBD', fontSize: RFValue(16, 600), fontWeight: 'bold' }}>Conditions.</Text>
-                    //          </View>
-                    //      </View>
-                    //  </View>
-                }
-
-                <View style={styles.child}>
                     <ButtonComponent text={'Register'} onClick={this.onRegisterClick} />
                 </View>
             </ScrollView>
@@ -141,7 +141,7 @@ class RegisterScreen extends React.PureComponent {
 }
 
 const styles = StyleSheet.create({
-    container: { marginVertical: RFValue(12, 600) },
+    container: { flex: 1, justifyContent: 'space-between', marginVertical: RFValue(12, 600) },
     child: { height: RFValue(60, 600), margin: RFValue(3, 600) },
     input: {
         flex: 1, margin: RFValue(4, 600), borderRadius: 6,

@@ -42,6 +42,10 @@ class EditProfileScreen extends React.Component {
 
                 <View>
                     <InputComponent
+                        options={{
+                            textContentType: 'name',
+                            placeholder: 'Name Surname'
+                        }}
                         value={this.state.nameSurname}
                         onChange={this.onNameSurnameChange}>
 

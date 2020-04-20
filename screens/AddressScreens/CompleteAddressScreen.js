@@ -120,9 +120,7 @@ class CompleteAddressScreen extends React.Component {
                             placeholder={'Directions'}
                             style={styles.input} />
                     </View>
-                    <View style={styles.inputContainer}>
-                        <ButtonComponent text={'Save'} onClick={this.onSaveClick} />
-                    </View>
+                    <ButtonComponent text={'Save'} onClick={this.onSaveClick} />
                 </View>
             </ScrollView>
         )
