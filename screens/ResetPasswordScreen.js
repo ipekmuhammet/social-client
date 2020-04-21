@@ -5,6 +5,7 @@ import axios from 'axios'
 import { ScrollView, View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { SERVER_URL } from 'react-native-dotenv'
+import joi from 'react-native-joi'
 
 import PasswordChangedPopup from '../components/popups/PasswordChangedPopup'
 import ButtonComponent from '../components/ButtonComponent'
@@ -14,10 +15,19 @@ class ResetPasswordScreen extends React.PureComponent {
 
     state = {
         scaleAnimationModal: false,
+        errorMessage: '',
+
         phoneNumber: this.props.route.params.phoneNumber,
         activationCode: '',
         password: '',
-        errorMessage: ''
+
+        invalidPhoneNumber: false,
+        invalidActivationCode: false,
+        invalidPassword: false,
+
+        isPhoneNumberInitialized: false,
+        isActivationCodeInitialized: false,
+        isPasswordInitialized: false
     }
 
     setPopupState = (state) => {
@@ -63,15 +73,21 @@ class ResetPasswordScreen extends React.PureComponent {
     }
 
     onPhoneChange = (phoneNumber) => {
-        this.setState({ phoneNumber })
+        joi.string().trim().strict().min(10).max(13).validate(phoneNumber, (err, val) => {
+            this.setState({ phoneNumber, isPhoneNumberInitialized: true, invalidPhoneNumber: !!err })
+        })
     }
 
     onActivationCodeChange = (activationCode) => {
-        this.setState({ activationCode })
+        joi.string().trim().strict().min(4).max(4).validate(activationCode, (err, val) => {
+            this.setState({ activationCode: val, isActivationCodeInitialized: true, invalidActivationCode: !!err })
+        })
     }
 
     onPasswordChange = (password) => {
-        this.setState({ password })
+        joi.string().alphanum().min(4).validate(password, (err, val) => {
+            this.setState({ password, isPasswordInitialized: true, invalidPassword: !!err })
+        })
     }
 
     render() {
@@ -92,6 +108,7 @@ class ResetPasswordScreen extends React.PureComponent {
                         keyboardType: 'phone-pad',
                         placeholder: 'Phone Number',
                     }}
+                    invalid={this.state.invalidPhoneNumber && this.state.isPhoneNumberInitialized}
                     value={this.state.phoneNumber}
                     onChange={this.onPhoneChange} />
 
@@ -101,6 +118,7 @@ class ResetPasswordScreen extends React.PureComponent {
                         keyboardType: 'number-pad',
                         placeholder: 'Activation Code',
                     }}
+                    invalid={this.state.invalidActivationCode && this.state.isActivationCodeInitialized}
                     value={this.state.activationCode}
                     onChange={this.onActivationCodeChange} />
 
@@ -110,10 +128,18 @@ class ResetPasswordScreen extends React.PureComponent {
                         textContentType: 'password',
                         placeholder: 'New Password (min 4 characters)',
                     }}
+                    invalid={this.state.invalidPassword && this.state.isPasswordInitialized}
                     value={this.state.password}
                     onChange={this.onPasswordChange} />
 
-                <ButtonComponent text={'Reset Password'} onClick={this.onResetPasswordClick} />
+                <ButtonComponent
+                    disabled={
+                        this.state.invalidPhoneNumber || !this.state.isPhoneNumberInitialized ||
+                        this.state.invalidActivationCode || !this.state.isActivationCodeInitialized ||
+                        this.state.invalidPassword || !this.state.isPasswordInitialized
+                    }
+                    text={'Reset Password'}
+                    onClick={this.onResetPasswordClick} />
 
                 <TouchableOpacity style={styles.resendContainer} onPress={this.onResendClick}>
                     <Ionicons name={'md-refresh'} size={28} color={'#6E7586'} />

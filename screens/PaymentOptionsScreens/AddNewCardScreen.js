@@ -1,22 +1,24 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { ScrollView, View, Image, TextInput, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { ScrollView, View, Image, Text, StyleSheet } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
+import joi from 'react-native-joi'
 
 import { saveCard } from '../../actions/actions2'
 
 import TermsComponent from '../../components/TermsComponent'
 import ButtonComponent from '../../components/ButtonComponent'
+import InputComponent from '../../components/InputComponent'
 
 class AddNewCardScreen extends React.PureComponent {
 
     state = {
-        cardAlias: 'Muhammet\'s Card',
+        cardAlias: '',
         cardHolderName: 'Muhammet Ipek',// Kullanıcı'nın kayıt ismi // TODO
-        cardNumber: '4444 4444 4444 4444',
-        expireYear: '23',
-        expireMonth: '09',
-        CVC2: '333'
+        cardNumber: '',
+        expireYear: '',
+        expireMonth: '',
+        CVC2: ''
     }
 
     onAliasChange = (cardAlias) => {
@@ -66,46 +68,57 @@ class AddNewCardScreen extends React.PureComponent {
                                 Our payment insfrastructure is provided by MasterPass and the transaction security is guaranteed by MasterCard.
                             </Text>
                         </View>
-                        
+
                     </View>
 
                 </View>
 
-                <View style={styles.inputContainer}>
-                    <TextInput
-                        value={this.state.cardAlias}
-                        onChangeText={this.onAliasChange}
-                        placeholder={'Card Label (Personal etc.)'}
-                        style={styles.input} />
-                </View>
+                <InputComponent
+                    options={{
+                        placeholder: 'Card Label (Personal etc.)'
+                    }}
+                    onChange={this.onAliasChange}
+                    value={this.state.cardAlias} />
 
-                <View style={styles.inputContainer}>
-                    <TextInput
-                        value={this.state.cardNumber}
-                        onChangeText={this.onCardNumberChange}
-                        placeholder={'Card No'}
-                        style={styles.input} />
-                </View>
+                <InputComponent
+                    options={{
+                        placeholder: 'Card No',
+                        keyboardType: 'number-pad'
+                    }}
+                    onChange={this.onCardNumberChange}
+                    value={this.state.cardNumber} />
 
-                <View style={[styles.inputContainer, { flexDirection: 'row' }]}>
+                <View style={styles.row}>
 
-                    <TextInput
-                        value={this.state.CVC2}
-                        onChangeText={this.onCvcChange}
-                        placeholder={'CVC2'}
-                        style={[styles.input, { flex: 1, marginRight: 4 }]} />
+                    <View style={styles.inputContainer}>
+                        <InputComponent
+                            options={{
+                                placeholder: 'CVC2',
+                                keyboardType: 'number-pad'
+                            }}
+                            onChange={this.onCvcChange}
+                            value={this.state.CVC2} />
+                    </View>
 
-                    <TextInput
-                        value={this.state.expireMonth}
-                        onChangeText={this.onExpireMonthChange}
-                        placeholder={'Month'}
-                        style={[styles.input, { flex: 1, marginRight: 4 }]} />
+                    <View style={styles.inputContainer}>
+                        <InputComponent
+                            options={{
+                                placeholder: 'Month',
+                                keyboardType: 'number-pad'
+                            }}
+                            onChange={this.onExpireMonthChange}
+                            value={this.state.expireMonth} />
+                    </View>
 
-                    <TextInput
-                        value={this.state.expireYear}
-                        onChangeText={this.onExpireYearChange}
-                        placeholder={'Year'}
-                        style={[styles.input, { flex: 1, marginLeft: 4 }]} />
+                    <View style={styles.inputContainer}>
+                        <InputComponent
+                            options={{
+                                placeholder: 'Year',
+                                keyboardType: 'number-pad'
+                            }}
+                            onChange={this.onExpireYearChange}
+                            value={this.state.expireYear} />
+                    </View>
 
                 </View>
 
@@ -126,11 +139,8 @@ const styles = StyleSheet.create({
     securityText: { color: '#5E3FBE', fontSize: RFValue(19, 600), fontWeight: 'bold' },
     infoContainer: { flex: 1, flexDirection: 'column', margin: RFValue(10, 600), marginRight: RFValue(12, 600) },
     securityInformation: { color: '#757889', fontSize: RFValue(15, 600), fontWeight: 'bold' },
-    inputContainer: { marginVertical: 2 },
-    input: {
-        borderWidth: .8, borderColor: '#CDCDCD', fontSize: RFValue(19, 600), paddingHorizontal: RFValue(16, 600),
-        paddingVertical: RFValue(12, 600), margin: RFValue(10, 600), marginVertical: 4, borderRadius: 8
-    },
+    row: { flexDirection: 'row' },
+    inputContainer: { flex: 1 },
     continueButton: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgb(94,63,190)', borderRadius: 10 },
     continueText: { fontSize: RFValue(20, 600), color: 'white' },
     empty: { height: RFValue(22, 600) },

@@ -1,9 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { ScrollView, View, TouchableOpacity, TextInput, Text, AsyncStorage, StyleSheet } from 'react-native'
+import { ScrollView, View, TouchableOpacity, Text, AsyncStorage, StyleSheet } from 'react-native'
 import axios from 'axios'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { SERVER_URL } from 'react-native-dotenv'
+import joi from 'react-native-joi'
 
 import { login } from '../actions/actions4'
 import ButtonComponent from '../components/ButtonComponent'
@@ -13,8 +14,14 @@ class LoginScreen extends React.Component {
 
     state = {
         // countryCode: '+90',
-        phoneNumber: '905468133198',
-        password: '1234'
+        phoneNumber: '',
+        password: '',
+
+        invalidPhoneNumber: false,
+        invalidPassword: false,
+
+        isPhoneNumberInitialized: false,
+        isPasswordInitialized: false
     }
 
     shouldComponentUpdate = (nextProps, nextState) => ( // Update only state change, not props
@@ -53,6 +60,18 @@ class LoginScreen extends React.Component {
         this.setState({ password })
     }
 
+    onPhoneChange = (phoneNumber) => {
+        joi.string().trim().strict().min(10).max(13).validate(phoneNumber, (err, val) => {
+            this.setState({ phoneNumber, isPhoneNumberInitialized: true, invalidPhoneNumber: !!err })
+        })
+    }
+
+    onPasswordChange = (password) => {
+        joi.string().alphanum().min(4).validate(password, (err, val) => {
+            this.setState({ password, isPasswordInitialized: true, invalidPassword: !!err })
+        })
+    }
+
     render() {
         return (
             <ScrollView contentContainerStyle={styles.container}>
@@ -81,6 +100,7 @@ class LoginScreen extends React.Component {
                             textContentType: 'telephoneNumber',
                             placeholder: 'Phone Number'
                         }}
+                        invalid={this.state.invalidPhoneNumber && this.state.isPhoneNumberInitialized}
                         value={this.state.phoneNumber}
                         onChange={this.onPhoneChange} />
 
@@ -90,10 +110,17 @@ class LoginScreen extends React.Component {
                             textContentType: 'password',
                             placeholder: 'Password (min 4 characters)',
                         }}
+                        invalid={this.state.invalidPassword && this.state.isPasswordInitialized}
                         value={this.state.password}
                         onChange={this.onPasswordChange} />
 
-                    <ButtonComponent text={'Login'} onClick={this.onLoginClick} />
+                    <ButtonComponent
+                        disabled={
+                            this.state.invalidPhoneNumber || !this.state.isPhoneNumberInitialized ||
+                            this.state.invalidPassword || !this.state.isPasswordInitialized
+                        }
+                        text={'Login'}
+                        onClick={this.onLoginClick} />
 
                     <View style={styles.child}>
                         <TouchableOpacity style={styles.forgotPasswordButton} onPress={this.goToForgotPassword}>

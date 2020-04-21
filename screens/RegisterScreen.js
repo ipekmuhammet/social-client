@@ -69,7 +69,7 @@ class RegisterScreen extends React.PureComponent {
     }
 
     onNameSurnameChange = (nameSurname) => {
-        joi.string().alphanum().validate(nameSurname, (err, val) => {
+        joi.string().trim().alphanum().validate(nameSurname, (err, val) => {
             this.setState({ nameSurname, isNameSurnameInitialized: true, invalidNameSurname: !!err })
         })
     }

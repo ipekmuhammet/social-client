@@ -3,14 +3,17 @@ import axios from 'axios'
 import { ScrollView, StyleSheet } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { SERVER_URL } from 'react-native-dotenv'
+import joi from 'react-native-joi'
 
 import ButtonComponent from '../components/ButtonComponent'
 import InputComponent from '../components/InputComponent'
 
-class ForgotPasswordScreen extends React.Component {
+class ForgotPasswordScreen extends React.PureComponent {
 
     state = {
-        phoneNumber: '905468133198'
+        phoneNumber: '',
+        isPhoneNumberInitialized: false,
+        invalidPhoneNumber: false
     }
 
     onSendCodeClick = () => {
@@ -24,20 +27,32 @@ class ForgotPasswordScreen extends React.Component {
     }
 
     onPhoneNumberChange = (phoneNumber) => {
-        this.setState({ phoneNumber })
+        joi.string().trim().strict().min(10).max(13).validate(phoneNumber, (err, val) => {
+            this.setState({ phoneNumber, isPhoneNumberInitialized: true, invalidPhoneNumber: !!err })
+        })
     }
 
     render() {
         return (
             <ScrollView style={styles.container}>
+
                 <InputComponent
                     options={{
                         keyboardType: 'phone-pad',
                         placeholder: 'Phone Number'
                     }}
+                    invalid={
+                        this.state.invalidPhoneNumber && this.state.isPhoneNumberInitialized
+                    }
                     value={this.state.phoneNumber}
                     onChange={this.onPhoneNumberChange} />
-                <ButtonComponent text={'Send Code'} onClick={this.onSendCodeClick} />
+
+                <ButtonComponent
+                    text={'Send Code'}
+                    onClick={this.onSendCodeClick}
+                    disabled={
+                        this.state.invalidPhoneNumber || !this.state.isPhoneNumberInitialized
+                    } />
 
             </ScrollView>
         )

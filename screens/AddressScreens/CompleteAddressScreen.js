@@ -21,6 +21,17 @@ class CompleteAddressScreen extends React.Component {
         directions: ''
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return (
+            nextState.scaleAnimationModal !== this.state.scaleAnimationModal ||
+            nextState.addressTitle !== this.state.addressTitle ||
+            nextState.buildingNo !== this.state.buildingNo ||
+            nextState.floor !== this.state.floor ||
+            nextState.aptNo !== this.state.aptNo ||
+            nextState.directions !== this.state.directions
+        )
+    }
+
     setPopupState = (scaleAnimationModal, complete, address) => {
         this.setState({ scaleAnimationModal })
         if (complete) {
@@ -120,7 +131,12 @@ class CompleteAddressScreen extends React.Component {
                             placeholder={'Directions'}
                             style={styles.input} />
                     </View>
-                    <ButtonComponent text={'Save'} onClick={this.onSaveClick} />
+                    <ButtonComponent
+                        disabled={
+                            !(this.state.addressTitle.length > 0) || !(this.props.address.length > 0)
+                        }
+                        text={'Save'}
+                        onClick={this.onSaveClick} />
                 </View>
             </ScrollView>
         )
@@ -142,8 +158,16 @@ const styles = StyleSheet.create({
     }
 })
 
+const mapStateToProps = ({
+    mapReducer: {
+        address
+    }
+}) => ({
+    address
+})
+
 const mapDispatchToProps = {
     saveAddress
 }
 
-export default connect(null, mapDispatchToProps)(CompleteAddressScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(CompleteAddressScreen)

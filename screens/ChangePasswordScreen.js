@@ -4,6 +4,7 @@ import { ScrollView, StyleSheet } from 'react-native'
 import axios from 'axios'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { SERVER_URL } from 'react-native-dotenv'
+import joi from 'react-native-joi'
 
 import PasswordChangedPopup from '../components/popups/PasswordChangedPopup'
 import ButtonComponent from '../components/ButtonComponent'
@@ -12,12 +13,19 @@ import InputComponent from '../components/InputComponent'
 class ChangePasswordScreen extends React.PureComponent {
 
     state = {
-        oldPassword: '',
-        password: '',
         scaleAnimationModal: false,
         samePasswordPopup: null,
         emptyPasswordPopup: null,
-        invalidPasswordPopup: null
+        invalidPasswordPopup: null,
+
+        oldPassword: '',
+        password: '',
+
+        invalidOldPassword: false,
+        invalidPassword: false,
+
+        isOldPasswordInitialized: false,
+        isPasswordInitialized: false
     }
 
     setPopupState = (state) => {
@@ -58,11 +66,15 @@ class ChangePasswordScreen extends React.PureComponent {
     }
 
     onOldPasswordChange = (oldPassword) => {
-        this.setState({ oldPassword })
+        joi.string().alphanum().min(4).validate(oldPassword, (err, val) => {
+            this.setState({ oldPassword, isOldPasswordInitialized: true, invalidOldPassword: !!err })
+        })
     }
 
     onPasswordChange = (password) => {
-        this.setState({ password })
+        joi.string().alphanum().min(4).validate(password, (err, val) => {
+            this.setState({ password, isPasswordInitialized: true, invalidPassword: !!err })
+        })
     }
 
     render() {
@@ -75,8 +87,9 @@ class ChangePasswordScreen extends React.PureComponent {
                     options={{
                         secureTextEntry: true,
                         textContentType: 'password',
-                        placeholder: 'Current Password',
+                        placeholder: 'Current Password'
                     }}
+                    invalid={this.state.invalidOldPassword && this.state.isOldPasswordInitialized}
                     value={this.state.oldPassword}
                     onChange={this.onOldPasswordChange} />
 
@@ -84,12 +97,19 @@ class ChangePasswordScreen extends React.PureComponent {
                     options={{
                         secureTextEntry: true,
                         textContentType: 'password',
-                        placeholder: 'New Password (min 4 characters)',
+                        placeholder: 'New Password (min 4 characters)'
                     }}
+                    invalid={this.state.invalidPassword && this.state.isPasswordInitialized}
                     value={this.state.password}
                     onChange={this.onPasswordChange} />
 
-                <ButtonComponent text={'Change Password'} onClick={this.onChangePasswordClick} />
+                <ButtonComponent
+                    disabled={
+                        this.state.invalidPassword || !this.state.isPasswordInitialized ||
+                        this.state.invalidOldPassword || !this.state.isOldPasswordInitialized
+                    }
+                    text={'Change Password'}
+                    onClick={this.onChangePasswordClick} />
 
             </ScrollView>
         )
