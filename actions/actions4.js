@@ -15,12 +15,18 @@ const getCart = (token) => axios.get(`${SERVER_URL}/user/cart`, { headers: { Aut
 
 const getPaymentCards = (token) => axios.get(`${SERVER_URL}/user/list-cards`, { headers: { Authorization: token } }).then(({ data }) => data)
 
-export const updateProfile = (body) => {
+export const updateProfile = (body, cb) => {
 	return (dispatch) => {
 		axios.put(`${SERVER_URL}/user/profile`, body)
 			.then(({ data, status }) => {
 				if (status === 200) {
-					console.log(data)
+					dispatch({
+						type: SET_USER,
+						payload: {
+							user: data
+						}
+					})
+					cb()
 				}
 			})
 	}
@@ -66,6 +72,7 @@ export const login = (body, popupRef, cb) => {
 	return (dispatch) => {
 		axios.post(`${SERVER_URL}/login`, body).then(({ status, data }) => {
 			if (status === 200) {
+				console.log(data.user)
 				AsyncStorage.multiSet([['token', data.token], ['user', JSON.stringify(data.user)]]).then((res) => {
 					dispatch({
 						type: SET_USER,
@@ -79,6 +86,27 @@ export const login = (body, popupRef, cb) => {
 			}
 		}).catch((err) => {
 			popupRef.showMessage({ message: 'Wrong GSM or password' })
+		})
+	}
+}
+
+export const register = (body, cb) => {
+	return (dispatch) => {
+		axios.post(`${SERVER_URL}/register`, body).then(({ status, data }) => {
+			if (status === 200) {
+				AsyncStorage.multiSet([['token', data.token], ['user', JSON.stringify(data.user)]]).then(() => {
+					dispatch({
+						type: SET_USER,
+						payload: {
+							user: data.user,
+							token: data.token
+						}
+					})
+					cb()
+				}).catch((err) => {
+					console.log(err)
+				})
+			}
 		})
 	}
 }

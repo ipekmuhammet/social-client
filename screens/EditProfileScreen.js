@@ -34,6 +34,8 @@ class EditProfileScreen extends React.PureComponent {
             name_surname: this.state.nameSurname,
             phone_number: this.state.phoneNumber,
             email: this.state.email
+        }, () => {
+            this.props.navigation.goBack()
         })
     }
 

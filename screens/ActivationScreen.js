@@ -1,12 +1,16 @@
 import React from 'react'
-import { ScrollView, StyleSheet, AsyncStorage } from 'react-native'
+import { ScrollView, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import axios from 'axios'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { SERVER_URL } from 'react-native-dotenv'
 import joi from 'react-native-joi'
+import { Ionicons } from '@expo/vector-icons'
+import { connect } from 'react-redux'
 
 import ButtonComponent from '../components/ButtonComponent'
 import InputComponent from '../components/InputComponent'
+
+import { register } from '../actions/actions4'
 
 class ActivationScreen extends React.PureComponent {
 
@@ -17,16 +21,8 @@ class ActivationScreen extends React.PureComponent {
     }
 
     onRegisterClick = () => {
-        axios.post(`${SERVER_URL}/register`, { ...this.props.route.params, activation_code: this.state.activationCode }).then(res => {
-            if (res.status === 200) {
-                AsyncStorage.multiSet([['token', res.data.token], ['user', JSON.stringify(res.data.user)]]).then((res) => {
-                    this.props.navigation.navigate('Loading')
-                })
-            } else {
-                // Alert.alert('err') // TODO
-            }
-        }).catch((err) => {
-            // Alert.alert('err', JSON.stringify(err)) // TODO
+        this.props.register({ ...this.props.route.params, activationCode: this.state.activationCode }, () => {
+            this.props.navigation.navigate('Loading', { next: true })
         })
     }
 
@@ -34,6 +30,10 @@ class ActivationScreen extends React.PureComponent {
         joi.string().trim().strict().min(4).max(4).validate(activationCode, (err, val) => {
             this.setState({ activationCode: val, isActivationCodeInitialized: true, invalidActivationCode: !!err })
         })
+    }
+
+    onResendClick = () => {
+        axios.post(`${SERVER_URL}/send-activation-code`, { phone_number: this.props.route.params.phone_number })
     }
 
     render() {
@@ -54,13 +54,24 @@ class ActivationScreen extends React.PureComponent {
                     text={'Register'}
                     onClick={this.onRegisterClick} />
 
+                <TouchableOpacity style={styles.resendContainer} onPress={this.onResendClick}>
+                    <Ionicons name={'md-refresh'} size={28} color={'#6E7586'} />
+                    <Text style={styles.resendCodeText}>Resend Code</Text>
+                </TouchableOpacity>
+
             </ScrollView>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container: { marginVertical: RFValue(12, 600) }
+    container: { marginVertical: RFValue(12, 600) },
+    resendContainer: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
+    resendCodeText: { fontSize: RFValue(19, 600), paddingHorizontal: RFValue(12, 600), color: '#6E7586' }
 })
 
-export default ActivationScreen
+const mapDistachToProps = {
+    register
+}
+
+export default connect(null, mapDistachToProps)(ActivationScreen)

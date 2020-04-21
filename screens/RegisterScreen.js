@@ -33,16 +33,14 @@ class RegisterScreen extends React.PureComponent {
     }
 
     onRegisterClick = () => {
-        axios.post(`${SERVER_URL}/send-activation-code`, { phone_number: this.state.phoneNumber }).then(res => {
-            if (res.status === 202) {
+        axios.post(`${SERVER_URL}/send-activation-code`, { phone_number: this.state.phoneNumber }).then(({ status }) => {
+            if (status === 202) {
                 this.props.navigation.navigate('activationScreen', {
                     phone_number: this.state.phoneNumber,
                     password: this.state.password,
                     name_surname: this.state.nameSurname,
                     email: this.state.email
                 })
-            } else {
-                Alert.alert('err')
             }
         })
     }
@@ -63,13 +61,13 @@ class RegisterScreen extends React.PureComponent {
     }
 
     onPasswordChange = (password) => {
-        joi.string().alphanum().min(4).validate(password, (err, val) => {
+        joi.string().min(4).validate(password, (err, val) => {
             this.setState({ password, isPasswordInitialized: true, invalidPassword: !!err })
         })
     }
 
     onNameSurnameChange = (nameSurname) => {
-        joi.string().trim().alphanum().validate(nameSurname, (err, val) => {
+        joi.string().trim().validate(nameSurname, (err, val) => {
             this.setState({ nameSurname, isNameSurnameInitialized: true, invalidNameSurname: !!err })
         })
     }
