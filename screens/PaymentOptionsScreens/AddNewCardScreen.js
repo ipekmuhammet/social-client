@@ -14,7 +14,7 @@ class AddNewCardScreen extends React.PureComponent {
 
     state = {
         cardAlias: '',
-        cardHolderName: 'Muhammet Ipek',// Kullanıcı'nın kayıt ismi // TODO
+        cardHolderName: this.props.user.name_surname,// Kullanıcı'nın kayıt ismi // TODO
         cardNumber: '',
         expireYear: '',
         expireMonth: '',
@@ -48,6 +48,7 @@ class AddNewCardScreen extends React.PureComponent {
     }
 
     render() {
+        console.log(this.props.user.name_surname)
         return (
             <ScrollView>
 
@@ -147,8 +148,16 @@ const styles = StyleSheet.create({
     buttonDivider: { height: RFValue(20, 600), backgroundColor: '#EDEEF0' }
 })
 
+const mapStateToProps = ({
+    reducer4: {
+        user
+    }
+}) => ({
+    user
+})
+
 const mapDispatchToProps = {
     saveCard
 }
 
-export default connect(null, mapDispatchToProps)(AddNewCardScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(AddNewCardScreen)

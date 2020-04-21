@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { ScrollView, View, Image, Text, StyleSheet } from 'react-native'
 import { SERVER_URL } from 'react-native-dotenv'
+import { RFValue } from 'react-native-responsive-fontsize'
 
 import { addProduct } from '../actions/actions1'
 import ButtonComponent from '../components/ButtonComponent'
@@ -14,7 +15,7 @@ class FullProductScreen extends React.PureComponent {
 
     render() {
         const { product_name, price, image } = this.props.route.params
-        
+
         return (
             <View style={styles.container}>
 
@@ -52,8 +53,8 @@ const styles = StyleSheet.create({
     imageContainer: { flex: 1, alignItems: 'center', justifyContent: 'center' },
     image: { width: '80%', aspectRatio: 1 },
     details: { flex: 1, flexDirection: 'column' },
-    price: { fontSize: 30, fontWeight: '700', color: '#5837C2', },
-    productName: { fontSize: 25, textAlign: 'center' },
+    price: { fontSize: RFValue(26, 600), fontWeight: '700', color: '#5837C2', },
+    productName: { fontSize: RFValue(22, 600), textAlign: 'center' },
     buttonContainer: { position: 'absolute', bottom: 0, width: '100%', backgroundColor: 'white' },
     textContainer: { flex: 1, alignItems: 'center', justifyContent: 'center', display: 'flex', textAlign: 'center', margin: 4 }
 })

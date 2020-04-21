@@ -35,7 +35,7 @@ class List extends React.PureComponent {
     render() {
         return <React.Fragment>
             {
-                !this.props.fromSearch && <SearchFilter listRef={this.state.ref} />
+                false && !this.props.fromSearch && <SearchFilter listRef={this.state.ref} />
             }
             <RecyclerListView
                 style={{ backgroundColor: 'white' }}

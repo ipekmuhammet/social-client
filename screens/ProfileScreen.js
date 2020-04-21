@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import SettingItem from '../components/SettingItem'
 import LogoutItem from '../components/LogoutItem'
 
-const ProfileScreen = ({ navigation, token }) => (
+const ProfileScreen = ({ navigation, token, user }) => (
     <ScrollView>
         {
             token ?
@@ -14,7 +14,7 @@ const ProfileScreen = ({ navigation, token }) => (
                     <React.Fragment>
 
                         <TouchableOpacity onPress={() => { navigation.navigate('editProfileScreen') }}>
-                            <SettingItem title={'Muhammet Ipek'}>
+                            <SettingItem title={user.name_surname}>
                                 <Ionicons color={'#4522A0'} name={'md-person'} size={32} />
                             </SettingItem>
                         </TouchableOpacity>
@@ -100,10 +100,12 @@ const ProfileScreen = ({ navigation, token }) => (
 
 const mapStateToProps = ({
     reducer4: {
-        token
+        token,
+        user
     }
 }) => ({
-    token
+    token,
+    user
 })
 
 export default connect(mapStateToProps)(ProfileScreen)
