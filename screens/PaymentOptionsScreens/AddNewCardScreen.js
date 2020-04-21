@@ -48,7 +48,6 @@ class AddNewCardScreen extends React.PureComponent {
     }
 
     render() {
-        console.log(this.props.user.name_surname)
         return (
             <ScrollView>
 

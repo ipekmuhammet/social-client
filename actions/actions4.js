@@ -21,12 +21,7 @@ export const updateProfile = (body) => {
 			.then(({ data, status }) => {
 				if (status === 200) {
 					console.log(data)
-				} else {
-					console.log('err, actions 4 - 45', err)
 				}
-			})
-			.catch((err) => {
-				console.log('err, actions 4 - 45', err)
 			})
 	}
 }
@@ -48,11 +43,8 @@ export const setInitialDatas = () => {
 							cards: res[3].cardDetails
 						}
 					})
-				}).catch((err) => {
-					console.log('err, actions 4 - 45', err)
 				})
 			} else {
-				console.log(vals[2][1])
 				Promise.all([getCategories(), getProducts()]).then(res => {
 					dispatch({
 						type: SET_INITIAL_DATAS,
@@ -64,8 +56,6 @@ export const setInitialDatas = () => {
 							cart: JSON.parse(vals[2][1])
 						}
 					})
-				}).catch((err) => {
-					console.log('err, actions 4 - 45', err)
 				})
 			}
 		}).catch((err) => console.log(err))
@@ -86,11 +76,8 @@ export const login = (body, popupRef, cb) => {
 					})
 					cb()
 				})
-			} else {
-				Alert.alert('err1', JSON.stringify(res)) // TODO
 			}
 		}).catch((err) => {
-			console.log('err', err)
 			popupRef.showMessage({ message: 'Wrong GSM or password' })
 		})
 	}

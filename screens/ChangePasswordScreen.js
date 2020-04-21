@@ -55,13 +55,8 @@ class ChangePasswordScreen extends React.PureComponent {
                 .then(({ status }) => {
                     if (status === 200) {
                         this.setState({ scaleAnimationModal: true })
-                    } else {
-                        console.log(status) // TODO
                     }
-                }).catch((reason) => {
-                    console.log(reason) // TODO
                 })
-
         }
     }
 

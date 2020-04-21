@@ -60,11 +60,8 @@ class ResetPasswordScreen extends React.PureComponent {
                 if (status === 200) {
                     this.setState({ scaleAnimationModal: true })
                 }
-            }).catch(({ response }) => {
-                console.log(response.data) // TODO
-                this.showMessagePopupFromError(response.data.error)
             })
-
+            
         }
     }
 

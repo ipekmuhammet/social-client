@@ -20,7 +20,6 @@ export const makeOrder = (selectedCard, selectedAddress, cb) => {
 				}
 			})
 		}).catch((reason) => {
-			console.log('err', reason)
 			dispatch({
 				type: MAKE_ORDER,
 				payload: {

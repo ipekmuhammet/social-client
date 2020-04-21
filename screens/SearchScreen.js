@@ -18,7 +18,6 @@ class SearchScreen extends React.PureComponent {
     }
 
     search = (text) => {
-        console.log(text.length)
         if (text.length > 0) {
             this.setState({ fetch: true, text })
 
