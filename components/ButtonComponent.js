@@ -2,12 +2,14 @@ import React from 'react'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 
-const ButtonComponent = ({ text, onClick, opposite, needFlex }) => (
+const ButtonComponent = ({ text, onClick, opposite, needFlex, disabled }) => (
     <View style={[
         styles.container,
-        needFlex ? styles.needFlex : {}
+        needFlex ? styles.needFlex : {},
+        disabled ? styles.disabled : {}
     ]}>
         <TouchableOpacity
+            disabled={disabled}
             onPress={onClick}
             style={[
                 styles.button,
@@ -18,7 +20,7 @@ const ButtonComponent = ({ text, onClick, opposite, needFlex }) => (
                 styles.text,
                 opposite ? styles.opposite : {}
             ]}>{text}</Text>
-            
+
         </TouchableOpacity>
     </View >
 )
@@ -31,7 +33,8 @@ const styles = StyleSheet.create({
         margin: RFValue(4, 600), borderRadius: 10, alignItems: 'center', justifyContent: 'center'
     },
     opposite: { backgroundColor: 'white', color: '#5D3EBD' },
-    text: { color: 'white', fontSize: RFValue(18, 600) }
+    text: { color: 'white', fontSize: RFValue(18, 600) },
+    disabled: { opacity: .65 }
 })
 
 export default ButtonComponent

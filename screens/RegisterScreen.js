@@ -10,14 +10,26 @@ import ButtonComponent from '../components/ButtonComponent'
 import InputComponent from '../components/InputComponent'
 import InputIcon from '../components/InputIcon'
 
+import joi from 'react-native-joi'
+
 class RegisterScreen extends React.PureComponent {
 
     state = {
         // countryCode: '+90',
-        phoneNumber: '905468133198',
-        password: '1234',
-        nameSurname: 'Muhammet İpek',
-        email: 'muhammetipek57@hotmail.com'
+        phoneNumber: '',
+        password: '',
+        nameSurname: '',
+        email: '',
+
+        invalidPhoneNumber: false,
+        invalidPassword: false,
+        invalidNameSurname: false,
+        invalidEmail: false,
+
+        isPhoneNumberInitialized: false,
+        isPasswordInitialized: false,
+        isNameSurnameInitialized: false,
+        isEmailInitialized: false
     }
 
     onRegisterClick = () => {
@@ -35,20 +47,37 @@ class RegisterScreen extends React.PureComponent {
         })
     }
 
+    /*
+    joi.object({
+        phone_number: joi.string().trim().strict().min(10).required(),
+        password: joi.string().alphanum().min(4).required(),
+        name_surname: joi.string().required(),
+        email: joi.string().trim().strict().email().required()
+    })
+    */
+
     onPhoneChange = (phoneNumber) => {
-        this.setState({ phoneNumber })
+        joi.string().trim().strict().min(10).max(13).validate(phoneNumber, (err, val) => {
+            this.setState({ phoneNumber, isPhoneNumberInitialized: true, invalidPhoneNumber: !!err })
+        })
     }
 
     onPasswordChange = (password) => {
-        this.setState({ password })
+        joi.string().alphanum().min(4).validate(password, (err, val) => {
+            this.setState({ password, isPasswordInitialized: true, invalidPassword: !!err })
+        })
     }
 
     onNameSurnameChange = (nameSurname) => {
-        this.setState({ nameSurname })
+        joi.string().alphanum().validate(nameSurname, (err, val) => {
+            this.setState({ nameSurname, isNameSurnameInitialized: true, invalidNameSurname: !!err })
+        })
     }
 
     onEmailChange = (email) => {
-        this.setState({ email })
+        joi.string().trim().strict().email().validate(email, (err, val) => {
+            this.setState({ email, isEmailInitialized: true, invalidEmail: !!err })
+        })
     }
 
     render() {
@@ -73,11 +102,14 @@ class RegisterScreen extends React.PureComponent {
                             textContentType: 'telephoneNumber',
                             placeholder: 'Phone Number'
                         }}
+                        invalid={this.state.invalidPhoneNumber && this.state.isPhoneNumberInitialized}
                         value={this.state.phoneNumber}
                         onChange={this.onPhoneChange}>
 
                         <InputIcon>
-                            <Ionicons size={32} name={'md-phone-portrait'} />
+                            <Ionicons size={32} name={'md-phone-portrait'} color={
+                                this.state.invalidPhoneNumber && this.state.isPhoneNumberInitialized ? 'red' : 'black'
+                            } />
                         </InputIcon>
 
                     </InputComponent>
@@ -86,13 +118,16 @@ class RegisterScreen extends React.PureComponent {
                         options={{
                             secureTextEntry: true,
                             textContentType: 'password',
-                            placeholder: 'Password (min 4 characters)',
+                            placeholder: 'Password (min 4 characters)'
                         }}
+                        invalid={this.state.invalidPassword && this.state.isPasswordInitialized}
                         value={this.state.password}
                         onChange={this.onPasswordChange}>
 
                         <InputIcon>
-                            <Ionicons size={32} name={'md-lock'} />
+                            <Ionicons size={32} name={'md-lock'} color={
+                                this.state.invalidPassword && this.state.isPasswordInitialized ? 'red' : 'black'
+                            } />
                         </InputIcon>
 
                     </InputComponent>
@@ -102,11 +137,14 @@ class RegisterScreen extends React.PureComponent {
                             textContentType: 'name',
                             placeholder: 'Name Surname'
                         }}
+                        invalid={this.state.invalidNameSurname && this.state.isNameSurnameInitialized}
                         value={this.state.nameSurname}
                         onChange={this.onNameSurnameChange}>
 
                         <InputIcon>
-                            <Ionicons size={32} name={'md-person'} />
+                            <Ionicons size={32} name={'md-person'} color={
+                                this.state.invalidNameSurname && this.state.isNameSurnameInitialized ? 'red' : 'black'
+                            } />
                         </InputIcon>
 
                     </InputComponent>
@@ -117,11 +155,14 @@ class RegisterScreen extends React.PureComponent {
                             textContentType: 'emailAddress',
                             placeholder: 'E-mail'
                         }}
+                        invalid={this.state.invalidEmail && this.state.isEmailInitialized}
                         value={this.state.email}
                         onChange={this.onEmailChange}>
 
                         <InputIcon>
-                            <Ionicons size={32} name={'md-mail-open'} />
+                            <Ionicons size={32} name={'md-mail-open'} color={
+                                this.state.invalidEmail && this.state.isEmailInitialized ? 'red' : 'black'
+                            } />
                         </InputIcon>
 
                     </InputComponent>
@@ -149,7 +190,12 @@ class RegisterScreen extends React.PureComponent {
                     }
                     <View style={styles.buttonDivider} />
 
-                    <ButtonComponent text={'Register'} onClick={this.onRegisterClick} />
+                    <ButtonComponent text={'Register'} onClick={this.onRegisterClick} disabled={
+                        this.state.invalidEmail || !this.state.isEmailInitialized ||
+                        this.state.invalidNameSurname || !this.state.isNameSurnameInitialized ||
+                        this.state.invalidPassword || !this.state.isPasswordInitialized ||
+                        this.state.invalidPhoneNumber || !this.state.isPhoneNumberInitialized
+                    } />
                 </View>
             </ScrollView>
         )
@@ -170,7 +216,8 @@ const styles = StyleSheet.create({
     termsLinkText: { color: '#5D3EBD', fontSize: RFValue(16, 600), fontWeight: 'bold' },
     termsTextContainer: { alignItems: 'center', justifyContent: 'center', flexDirection: 'row' },
     termsInfoContainer: { alignItems: 'flex-start', justifyContent: 'flex-start', flexDirection: 'column', marginLeft: RFValue(8, 600) },
-    buttonDivider: { height: RFValue(22, 600), backgroundColor: '#EDEEF0' }
+    buttonDivider: { height: RFValue(22, 600), backgroundColor: '#EDEEF0' },
+    invalid: { borderColor: 'red' }
 })
 
 export default RegisterScreen
