@@ -6,7 +6,7 @@ import ScrollableTabView, { ScrollableTabBar } from 'react-native-scrollable-tab
 
 import RecyclerList from '../components/RecyclerList'
 
-const ProductsScreen = ({ categories, products, selectedCategory }) => (
+const ProductsScreen = ({ categories, products, selectedCategory, navigation }) => (
 	<ScrollableTabView
 		initialPage={selectedCategory}
 		tabBarBackgroundColor={'#7849F7'}
@@ -16,7 +16,7 @@ const ProductsScreen = ({ categories, products, selectedCategory }) => (
 		prerenderingSiblingsNumber={0}
 		renderTabBar={() => <ScrollableTabBar />}>
 		{
-			categories.map(category => <RecyclerList key={category.id} tabLabel={category.name} list={products[category.id]} />)
+			categories.map(category => <RecyclerList key={category.id} navigation={navigation} tabLabel={category.name} list={products[category.id]} />)
 		}
 	</ScrollableTabView>
 )

@@ -36,7 +36,8 @@ class SearchFilter extends React.PureComponent {
 
 const styles = StyleSheet.create({
     list: {
-        height: 48
+        height: 48,
+        backgroundColor: 'white'
     },
     mostSearchedItem: {
         paddingHorizontal: RFValue(12, 600), margin: RFValue(4, 600), backgroundColor: 'white', minWidth: 60,

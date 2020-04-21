@@ -15,7 +15,7 @@ class Product extends React.PureComponent {
 	}
 
 	render() {
-		const { data: { product_name, kind_name, price, image } } = this.props
+		const { data: { id, product_name, kind_name, price, image } } = this.props
 
 		return (
 			<View style={styles.container}>
@@ -25,9 +25,11 @@ class Product extends React.PureComponent {
 					<Text style={styles.addProductIcon}>+</Text>
 				</TouchableOpacity>
 
-				<View style={[styles.child, styles.productImageContainer]}>
+				<TouchableOpacity style={[styles.child, styles.productImageContainer]} onPress={() => {
+					this.props.navigation.navigate('fullProductScreen', { id, product_name, price, image })
+				}}>
 					<Image source={{ uri: `${SERVER_URL}/assets/products/${image}.png` }} resizeMode={'contain'} style={styles.productImage} />
-				</View>
+				</TouchableOpacity>
 
 				<Text style={[styles.child, styles.productPrice, { alignItems: 'flex-start' }]}>{'₺' + price.toFixed(2).toString().replace('.', ',')}</Text>
 
@@ -77,15 +79,15 @@ const styles = StyleSheet.create({
 		fontSize: RFValue(23, 600)
 	},
 	productImageContainer: {
-		borderWidth: .2,
+		borderWidth: .4,
 		borderColor: '#BCBCBC',
-		borderRadius: 8,
+		borderRadius: 16,
 		backgroundColor: 'white'
 	},
 	productImage: {
-		width: RFPercentage(14),
+		width: RFPercentage(12),
 		height: RFPercentage(14),
-		margin: RFValue(12, 600)
+		margin: RFValue(6, 600)
 	},
 	productName: {
 		fontSize: RFPercentage(2.5),

@@ -17,7 +17,7 @@ class List extends React.PureComponent {
         this.layoutProvider = new LayoutProvider(index => {
             return 0
         }, (type, dim) => {
-            dim.width = width / 3.1
+            dim.width = width / 3.05
             dim.height = 236
         })
 
@@ -26,7 +26,7 @@ class List extends React.PureComponent {
         }
     }
 
-    rowRenderer = (type, item) => item.empty ? <EmptyProduct /> : <Product key={item.id} data={item} />
+    rowRenderer = (type, item) => item.empty ? <EmptyProduct /> : <Product key={item.id} data={item} navigation={this.props.navigation} />
 
     setRef = (ref) => {
         this.setState({ ref })
@@ -38,6 +38,7 @@ class List extends React.PureComponent {
                 !this.props.fromSearch && <SearchFilter listRef={this.state.ref} />
             }
             <RecyclerListView
+                style={{ backgroundColor: 'white' }}
                 ref={this.setRef}
                 layoutProvider={this.layoutProvider}
                 dataProvider={this.state.dataProvider}
