@@ -33,7 +33,10 @@ class RegisterScreen extends React.PureComponent {
     }
 
     onRegisterClick = () => {
-        axios.post(`${SERVER_URL}/send-activation-code`, { phone_number: this.state.phoneNumber }).then(({ status }) => {
+        axios.post(`${SERVER_URL}/send-activation-code`, {
+            phone_number: this.state.phoneNumber,
+            activationCodeType: 0 // REGISTER
+        }).then(({ status }) => {
             if (status === 202) {
                 this.props.navigation.navigate('activationScreen', {
                     phone_number: this.state.phoneNumber,

@@ -61,12 +61,15 @@ class ResetPasswordScreen extends React.PureComponent {
                     this.setState({ scaleAnimationModal: true })
                 }
             })
-            
+
         }
     }
 
     onResendClick = () => {
-        axios.post(`${SERVER_URL}/send-activation-code`, { phone_number: this.state.phoneNumber })
+        axios.post(`${SERVER_URL}/send-activation-code`, {
+            phone_number: this.state.phoneNumber,
+            activationCodeType: 1 // RESET
+        })
     }
 
     onPhoneChange = (phoneNumber) => {
