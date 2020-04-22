@@ -19,9 +19,26 @@ class AddressList extends React.PureComponent {
         this.setState(state)
 
         if (deleteStatus) {
-            this.props.deleteAddress(this.state.addressId, this.props.token)
+            this.props.deleteAddress(this.state.addressId)
         }
     }
+
+    renderAddressItem = ({ item: address }) => (
+        <InteractiveSettingItem title={address.open_address}
+            onLeftClick={() => {
+                this.props.setSelectedAddress(address._id, () => {
+                    this.props.navigation.goBack()
+                    this.props.stackNavigation.popToTop()
+                })
+            }}
+            onRightIconClick={() => {
+                this.setPopupState({ scaleAnimationModal: true, addressId: address._id })
+            }}>
+            <Ionicons color={'#4522A0'} name={'md-locate'} size={32} />
+            <Ionicons color={'#4522A0'} name={'md-trash'} size={32} />
+        </InteractiveSettingItem>
+    )
+
 
     render() {
         return (
@@ -29,21 +46,7 @@ class AddressList extends React.PureComponent {
                 <FlatList
                     data={this.props.addresses}
                     keyExtractor={item => item._id}
-                    renderItem={({ item: address }) => (
-                        <InteractiveSettingItem title={address.open_address}
-                            onLeftClick={() => {
-                                this.props.setSelectedAddress(address._id, () => {
-                                    this.props.navigation.goBack()
-                                    this.props.stackNavigation.popToTop()
-                                })
-                            }}
-                            onRightIconClick={() => {
-                                this.setPopupState({ scaleAnimationModal: true, addressId: address._id })
-                            }}>
-                            <Ionicons color={'#4522A0'} name={'md-locate'} size={32} />
-                            <Ionicons color={'#4522A0'} name={'md-trash'} size={32} />
-                        </InteractiveSettingItem>
-                    )}
+                    renderItem={this.renderAddressItem}
                     ListFooterComponent={this.props.footer}
                 />
                 <DeleteAddressPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
@@ -55,13 +58,9 @@ class AddressList extends React.PureComponent {
 const mapStateToProps = ({
     reducer2: {
         addresses
-    },
-    reducer4: {
-        token
     }
 }) => ({
-    addresses,
-    token
+    addresses
 })
 
 const mapDispatchToProps = {

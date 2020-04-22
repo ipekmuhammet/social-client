@@ -1,90 +1,148 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { RFValue } from 'react-native-responsive-fontsize'
 import axios from 'axios'
-import { ScrollView, View, TouchableOpacity, TextInput, Text, StyleSheet, Alert } from 'react-native'
+import { ScrollView, View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
+import { SERVER_URL } from 'react-native-dotenv'
+import joi from 'react-native-joi'
 
 import PasswordChangedPopup from '../components/popups/PasswordChangedPopup'
+import ButtonComponent from '../components/ButtonComponent'
+import InputComponent from '../components/InputComponent'
 
 class ResetPasswordScreen extends React.PureComponent {
 
     state = {
         scaleAnimationModal: false,
-        phoneNumber: '905468133198',
+        errorMessage: '',
+
+        phoneNumber: this.props.route.params.phoneNumber,
         activationCode: '',
-        password: '1234'
+        password: '',
+
+        invalidPhoneNumber: false,
+        invalidActivationCode: false,
+        invalidPassword: false,
+
+        isPhoneNumberInitialized: false,
+        isActivationCodeInitialized: false,
+        isPasswordInitialized: false
     }
 
     setPopupState = (state) => {
-        this.setState(state)
+        this.setState({ scaleAnimationModal: state.scaleAnimationModal })
+        if (!state.scaleAnimationModal) {
+            this.props.navigation.navigate('Welcome', { screen: 'login' })
+        }
+    }
+
+    showMessagePopupFromError = (errorMessage) => {
+        this.setState({ errorMessage }, () => {
+            this.props.messagePopupRef.showMessage({ message: this.state.errorMessage })
+        })
+    }
+
+    onResetPasswordClick = () => {
+        if (this.state.activationCode === '' || this.state.password === '' || this.state.phoneNumber === '') {
+
+            this.props.messagePopupRef.showMessage({ message: 'Lütfen gerekli alanlarını doldurunuz' })
+
+        } else if (this.state.password.length < 4) {
+
+            this.props.messagePopupRef.showMessage({ message: 'Yeni şifreniz en az 4 haneli olmalı' })
+
+        } else {
+
+            axios.put(`${SERVER_URL}/reset-password`,
+                { activationCode: this.state.activationCode, phone_number: this.state.phoneNumber, new_password: this.state.password }
+            ).then(({ status }) => {
+                if (status === 200) {
+                    this.setState({ scaleAnimationModal: true })
+                }
+            })
+            
+        }
+    }
+
+    onResendClick = () => {
+        axios.post(`${SERVER_URL}/send-activation-code`, { phone_number: this.state.phoneNumber })
+    }
+
+    onPhoneChange = (phoneNumber) => {
+        joi.string().trim().strict().min(10).max(13).validate(phoneNumber, (err, val) => {
+            this.setState({ phoneNumber, isPhoneNumberInitialized: true, invalidPhoneNumber: !!err })
+        })
+    }
+
+    onActivationCodeChange = (activationCode) => {
+        joi.string().trim().strict().min(4).max(4).validate(activationCode, (err, val) => {
+            this.setState({ activationCode: val, isActivationCodeInitialized: true, invalidActivationCode: !!err })
+        })
+    }
+
+    onPasswordChange = (password) => {
+        joi.string().alphanum().min(4).validate(password, (err, val) => {
+            this.setState({ password, isPasswordInitialized: true, invalidPassword: !!err })
+        })
     }
 
     render() {
         return (
             <ScrollView style={styles.container}>
+
                 <PasswordChangedPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
-                <View style={[styles.child, styles.inputContainer]}>
 
-                    {
-                        //  <TextInput
-                        //      keyboardType={'phone-pad'}
-                        //      placeholder={'Country/Region Code'}
-                        //      style={styles.input} />
+                {
+                    //  <TextInput
+                    //      keyboardType={'phone-pad'}
+                    //      placeholder={'Country/Region Code'}
+                    //      style={styles.input} />
+                }
+
+                <InputComponent
+                    options={{
+                        keyboardType: 'phone-pad',
+                        placeholder: 'Phone Number',
+                    }}
+                    invalid={this.state.invalidPhoneNumber && this.state.isPhoneNumberInitialized}
+                    value={this.state.phoneNumber}
+                    onChange={this.onPhoneChange} />
+
+                <InputComponent
+                    options={{
+                        maxLength: 4,
+                        keyboardType: 'number-pad',
+                        placeholder: 'Activation Code',
+                    }}
+                    invalid={this.state.invalidActivationCode && this.state.isActivationCodeInitialized}
+                    value={this.state.activationCode}
+                    onChange={this.onActivationCodeChange} />
+
+                <InputComponent
+                    options={{
+                        secureTextEntry: true,
+                        textContentType: 'password',
+                        placeholder: 'New Password (min 4 characters)',
+                    }}
+                    invalid={this.state.invalidPassword && this.state.isPasswordInitialized}
+                    value={this.state.password}
+                    onChange={this.onPasswordChange} />
+
+                <ButtonComponent
+                    disabled={
+                        this.state.invalidPhoneNumber || !this.state.isPhoneNumberInitialized ||
+                        this.state.invalidActivationCode || !this.state.isActivationCodeInitialized ||
+                        this.state.invalidPassword || !this.state.isPasswordInitialized
                     }
+                    text={'Reset Password'}
+                    onClick={this.onResetPasswordClick} />
 
-                    <TextInput
-                        onChangeText={(phoneNumber) => { this.setState({ phoneNumber }) }}
-                        value={this.state.phoneNumber}
-                        keyboardType={'phone-pad'}
-                        placeholder={'Phone Number'}
-                        style={styles.input} />
+                <TouchableOpacity style={styles.resendContainer} onPress={this.onResendClick}>
+                    <Ionicons name={'md-refresh'} size={28} color={'#6E7586'} />
+                    <Text style={styles.resendCodeText}>Resend Code</Text>
+                </TouchableOpacity>
 
-                </View>
-
-                <View style={[styles.child, styles.inputContainer]}>
-                    <TextInput
-                        onChangeText={(activationCode) => { this.setState({ activationCode }) }}
-                        value={this.state.activationCode}
-                        keyboardType={'number-pad'}
-                        maxLength={4}
-                        placeholder={'Activation Code'}
-                        style={styles.input} />
-                </View>
-
-                <View style={[styles.child, styles.inputContainer]}>
-                    <TextInput
-                        onChangeText={(password) => { this.setState({ password }) }}
-                        value={this.state.password}
-                        secureTextEntry={true}
-                        placeholder={'New Password (min 4 characters)'}
-                        style={styles.input} />
-                </View>
-
-                <View style={styles.child}>
-                    <TouchableOpacity
-                        style={styles.resetPasswordButton}
-                        onPress={() => {
-                            axios.put(`${SERVER_URL}/send-activation-code`,
-                                { activation_code: this.state.activationCode, phone_number: this.state.phoneNumber, new_password: this.state.password }
-                            ).then(({ status }) => {
-                                if (status === 200) {
-                                    this.setState({ scaleAnimationModal: true })
-                                }
-                            }).catch((reason) => {
-                                Alert.alert(JSON.stringify(reason)) // TDOO
-                            })
-                        }}>
-                        <Text style={styles.resetPasswordText}>Reset Password</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.child}>
-                    <TouchableOpacity style={styles.resendContainer} onPress={() => {
-                        axios.post(`${SERVER_URL}/send-activation-code`, { phone_number: this.state.phoneNumber })
-                    }}>
-                        <Ionicons name={'md-refresh'} size={32} color={'#6E7586'} />
-                        <Text style={styles.resendCodeText}>Resend Code</Text>
-                    </TouchableOpacity>
-                </View>
             </ScrollView>
         )
     }
@@ -92,19 +150,16 @@ class ResetPasswordScreen extends React.PureComponent {
 
 const styles = StyleSheet.create({
     container: { marginVertical: RFValue(12, 600) },
-    child: { height: RFValue(60, 600), margin: RFValue(3, 600) },
-    inputContainer: { flexDirection: 'row' },
-    input: {
-        flex: 1, margin: RFValue(4, 600), borderRadius: 6,
-        paddingHorizontal: RFValue(12, 600), fontSize: RFValue(19, 600), borderWidth: .8, borderColor: '#ABABAB'
-    },
-    resetPasswordButton: {
-        backgroundColor: '#5D3EBD', flex: 1, margin: RFValue(4, 600),
-        borderRadius: 10, alignItems: 'center', justifyContent: 'center'
-    },
     resendContainer: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
-    resendCodeText: { fontSize: RFValue(22, 600), paddingHorizontal: RFValue(12, 600), color: '#6E7586' },
-    resetPasswordText: { color: 'white', fontSize: RFValue(19, 600) }
+    resendCodeText: { fontSize: RFValue(19, 600), paddingHorizontal: RFValue(12, 600), color: '#6E7586' },
 })
 
-export default ResetPasswordScreen
+const mapStateToProps = ({
+    globalReducer: {
+        messagePopupRef
+    }
+}) => ({
+    messagePopupRef
+})
+
+export default connect(mapStateToProps)(ResetPasswordScreen)

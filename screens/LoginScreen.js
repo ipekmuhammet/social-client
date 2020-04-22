@@ -1,28 +1,46 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { ScrollView, View, TouchableOpacity, TextInput, Text, Alert, StyleSheet } from 'react-native'
+import { ScrollView, View, TouchableOpacity, Text, AsyncStorage, StyleSheet } from 'react-native'
 import axios from 'axios'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { Ionicons } from '@expo/vector-icons'
 import { SERVER_URL } from 'react-native-dotenv'
-
-import MessagePopup from '../components/popups/MessagePopup'
+import joi from 'react-native-joi'
 
 import { login } from '../actions/actions4'
-import { setConnectionPopupState } from '../actions/global-actions'
+import ButtonComponent from '../components/ButtonComponent'
+import InputComponent from '../components/InputComponent'
 
-class LoginScreen extends React.PureComponent {
+class LoginScreen extends React.Component {
 
     state = {
         // countryCode: '+90',
-        phoneNumber: '905468133198',
-        password: '1234',
-        popupRef: null
+        phoneNumber: '',
+        password: '',
+
+        invalidPhoneNumber: false,
+        invalidPassword: false,
+
+        isPhoneNumberInitialized: false,
+        isPasswordInitialized: false
+    }
+
+    shouldComponentUpdate = (nextProps, nextState) => ( // Update only state change, not props
+        this.state.phoneNumber !== nextState.phoneNumber ||
+        this.state.password !== nextState.password
+    )
+
+    saveCart = () => {
+        const { cart, token } = this.props
+        if (token) {
+            axios.post(`${SERVER_URL}/user/cart`, cart)
+        }
+        AsyncStorage.setItem('cart', JSON.stringify(cart))
     }
 
     onLoginClick = () => {
-        this.props.login({ phone_number: this.state.phoneNumber, password: this.state.password }, this.state.popupRef, () => {
-            this.props.navigation.navigate('Loading')
+        this.props.login({ phone_number: this.state.phoneNumber, password: this.state.password }, this.props.messagePopupRef, () => {
+            this.saveCart()
+            this.props.navigation.navigate('Loading', { next: true })
         })
     }
 
@@ -34,77 +52,87 @@ class LoginScreen extends React.PureComponent {
         this.props.navigation.navigate('forgotPassword')
     }
 
+    onPhoneChange = (phoneNumber) => {
+        this.setState({ phoneNumber })
+    }
+
+    onPasswordChange = (password) => {
+        this.setState({ password })
+    }
+
+    onPhoneChange = (phoneNumber) => {
+        joi.string().trim().strict().min(10).max(13).validate(phoneNumber, (err, val) => {
+            this.setState({ phoneNumber, isPhoneNumberInitialized: true, invalidPhoneNumber: !!err })
+        })
+    }
+
+    onPasswordChange = (password) => {
+        joi.string().alphanum().min(4).validate(password, (err, val) => {
+            this.setState({ password, isPasswordInitialized: true, invalidPassword: !!err })
+        })
+    }
+
     render() {
         return (
-            <ScrollView style={styles.container}>
+            <ScrollView contentContainerStyle={styles.container}>
 
-                <MessagePopup
-                    onRef={(ref) => {
-                        this.setState({ popupRef: ref })
-                    }}
-                    text={'Wrong GSM or password.'}>
-                    <Ionicons name={'md-warning'} size={48} color={'red'} />
-                </MessagePopup>
+                <View>
 
-                {
-                    //  <View style={styles.child}>
-                    //      <TouchableOpacity style={styles.facebookButton} onPress={() => {
-                    //          console.log('Connect with Facebook')
-                    //      }}>
-                    //          <Text style={styles.facebookText}>Connect with Facebook</Text>
-                    //      </TouchableOpacity>
-                    //  </View>
-                }
-                <View style={[styles.child, styles.inputContainer]}>
+                    {
+                        //  <View style={styles.child}>
+                        //      <TouchableOpacity style={styles.facebookButton} onPress={() => {
+                        //          console.log('Connect with Facebook')
+                        //      }}>
+                        //          <Text style={styles.facebookText}>Connect with Facebook</Text>
+                        //      </TouchableOpacity>
+                        //  </View>
+                    }
                     {
                         // <TextInput
                         //     value={this.state.countryCode}
                         //     placeholder={'Country/Region Code'}
                         //     style={styles.input} />
                     }
-                    <TextInput
+
+                    <InputComponent
+                        options={{
+                            keyboardType: 'phone-pad',
+                            textContentType: 'telephoneNumber',
+                            placeholder: 'Phone Number'
+                        }}
+                        invalid={this.state.invalidPhoneNumber && this.state.isPhoneNumberInitialized}
                         value={this.state.phoneNumber}
-                        onChangeText={(phoneNumber) => { this.setState({ phoneNumber }) }}
-                        keyboardType={'phone-pad'}
-                        textContentType={'telephoneNumber'}
-                        placeholder={'Phone Number'}
-                        style={styles.input} />
-                </View>
-                <View style={styles.child}>
-                    <TextInput
+                        onChange={this.onPhoneChange} />
+
+                    <InputComponent
+                        options={{
+                            secureTextEntry: true,
+                            textContentType: 'password',
+                            placeholder: 'Password (min 4 characters)',
+                        }}
+                        invalid={this.state.invalidPassword && this.state.isPasswordInitialized}
                         value={this.state.password}
-                        onChangeText={password => { this.setState({ password }) }}
-                        secureTextEntry={true}
-                        textContentType={'password'}
-                        placeholder={'Password (min 4 characters)'}
-                        style={styles.input} />
+                        onChange={this.onPasswordChange} />
+
+                    <ButtonComponent
+                        disabled={
+                            this.state.invalidPhoneNumber || !this.state.isPhoneNumberInitialized ||
+                            this.state.invalidPassword || !this.state.isPasswordInitialized
+                        }
+                        text={'Login'}
+                        onClick={this.onLoginClick} />
+
+                    <View style={styles.child}>
+                        <TouchableOpacity style={styles.forgotPasswordButton} onPress={this.goToForgotPassword}>
+                            <Text style={styles.forgotPasswordText}>Forgot Password</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
 
-                <View style={styles.child}>
-                    <TouchableOpacity
-                        style={styles.loginButton}
-                        onPress={this.onLoginClick}>
-                        <Text style={styles.loginText}>Login</Text>
-                    </TouchableOpacity>
-                </View>
+                <View>
+                    <View style={styles.buttonDivider} />
 
-                <View style={styles.child}>
-                    <TouchableOpacity style={styles.forgotPasswordButton} onPress={this.goToForgotPassword}>
-                        <Text style={styles.forgotPasswordText}>Forgot Password</Text>
-                    </TouchableOpacity>
-                </View>
-
-                <View style={styles.child} />
-                <View style={styles.child} />
-                <View style={styles.empty} />
-                <View style={styles.buttonDivider} />
-
-                <View style={styles.child}>
-                    <TouchableOpacity
-                        onPress={this.goToRegister}
-                        style={styles.registerButton}>
-                        <Text style={styles.registerText}>Register</Text>
-                    </TouchableOpacity>
+                    <ButtonComponent text={'Register'} onClick={this.goToRegister} opposite />
                 </View>
             </ScrollView>
         )
@@ -112,34 +140,37 @@ class LoginScreen extends React.PureComponent {
 }
 
 const styles = StyleSheet.create({
-    container: { marginVertical: RFValue(12, 600) },
+    container: { flex: 1, justifyContent: 'space-between', marginVertical: RFValue(12, 600) },
     child: { height: RFValue(60, 600), margin: RFValue(3, 600) },
     facebookButton: { backgroundColor: '#3B589E', flex: 1, margin: RFValue(4, 600), borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
-    registerButton: { backgroundColor: 'white', borderWidth: 1, borderColor: '#5D3EBD', flex: 1, margin: RFValue(4, 600), borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
     forgotPasswordButton: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-    loginButton: { backgroundColor: '#5D3EBD', flex: 1, margin: RFValue(4, 600), borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
     inputContainer: { flexDirection: 'row' },
-    input: { flex: 1, margin: RFValue(4, 600), zIndex: -1, borderRadius: 6, paddingHorizontal: RFValue(12, 600), fontSize: RFValue(19, 600), borderWidth: .8, borderColor: '#ABABAB' },
-    facebookText: { color: 'white', fontSize: RFValue(19, 600) },
-    loginText: { color: 'white', fontSize: RFValue(19, 600) },
-    forgotPasswordText: { color: '#6E7586', fontSize: RFValue(19, 600), fontWeight: 'bold' },
-    registerText: { color: '#5D3EBD', fontSize: RFValue(19, 600), fontWeight: 'bold' },
+    input: { flex: 1, margin: RFValue(4, 600), zIndex: -1, borderRadius: 6, paddingHorizontal: RFValue(12, 600), fontSize: RFValue(18, 600), borderWidth: .8, borderColor: '#ABABAB' },
+    facebookText: { color: 'white', fontSize: RFValue(18, 600) },
+    forgotPasswordText: { color: '#6E7586', fontSize: RFValue(18, 600), fontWeight: 'bold' },
     empty: { height: RFValue(28, 600) },
     buttonDivider: { height: RFValue(22, 600), backgroundColor: '#EDEEF0' },
     view: { justifyContent: 'flex-end', margin: 0, }
 })
 
 const mapStateToProps = ({
-    networkReducer: {
-        networkStatus
+    reducer1: {
+        cart
+    },
+    reducer4: {
+        token
+    },
+    globalReducer: {
+        messagePopupRef
     }
 }) => ({
-    networkStatus
+    cart,
+    token,
+    messagePopupRef
 })
 
 const mapDispatchToProps = {
-    login,
-    setConnectionPopupState
+    login
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)

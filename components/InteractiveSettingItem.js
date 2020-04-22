@@ -26,8 +26,7 @@ const styles = StyleSheet.create({
     iconContainer: { alignItems: 'center', justifyContent: 'center', flex: 1 },
     titleContainer: { alignItems: 'flex-start', flex: 6, justifyContent: 'center' },
     title: {
-        marginHorizontal: RFValue(4, 600), fontSize: RFValue(16, 600),
-        fontWeight: 'bold', color: 'black'
+        marginHorizontal: RFValue(4, 600), fontSize: RFValue(16, 600)
     },
     rightIconContainer: { alignItems: 'flex-end', justifyContent: 'center', flex: 1 }
 })

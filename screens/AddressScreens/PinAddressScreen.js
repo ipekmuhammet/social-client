@@ -1,11 +1,12 @@
 import React from 'react'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { View, TouchableOpacity, Image, Text, StyleSheet  } from 'react-native'
+import { View, TouchableOpacity, Image, Text, StyleSheet } from 'react-native'
 
 import ConfirmAccuratePinPopup from '../../components/popups/ConfirmAccuratePinPopup'
 
 import HeaderAddressInput from '../MapScreens/HeaderAddressInput'
 import Map from '../MapScreens/Map'
+import ButtonComponent from '../../components/ButtonComponent'
 
 class PinAddressScreen extends React.PureComponent {
 
@@ -15,9 +16,14 @@ class PinAddressScreen extends React.PureComponent {
 
     setPopupState = (scaleAnimationModal, navigate, region) => {
         this.setState({ scaleAnimationModal })
+
         if (navigate) {
             this.props.navigation.navigate('completeAddressScreen', { region })
         }
+    }
+
+    onUseThisAddressClick = () => {
+        this.setPopupState(true)
     }
 
     render() {
@@ -28,21 +34,16 @@ class PinAddressScreen extends React.PureComponent {
 
                 <HeaderAddressInput />
 
-                <Map region={this.props.route.params.region}/>
+                <Map region={this.props.route.params.region} />
 
                 <View style={styles.markerContainer} pointerEvents='none'>
                     <Image style={styles.marker} source={require('../../assets/map-marker.png')} />
                 </View>
 
                 <View style={styles.buttonContainer}>
-
-                    <TouchableOpacity style={styles.button}
-                        onPress={() => {
-                            this.setPopupState(true)
-                        }}>
-                        <Text style={styles.buttonText}>Use This Address</Text>
-                    </TouchableOpacity>
+                    <ButtonComponent text={'Use this address'} onClick={this.onUseThisAddressClick} needFlex />
                 </View>
+
             </View>
         )
     }
@@ -55,9 +56,7 @@ const styles = StyleSheet.create({
     buttonContainer: {
         position: 'absolute', bottom: 0, height: 78, left: 0, right: 0, backgroundColor: 'transparent', zIndex: RFValue(2, 600), display: 'flex',
         flexDirection: 'row', alignItems: 'center', paddingHorizontal: RFValue(24, 600), paddingVertical: RFValue(24, 600)
-    },
-    button: { flex: 1, padding: RFValue(12, 600), backgroundColor: '#5D3EBD', borderRadius: 16 },
-    buttonText: { fontSize: RFValue(20, 600), color: 'white', textAlign: 'center', fontWeight: 'bold' }
+    }
 })
 
 export default PinAddressScreen

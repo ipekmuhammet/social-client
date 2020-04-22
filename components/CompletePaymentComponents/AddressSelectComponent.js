@@ -3,9 +3,13 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 
-const AddressSelectComponent = ({ navigation, title, subTitle }) => (
+const AddressSelectComponent = ({ navigation, title, subTitle, token, setNeedToLoginPopupState }) => (
     <TouchableOpacity style={styles.container} onPress={() => {
-        navigation.navigate('addresses')
+        if (!token) {
+            setNeedToLoginPopupState(true)
+        } else {
+            navigation.navigate('addresses')
+        }
     }}>
         <View style={styles.iconContainer}>
             <Ionicons size={32} name={'md-home'} />
@@ -47,11 +51,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     paymentTitle: {
-        fontSize: RFValue(18, 600),
+        fontSize: RFValue(17, 600),
         marginVertical: RFValue(4, 600)
     },
     paymentDetail: {
-        fontSize: RFValue(15, 600),
+        fontSize: RFValue(14, 600),
         marginVertical: RFValue(4, 600)
     }
 })

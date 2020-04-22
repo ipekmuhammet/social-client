@@ -9,46 +9,63 @@ import CompletePayment from '../components/CompletePayment'
 
 const renderCardProductItem = ({ item }) => <CardProduct data={item} />
 
-const CartScreen = ({ cart, navigation }) => {
-    const products = Object.values(cart)
+class CartScreen extends React.PureComponent {
 
-    if (products.length > 0) {
-        return (
-            <View style={styles.container}>
-                <FlatList
-                    data={products}
-                    keyExtractor={item => 'cart' + item.id}
-                    renderItem={renderCardProductItem}
-                    ListFooterComponent={
-                        <View style={styles.footer} />
-                    } />
-                <CompletePayment navigation={navigation} />
-            </View>
-        )
-    } else {
-        return (
-            <View style={styles.emptyCartContainer}>
-                <View style={styles.child} />
-                <View style={styles.child} />
-                <View style={styles.child} />
-                <View style={styles.child}>
-                    <Ionicons name={'md-basket'} size={96} color={'#BDBDBD'} />
+    //  shouldComponentUpdate(nextProps) {
+    //      console.log(Object.values(this.props.cart).length, Object.values(nextProps.cart).length)
+    //      if (Object.values(this.props.cart).length !== Object.values(nextProps.cart).length)
+    //          return true
+    //  
+    //      return false
+    //  }
+
+    keyExtractor = (item) => 'cart' + item.id
+
+    onListProductsClick = () => {
+        this.props.navigation.navigate('products')
+    }
+
+    render() {
+        const products = Object.values(this.props.cart)
+
+        if (products.length > 0) {
+            return (
+                <View style={styles.container}>
+                    <FlatList
+                        data={products}
+                        keyExtractor={this.keyExtractor}
+                        renderItem={renderCardProductItem}
+                        ListFooterComponent={
+                            <View style={styles.footer} />
+                        } />
+                    <CompletePayment navigation={this.props.navigation} />
                 </View>
-                <View style={styles.child} />
-                <View style={styles.child}>
-                    <Text style={styles.emptyCartText}>Sepetinizde ürün bulunmamaktadır.</Text>
+            )
+        } else {
+            return (
+                <View style={styles.emptyCartContainer}>
+                    <View style={styles.child} />
+                    <View style={styles.child} />
+                    <View style={styles.child} />
+                    <View style={styles.child}>
+                        <Ionicons name={'md-basket'} size={96} color={'#BDBDBD'} />
+                    </View>
+                    <View style={styles.child} />
+                    <View style={styles.child}>
+                        <Text style={styles.emptyCartText}>Sepetinizde ürün bulunmamaktadır.</Text>
+                    </View>
+                    <View style={styles.child} />
+                    <View style={[styles.child, styles.listProductsButtonContainer]}>
+                        <TouchableOpacity onPress={this.onListProductsClick} style={styles.listProducts}>
+                            <Text style={styles.listProductsText}>ÜRÜNLERİ LİSTELE</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.child} />
+                    <View style={styles.child} />
+                    <View style={styles.child} />
                 </View>
-                <View style={styles.child} />
-                <View style={[styles.child, styles.listProductsButtonContainer]}>
-                    <TouchableOpacity onPress={() => { navigation.navigate('products') }} style={styles.listProducts}>
-                        <Text style={styles.listProductsText}>ÜRÜNLERİ LİSTELE</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.child} />
-                <View style={styles.child} />
-                <View style={styles.child} />
-            </View>
-        )
+            )
+        }
     }
 }
 
@@ -63,7 +80,7 @@ const styles = StyleSheet.create({
         margin: RFValue(18, 600), padding: RFValue(18, 600),
         paddingHorizontal: RFValue(48, 600)
     },
-    listProductsText: { color: 'white', fontSize: RFValue(20, 600), alignItems: 'center', justifyContent: 'center' },
+    listProductsText: { color: 'white', fontSize: RFValue(19, 600), alignItems: 'center', justifyContent: 'center' },
     footer: { height: RFValue(90, 600) }
 })
 

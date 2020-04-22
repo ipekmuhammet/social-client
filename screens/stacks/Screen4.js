@@ -11,6 +11,8 @@ import PinAddressScreen from '../AddressScreens/PinAddressScreen'
 import CompleteAddressScreen from '../AddressScreens/CompleteAddressScreen'
 import PaymentOptionsScreen from '../PaymentOptionsScreens/PaymentOptionsScreen'
 import AddNewCardScreen from '../PaymentOptionsScreens/AddNewCardScreen'
+import ChangeLanguageScreen from '../ChangeLanguageScreen'
+import EditProfileScreen from '../EditProfileScreen'
 
 const Stack = createStackNavigator()
 
@@ -90,6 +92,24 @@ const Screen4 = ({ navigation }) => (
             component={AddNewCardScreen}
             options={{
                 title: 'Add New Card',
+                headerTitleAlign: 'center',
+                headerTintColor: 'white',
+                headerStyle: styles.headerStyle
+            }} />
+
+        <Stack.Screen name='changeLanguageScreen'
+            component={ChangeLanguageScreen}
+            options={{
+                title: 'Change Language',
+                headerTitleAlign: 'center',
+                headerTintColor: 'white',
+                headerStyle: styles.headerStyle
+            }} />
+
+        <Stack.Screen name='editProfileScreen'
+            component={EditProfileScreen}
+            options={{
+                title: 'Profile',
                 headerTitleAlign: 'center',
                 headerTintColor: 'white',
                 headerStyle: styles.headerStyle

@@ -17,13 +17,25 @@ class OnlinePaymentScreen extends React.PureComponent {
     }
 
     makeOrder = () => {
-        this.props.makeOrder(this.props.cart, this.props.navigation)
+        this.props.makeOrder(this.props.navigation)
+    }
+
+    onCardNumberChange = (cardNumber) => {
+        this.setState({ cardNumber })
+    }
+
+    onExpirationDateChange = (expirationDate) => {
+        this.setState({ expirationDate })
+    }
+
+    onCvcChange = (CVC2) => {
+        this.setState({ CVC2 })
     }
 
     render() {
 
         const products = Object.values(this.props.cart)
-        const totalPrice = products.reduce((previousValue, currentValue) => previousValue + parseFloat(currentValue.price) * currentValue.count, 0).toFixed(2)
+        const totalPrice = products.reduce((previousValue, currentValue) => previousValue + parseFloat(currentValue.price) * currentValue.quantity, 0).toFixed(2)
 
         return (
             <View style={styles.container}>
@@ -44,7 +56,7 @@ class OnlinePaymentScreen extends React.PureComponent {
                             labelStyle={styles.labelInput}
                             inputStyle={styles.input}
                             style={styles.formInput}
-                            onChangeText={(cardNumber) => this.setState({ cardNumber })}
+                            onChangeText={this.onCardNumberChange}
                             value={this.state.cardNumber}>Kart Numarası *</FloatingInput>
                     </View>
 
@@ -54,7 +66,7 @@ class OnlinePaymentScreen extends React.PureComponent {
                                 labelStyle={styles.labelInput}
                                 inputStyle={styles.input}
                                 style={styles.formInput}
-                                onChangeText={(expirationDate) => this.setState({ expirationDate })}
+                                onChangeText={this.onExpirationDateChange}
                                 value={this.state.expirationDate}>Son Kullanma Tarihi *</FloatingInput>
                         </View>
 
@@ -63,7 +75,7 @@ class OnlinePaymentScreen extends React.PureComponent {
                                 labelStyle={styles.labelInput}
                                 inputStyle={styles.input}
                                 style={styles.formInput}
-                                onChangeText={(CVC2) => this.setState({ CVC2 })}
+                                onChangeText={this.onCvcChange}
                                 value={this.state.CVC2}>Güvenlik Kodu (CVC2) *</FloatingInput>
                         </View>
                     </View>
@@ -104,11 +116,11 @@ const styles = StyleSheet.create({
         shadowColor: '#000', shadowOffset: { width: 0, height: RFValue(4, 600), }, shadowOpacity: 0.32,
         shadowRadius: RFValue(6, 600), elevation: 9
     },
-    labelInput: { color: '#57A25A', fontSize: RFValue(15, 600) },
+    labelInput: { color: '#57A25A', fontSize: RFValue(14, 600) },
     inputContainerChild: { flex: 1 },
     input: { borderWidth: 0, borderBottomWidth: 1.5, borderColor: '#333', color: 'black' },
-    totalPriceText: { color: 'black', fontWeight: 'bold', fontSize: 20 },
-    totalPrice: { color: 'black', fontWeight: 'bold', fontSize: RFValue(24, 600) },
+    totalPriceText: { color: 'black', fontWeight: 'bold', fontSize: 19 },
+    totalPrice: { color: 'black', fontWeight: 'bold', fontSize: RFValue(22, 600) },
     cardInformationContainer: { flex: .34, marginVertical: RFValue(24, 600) },
     inputContainer: { flex: 1, marginHorizontal: RFValue(12, 600) },
     rowInputContainer: { flex: 1, flexDirection: 'row', marginHorizontal: RFValue(12, 600) },
@@ -117,11 +129,11 @@ const styles = StyleSheet.create({
         alignItems: 'center', justifyContent: 'center', flex: .6, backgroundColor: '#D3D3D3', margin: RFValue(8, 600),
         borderRadius: 36, flex: .1
     },
-    completePaymentText: { fontSize: RFValue(22, 600), fontWeight: 'bold', color: '#8D8D8D' },
+    completePaymentText: { fontSize: RFValue(20, 600), fontWeight: 'bold', color: '#8D8D8D' },
     cvcInfoContainer: { flex: .1, flexDirection: 'row' },
     infoIconContainer: { margin: RFValue(8, 600) },
     cvcInfoTextContainer: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-    cvcInfoText: { fontSize: RFValue(14, 600), color: '#A5A5A5' },
+    cvcInfoText: { fontSize: RFValue(13, 600), color: '#A5A5A5' },
     informationContainer: { alignItems: 'center', justifyContent: 'center', display: 'flex', flexDirection: 'row', flex: .1 },
     informationTextContainer: { flex: 7, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }
 })

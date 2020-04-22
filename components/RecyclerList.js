@@ -4,6 +4,7 @@ import { RecyclerListView, DataProvider, LayoutProvider } from 'recyclerlistview
 
 import Product from './Product'
 import EmptyProduct from './EmptyProduct'
+import SearchFilter from '../components/SearchFilter'
 
 class List extends React.PureComponent {
     constructor(args) {
@@ -16,8 +17,8 @@ class List extends React.PureComponent {
         this.layoutProvider = new LayoutProvider(index => {
             return 0
         }, (type, dim) => {
-            dim.width = width / 3.1
-            dim.height = 260
+            dim.width = width / 3.05
+            dim.height = 236
         })
 
         this.state = {
@@ -25,13 +26,25 @@ class List extends React.PureComponent {
         }
     }
 
-    rowRenderer = (type, item) => item.empty ? <EmptyProduct /> : <Product key={item.id} data={item} />
+    rowRenderer = (type, item) => item.empty ? <EmptyProduct /> : <Product key={item.id} data={item} navigation={this.props.navigation} />
+
+    setRef = (ref) => {
+        this.setState({ ref })
+    }
 
     render() {
-        return <RecyclerListView
-            layoutProvider={this.layoutProvider}
-            dataProvider={this.state.dataProvider}
-            rowRenderer={this.rowRenderer} />
+        return <React.Fragment>
+            {
+                false && !this.props.fromSearch && <SearchFilter listRef={this.state.ref} />
+            }
+            <RecyclerListView
+                style={{ backgroundColor: 'white' }}
+                ref={this.setRef}
+                layoutProvider={this.layoutProvider}
+                dataProvider={this.state.dataProvider}
+                rowRenderer={this.rowRenderer} />
+        </React.Fragment>
+
     }
 }
 

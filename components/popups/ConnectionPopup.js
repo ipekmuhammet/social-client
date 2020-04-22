@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     buttonText: { color: 'white' },
     content: { backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' },
     contentImage: { height: RFValue(72, 600) },
-    contentText: { fontSize: RFValue(17, 600), fontWeight: 'bold', marginTop: RFValue(12, 600), marginBottom: -6, textAlign: 'center' }
+    contentText: { fontSize: RFValue(16, 600), fontWeight: 'bold', marginTop: RFValue(12, 600), marginBottom: -6, textAlign: 'center' }
 })
 
 const mapStateToProps = ({

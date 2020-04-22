@@ -1,19 +1,16 @@
 import React from 'react'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { View, Text, StyleSheet } from 'react-native'
-import { MaterialIcons } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 
-const SettingItem = ({ children: icon, title, version }) => (
+const LanguageItem = ({ title, selected }) => (
     <View style={styles.container}>
-        <View style={styles.iconContainer}>
-            {icon}
-        </View>
         <View style={styles.titleContainer}>
             <Text style={styles.title}>{title}</Text>
         </View>
         <View style={styles.rightIconContainer}>
             {
-                version ? <View style={styles.empty} /> : <MaterialIcons color={'#4522A0'} name={'chevron-right'} size={32} />
+                selected ? <Ionicons color={'#4522A0'} name={'md-checkmark'} size={32} /> : <View style={styles.empty} />
             }
         </View>
     </View>
@@ -31,4 +28,4 @@ const styles = StyleSheet.create({
     empty: { height: 32 }
 })
 
-export default SettingItem
+export default LanguageItem

@@ -1,55 +1,66 @@
 import React from 'react'
-import { ScrollView, View, TouchableOpacity, TextInput, Text, StyleSheet } from 'react-native'
+import axios from 'axios'
+import { ScrollView, StyleSheet } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
+import { SERVER_URL } from 'react-native-dotenv'
+import joi from 'react-native-joi'
 
-class ForgotPasswordScreen extends React.Component {
+import ButtonComponent from '../components/ButtonComponent'
+import InputComponent from '../components/InputComponent'
+
+class ForgotPasswordScreen extends React.PureComponent {
 
     state = {
-        phoneNumber: '905468133198'
+        phoneNumber: '',
+        isPhoneNumberInitialized: false,
+        invalidPhoneNumber: false
+    }
+
+    onSendCodeClick = () => {
+        axios.post(`${SERVER_URL}/send-activation-code`, {
+            phone_number: this.state.phoneNumber
+        }).then(({ status }) => {
+            if (status === 202) {
+                this.props.navigation.navigate('resetPassword', { phoneNumber: this.state.phoneNumber })
+            }
+        })
+    }
+
+    onPhoneNumberChange = (phoneNumber) => {
+        joi.string().trim().strict().min(10).max(13).validate(phoneNumber, (err, val) => {
+            this.setState({ phoneNumber, isPhoneNumberInitialized: true, invalidPhoneNumber: !!err })
+        })
     }
 
     render() {
         return (
             <ScrollView style={styles.container}>
-                <View style={[styles.child, styles.inputContainer]}>
-                    {
-                        //  <TextInput
-                        //      keyboardType={'phone-pad'} placeholder={'Country/Region Code'}
-                        //      style={styles.input} />
-                    }
 
-                    <TextInput
-                        onChangeText={(phoneNumber) => this.setState({ phoneNumber })}
-                        value={this.state.phoneNumber}
-                        keyboardType={'phone-pad'}
-                        placeholder={'Phone Number'}
-                        style={styles.input} />
-                </View>
-                <View style={styles.child}>
-                    <TouchableOpacity
-                        onPress={() => { this.props.navigation.navigate('resetPassword') }}
-                        style={styles.sendCodeButton}>
-                        <Text style={styles.sendCodeText}>Send Code</Text>
-                    </TouchableOpacity>
-                </View>
+                <InputComponent
+                    options={{
+                        keyboardType: 'phone-pad',
+                        placeholder: 'Phone Number'
+                    }}
+                    invalid={
+                        this.state.invalidPhoneNumber && this.state.isPhoneNumberInitialized
+                    }
+                    value={this.state.phoneNumber}
+                    onChange={this.onPhoneNumberChange} />
+
+                <ButtonComponent
+                    text={'Send Code'}
+                    onClick={this.onSendCodeClick}
+                    disabled={
+                        this.state.invalidPhoneNumber || !this.state.isPhoneNumberInitialized
+                    } />
+
             </ScrollView>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container: { marginVertical: RFValue(12, 600) },
-    child: { height: RFValue(60, 600), margin: RFValue(3, 600) },
-    inputContainer: { flexDirection: 'row' },
-    input: {
-        flex: 1, margin: RFValue(4, 600), borderRadius: 6,
-        paddingHorizontal: RFValue(12, 600), fontSize: RFValue(19, 600), borderWidth: .8, borderColor: '#ABABAB'
-    },
-    sendCodeButton: {
-        backgroundColor: '#5D3EBD', flex: 1, margin: RFValue(4, 600),
-        borderRadius: 10, alignItems: 'center', justifyContent: 'center'
-    },
-    sendCodeText: { color: 'white', fontSize: RFValue(19, 600) }
+    container: { marginVertical: RFValue(12, 600) }
 })
 
 export default ForgotPasswordScreen

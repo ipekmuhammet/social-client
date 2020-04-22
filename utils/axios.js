@@ -15,19 +15,26 @@ export default (store) => {
             // throw new Error('Network Error')
         } else {
             config.cancelToken = new axios.CancelToken((c) => {
-                cancel = c;
+                cancel = c
             })
         }
+
+        if (store.getState().reducer4.token) {
+            config.headers.Authorization = store.getState().reducer4.token
+        }
+
         return config
     }, (error) => { // Do something with request error
-        console.log('----------------')
         return Promise.reject(error)
     })
 
-    //  // Add a response interceptor
-    //  axios.interceptors.response.use((response) => { // Do something with response data
-    //      return response
-    //  }, (error) => { // Do something with response error
-    //      return Promise.reject(error)
-    //  })
+    // Add a response interceptor
+    axios.interceptors.response.use((response) => { // Do something with response data
+        return response
+    }, (error) => { // Do something with response error
+        if (error.response) {
+            store.getState().globalReducer.messagePopupRef.showMessage({ message: error.response.data.error })
+            return Promise.reject(error)
+        }
+    })
 }

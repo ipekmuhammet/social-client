@@ -6,24 +6,28 @@ import { connect } from 'react-redux'
 import SettingItem from '../components/SettingItem'
 import LogoutItem from '../components/LogoutItem'
 
-const ProfileScreen = ({ navigation, token }) => (
+const ProfileScreen = ({ navigation, token, user }) => (
     <ScrollView>
         {
             token ?
                 (
                     <React.Fragment>
 
-                        <SettingItem title={'Muhammet Ipek'}>
-                            <Ionicons color={'#4522A0'} name={'md-person'} size={32} />
-                        </SettingItem>
+                        <TouchableOpacity onPress={() => { navigation.navigate('editProfileScreen') }}>
+                            <SettingItem title={user.name_surname}>
+                                <Ionicons color={'#4522A0'} name={'md-person'} size={32} />
+                            </SettingItem>
+                        </TouchableOpacity>
 
-                        <SettingItem title={'muhammetipek57@hotmail.com'}>
-                            <Ionicons color={'#4522A0'} name={'md-mail-open'} size={32} />
-                        </SettingItem>
-
-                        <SettingItem title={'(546) 813-3198'}>
-                            <Ionicons color={'#4522A0'} name={'md-phone-portrait'} size={32} />
-                        </SettingItem>
+                        {
+                            //  <SettingItem title={'muhammetipek57@hotmail.com'}>
+                            //      <Ionicons color={'#4522A0'} name={'md-mail-open'} size={32} />
+                            //  </SettingItem>
+                            //  
+                            //  <SettingItem title={'(546) 813-3198'}>
+                            //      <Ionicons color={'#4522A0'} name={'md-phone-portrait'} size={32} />
+                            //  </SettingItem>
+                        }
 
                         <TouchableOpacity onPress={() => { navigation.navigate('addresses') }}>
                             <SettingItem title={'Addresses'}>
@@ -75,7 +79,7 @@ const ProfileScreen = ({ navigation, token }) => (
                     </React.Fragment>
                 ) :
                 (
-                    <TouchableOpacity onPress={() => { navigation.navigate('login') }}>
+                    <TouchableOpacity onPress={() => { navigation.navigate('Welcome', { screen: 'login' }) }}>
                         <SettingItem title={'Login'}>
                             <Ionicons color={'#4522A0'} name={'md-person'} size={32} />
                         </SettingItem>
@@ -83,21 +87,25 @@ const ProfileScreen = ({ navigation, token }) => (
                 )
         }
 
-        <TouchableOpacity onPress={() => { navigation.navigate('changePasswordScreen') }}>
-            <SettingItem title={'English'} />
-        </TouchableOpacity>
+        {
+            //  <TouchableOpacity onPress={() => { navigation.navigate('changeLanguageScreen') }}>
+            //      <SettingItem title={'English'} />
+            //  </TouchableOpacity>
+        }
 
-        <SettingItem title={'1.0.0'} />
+        <SettingItem title={'1.0.0'} version />
 
     </ScrollView>
 )
 
 const mapStateToProps = ({
     reducer4: {
-        token
+        token,
+        user
     }
 }) => ({
-    token
+    token,
+    user
 })
 
 export default connect(mapStateToProps)(ProfileScreen)

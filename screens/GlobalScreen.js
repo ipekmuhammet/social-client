@@ -1,22 +1,19 @@
 import React from 'react'
-import { connect } from 'react-redux'
 
 import ConnectionPopup from '../components/popups/ConnectionPopup'
+import NeedToLoginPopup from '../components/popups/NeedToLoginPopup'
+import GlobalMessagePopup from '../components/popups/GlobalMessagePopup'
 
-const GlobalScreen = ({ }) => (
+import { Ionicons } from '@expo/vector-icons'
+
+const GlobalScreen = () => (
     <React.Fragment>
         <ConnectionPopup />
+        <NeedToLoginPopup />
+        <GlobalMessagePopup>
+            <Ionicons name={'md-warning'} size={48} color={'red'} />
+        </GlobalMessagePopup>
     </React.Fragment>
 )
 
-const mapStateToProps = ({
-
-}) => ({
-
-})
-
-const mapDispatchToProps = {
-
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(GlobalScreen)
+export default GlobalScreen

@@ -45,9 +45,7 @@ const LogoutPopup = ({ scaleAnimationModal, navigation, setPopupState, logout })
                     style={styles.buttonYes}
                     onPress={() => {
                         setPopupState({ scaleAnimationModal: false })
-                        logout(() => {
-                            navigation.navigate('Welcome')
-                        })
+                        logout()
                     }}
                     key='button-2' />
             </ModalFooter>
@@ -60,7 +58,7 @@ const styles = StyleSheet.create({
     buttonYes: { backgroundColor: '#5D3EBD' },
     buttonText: { color: 'white' },
     title: { marginVertical: RFValue(6, 600) },
-    titleText: { textAlign: 'center', fontSize: RFValue(17, 600) }
+    titleText: { textAlign: 'center', fontSize: RFValue(16, 600) }
 })
 
 const mapDispatchToProps = {

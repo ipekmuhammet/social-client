@@ -5,7 +5,11 @@
     "slug": "platform_app",
     "privacy": "public",
     "sdkVersion": "36.0.0",
-    "platforms": ["ios", "android", "web"],
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -17,18 +21,21 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": false
+      "bundleIdentifier": "com.muhammetipek.platformapp",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "package": "com.muhammetipek.platformapp",
       "versionCode": 1,
       "config": {
-				"googleMaps": {
-					"apiKey": "AIzaSyDqO6aeMglQlL9ONRqWB93_6SCUOf5XAg8"
-				}
-			}
+        "googleMaps": {
+          "apiKey": "AIzaSyDqO6aeMglQlL9ONRqWB93_6SCUOf5XAg8"
+        }
+      }
     }
   }
 }

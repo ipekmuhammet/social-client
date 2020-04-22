@@ -8,6 +8,7 @@ import { saveAddress } from '../../actions/actions2'
 import ConfirmAddressPopup from '../../components/popups/ConfirmAddressPopup'
 import Map from '../MapScreens/Map'
 import CompleteAddressInput from '../MapScreens/CompleteAddressInput'
+import ButtonComponent from '../../components/ButtonComponent'
 
 class CompleteAddressScreen extends React.Component {
 
@@ -20,12 +21,47 @@ class CompleteAddressScreen extends React.Component {
         directions: ''
     }
 
-    setPopupState = (scaleAnimationModal, complete, address, token) => {
+    shouldComponentUpdate(nextProps, nextState) {
+        return (
+            nextState.scaleAnimationModal !== this.state.scaleAnimationModal ||
+            nextState.addressTitle !== this.state.addressTitle ||
+            nextState.buildingNo !== this.state.buildingNo ||
+            nextState.floor !== this.state.floor ||
+            nextState.aptNo !== this.state.aptNo ||
+            nextState.directions !== this.state.directions
+        )
+    }
+
+    setPopupState = (scaleAnimationModal, complete, address) => {
         this.setState({ scaleAnimationModal })
         if (complete) {
-            this.props.saveAddress(address, this.state, token)
+            this.props.saveAddress(address, this.state)
             this.props.navigation.pop(3)
         }
+    }
+
+    onAddressTitleChange = (addressTitle) => {
+        this.setState({ addressTitle })
+    }
+
+    onBuildingNoChange = (buildingNo) => {
+        this.setState({ buildingNo })
+    }
+
+    onFloorChange = (floor) => {
+        this.setState({ floor })
+    }
+
+    onAptNoChange = (aptNo) => {
+        this.setState({ aptNo })
+    }
+
+    onDirectionsChange = (directions) => {
+        this.setState({ directions })
+    }
+
+    onSaveClick = () => {
+        this.setPopupState(true)
     }
 
     render() {
@@ -52,7 +88,7 @@ class CompleteAddressScreen extends React.Component {
                         }
                         <View style={styles.inputContainer}>
                             <TextInput
-                                onChangeText={(addressTitle) => { this.setState({ addressTitle }) }}
+                                onChangeText={this.onAddressTitleChange}
                                 value={this.state.addressTitle} placeholder={'Address title (Home, Work)'}
                                 style={styles.input} />
                         </View>
@@ -67,7 +103,7 @@ class CompleteAddressScreen extends React.Component {
                             <TextInput
                                 value={this.state.buildingNo}
                                 keyboardType={'number-pad'}
-                                onChangeText={(buildingNo) => { this.setState({ buildingNo }) }}
+                                onChangeText={this.onBuildingNoChange}
                                 placeholder={'Building No'}
                                 style={styles.input} />
                         </View>
@@ -75,7 +111,7 @@ class CompleteAddressScreen extends React.Component {
                             <TextInput
                                 value={this.state.floor}
                                 keyboardType={'number-pad'}
-                                onChangeText={(floor) => { this.setState({ floor }) }}
+                                onChangeText={this.onFloorChange}
                                 placeholder={'Floor'}
                                 style={styles.input} />
                         </View>
@@ -83,25 +119,24 @@ class CompleteAddressScreen extends React.Component {
                             <TextInput
                                 value={this.state.aptNo}
                                 keyboardType={'number-pad'}
-                                onChangeText={(aptNo) => { this.setState({ aptNo }) }}
+                                onChangeText={this.onAptNoChange}
                                 placeholder={'Apt No'}
                                 style={styles.input} />
                         </View>
                     </View>
                     <View style={styles.inputContainer}>
                         <TextInput
-                            onChangeText={(directions) => { this.setState({ directions }) }}
+                            onChangeText={this.onDirectionsChange}
                             value={this.state.directions}
                             placeholder={'Directions'}
                             style={styles.input} />
                     </View>
-                    <View style={styles.inputContainer}>
-                        <TouchableOpacity
-                            onPress={() => { this.setPopupState(true) }}
-                            style={styles.button}>
-                            <Text style={styles.buttonText}>Save</Text>
-                        </TouchableOpacity>
-                    </View>
+                    <ButtonComponent
+                        disabled={
+                            !(this.state.addressTitle.length > 0) || !(this.props.address.length > 0)
+                        }
+                        text={'Save'}
+                        onClick={this.onSaveClick} />
                 </View>
             </ScrollView>
         )
@@ -119,21 +154,16 @@ const styles = StyleSheet.create({
     input: {
         flex: 1, borderWidth: 1, alignItems: 'center', justifyContent: 'center', margin: RFValue(3, 600),
         borderRadius: 8,
-        borderColor: '#C3C3C3', paddingHorizontal: RFValue(13, 600), fontSize: RFValue(18, 600)
-    },
-    button: {
-        flex: 1, backgroundColor: '#5D3EBD', alignItems: 'center', justifyContent: 'center', margin: RFValue(3, 600),
-        borderRadius: 8
-    },
-    buttonText: { fontSize: RFValue(18, 600), color: 'white' }
+        borderColor: '#C3C3C3', paddingHorizontal: RFValue(13, 600), fontSize: RFValue(17, 600)
+    }
 })
 
 const mapStateToProps = ({
-    reducer4: {
-        token
+    mapReducer: {
+        address
     }
 }) => ({
-    token
+    address
 })
 
 const mapDispatchToProps = {
