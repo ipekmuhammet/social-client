@@ -61,10 +61,10 @@ export const deleteCard = (cardToken) => {
 export const saveAddress = (address, details) => {
     const body = {
         openAddress: address,
-        address_title: details.addressTitle,
-        building_no: details.buildingNo,
+        addressTitle: details.addressTitle,
+        buildingNo: details.buildingNo,
         floor: details.floor,
-        apt_no: details.aptNo,
+        aptNo: details.aptNo,
         directions: details.directions
     }
 
