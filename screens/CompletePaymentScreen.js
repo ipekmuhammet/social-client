@@ -27,8 +27,8 @@ class CompletePaymentScreen extends React.PureComponent {
                         navigation={navigation}
                         token={token}
                         setNeedToLoginPopupState={setNeedToLoginPopupState}
-                        title={(addresses.find(address => address._id === selectedAddress))?.open_address ?? 'Adres seçiniz'}
-                        subTitle={(addresses.find(address => address._id === selectedAddress))?.open_address ?? 'Adres seçiniz'} />
+                        title={(addresses.find(address => address._id === selectedAddress))?.openAddress ?? 'Adres seçiniz'}
+                        subTitle={(addresses.find(address => address._id === selectedAddress))?.openAddress ?? 'Adres seçiniz'} />
 
                     <HeadingDivider title={'Ödeme Şekli'} />
 

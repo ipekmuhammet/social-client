@@ -12,8 +12,8 @@ import InputIcon from '../components/InputIcon'
 class EditProfileScreen extends React.PureComponent {
 
     state = {
-        nameSurname: this.props.user.name_surname,
-        phoneNumber: this.props.user.phone_number,
+        nameSurname: this.props.user.nameSurname,
+        phoneNumber: this.props.user.phoneNumber,
         email: this.props.user.email
     }
 
@@ -31,8 +31,8 @@ class EditProfileScreen extends React.PureComponent {
 
     onSaveClick = () => {
         this.props.updateProfile({
-            name_surname: this.state.nameSurname,
-            phone_number: this.state.phoneNumber,
+            nameSurname: this.state.nameSurname,
+            phoneNumber: this.state.phoneNumber,
             email: this.state.email
         }, () => {
             this.props.navigation.goBack()

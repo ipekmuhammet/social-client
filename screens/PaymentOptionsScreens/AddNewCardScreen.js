@@ -14,7 +14,7 @@ class AddNewCardScreen extends React.PureComponent {
 
     state = {
         cardAlias: '',
-        cardHolderName: this.props.user.name_surname,// Kullanıcı'nın kayıt ismi // TODO
+        cardHolderName: this.props.user.nameSurname,// Kullanıcı'nın kayıt ismi // TODO
         cardNumber: '',
         expireYear: '',
         expireMonth: '',

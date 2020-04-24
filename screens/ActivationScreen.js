@@ -34,7 +34,7 @@ class ActivationScreen extends React.PureComponent {
 
     onResendClick = () => {
         axios.post(`${SERVER_URL}/send-activation-code`, {
-            phone_number: this.props.route.params.phone_number, activationCodeType: 0 // REGISTER 
+            phoneNumber: this.props.route.params.phoneNumber, activationCodeType: 0 // REGISTER 
         })
     }
 
