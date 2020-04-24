@@ -14,7 +14,7 @@ const ProfileScreen = ({ navigation, token, user }) => (
                     <React.Fragment>
 
                         <TouchableOpacity onPress={() => { navigation.navigate('editProfileScreen') }}>
-                            <SettingItem title={user.name_surname}>
+                            <SettingItem title={user.nameSurname}>
                                 <Ionicons color={'#4522A0'} name={'md-person'} size={32} />
                             </SettingItem>
                         </TouchableOpacity>

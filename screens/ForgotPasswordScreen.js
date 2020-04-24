@@ -18,7 +18,8 @@ class ForgotPasswordScreen extends React.PureComponent {
 
     onSendCodeClick = () => {
         axios.post(`${SERVER_URL}/send-activation-code`, {
-            phone_number: this.state.phoneNumber
+            phoneNumber: this.state.phoneNumber,
+            activationCodeType: 1 // RESET
         }).then(({ status }) => {
             if (status === 202) {
                 this.props.navigation.navigate('resetPassword', { phoneNumber: this.state.phoneNumber })

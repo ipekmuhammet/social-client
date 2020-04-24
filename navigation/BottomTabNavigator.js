@@ -5,7 +5,9 @@ import Home from '../screens/stacks/Screen1'
 import Search from '../screens/stacks/Screen2'
 import Cart from '../screens/stacks/Screen3'
 import ProfileScreen from '../screens/stacks/Screen4'
+
 import TabBarIcon from './TabBarIcon'
+import CartIcon from './CartIcon'
 
 const BottomTab = createBottomTabNavigator()
 const INITIAL_ROUTE_NAME = 'Home'
@@ -37,7 +39,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={Cart}
         options={{
           title: 'Cart',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name='md-cart' />
+          tabBarIcon: ({ focused }) => <CartIcon focused={focused} name='md-cart' />
         }} />
 
       <BottomTab.Screen

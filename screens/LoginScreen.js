@@ -38,7 +38,7 @@ class LoginScreen extends React.Component {
     }
 
     onLoginClick = () => {
-        this.props.login({ phone_number: this.state.phoneNumber, password: this.state.password }, this.props.messagePopupRef, () => {
+        this.props.login({ phoneNumber: this.state.phoneNumber, password: this.state.password }, this.props.messagePopupRef, () => {
             this.saveCart()
             this.props.navigation.navigate('Loading', { next: true })
         })

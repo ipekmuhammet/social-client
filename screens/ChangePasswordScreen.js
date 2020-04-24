@@ -51,7 +51,7 @@ class ChangePasswordScreen extends React.PureComponent {
 
         } else {
 
-            axios.put(`${SERVER_URL}/user/change-password`, { old_password: this.state.oldPassword, new_password: this.state.password })
+            axios.put(`${SERVER_URL}/user/change-password`, { oldPassword: this.state.oldPassword, newPassword: this.state.password })
                 .then(({ status }) => {
                     if (status === 200) {
                         this.setState({ scaleAnimationModal: true })

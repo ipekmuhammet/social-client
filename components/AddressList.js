@@ -24,7 +24,7 @@ class AddressList extends React.PureComponent {
     }
 
     renderAddressItem = ({ item: address }) => (
-        <InteractiveSettingItem title={address.open_address}
+        <InteractiveSettingItem title={address.openAddress}
             onLeftClick={() => {
                 this.props.setSelectedAddress(address._id, () => {
                     this.props.navigation.goBack()

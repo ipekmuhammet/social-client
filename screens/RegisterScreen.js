@@ -33,12 +33,15 @@ class RegisterScreen extends React.PureComponent {
     }
 
     onRegisterClick = () => {
-        axios.post(`${SERVER_URL}/send-activation-code`, { phone_number: this.state.phoneNumber }).then(({ status }) => {
+        axios.post(`${SERVER_URL}/send-activation-code`, {
+            phoneNumber: this.state.phoneNumber,
+            activationCodeType: 0 // REGISTER
+        }).then(({ status }) => {
             if (status === 202) {
                 this.props.navigation.navigate('activationScreen', {
-                    phone_number: this.state.phoneNumber,
+                    phoneNumber: this.state.phoneNumber,
                     password: this.state.password,
-                    name_surname: this.state.nameSurname,
+                    nameSurname: this.state.nameSurname,
                     email: this.state.email
                 })
             }
@@ -47,9 +50,9 @@ class RegisterScreen extends React.PureComponent {
 
     /*
     joi.object({
-        phone_number: joi.string().trim().strict().min(10).required(),
+        phoneNumber: joi.string().trim().strict().min(10).required(),
         password: joi.string().alphanum().min(4).required(),
-        name_surname: joi.string().required(),
+        nameSurname: joi.string().required(),
         email: joi.string().trim().strict().email().required()
     })
     */
