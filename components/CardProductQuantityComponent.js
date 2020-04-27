@@ -8,15 +8,15 @@ import { decreaseProductQuantity, increaseProductQuantity } from '../actions/act
 class CardProductQuantityComponent extends React.PureComponent {
 
     onDecreaseClick = () => {
-        this.props.decreaseProductQuantity(this.props.id)
+        this.props.decreaseProductQuantity(this.props._id)
     }
 
     onIncreaseClick = () => {
-        this.props.increaseProductQuantity(this.props.id)
+        this.props.increaseProductQuantity(this.props._id)
     }
 
     render() {
-        const { id, cart } = this.props
+        const { _id, cart } = this.props
 
         return (
             <React.Fragment>
@@ -25,7 +25,7 @@ class CardProductQuantityComponent extends React.PureComponent {
                 </TouchableOpacity>
 
                 <View style={[styles.child, styles.quantityContainer]}>
-                    <Text style={styles.quantityText}>{cart[id].quantity}</Text>
+                    <Text style={styles.quantityText}>{cart[_id].quantity}</Text>
                 </View>
 
                 <TouchableOpacity onPress={this.onIncreaseClick} style={[styles.child, styles.increaseButton]}>

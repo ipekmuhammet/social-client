@@ -6,9 +6,9 @@ import { SERVER_URL } from 'react-native-dotenv'
 
 import { setSelectedCategory } from '../actions/actions3'
 
-const Category = ({ data: { id, name }, index, navigation, setSelectedCategory }) => {
+const Category = ({ data: { imagePath, name }, index, navigation, setSelectedCategory }) => {
 
-	const imageUrl = `${SERVER_URL}/assets/categories/${id}.jpg`
+	const imageUrl = `${SERVER_URL}/assets/categories/${imagePath}.jpg`
 
 	const onCategoryClick = () => {
 		setSelectedCategory(index)

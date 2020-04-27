@@ -10,11 +10,11 @@ import ButtonComponent from '../components/ButtonComponent'
 class FullProductScreen extends React.PureComponent {
 
     onAddToCartClick = () => {
-        this.props.addProduct(this.props.route.params.id)
+        this.props.addProduct(this.props.route.params._id)
     }
 
     render() {
-        const { product_name, price, image } = this.props.route.params
+        const { name, price, category, image } = this.props.route.params
 
         return (
             <View style={styles.container}>
@@ -24,7 +24,7 @@ class FullProductScreen extends React.PureComponent {
                         <Image
                             style={styles.image}
                             resizeMode={'contain'}
-                            source={{ uri: `${SERVER_URL}/assets/products/${image}.png` }} />
+                            source={{ uri: `${SERVER_URL}/assets/products/${category}/${image}.png` }} />
                     </View>
                     <View style={styles.details}>
 
@@ -33,7 +33,7 @@ class FullProductScreen extends React.PureComponent {
                         </View>
 
                         <View style={styles.textContainer}>
-                            <Text style={styles.productName}>{product_name}</Text>
+                            <Text style={styles.productName}>{name}</Text>
                         </View>
 
                     </View>

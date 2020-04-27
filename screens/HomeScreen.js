@@ -25,7 +25,7 @@ const HomeScreen = ({ categories, navigation }) => (
 	<FlatList
 		data={formatData(Object.values(categories), 3)}
 		columnWrapperStyle={{ justifyContent: 'space-between' }}
-		keyExtractor={(item) => item.id}
+		keyExtractor={(item) => item._id}
 		renderItem={({ item, index }) => item.empty ? <EmptyCategory /> : <Category navigation={navigation} index={index} data={item} />
 		}
 		numColumns={3}

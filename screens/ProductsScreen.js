@@ -16,7 +16,7 @@ const ProductsScreen = ({ categories, products, selectedCategory, navigation }) 
 		prerenderingSiblingsNumber={0}
 		renderTabBar={() => <ScrollableTabBar />}>
 		{
-			categories.map(category => <RecyclerList key={category.id} navigation={navigation} tabLabel={category.name} list={products[category.id]} />)
+			categories.map(category => <RecyclerList key={category._id} navigation={navigation} tabLabel={category.name} list={products[category._id]} />)
 		}
 	</ScrollableTabView>
 )

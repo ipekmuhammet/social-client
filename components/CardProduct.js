@@ -7,7 +7,7 @@ import CardProductQuantityComponent from './CardProductQuantityComponent'
 
 class CardProduct extends React.PureComponent {
 	render() {
-		const { data: { id, product_name, price, image } } = this.props
+		const { data: { _id, name, price, category, image } } = this.props
 
 		return (
 			<View style={styles.container}>
@@ -15,13 +15,13 @@ class CardProduct extends React.PureComponent {
 				<View style={[styles.child, styles.flex2, styles.imageContainer]}>
 					<Image style={styles.productImage}
 						resizeMode={'contain'}
-						source={{ uri: `${SERVER_URL}/assets/products/${image}.png` }} />
+						source={{ uri: `${SERVER_URL}/assets/products/${category}/${image}.png` }} />
 				</View>
 
 				<View style={[styles.child, styles.flex3, styles.column]}>
 					<View style={styles.child} />
 					<View style={styles.textContainer}>
-						<Text style={styles.productName} numberOfLines={2}>{product_name}</Text>
+						<Text style={styles.productName} numberOfLines={2}>{name}</Text>
 					</View>
 					<View style={styles.textContainer}>
 						<Text style={styles.productPrice} numberOfLines={2}>{'₺' + price.toFixed(2).toString().replace('.', ',')}</Text>
@@ -32,7 +32,7 @@ class CardProduct extends React.PureComponent {
 				<View style={[styles.child, styles.flex2, styles.column]}>
 					<View style={styles.child} />
 					<View style={styles.rowChild}>
-						<CardProductQuantityComponent id={id} />
+						<CardProductQuantityComponent _id={_id} />
 					</View>
 					<View style={styles.child} />
 				</View>

@@ -19,7 +19,7 @@ class CartScreen extends React.PureComponent {
     //      return false
     //  }
 
-    keyExtractor = (item) => 'cart' + item.id
+    keyExtractor = (item) => 'cart' + item._id
 
     onListProductsClick = () => {
         this.props.navigation.navigate('products')

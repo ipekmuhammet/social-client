@@ -10,12 +10,12 @@ import { addProduct } from '../actions/actions1'
 class Product extends React.PureComponent {
 
 	onAddProductClick = () => {
-		const { data: { id }, addProduct } = this.props
-		addProduct(id)
+		const { data: { _id }, addProduct } = this.props
+		addProduct(_id)
 	}
 
 	render() {
-		const { data: { id, product_name, kind_name, price, image } } = this.props
+		const { _id, name, price, category, image } = this.props.data
 
 		return (
 			<View style={styles.container}>
@@ -26,14 +26,14 @@ class Product extends React.PureComponent {
 				</TouchableOpacity>
 
 				<TouchableOpacity style={[styles.child, styles.productImageContainer]} onPress={() => {
-					this.props.navigation.navigate('fullProductScreen', { id, product_name, price, image })
+					this.props.navigation.navigate('fullProductScreen', this.props.data)
 				}}>
-					<Image source={{ uri: `${SERVER_URL}/assets/products/${image}.png` }} resizeMode={'contain'} style={styles.productImage} />
+					<Image source={{ uri: `${SERVER_URL}/assets/products/${category}/${image}.png` }} resizeMode={'contain'} style={styles.productImage} />
 				</TouchableOpacity>
 
 				<Text style={[styles.child, styles.productPrice, { alignItems: 'flex-start' }]}>{'₺' + price.toFixed(2).toString().replace('.', ',')}</Text>
 
-				<Text numberOfLines={3} style={[styles.productName, styles.child]}>{product_name}</Text>
+				<Text numberOfLines={3} style={[styles.productName, styles.child]}>{name}</Text>
 
 				{
 					//	<View style={[styles.child, { alignItems: 'flex-start' }]}>
