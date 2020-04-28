@@ -24,7 +24,7 @@ class FullProductScreen extends React.PureComponent {
                         <Image
                             style={styles.image}
                             resizeMode={'contain'}
-                            source={{ uri: `${SERVER_URL}/assets/products/${category}/${image}.png` }} />
+                            source={{ uri: `${SERVER_URL}/assets/original-products/${category}/${image}.png` }} />
                     </View>
                     <View style={styles.details}>
 
