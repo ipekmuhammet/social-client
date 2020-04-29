@@ -50,7 +50,7 @@ class SearchAddressScreen extends React.PureComponent {
                 onPress={() => {
                     this.props.setCurrentRegion((region, err) => {
                         if (err) {
-                            Alert.alert('need permission') // TODO
+                            this.props.messagePopupRef.showMessage({ message: 'Need permission' })
                         } else {
                             this.props.navigation.navigate('pinAddressScreen', {
                                 region
@@ -115,9 +115,17 @@ class SearchAddressScreen extends React.PureComponent {
     }
 }
 
+const mapStateToProps = ({
+    globalReducer: {
+        messagePopupRef
+    }
+}) => ({
+    messagePopupRef
+})
+
 const mapDispatchToProps = {
     setRegionByPlace,
     setCurrentRegion
 }
 
-export default connect(null, mapDispatchToProps)(SearchAddressScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(SearchAddressScreen)

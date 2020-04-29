@@ -1,9 +1,28 @@
 import axios from 'axios'
 import { SERVER_URL } from 'react-native-dotenv'
 
+export const CLEART_CART = 'DECREASE_PRODUCT_QUANTITY'
 export const DECREASE_PRODUCT_QUANTITY = 'DECREASE_PRODUCT_QUANTITY'
 export const INCREASE_PRODUCT_QUANTITY = 'INCREASE_PRODUCT_QUANTITY'
 export const MAKE_ORDER = 'MAKE_ORDER'
+
+export const clearCart = (token) => {
+	return (dispatch) => {
+		if (token) {
+			axios.delete(`${SERVER_URL}/user/cart`).then(({ status }) => {
+				if (status === 200) {
+					dispatch({
+						type: CLEART_CART
+					})
+				}
+			})
+		} else {
+			dispatch({
+				type: CLEART_CART
+			})
+		}
+	}
+}
 
 export const makeOrder = (selectedCard, selectedAddress, cb) => {
 	return (dispatch) => {
@@ -13,20 +32,14 @@ export const makeOrder = (selectedCard, selectedAddress, cb) => {
 			if (status === 200) {
 				cb()
 				dispatch({
-					type: MAKE_ORDER,
-					payload: {
-						status: true
-					}
+					type: MAKE_ORDER
 				})
 			}
 		}).catch((reason) => {
-			console.log(reason)
 			dispatch({
-				type: MAKE_ORDER,
-				payload: {
-					status: false
-				}
+				type: 'DO_NOT_HANDLE'
 			})
+			console.log(reason)
 		})
 	}
 }

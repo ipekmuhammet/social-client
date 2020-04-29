@@ -50,7 +50,8 @@ const Screen4 = ({ navigation }) => (
                 headerStyle: styles.headerStyle
             }} />
 
-        <Stack.Screen name='searchAddressScreen'
+        <Stack.Screen
+            name='searchAddressScreen'
             component={SearchAddressScreen}
             options={{
                 title: 'Add New Address',
@@ -59,7 +60,8 @@ const Screen4 = ({ navigation }) => (
                 headerStyle: styles.headerStyle
             }} />
 
-        <Stack.Screen name='pinAddressScreen'
+        <Stack.Screen
+            name='pinAddressScreen'
             component={PinAddressScreen}
             options={{
                 title: 'Add New Address',
@@ -68,7 +70,8 @@ const Screen4 = ({ navigation }) => (
                 headerStyle: styles.headerStyle
             }} />
 
-        <Stack.Screen name='completeAddressScreen'
+        <Stack.Screen
+            name='completeAddressScreen'
             component={CompleteAddressScreen}
             options={{
                 title: 'Add New Address',
@@ -77,7 +80,8 @@ const Screen4 = ({ navigation }) => (
                 headerStyle: styles.headerStyle
             }} />
 
-        <Stack.Screen name='paymentOptionsScreen'
+        <Stack.Screen
+            name='paymentOptionsScreen'
             initialParams={{ navigation }}
             component={PaymentOptionsScreen}
             options={{
@@ -88,7 +92,8 @@ const Screen4 = ({ navigation }) => (
                 headerStyle: styles.headerStyle,
             }} />
 
-        <Stack.Screen name='addNewCardScreen'
+        <Stack.Screen
+            name='addNewCardScreen'
             component={AddNewCardScreen}
             options={{
                 title: 'Add New Card',
@@ -97,7 +102,8 @@ const Screen4 = ({ navigation }) => (
                 headerStyle: styles.headerStyle
             }} />
 
-        <Stack.Screen name='changeLanguageScreen'
+        <Stack.Screen
+            name='changeLanguageScreen'
             component={ChangeLanguageScreen}
             options={{
                 title: 'Change Language',
@@ -106,7 +112,8 @@ const Screen4 = ({ navigation }) => (
                 headerStyle: styles.headerStyle
             }} />
 
-        <Stack.Screen name='editProfileScreen'
+        <Stack.Screen
+            name='editProfileScreen'
             component={EditProfileScreen}
             options={{
                 title: 'Profile',

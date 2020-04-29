@@ -108,8 +108,8 @@ class RegisterScreen extends React.PureComponent {
                         onChange={this.onPhoneChange}>
 
                         <InputIcon>
-                            <Ionicons size={32} name={'md-phone-portrait'} color={
-                                this.state.invalidPhoneNumber && this.state.isPhoneNumberInitialized ? 'red' : 'black'
+                            <Ionicons size={32} name={'md-phone-portrait'}  color={
+                                this.state.invalidPhoneNumber && this.state.isPhoneNumberInitialized ? 'red' : '#5D3EBD'
                             } />
                         </InputIcon>
 
@@ -127,7 +127,7 @@ class RegisterScreen extends React.PureComponent {
 
                         <InputIcon>
                             <Ionicons size={32} name={'md-lock'} color={
-                                this.state.invalidPassword && this.state.isPasswordInitialized ? 'red' : 'black'
+                                this.state.invalidPassword && this.state.isPasswordInitialized ? 'red' : '#5D3EBD'
                             } />
                         </InputIcon>
 
@@ -144,7 +144,7 @@ class RegisterScreen extends React.PureComponent {
 
                         <InputIcon>
                             <Ionicons size={32} name={'md-person'} color={
-                                this.state.invalidNameSurname && this.state.isNameSurnameInitialized ? 'red' : 'black'
+                                this.state.invalidNameSurname && this.state.isNameSurnameInitialized ? 'red' : '#5D3EBD'
                             } />
                         </InputIcon>
 
@@ -162,7 +162,7 @@ class RegisterScreen extends React.PureComponent {
 
                         <InputIcon>
                             <Ionicons size={32} name={'md-mail-open'} color={
-                                this.state.invalidEmail && this.state.isEmailInitialized ? 'red' : 'black'
+                                this.state.invalidEmail && this.state.isEmailInitialized ? 'red' : '#5D3EBD'
                             } />
                         </InputIcon>
 

@@ -2,7 +2,10 @@ import axios from 'axios'
 import * as Permissions from 'expo-permissions'
 import * as Location from 'expo-location'
 
-export const SET_REGION = 'SET_REGION', SET_ADDRESS = 'SET_ADDRESS', SET_REGION_BY_PLACE = 'SET_REGION_BY_PLACE', SET_CURRENT_REGION = 'SET_CURRENT_REGION'
+export const SET_REGION = 'SET_REGION'
+export const SET_ADDRESS = 'SET_ADDRESS'
+export const SET_REGION_BY_PLACE = 'SET_REGION_BY_PLACE'
+export const SET_CURRENT_REGION = 'SET_CURRENT_REGION'
 
 const getLocationAsync = async () => {
     const { status } = await Permissions.askAsync(Permissions.LOCATION)
@@ -22,6 +25,14 @@ export const setRegion = (region) => ((dispatch) => {
     getAddress(region).then(address => {
         dispatch({
             type: SET_REGION,
+            payload: {
+                region,
+                address
+            }
+        })
+    }).catch(() => {
+        dispatch({
+            type: 'DO_NOT_HANDLE',
             payload: {
                 region,
                 address
