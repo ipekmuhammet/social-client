@@ -4,13 +4,13 @@ import { ScrollView, View, Image, Text, StyleSheet } from 'react-native'
 import { SERVER_URL } from 'react-native-dotenv'
 import { RFValue } from 'react-native-responsive-fontsize'
 
-import { addProduct } from '../actions/actions1'
+import { increaseProductQuantity } from '../actions/actions1'
 import ButtonComponent from '../components/ButtonComponent'
 
 class FullProductScreen extends React.PureComponent {
 
     onAddToCartClick = () => {
-        this.props.addProduct(this.props.route.params._id)
+        this.props.increaseProductQuantity(this.props.route.params._id)
     }
 
     render() {
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
 })
 
 const mapDispatchToProps = {
-    addProduct
+    increaseProductQuantity
 }
 
 export default connect(null, mapDispatchToProps)(FullProductScreen)

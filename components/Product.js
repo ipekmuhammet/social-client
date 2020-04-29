@@ -5,13 +5,13 @@ import { RFPercentage } from 'react-native-responsive-fontsize'
 import { connect } from 'react-redux'
 import { SERVER_URL } from 'react-native-dotenv'
 
-import { addProduct } from '../actions/actions1'
+import { increaseProductQuantity } from '../actions/actions1'
 
 class Product extends React.PureComponent {
 
 	onAddProductClick = () => {
-		const { data: { _id }, addProduct } = this.props
-		addProduct(_id)
+		const { data: { _id }, increaseProductQuantity } = this.props
+		increaseProductQuantity(_id)
 	}
 
 	render() {
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
 })
 
 const mapDispatchToProps = {
-	addProduct
+	increaseProductQuantity
 }
 
 export default connect(null, mapDispatchToProps)(Product)
