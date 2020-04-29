@@ -25,11 +25,11 @@ class PaymentOptionsScreen extends React.Component {
     setPopupState = (result, confirm) => {
         this.setState({
             scaleAnimationModal: result.scaleAnimationModal,
-            selectedCard: result.cardToken
+            selectedCard: result.selectedCard
         })
 
         if (confirm) {
-            this.props.deleteCard(result.cardToken)
+            this.props.deleteCard(this.state.selectedCard)
         }
     }
 

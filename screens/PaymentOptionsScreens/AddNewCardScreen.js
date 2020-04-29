@@ -14,8 +14,8 @@ class AddNewCardScreen extends React.PureComponent {
 
     state = {
         cardAlias: '',
-        cardHolderName: this.props.user.nameSurname,// Kullanıcı'nın kayıt ismi // TODO
-        cardNumber: '',
+        cardHolderName: this.props.user.nameSurname,
+        cardNumber: '4766620000000001',
         expireYear: '',
         expireMonth: '',
         CVC2: ''
@@ -90,15 +90,17 @@ class AddNewCardScreen extends React.PureComponent {
 
                 <View style={styles.row}>
 
-                    <View style={styles.inputContainer}>
-                        <InputComponent
-                            options={{
-                                placeholder: 'CVC2',
-                                keyboardType: 'number-pad'
-                            }}
-                            onChange={this.onCvcChange}
-                            value={this.state.CVC2} />
-                    </View>
+                    {
+                        //  <View style={styles.inputContainer}>
+                        //      <InputComponent
+                        //          options={{
+                        //              placeholder: 'CVC2',
+                        //              keyboardType: 'number-pad'
+                        //          }}
+                        //          onChange={this.onCvcChange}
+                        //          value={this.state.CVC2} />
+                        //  </View>
+                    }
 
                     <View style={styles.inputContainer}>
                         <InputComponent

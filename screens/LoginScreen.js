@@ -32,9 +32,13 @@ class LoginScreen extends React.Component {
     saveCart = () => {
         const { cart, token } = this.props
         if (token) {
-            axios.post(`${SERVER_URL}/user/cart`, cart)
+            axios.post(`${SERVER_URL}/user/cart`, Object.values(cart).map(({ _id, quantity }) => ({ _id, quantity })))
+                .then(({ status, data }) => {
+                    if (status === 200) {
+                        AsyncStorage.setItem('cart', JSON.stringify(data))
+                    }
+                })
         }
-        AsyncStorage.setItem('cart', JSON.stringify(cart))
     }
 
     onLoginClick = () => {

@@ -37,7 +37,7 @@ export const setInitialDatas = () => {
 		// AsyncStorage.removeItem('cart')
 		AsyncStorage.multiGet(['token', 'user', 'cart']).then(vals => {
 			if (vals[0][1]) {
-				Promise.all([getCategories(), getProducts(), getCart(vals[0][1]), getPaymentCards(vals[0][1])]).then(res => {
+				return Promise.all([getCategories(), getProducts(), getCart(vals[0][1]), getPaymentCards(vals[0][1])]).then(res => {
 					dispatch({
 						type: SET_INITIAL_DATAS,
 						payload: {
@@ -51,7 +51,7 @@ export const setInitialDatas = () => {
 					})
 				})
 			} else {
-				Promise.all([getCategories(), getProducts()]).then(res => {
+				return Promise.all([getCategories(), getProducts()]).then(res => {
 					dispatch({
 						type: SET_INITIAL_DATAS,
 						payload: {
@@ -72,7 +72,6 @@ export const login = (body, popupRef, cb) => {
 	return (dispatch) => {
 		axios.post(`${SERVER_URL}/login`, body).then(({ status, data }) => {
 			if (status === 200) {
-				console.log(data.user)
 				AsyncStorage.multiSet([['token', data.token], ['user', JSON.stringify(data.user)]]).then((res) => {
 					dispatch({
 						type: SET_USER,

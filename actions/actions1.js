@@ -10,16 +10,19 @@ export const MAKE_ORDER = 'MAKE_ORDER'
 export const makeOrder = (selectedCard, selectedAddress, cb) => {
 	return (dispatch) => {
 		const body = { card: selectedCard, address: selectedAddress }
-		axios.post(`${SERVER_URL}/user/order`, body).then(() => {
-			cb()
 
-			dispatch({
-				type: MAKE_ORDER,
-				payload: {
-					status: true
-				}
-			})
+		axios.post(`${SERVER_URL}/user/order`, body).then(({ status }) => {
+			if (status === 200) {
+				cb()
+				dispatch({
+					type: MAKE_ORDER,
+					payload: {
+						status: true
+					}
+				})
+			}
 		}).catch((reason) => {
+			console.log(reason)
 			dispatch({
 				type: MAKE_ORDER,
 				payload: {
