@@ -1,4 +1,4 @@
-import { DECREASE_PRODUCT_QUANTITY, INCREASE_PRODUCT_QUANTITY, MAKE_ORDER, CLEART_CART } from '../actions/actions1'
+import { DECREASE_PRODUCT_QUANTITY, INCREASE_PRODUCT_QUANTITY, MAKE_ORDER, CLEAR_CART } from '../actions/actions1'
 import { SET_INITIAL_DATAS } from '../actions/actions4'
 
 const INITIAL_STATE = {
@@ -11,7 +11,7 @@ export default (state = INITIAL_STATE, action) => {
         case SET_INITIAL_DATAS: return Object.assign({}, { cart: Object.assign({}, action.payload.cart) })
 
         case MAKE_ORDER:
-        case CLEART_CART: return { cart: {} }
+        case CLEAR_CART: return ({ cart: {} })
 
         case DECREASE_PRODUCT_QUANTITY: {
             state.cart[action.payload._id].quantity = action.payload.quantity ?? state.cart[action.payload._id].quantity - 1

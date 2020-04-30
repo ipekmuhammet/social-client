@@ -1,6 +1,5 @@
 import React from 'react'
 import { AppState, AsyncStorage } from 'react-native'
-import axios from 'axios'
 import { SplashScreen } from 'expo'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
@@ -8,7 +7,6 @@ import thunk from 'redux-thunk'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import NetInfo from '@react-native-community/netinfo'
-import { SERVER_URL } from 'react-native-dotenv'
 
 import rootReducer from './reducers/root-reducer'
 
@@ -21,7 +19,6 @@ import useLinking from './navigation/useLinking'
 import axiosMiddleware from './utils/axios'
 
 import { SET_NETWORK_STATUS } from './actions/network-actions'
-import { SET_CONNECTION_POPUP_STATE } from './actions/global-actions'
 
 //	const networkMiddleWare = store => next => action => {
 //		console.log(store.getState().networkReducer.networkStatus)
@@ -55,12 +52,14 @@ const networkListener = () => {
 
 const handleAppStateChange = (nextAppState) => {
 	const { cart } = store.getState().reducer1
-	const { token } = store.getState().reducer4
+	// const { token } = store.getState().reducer4
 	if (nextAppState.match(/inactive|background/)) {
-		if (token) {
-			axios.post(`${SERVER_URL}/user/cart`, cart)
+		if (Object.values(cart).length > 0) {
+			//	if (token) {
+			//		axios.post(`${SERVER_URL}/user/cart`, cart)
+			//	}
+			AsyncStorage.setItem('cart', JSON.stringify(cart))
 		}
-		AsyncStorage.setItem('cart', JSON.stringify(cart))
 	}
 }
 

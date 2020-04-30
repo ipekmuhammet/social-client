@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { RFValue } from 'react-native-responsive-fontsize'
 import axios from 'axios'
-import { ScrollView, View, TouchableOpacity, Text, StyleSheet } from 'react-native'
+import { ScrollView, TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { SERVER_URL } from 'react-native-dotenv'
 import joi from 'react-native-joi'
@@ -25,7 +25,7 @@ class ResetPasswordScreen extends React.PureComponent {
         invalidActivationCode: false,
         invalidPassword: false,
 
-        isPhoneNumberInitialized: false,
+        isPhoneNumberInitialized: true,
         isActivationCodeInitialized: false,
         isPasswordInitialized: false
     }
