@@ -21,7 +21,7 @@ const ConfirmAccuratePinPopup = ({ scaleAnimationModal, setPopupState, region })
         footer={
             <ModalFooter style={styles.footer}>
                 <ModalButton
-                    text='No'
+                    text='Hayır'
                     textStyle={styles.buttonText}
                     style={styles.buttonNo}
                     onPress={() => {
@@ -29,7 +29,7 @@ const ConfirmAccuratePinPopup = ({ scaleAnimationModal, setPopupState, region })
                     }}
                     key='button-1' />
                 <ModalButton
-                    text='Yes'
+                    text='Evet'
                     textStyle={styles.buttonText}
                     style={styles.buttonYes}
                     onPress={() => {
@@ -40,7 +40,7 @@ const ConfirmAccuratePinPopup = ({ scaleAnimationModal, setPopupState, region })
         }>
         <ModalContent style={styles.content}>
             <Image style={styles.contentImage} resizeMode={'contain'} source={require('../../assets/pin.png')} />
-            <Text style={styles.contentText}>Your order will be delivered to the pin location on the map. Do you confirm pin location is accurate?</Text>
+            <Text style={styles.contentText}>Siparişiniz haritadaki konuma teslim edilecektir. Konumunun doğru olduğuna emin misin ?</Text>
         </ModalContent>
     </Modal>
 )

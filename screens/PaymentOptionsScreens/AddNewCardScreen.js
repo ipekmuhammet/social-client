@@ -77,12 +77,12 @@ class AddNewCardScreen extends React.PureComponent {
                     <View style={styles.infoContainer}>
 
                         <View>
-                            <Text style={styles.securityText}>Security</Text>
+                            <Text style={styles.securityText}>Güvenlik</Text>
                         </View>
 
                         <View>
                             <Text style={styles.securityInformation}>
-                                Our payment insfrastructure is provided by MasterPass and the transaction security is guaranteed by MasterCard.
+                                Kredi kartı bilgileriniz Platform App tarafından tutulmamaktadır ödeme altyapısı Iyzico tarafından sağlanmaktadır.
                             </Text>
                         </View>
 
@@ -92,7 +92,7 @@ class AddNewCardScreen extends React.PureComponent {
 
                 <InputComponent
                     options={{
-                        placeholder: 'Card Label (Personal etc.)',
+                        placeholder: 'Kart etiketi (Kişisel, Iş vb.)',
                         maxLength: 20
                     }}
                     onChange={this.onAliasChange}
@@ -103,7 +103,7 @@ class AddNewCardScreen extends React.PureComponent {
 
                 <InputComponent
                     options={{
-                        placeholder: 'Card No',
+                        placeholder: 'Kart No',
                         maxLength: 16,
                         keyboardType: 'number-pad'
                     }}
@@ -118,7 +118,7 @@ class AddNewCardScreen extends React.PureComponent {
                     <View style={styles.inputContainer}>
                         <InputComponent
                             options={{
-                                placeholder: 'Month',
+                                placeholder: 'Ay',
                                 maxLength: 2,
                                 keyboardType: 'number-pad'
                             }}
@@ -132,7 +132,7 @@ class AddNewCardScreen extends React.PureComponent {
                     <View style={styles.inputContainer}>
                         <InputComponent
                             options={{
-                                placeholder: 'Year',
+                                placeholder: 'Yıl',
                                 maxLength: 2,
                                 keyboardType: 'number-pad'
                             }}
@@ -145,12 +145,14 @@ class AddNewCardScreen extends React.PureComponent {
 
                 </View>
 
-                <TermsComponent />
+                {
+                    // <TermsComponent />
+                }
 
                 <View style={styles.buttonDivider} />
 
                 <ButtonComponent
-                    text={'Continue'}
+                    text={'Tamamla'}
                     onClick={this.onContinueClick}
                     disabled={
                         this.state.invalidCardAlias || !this.state.isCardAliasInitialized ||

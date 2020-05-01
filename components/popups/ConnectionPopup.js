@@ -34,7 +34,7 @@ const ConnectionPopup = ({ connectionPopupState, setConnectionPopupState }) => (
         }>
         <ModalContent style={styles.content}>
             <Image style={styles.contentImage} resizeMode={'contain'} source={connectionImage} />
-            <Text style={styles.contentText}>Please check your internet connection.</Text>
+            <Text style={styles.contentText}>Lütfen internet bağlantını kontrol et</Text>
         </ModalContent>
     </Modal>
 )

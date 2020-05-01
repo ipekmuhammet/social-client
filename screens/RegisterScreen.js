@@ -101,7 +101,7 @@ class RegisterScreen extends React.PureComponent {
                         options={{
                             keyboardType: 'phone-pad',
                             textContentType: 'telephoneNumber',
-                            placeholder: 'Phone Number',
+                            placeholder: 'Telefon numarası',
                             maxLength: 10
                         }}
                         invalid={this.state.invalidPhoneNumber && this.state.isPhoneNumberInitialized}
@@ -116,7 +116,7 @@ class RegisterScreen extends React.PureComponent {
                         options={{
                             secureTextEntry: true,
                             textContentType: 'password',
-                            placeholder: 'Password (min 4 characters)'
+                            placeholder: 'Şifre (en az 4 karakter)'
                         }}
                         invalid={this.state.invalidPassword && this.state.isPasswordInitialized}
                         value={this.state.password}
@@ -133,7 +133,7 @@ class RegisterScreen extends React.PureComponent {
                     <InputComponent
                         options={{
                             textContentType: 'name',
-                            placeholder: 'Name Surname'
+                            placeholder: 'Ad soyad'
                         }}
                         invalid={this.state.invalidNameSurname && this.state.isNameSurnameInitialized}
                         value={this.state.nameSurname}
@@ -165,7 +165,9 @@ class RegisterScreen extends React.PureComponent {
 
                     </InputComponent>
 
-                    <TermsComponent />
+                    {
+                        // <TermsComponent />
+                    }
                 </View>
 
                 <View>
@@ -188,7 +190,7 @@ class RegisterScreen extends React.PureComponent {
                     }
                     <View style={styles.buttonDivider} />
 
-                    <ButtonComponent text={'Register'} onClick={this.onRegisterClick} disabled={
+                    <ButtonComponent text={'Kayıt ol'} onClick={this.onRegisterClick} disabled={
                         this.state.invalidEmail || !this.state.isEmailInitialized ||
                         this.state.invalidNameSurname || !this.state.isNameSurnameInitialized ||
                         this.state.invalidPassword || !this.state.isPasswordInitialized ||

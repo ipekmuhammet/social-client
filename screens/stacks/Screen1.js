@@ -31,7 +31,7 @@ const Screen1 = ({ navigation, setRootNavigation }) => {
 			<Stack.Screen
 				name='products'
 				options={{
-					title: 'Products',
+					title: 'Ürünler',
 					headerTitleAlign: 'center',
 					headerTintColor: 'white',
 					headerStyle: styles.headerStyle
@@ -41,11 +41,12 @@ const Screen1 = ({ navigation, setRootNavigation }) => {
 			<Stack.Screen
 				name='fullProductScreen'
 				options={{
-					title: 'Detay',
+					title: 'Ürün detayı',
 					headerTitleAlign: 'center',
 					headerTintColor: 'white',
 					headerStyle: styles.headerStyle
 				}}
+				
 				component={FullProductScreen} />
 
 		</Stack.Navigator>

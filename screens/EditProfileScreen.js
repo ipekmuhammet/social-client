@@ -47,7 +47,7 @@ class EditProfileScreen extends React.PureComponent {
                     <InputComponent
                         options={{
                             textContentType: 'name',
-                            placeholder: 'Name Surname'
+                            placeholder: 'Ad soyad'
                         }}
                         value={this.state.nameSurname}
                         onChange={this.onNameSurnameChange}>
@@ -75,7 +75,7 @@ class EditProfileScreen extends React.PureComponent {
                         options={{
                             keyboardType: 'phone-pad',
                             textContentType: 'telephoneNumber',
-                            placeholder: 'Phone Number',
+                            placeholder: 'Telefon numarası',
                             maxLength: 10
                         }}
                         value={this.state.phoneNumber}

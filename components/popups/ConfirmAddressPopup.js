@@ -20,13 +20,13 @@ const ConfirmAddressPopup = ({ address, scaleAnimationModal, setPopupState }) =>
             <ModalTitle
                 style={styles.title}
                 textStyle={styles.titleText}
-                title='Do you confirm that your address is true?'
+                title='Bu adresin doğru olduğuna emin misin ?'
                 hasTitleBar={false} />
         }
         footer={
             <ModalFooter style={styles.footer}>
                 <ModalButton
-                    text='No'
+                    text='Hayır'
                     textStyle={styles.buttonText}
                     style={styles.buttonNo}
                     onPress={() => {
@@ -34,7 +34,7 @@ const ConfirmAddressPopup = ({ address, scaleAnimationModal, setPopupState }) =>
                     }}
                     key='button-1' />
                 <ModalButton
-                    text='Yes'
+                    text='Evet'
                     textStyle={styles.buttonText}
                     style={styles.buttonYes}
                     onPress={() => {

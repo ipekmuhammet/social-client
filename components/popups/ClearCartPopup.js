@@ -33,7 +33,7 @@ const ClearCartPopup = ({ clearCartPopupState, setClearCartPopupState, clearCart
         footer={
             <ModalFooter style={styles.footer}>
                 <ModalButton
-                    text='No'
+                    text='Hayır'
                     textStyle={styles.buttonText}
                     style={styles.buttonNo}
                     onPress={() => {
@@ -41,7 +41,7 @@ const ClearCartPopup = ({ clearCartPopupState, setClearCartPopupState, clearCart
                     }}
                     key='button-1' />
                 <ModalButton
-                    text='Yes'
+                    text='Evet'
                     textStyle={styles.buttonText}
                     style={styles.buttonYes}
                     onPress={() => {

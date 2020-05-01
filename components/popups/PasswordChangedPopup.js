@@ -29,7 +29,7 @@ const PasswordChangedPopup = ({ scaleAnimationModal, setPopupState }) => (
         }>
         <ModalContent style={styles.content}>
             <Image style={styles.image} source={require('../../assets/verify-image.jpeg')} />
-            <Text style={styles.text}>Your password is changed</Text>
+            <Text style={styles.text}>Şifre başarılı bir şekilde değiştirildi</Text>
         </ModalContent>
     </Modal>
 )

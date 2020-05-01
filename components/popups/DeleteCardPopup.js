@@ -19,13 +19,13 @@ const DeleteCardPopup = ({ scaleAnimationModal, setPopupState }) => (
             <ModalTitle
                 style={styles.title}
                 textStyle={styles.titleText}
-                title='Are you sure you want to delete it?'
+                title='Kartı silmek istediğine emin misin ?'
                 hasTitleBar={false} />
         }
         footer={
             <ModalFooter style={styles.footer}>
                 <ModalButton
-                    text='No'
+                    text='Hayır'
                     textStyle={styles.buttonText}
                     style={styles.buttonNo}
                     onPress={() => {
@@ -33,7 +33,7 @@ const DeleteCardPopup = ({ scaleAnimationModal, setPopupState }) => (
                     }}
                     key='button-1' />
                 <ModalButton
-                    text='Yes'
+                    text='Evet'
                     textStyle={styles.buttonText}
                     style={styles.buttonYes}
                     onPress={() => {

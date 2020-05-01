@@ -41,7 +41,7 @@ class ForgotPasswordScreen extends React.PureComponent {
                 <InputComponent
                     options={{
                         keyboardType: 'phone-pad',
-                        placeholder: 'Phone Number',
+                        placeholder: 'Telefon numarası',
                         maxLength: 10
                     }}
                     invalid={
@@ -55,7 +55,7 @@ class ForgotPasswordScreen extends React.PureComponent {
                 </InputComponent>
 
                 <ButtonComponent
-                    text={'Send Code'}
+                    text={'Kod gönder'}
                     onClick={this.onSendCodeClick}
                     disabled={
                         this.state.invalidPhoneNumber || !this.state.isPhoneNumberInitialized

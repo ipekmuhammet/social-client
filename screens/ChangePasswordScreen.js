@@ -82,7 +82,7 @@ class ChangePasswordScreen extends React.PureComponent {
                     options={{
                         secureTextEntry: true,
                         textContentType: 'password',
-                        placeholder: 'Current Password'
+                        placeholder: 'Geçerli şifre'
                     }}
                     invalid={this.state.invalidOldPassword && this.state.isOldPasswordInitialized}
                     value={this.state.oldPassword}
@@ -92,7 +92,7 @@ class ChangePasswordScreen extends React.PureComponent {
                     options={{
                         secureTextEntry: true,
                         textContentType: 'password',
-                        placeholder: 'New Password (min 4 characters)'
+                        placeholder: 'Yeni şifre (en az 4 karakter)'
                     }}
                     invalid={this.state.invalidPassword && this.state.isPasswordInitialized}
                     value={this.state.password}
@@ -103,7 +103,7 @@ class ChangePasswordScreen extends React.PureComponent {
                         this.state.invalidPassword || !this.state.isPasswordInitialized ||
                         this.state.invalidOldPassword || !this.state.isOldPasswordInitialized
                     }
-                    text={'Change Password'}
+                    text={'Şifremi değiştir'}
                     onClick={this.onChangePasswordClick} />
 
             </ScrollView>

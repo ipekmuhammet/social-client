@@ -23,14 +23,14 @@ const WelcomeScreen = ({ navigation }) => (
             </TouchableOpacity>
         </View>
 
-        <ButtonComponent text={'Register'} onClick={() => {
+        <ButtonComponent text={'Kayıt ol'} onClick={() => {
             navigation.navigate('register')
         }} />
 
         <View style={styles.child}>
             <TouchableOpacity style={styles.goToLoginPageContainer} onPress={() => { navigation.navigate('login') }}>
-                <Text style={styles.buttonText}>Do you have an account ?</Text>
-                <Text style={styles.loginText}>Login</Text>
+                <Text style={styles.buttonText}>Hesabın var mı ?</Text>
+                <Text style={styles.loginText}>Giriş yap</Text>
             </TouchableOpacity>
         </View>
     </View >

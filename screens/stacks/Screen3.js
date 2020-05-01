@@ -21,7 +21,7 @@ const Screen3 = ({ navigation }) => {
                 name='cart'
                 component={CartScreen}
                 options={{
-                    title: 'Cart',
+                    title: 'Sepetim',
                     headerTitleAlign: 'center',
                     headerTintColor: 'white',
                     headerStyle: styles.headerStyle,
@@ -34,7 +34,7 @@ const Screen3 = ({ navigation }) => {
                 name='completePayment'
                 component={CompletePaymentScreen}
                 options={{
-                    title: 'Checkout',
+                    title: 'Ödemeyi tamamla',
                     headerTitleAlign: 'center',
                     headerTintColor: 'white',
                     headerStyle: styles.headerStyle
@@ -45,7 +45,7 @@ const Screen3 = ({ navigation }) => {
                 name='choosePayment'
                 component={ChoosePaymentScreen}
                 options={{
-                    title: 'Ödeme Şekli',
+                    title: 'Ödeme Yöntemi',
                     headerTitleAlign: 'center',
                     headerTintColor: 'white',
                     headerStyle: styles.headerStyle

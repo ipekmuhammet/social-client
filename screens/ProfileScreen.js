@@ -80,7 +80,7 @@ const ProfileScreen = ({ navigation, token, user }) => (
                 ) :
                 (
                     <TouchableOpacity onPress={() => { navigation.navigate('Welcome', { screen: 'login' }) }}>
-                        <SettingItem title={'Login'}>
+                        <SettingItem title={'Giriş yap'}>
                             <Ionicons color={'#4522A0'} name={'md-person'} size={32} />
                         </SettingItem>
                     </TouchableOpacity>

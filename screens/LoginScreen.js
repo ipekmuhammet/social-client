@@ -96,7 +96,7 @@ class LoginScreen extends React.Component {
                         options={{
                             keyboardType: 'phone-pad',
                             textContentType: 'telephoneNumber',
-                            placeholder: 'Phone Number',
+                            placeholder: 'Telefon numarası',
                             maxLength: 10
                         }}
                         invalid={this.state.invalidPhoneNumber && this.state.isPhoneNumberInitialized}
@@ -111,7 +111,7 @@ class LoginScreen extends React.Component {
                         options={{
                             secureTextEntry: true,
                             textContentType: 'password',
-                            placeholder: 'Password (min 4 characters)',
+                            placeholder: 'Şifre (en az 4 karakter)',
                         }}
                         invalid={this.state.invalidPassword && this.state.isPasswordInitialized}
                         value={this.state.password}
@@ -130,7 +130,7 @@ class LoginScreen extends React.Component {
                             this.state.invalidPhoneNumber || !this.state.isPhoneNumberInitialized ||
                             this.state.invalidPassword || !this.state.isPasswordInitialized
                         }
-                        text={'Login'}
+                        text={'Giriş yap'}
                         onClick={this.onLoginClick} />
 
                     <View style={styles.child}>
@@ -143,7 +143,7 @@ class LoginScreen extends React.Component {
                 <View>
                     <View style={styles.buttonDivider} />
 
-                    <ButtonComponent text={'Register'} onClick={this.goToRegister} opposite />
+                    <ButtonComponent text={'Kayıt ol'} onClick={this.goToRegister} opposite />
                 </View>
             </ScrollView>
         )

@@ -138,7 +138,7 @@ class CompleteAddressScreen extends React.Component {
                     disabled={
                         !(this.state.addressTitle.length > 0) || !(this.props.address.length > 0)
                     }
-                    text={'Save'}
+                    text={'Kaydet'}
                     onClick={this.onSaveClick} />
 
             </ScrollView>

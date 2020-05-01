@@ -20,7 +20,7 @@ class AddNewCardComponent extends React.PureComponent {
                     </View>
                     <View style={[styles.child, styles.textContainer]}>
                         <View style={styles.child}>
-                            <Text style={styles.highlightedText}>{'Add New Card'}</Text>
+                            <Text style={styles.highlightedText}>{'Yeni kart ekle'}</Text>
                         </View>
                     </View>
                     <TouchableOpacity style={styles.child}>

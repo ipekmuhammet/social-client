@@ -107,7 +107,7 @@ class ResetPasswordScreen extends React.PureComponent {
                     options={{
                         keyboardType: 'phone-pad',
                         textContentType: 'telephoneNumber',
-                        placeholder: 'Phone Number',
+                        placeholder: 'Telefon numarası',
                         maxLength: 10
                     }}
                     invalid={this.state.invalidPhoneNumber && this.state.isPhoneNumberInitialized}
@@ -117,7 +117,7 @@ class ResetPasswordScreen extends React.PureComponent {
                 <InputComponent
                     options={{
                         keyboardType: 'number-pad',
-                        placeholder: 'Activation Code',
+                        placeholder: 'Aktivasyon kodu',
                         maxLength: 4
                     }}
                     invalid={this.state.invalidActivationCode && this.state.isActivationCodeInitialized}
@@ -128,7 +128,7 @@ class ResetPasswordScreen extends React.PureComponent {
                     options={{
                         secureTextEntry: true,
                         textContentType: 'password',
-                        placeholder: 'New Password (min 4 characters)',
+                        placeholder: 'Yeni şifre (en az 4 karakter)',
                     }}
                     invalid={this.state.invalidPassword && this.state.isPasswordInitialized}
                     value={this.state.password}
@@ -140,12 +140,12 @@ class ResetPasswordScreen extends React.PureComponent {
                         this.state.invalidActivationCode || !this.state.isActivationCodeInitialized ||
                         this.state.invalidPassword || !this.state.isPasswordInitialized
                     }
-                    text={'Reset Password'}
+                    text={'Şifremi sıfırla'}
                     onClick={this.onResetPasswordClick} />
 
                 <TouchableOpacity style={styles.resendContainer} onPress={this.onResendClick}>
                     <Ionicons name={'md-refresh'} size={28} color={'#6E7586'} />
-                    <Text style={styles.resendCodeText}>Resend Code</Text>
+                    <Text style={styles.resendCodeText}>Yeniden gönder</Text>
                 </TouchableOpacity>
 
             </ScrollView>

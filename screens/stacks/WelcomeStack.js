@@ -26,35 +26,35 @@ const WelcomeStack = () => (
         }} />
 
         <Stack.Screen name='login' component={LoginScreen} options={{
-            title: 'Login',
+            title: 'Giriş yap',
             headerTitleAlign: 'center',
             headerTintColor: 'white',
             headerStyle: styles.headerStyle
         }} />
 
         <Stack.Screen name='register' component={RegisterScreen} options={{
-            title: 'Register',
+            title: 'Kayıt ol',
             headerTitleAlign: 'center',
             headerTintColor: 'white',
             headerStyle: styles.headerStyle
         }} />
 
         <Stack.Screen name='forgotPassword' component={ForgotPasswordScreen} options={{
-            title: 'Forgot Password',
+            title: 'Şifremi unuttum',
             headerTitleAlign: 'center',
             headerTintColor: 'white',
             headerStyle: styles.headerStyle
         }} />
 
         <Stack.Screen name='resetPassword' component={ResetPasswordScreen} options={{
-            title: 'Forgot Password',
+            title: 'Şifremi unuttum',
             headerTitleAlign: 'center',
             headerTintColor: 'white',
             headerStyle: styles.headerStyle
         }} />
 
         <Stack.Screen name='activationScreen' component={ActivationScreen} options={{
-            title: 'Activate Account',
+            title: 'Aktivasyon',
             headerTitleAlign: 'center',
             headerTintColor: 'white',
             headerStyle: styles.headerStyle

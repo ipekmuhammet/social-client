@@ -84,7 +84,7 @@ export const login = (body, popupRef, cb) => {
 				})
 			}
 		}).catch((err) => {
-			popupRef.showMessage({ message: 'Wrong GSM or password' })
+			popupRef.showMessage({ message: 'Hatalı telefon yada şifre' })
 		})
 	}
 }

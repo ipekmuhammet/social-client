@@ -22,7 +22,7 @@ const NeedToLoginPopup = ({ navigation, needToLoginPopupState, setNeedToLoginPop
             <ModalTitle
                 style={styles.title}
                 textStyle={styles.titleText}
-                title='You need to login before continuing.'
+                title='Devam etmeden önce giriş yapmalısın'
                 hasTitleBar={false} />
         }
         footer={

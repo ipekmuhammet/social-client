@@ -44,7 +44,7 @@ const Screen4 = ({ navigation }) => (
             name='changePasswordScreen'
             component={ChangePasswordScreen}
             options={{
-                title: 'Adreslerim',
+                title: 'Şifremi değiştir',
                 headerTitleAlign: 'center',
                 headerTintColor: 'white',
                 headerStyle: styles.headerStyle
@@ -54,7 +54,7 @@ const Screen4 = ({ navigation }) => (
             name='searchAddressScreen'
             component={SearchAddressScreen}
             options={{
-                title: 'Add New Address',
+                title: 'Kart ekle',
                 headerTitleAlign: 'center',
                 headerTintColor: 'white',
                 headerStyle: styles.headerStyle
@@ -64,7 +64,7 @@ const Screen4 = ({ navigation }) => (
             name='pinAddressScreen'
             component={PinAddressScreen}
             options={{
-                title: 'Add New Address',
+                title: 'Adres ekle',
                 headerTitleAlign: 'center',
                 headerTintColor: 'white',
                 headerStyle: styles.headerStyle
@@ -74,7 +74,7 @@ const Screen4 = ({ navigation }) => (
             name='completeAddressScreen'
             component={CompleteAddressScreen}
             options={{
-                title: 'Add New Address',
+                title: 'Adres ekle',
                 headerTitleAlign: 'center',
                 headerTintColor: 'white',
                 headerStyle: styles.headerStyle
@@ -86,7 +86,7 @@ const Screen4 = ({ navigation }) => (
             component={PaymentOptionsScreen}
             options={{
                 headerLeft: () => <HeaderBackButton tintColor={'white'} onPress={() => { navigation.goBack() }} />,
-                title: 'Payment Options',
+                title: 'Ödeme Yöntemlerim',
                 headerTitleAlign: 'center',
                 headerTintColor: 'white',
                 headerStyle: styles.headerStyle,
@@ -96,7 +96,7 @@ const Screen4 = ({ navigation }) => (
             name='addNewCardScreen'
             component={AddNewCardScreen}
             options={{
-                title: 'Add New Card',
+                title: 'Kart ekle',
                 headerTitleAlign: 'center',
                 headerTintColor: 'white',
                 headerStyle: styles.headerStyle
@@ -106,7 +106,7 @@ const Screen4 = ({ navigation }) => (
             name='changeLanguageScreen'
             component={ChangeLanguageScreen}
             options={{
-                title: 'Change Language',
+                title: 'Dili değiştir',
                 headerTitleAlign: 'center',
                 headerTintColor: 'white',
                 headerStyle: styles.headerStyle
@@ -116,7 +116,7 @@ const Screen4 = ({ navigation }) => (
             name='editProfileScreen'
             component={EditProfileScreen}
             options={{
-                title: 'Profile',
+                title: 'Profilim',
                 headerTitleAlign: 'center',
                 headerTintColor: 'white',
                 headerStyle: styles.headerStyle
