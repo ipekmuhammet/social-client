@@ -66,7 +66,7 @@ class AddNewCardScreen extends React.PureComponent {
 
     render() {
         return (
-            <ScrollView>
+            <ScrollView contentContainerStyle={styles.container}>
 
                 <View style={styles.header}>
 
@@ -82,7 +82,7 @@ class AddNewCardScreen extends React.PureComponent {
 
                         <View>
                             <Text style={styles.securityInformation}>
-                                Kredi kartı bilgileriniz Platform App tarafından tutulmamaktadır ödeme altyapısı Iyzico tarafından sağlanmaktadır.
+                                Kredi kartı bilgileriniz App tarafından tutulmamaktadır ödeme altyapısı Iyzico tarafından sağlanmaktadır.
                             </Text>
                         </View>
 
@@ -90,61 +90,63 @@ class AddNewCardScreen extends React.PureComponent {
 
                 </View>
 
-                <InputComponent
-                    options={{
-                        placeholder: 'Kart etiketi (Kişisel, Iş vb.)',
-                        maxLength: 20
-                    }}
-                    onChange={this.onAliasChange}
-                    invalid={
-                        this.state.invalidCardAlias && this.state.isCardAliasInitialized
-                    }
-                    value={this.state.cardAlias} />
+                <View>
+                    <InputComponent
+                        options={{
+                            placeholder: 'Kart etiketi (Kişisel, Iş vb.)',
+                            maxLength: 20
+                        }}
+                        onChange={this.onAliasChange}
+                        invalid={
+                            this.state.invalidCardAlias && this.state.isCardAliasInitialized
+                        }
+                        value={this.state.cardAlias} />
 
-                <InputComponent
-                    options={{
-                        placeholder: 'Kart No',
-                        maxLength: 16,
-                        keyboardType: 'number-pad'
-                    }}
-                    invalid={
-                        this.state.invalidCardNumber && this.state.isCardNumberInitialized
-                    }
-                    onChange={this.onCardNumberChange}
-                    value={this.state.cardNumber} />
+                    <InputComponent
+                        options={{
+                            placeholder: 'Kart No',
+                            maxLength: 16,
+                            keyboardType: 'number-pad'
+                        }}
+                        invalid={
+                            this.state.invalidCardNumber && this.state.isCardNumberInitialized
+                        }
+                        onChange={this.onCardNumberChange}
+                        value={this.state.cardNumber} />
 
-                <View style={styles.row}>
+                    <View style={styles.row}>
 
-                    <View style={styles.inputContainer}>
-                        <InputComponent
-                            options={{
-                                placeholder: 'Ay',
-                                maxLength: 2,
-                                keyboardType: 'number-pad'
-                            }}
-                            invalid={
-                                this.state.invalidExpireMonth && this.state.isExpireMonthInitialized
-                            }
-                            onChange={this.onExpireMonthChange}
-                            value={this.state.expireMonth} />
-                    </View>
+                        <View style={styles.inputContainer}>
+                            <InputComponent
+                                options={{
+                                    placeholder: 'Ay',
+                                    maxLength: 2,
+                                    keyboardType: 'number-pad'
+                                }}
+                                invalid={
+                                    this.state.invalidExpireMonth && this.state.isExpireMonthInitialized
+                                }
+                                onChange={this.onExpireMonthChange}
+                                value={this.state.expireMonth} />
+                        </View>
 
-                    <View style={styles.inputContainer}>
-                        <InputComponent
-                            options={{
-                                placeholder: 'Yıl',
-                                maxLength: 2,
-                                keyboardType: 'number-pad'
-                            }}
-                            invalid={
-                                this.state.invalidExpireYear && this.state.isExpireYearInitialized
-                            }
-                            onChange={this.onExpireYearChange}
-                            value={this.state.expireYear} />
+                        <View style={styles.inputContainer}>
+                            <InputComponent
+                                options={{
+                                    placeholder: 'Yıl',
+                                    maxLength: 2,
+                                    keyboardType: 'number-pad'
+                                }}
+                                invalid={
+                                    this.state.invalidExpireYear && this.state.isExpireYearInitialized
+                                }
+                                onChange={this.onExpireYearChange}
+                                value={this.state.expireYear} />
+                        </View>
+
                     </View>
 
                 </View>
-
                 {
                     // <TermsComponent />
                 }
@@ -167,6 +169,7 @@ class AddNewCardScreen extends React.PureComponent {
     }
 }
 const styles = StyleSheet.create({
+    container: { flex: 1, justifyContent: 'space-between' },
     header: { flexDirection: 'row' },
     imageContainer: { margin: RFValue(10, 600), marginLeft: RFValue(12, 600) },
     caseImage: { width: RFValue(95, 600), height: RFValue(105, 600), borderRadius: 8 },

@@ -42,7 +42,7 @@ class SearchScreen extends React.PureComponent {
                         <TextInput
                             value={this.state.text}
                             onChangeText={this.search}
-                            style={styles.searchInput} placeholder={'Search Product'} />
+                            style={styles.searchInput} placeholder={'Ara'} />
                     </View>
                     {
                         this.state.text.length > 0 && (
@@ -67,7 +67,7 @@ class SearchScreen extends React.PureComponent {
                             !this.state.products.length > 0 ?
                                 (
                                     <React.Fragment>
-                                        <HeadingDivider title={'Popular Searches'} />
+                                        <HeadingDivider title={'Popüler aramalar'} />
                                         <SearchFilter onClick={this.search} />
                                     </React.Fragment>
                                 ) :

@@ -10,9 +10,9 @@ const AddressesScreen = ({ navigation, route }) => (
     <View style={styles.container}>
         <AddressList stackNavigation={navigation} navigation={route.params.navigation} footer={() => (
             <React.Fragment>
-                <HeadingDivider title={'Add Address'} />
+                <HeadingDivider title={'Adres ekle'} />
 
-                <ClickableSettingItem title={'Add address'} onClick={() => {
+                <ClickableSettingItem title={'Yeni adres'} onClick={() => {
                     navigation.navigate('searchAddressScreen')
                 }}>
                     <Ionicons color={'#4522A0'} name={'md-locate'} size={32} />

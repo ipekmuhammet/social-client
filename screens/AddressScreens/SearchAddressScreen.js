@@ -41,7 +41,7 @@ class SearchAddressScreen extends React.PureComponent {
                     <Ionicons size={32} name={'md-search'} color={'#5E3FBE'} />
                     <TextInput
                         value={this.state.searchVal}
-                        onChangeText={this.search} placeholder={'Search Address'}
+                        onChangeText={this.search} placeholder={'Adres ara'}
                         style={{ flex: 1, paddingHorizontal: RFValue(16, 600), fontSize: 17 }} />
                 </View>
             </View>
@@ -50,7 +50,7 @@ class SearchAddressScreen extends React.PureComponent {
                 onPress={() => {
                     this.props.setCurrentRegion((region, err) => {
                         if (err) {
-                            this.props.messagePopupRef.showMessage({ message: 'Need permission' })
+                            // this.props.messagePopupRef.showMessage({ message: 'Konumunuzu için izine ihtiyaç var.' })
                         } else {
                             this.props.navigation.navigate('pinAddressScreen', {
                                 region
@@ -61,7 +61,7 @@ class SearchAddressScreen extends React.PureComponent {
                 style={{ flex: 1, display: 'flex', flexDirection: 'row', alignItems: 'center', marginHorizontal: RFValue(6, 600) }}>
                 <View style={{ flex: 1, flexDirection: 'row', marginHorizontal: RFValue(10, 600), alignItems: 'center' }}>
                     <Ionicons size={32} name={'md-locate'} color={'#5E3FBE'} />
-                    <Text style={{ flex: 1, paddingHorizontal: RFValue(16, 600), fontSize: 17 }}>Use current location</Text>
+                    <Text style={{ flex: 1, paddingHorizontal: RFValue(16, 600), fontSize: 17 }}>Şuanki konumu kullan</Text>
                 </View>
             </TouchableOpacity>
 
