@@ -6,31 +6,34 @@ import { RFValue } from 'react-native-responsive-fontsize'
 
 import { setMessagePopupRef } from '../../actions/global-actions'
 
-const GlobalMessagePopup = ({ children, setMessagePopupRef }) => (
-    <View pointerEvents='none' style={{
-        ...StyleSheet.absoluteFillObject,
-        zIndex: 1000,
-        elevation: 0.01,
-        top: 100
-    }}>
-        <FlashMessage
-            ref={setMessagePopupRef}
-            position='top'
-            MessageComponent={(source) => (
-                <View style={styles.container}>
-                    <View style={styles.iconContainer}>
-                        {children}
-                    </View>
-                    <View style={styles.titleContainer}>
-                        <Text numberOfLines={3} style={styles.title}>{source.message.message}</Text>
-                    </View>
-                </View>
-            )}
-        />
-    </View>
-)
+class GlobalMessagePopup extends React.PureComponent {
+
+    messageComponent = (source) => (
+        <View style={styles.container}>
+            <View style={styles.iconContainer}>
+                {this.props.children}
+            </View>
+            <View style={styles.titleContainer}>
+                <Text numberOfLines={3} style={styles.title}>{source.message.message}</Text>
+            </View>
+        </View>
+    )
+
+    render() {
+        return (
+            <View pointerEvents='none' style={styles.absoluteContainer}>
+                <FlashMessage
+                    ref={this.props.setMessagePopupRef}
+                    position='top'
+                    MessageComponent={this.messageComponent}
+                />
+            </View>
+        )
+    }
+}
 
 const styles = StyleSheet.create({
+    absoluteContainer: { ...StyleSheet.absoluteFillObject, zIndex: 1000, elevation: 0.01, top: 100 },
     container: { flex: 1, height: RFValue(80, 600), margin: RFValue(12, 600), borderRadius: 6, backgroundColor: 'white', display: 'flex', flexDirection: 'row' },
     iconContainer: { alignItems: 'center', justifyContent: 'center', marginHorizontal: RFValue(12, 600) },
     titleContainer: { flex: 1, alignItems: 'flex-start', justifyContent: 'center', marginHorizontal: RFValue(12, 600), backgroundColor: 'white' },

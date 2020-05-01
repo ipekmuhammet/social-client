@@ -6,44 +6,49 @@ import Modal, { ModalButton, ModalFooter, ModalContent } from 'react-native-moda
 
 import { addAddress } from '../../actions/actions4'
 
-const ConfirmAccuratePinPopup = ({ scaleAnimationModal, setPopupState, region }) => (
-    <Modal
-        onTouchOutside={() => {
-            setPopupState(false)
-        }}
-        width={0.9}
-        visible={scaleAnimationModal}
-        onSwipeOut={() => setPopupState(false)}
-        onHardwareBackPress={() => {
-            setPopupState(false)
-            return true
-        }}
-        footer={
-            <ModalFooter style={styles.footer}>
-                <ModalButton
-                    text='Hayır'
-                    textStyle={styles.buttonText}
-                    style={styles.buttonNo}
-                    onPress={() => {
-                        setPopupState(false)
-                    }}
-                    key='button-1' />
-                <ModalButton
-                    text='Evet'
-                    textStyle={styles.buttonText}
-                    style={styles.buttonYes}
-                    onPress={() => {
-                        setPopupState(false, true, region)
-                    }}
-                    key='button-2' />
-            </ModalFooter>
-        }>
-        <ModalContent style={styles.content}>
-            <Image style={styles.contentImage} resizeMode={'contain'} source={require('../../assets/pin.png')} />
-            <Text style={styles.contentText}>Siparişiniz haritadaki konuma teslim edilecektir. Konumunun doğru olduğuna emin misin ?</Text>
-        </ModalContent>
-    </Modal>
-)
+class ConfirmAccuratePinPopup extends React.PureComponent {
+
+    close = () => {
+        this.props.setPopupState(false)
+        return true
+    }
+
+    onConfirm = () => {
+        this.props.setPopupState(false, true, this.props.region)
+    }
+
+    render() {
+        return (
+            <Modal
+                onTouchOutside={this.close}
+                width={0.9}
+                visible={this.props.scaleAnimationModal}
+                onSwipeOut={this.close}
+                onHardwareBackPress={this.close}
+                footer={
+                    <ModalFooter style={styles.footer}>
+                        <ModalButton
+                            text='Hayır'
+                            textStyle={styles.buttonText}
+                            style={styles.buttonNo}
+                            onPress={this.close}
+                            key='button-1' />
+                        <ModalButton
+                            text='Evet'
+                            textStyle={styles.buttonText}
+                            style={styles.buttonYes}
+                            onPress={this.onConfirm}
+                            key='button-2' />
+                    </ModalFooter>
+                }>
+                <ModalContent style={styles.content}>
+                    <Image style={styles.contentImage} resizeMode={'contain'} source={require('../../assets/pin.png')} />
+                    <Text style={styles.contentText}>Siparişiniz haritadaki konuma teslim edilecektir. Konumunun doğru olduğuna emin misin ?</Text>
+                </ModalContent>
+            </Modal>
+        )
+    }
+}
 
 const styles = StyleSheet.create({
     footer: { height: RFValue(42, 600) },

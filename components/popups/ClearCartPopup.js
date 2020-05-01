@@ -11,47 +11,53 @@ import Modal, {
 import { clearCart } from '../../actions/actions1'
 import { setClearCartPopupState } from '../../actions/global-actions'
 
-const ClearCartPopup = ({ clearCartPopupState, setClearCartPopupState, clearCart, token }) => (
-    <Modal
-        onTouchOutside={() => {
-            setClearCartPopupState(false)
-        }}
-        width={0.9}
-        visible={clearCartPopupState}
-        onSwipeOut={() => setClearCartPopupState(false)}
-        onHardwareBackPress={() => {
-            setClearCartPopupState(false)
-            return true
-        }}
-        modalTitle={
-            <ModalTitle
-                style={styles.title}
-                textStyle={styles.titleText}
-                title='Sepeti boşatmak istediğinden emin misin?'
-                hasTitleBar={false} />
-        }
-        footer={
-            <ModalFooter style={styles.footer}>
-                <ModalButton
-                    text='Hayır'
-                    textStyle={styles.buttonText}
-                    style={styles.buttonNo}
-                    onPress={() => {
-                        setClearCartPopupState(false)
-                    }}
-                    key='button-1' />
-                <ModalButton
-                    text='Evet'
-                    textStyle={styles.buttonText}
-                    style={styles.buttonYes}
-                    onPress={() => {
-                        setClearCartPopupState(false)
-                        clearCart(token)
-                    }}
-                    key='button-2' />
-            </ModalFooter>
-        } />
-)
+class ClearCartPopup extends React.PureComponent {
+
+    close = () => {
+        this.props.setClearCartPopupState(false)
+        return true
+    }
+
+    onConfirm = () => {
+        this.props.setClearCartPopupState(false)
+        this.props.clearCart(this.props.token)
+    }
+
+    render() {
+        return (
+            <Modal
+                onTouchOutside={this.close}
+                width={0.9}
+                visible={this.props.clearCartPopupState}
+                onSwipeOut={this.close}
+                onHardwareBackPress={this.close}
+                modalTitle={
+                    <ModalTitle
+                        style={styles.title}
+                        textStyle={styles.titleText}
+                        title='Sepeti boşatmak istediğinden emin misin?'
+                        hasTitleBar={false} />
+                }
+                footer={
+                    <ModalFooter style={styles.footer}>
+                        <ModalButton
+                            text='Hayır'
+                            textStyle={styles.buttonText}
+                            style={styles.buttonNo}
+                            onPress={this.close}
+                            key='button-1' />
+                        <ModalButton
+                            text='Evet'
+                            textStyle={styles.buttonText}
+                            style={styles.buttonYes}
+                            onPress={this.onConfirm}
+                            key='button-2' />
+                    </ModalFooter>
+                } />
+        )
+    }
+}
+
 
 const styles = StyleSheet.create({
     footer: { height: RFValue(42, 600) },

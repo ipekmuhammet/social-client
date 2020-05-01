@@ -6,50 +6,54 @@ import { RFValue } from 'react-native-responsive-fontsize'
 //  import { expo } from '../../app.json'
 //  expo.version // current version
 
-const NeedUpdatePopup = () => (
-    <Modal
-        onTouchOutside={() => {
-            // setPopupState({ scaleAnimationModal: false })
-        }}
-        width={0.9}
-        visible={true}
-        onSwipeOut={() => {
-            // setPopupState({ scaleAnimationModal: false })
-        }}
-        onHardwareBackPress={() => {
-            // setPopupState({ scaleAnimationModal: false })
-            return true
-        }}
-        footer={
-            <ModalFooter style={styles.footer}>
+class NeedUpdatePopup extends React.PureComponent {
 
-                <ModalButton
-                    text='Close'
-                    textStyle={styles.buttonText}
-                    style={styles.buttonNo}
-                    onPress={() => {
-                        // setPopupState({ scaleAnimationModal: false })
-                    }}
-                    key='button-1' />
+    close = () => {
+        console.log('Close App')
+        this.props.setPopupState({ scaleAnimationModal: false })
+        return true
+    }
 
-                <ModalButton
-                    text='Update'
-                    textStyle={styles.buttonText}
-                    style={styles.buttonYes}
-                    onPress={() => {
-                        // setPopupState({ scaleAnimationModal: false })
-                    }}
-                    key='button-2' />
+    onConfirm = () => {
+        console.log('Go to playstore')
+    }
 
-            </ModalFooter>
-        }>
+    render() {
+        return (
+            <Modal
+                onTouchOutside={this.close}
+                width={0.9}
+                visible={true}
+                onSwipeOut={this.close}
+                onHardwareBackPress={this.close}
+                footer={
+                    <ModalFooter style={styles.footer}>
 
-        <ModalContent style={styles.content}>
-            <Text style={styles.text}>There are more recent version of our application. Please update to continue.</Text>
-        </ModalContent>
+                        <ModalButton
+                            text='Close'
+                            textStyle={styles.buttonText}
+                            style={styles.buttonNo}
+                            onPress={this.close}
+                            key='button-1' />
 
-    </Modal>
-)
+                        <ModalButton
+                            text='Update'
+                            textStyle={styles.buttonText}
+                            style={styles.buttonYes}
+                            onPress={this.onConfirm}
+                            key='button-2' />
+
+                    </ModalFooter>
+                }>
+
+                <ModalContent style={styles.content}>
+                    <Text style={styles.text}>There are more recent version of our application. Please update to continue.</Text>
+                </ModalContent>
+
+            </Modal>
+        )
+    }
+}
 
 const styles = StyleSheet.create({
     footer: { height: RFValue(42, 600) },
