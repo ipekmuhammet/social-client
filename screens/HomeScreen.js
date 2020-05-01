@@ -1,11 +1,10 @@
 import React from 'react'
-import { RFValue } from 'react-native-responsive-fontsize'
 import { connect } from 'react-redux'
-import { FlatList, ImageBackground, StyleSheet } from 'react-native'
+import { FlatList } from 'react-native'
 
 import Category from '../components/Category'
-import banner from '../assets/banner.jpg'
 import EmptyCategory from '../components/EmptyCategory'
+import Slider from '../components/Slider'
 
 
 const formatData = (data, numColumns) => {
@@ -21,27 +20,24 @@ const formatData = (data, numColumns) => {
 }
 
 
-const HomeScreen = ({ categories, navigation }) => (
-	<FlatList
-		data={formatData(Object.values(categories), 3)}
-		columnWrapperStyle={{ justifyContent: 'space-between' }}
-		keyExtractor={(item) => item._id}
-		renderItem={({ item, index }) => item.empty ? <EmptyCategory /> : <Category navigation={navigation} index={index} data={item} />
-		}
-		numColumns={3}
-		ListHeaderComponent={
-			<ImageBackground
-				style={styles.sliderImage}
-				source={banner}
-				resizeMode={'cover'}
-			/>
-		}
-	/>
-)
+class HomeScreen extends React.PureComponent {
+	keyExtractor = (item) => item._id
 
-const styles = StyleSheet.create({
-	sliderImage: { height: RFValue(180, 600), left: 0, right: 0 }
-})
+	renderItem = ({ item, index }) => item.empty ? <EmptyCategory /> : <Category navigation={this.props.navigation} index={index} data={item} />
+
+	render() {
+		return (
+			<FlatList
+				data={formatData(Object.values(this.props.categories), 3)}
+				columnWrapperStyle={{ justifyContent: 'space-between' }}
+				keyExtractor={this.keyExtractor}
+				renderItem={this.renderItem}
+				numColumns={3}
+				ListHeaderComponent={<Slider />}
+			/>
+		)
+	}
+}
 
 const mapStateToProps = ({
 	reducer4: {
