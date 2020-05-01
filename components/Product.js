@@ -14,8 +14,12 @@ class Product extends React.PureComponent {
 		increaseProductQuantity(_id)
 	}
 
+	onProductClick = () => {
+		this.props.navigation.navigate('fullProductScreen', this.props.data)
+	}
+
 	render() {
-		const { _id, name, price, category, image } = this.props.data
+		const { name, price, category, image } = this.props.data
 
 		return (
 			<View style={styles.container}>
@@ -25,9 +29,7 @@ class Product extends React.PureComponent {
 					<Text style={styles.addProductIcon}>+</Text>
 				</TouchableOpacity>
 
-				<TouchableOpacity style={[styles.child, styles.productImageContainer]} onPress={() => {
-					this.props.navigation.navigate('fullProductScreen', this.props.data)
-				}}>
+				<TouchableOpacity style={[styles.child, styles.productImageContainer]} onPress={this.onProductClick}>
 					<Image source={{ uri: `${SERVER_URL}/assets/products/${category}/${image}.png` }} resizeMode={'contain'} style={styles.productImage} />
 				</TouchableOpacity>
 

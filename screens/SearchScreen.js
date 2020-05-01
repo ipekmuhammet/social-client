@@ -31,6 +31,10 @@ class SearchScreen extends React.PureComponent {
         }
     }
 
+    clear = () => {
+        this.search('')
+    }
+
     render() {
         return (
             <ScrollView contentContainerStyle={styles.container} behavior={'height'}>
@@ -46,9 +50,7 @@ class SearchScreen extends React.PureComponent {
                     </View>
                     {
                         this.state.text.length > 0 && (
-                            <TouchableOpacity style={styles.iconContainer} onPress={() => {
-                                this.search('')
-                            }}>
+                            <TouchableOpacity style={styles.iconContainer} onPress={this.clear}>
                                 <Ionicons name={'md-close'} size={32} color={'#6D7891'} />
                             </TouchableOpacity>
                         )

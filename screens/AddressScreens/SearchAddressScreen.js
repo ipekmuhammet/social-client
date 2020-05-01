@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { ScrollView, View, FlatList, TouchableOpacity, Text, TextInput, Alert } from 'react-native'
+import { View, FlatList, TouchableOpacity, Text, TextInput } from 'react-native'
 import axios from 'axios'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { Ionicons } from '@expo/vector-icons'
@@ -14,23 +14,41 @@ class SearchAddressScreen extends React.PureComponent {
         locations: []
     }
 
+    onSearchResult = ({ data }) => {
+        this.setState({ locations: data.predictions })
+    }
+
     search = (text) => {
         this.setState({ searchVal: text })
         axios.get(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=istanbul ${text}&key=AIzaSyDOKcW0tFvi_T9vFyERfUDh20IxfTfBsmA&components=country:tr&origin=41.0381511,28.9418645`)
-            .then(({ data }) => {
-                this.setState({ locations: data.predictions })
-            })
+            .then(this.onSearchResult)
+    }
+
+    onAddress = (data) => {
+        this.props.navigation.navigate('pinAddressScreen', {
+            region: {
+                latitude: data.result.geometry.location.lat,
+                longitude: data.result.geometry.location.lng,
+            }
+        })
     }
 
     onAddressClick = (item) => {
-        this.props.setRegionByPlace(item.place_id, (data) => {
+        this.props.setRegionByPlace(item.place_id, this.onAddress)
+    }
+
+    onCurrentRegion = (region, err) => {
+        if (err) {
+            // this.props.messagePopupRef.showMessage({ message: 'Konumunuzu için izine ihtiyaç var.' })
+        } else {
             this.props.navigation.navigate('pinAddressScreen', {
-                region: {
-                    latitude: data.result.geometry.location.lat,
-                    longitude: data.result.geometry.location.lng,
-                }
+                region
             })
-        })
+        }
+    }
+
+    useCurrentLocation = () => {
+        this.props.setCurrentRegion(this.onCurrentRegion)
     }
 
     renderListHeaderComponent = () => (
@@ -47,17 +65,7 @@ class SearchAddressScreen extends React.PureComponent {
             </View>
 
             <TouchableOpacity
-                onPress={() => {
-                    this.props.setCurrentRegion((region, err) => {
-                        if (err) {
-                            // this.props.messagePopupRef.showMessage({ message: 'Konumunuzu için izine ihtiyaç var.' })
-                        } else {
-                            this.props.navigation.navigate('pinAddressScreen', {
-                                region
-                            })
-                        }
-                    })
-                }}
+                onPress={this.useCurrentLocation}
                 style={{ flex: 1, display: 'flex', flexDirection: 'row', alignItems: 'center', marginHorizontal: RFValue(6, 600) }}>
                 <View style={{ flex: 1, flexDirection: 'row', marginHorizontal: RFValue(10, 600), alignItems: 'center' }}>
                     <Ionicons size={32} name={'md-locate'} color={'#5E3FBE'} />
