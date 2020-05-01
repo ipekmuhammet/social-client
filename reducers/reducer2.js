@@ -30,10 +30,11 @@ export default (state = INITIAL_STATE, action) => {
 
         case DELETE_CARD: {
             state.cards.splice(state.cards.indexOf(state.cards.find(card => card.cardToken === action.payload.cardToken)), 1)
-            return Object.assign({}, state, { cards: [...state.cards] })
+            return Object.assign({}, state, { cards: [...state.cards], selectedCard: null })
         }
 
-        case DELETE_ADDRESS:
+        case DELETE_ADDRESS: return Object.assign({}, state, { ...action.payload, selectedAddress: null })
+
         case SAVE_ADDRESS:
         case SET_SELECTED_ADDRESS:
         case SET_SELECTED_CARD:

@@ -106,7 +106,9 @@ class ResetPasswordScreen extends React.PureComponent {
                 <InputComponent
                     options={{
                         keyboardType: 'phone-pad',
+                        textContentType: 'telephoneNumber',
                         placeholder: 'Phone Number',
+                        maxLength: 10
                     }}
                     invalid={this.state.invalidPhoneNumber && this.state.isPhoneNumberInitialized}
                     value={this.state.phoneNumber}
@@ -114,9 +116,9 @@ class ResetPasswordScreen extends React.PureComponent {
 
                 <InputComponent
                     options={{
-                        maxLength: 4,
                         keyboardType: 'number-pad',
                         placeholder: 'Activation Code',
+                        maxLength: 4
                     }}
                     invalid={this.state.invalidActivationCode && this.state.isActivationCodeInitialized}
                     value={this.state.activationCode}

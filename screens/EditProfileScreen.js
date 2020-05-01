@@ -75,7 +75,8 @@ class EditProfileScreen extends React.PureComponent {
                         options={{
                             keyboardType: 'phone-pad',
                             textContentType: 'telephoneNumber',
-                            placeholder: 'Phone Number'
+                            placeholder: 'Phone Number',
+                            maxLength: 10
                         }}
                         value={this.state.phoneNumber}
                         disabled

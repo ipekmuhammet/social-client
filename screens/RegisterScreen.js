@@ -1,6 +1,6 @@
 import React from 'react'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { ScrollView, View, StyleSheet, Alert } from 'react-native'
+import { ScrollView, View, StyleSheet, Text } from 'react-native'
 import axios from 'axios'
 import { SERVER_URL } from 'react-native-dotenv'
 import { Ionicons } from '@expo/vector-icons'
@@ -58,7 +58,7 @@ class RegisterScreen extends React.PureComponent {
     */
 
     onPhoneChange = (phoneNumber) => {
-        joi.string().trim().strict().min(10).max(13).validate(phoneNumber, (err, val) => {
+        joi.string().trim().strict().min(10).max(10).validate(phoneNumber, (err, val) => {
             this.setState({ phoneNumber, isPhoneNumberInitialized: true, invalidPhoneNumber: !!err })
         })
     }
@@ -101,18 +101,15 @@ class RegisterScreen extends React.PureComponent {
                         options={{
                             keyboardType: 'phone-pad',
                             textContentType: 'telephoneNumber',
-                            placeholder: 'Phone Number'
+                            placeholder: 'Phone Number',
+                            maxLength: 10
                         }}
                         invalid={this.state.invalidPhoneNumber && this.state.isPhoneNumberInitialized}
                         value={this.state.phoneNumber}
                         onChange={this.onPhoneChange}>
-
                         <InputIcon>
-                            <Ionicons size={32} name={'md-phone-portrait'}  color={
-                                this.state.invalidPhoneNumber && this.state.isPhoneNumberInitialized ? 'red' : '#5D3EBD'
-                            } />
+                            <Text style={{ color: 'black', fontSize: RFValue(18, 600) }}>90</Text>
                         </InputIcon>
-
                     </InputComponent>
 
                     <InputComponent

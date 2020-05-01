@@ -15,36 +15,53 @@ class AddNewCardScreen extends React.PureComponent {
     state = {
         cardAlias: '',
         cardHolderName: this.props.user.nameSurname,
-        cardNumber: '4766620000000001',
+        cardNumber: '',
         expireYear: '',
         expireMonth: '',
-        CVC2: ''
-    }
 
-    onAliasChange = (cardAlias) => {
-        this.setState({ cardAlias })
+        invalidCardAlias: false,
+        invalidCardHolderName: false,
+        invalidCardNumber: false,
+        invalidExpireYear: false,
+        invalidExpireYear: false,
+        invalidExpireMonth: false,
+
+        isCardAliasInitialized: false,
+        isCardHolderNameInitialized: true,
+        isCardNumberInitialized: false,
+        isExpireYearInitialized: false,
+        isExpireMonthInitialized: false
     }
 
     onContinueClick = () => {
-        this.props.saveCard(this.state, () => {
+        const { cardAlias, cardHolderName, cardNumber, expireYear, expireMonth } = this.state
+        this.props.saveCard(({ cardAlias, cardHolderName, cardNumber, expireYear: '20' + expireYear, expireMonth }), () => {
             this.props.navigation.goBack()
         })
     }
 
-    onCardNumberChange = (cardNumber) => {
-        this.setState({ cardNumber })
+    onAliasChange = (cardAlias) => {
+        joi.string().min(1).validate(cardAlias, (err, val) => {
+            this.setState({ cardAlias, isCardAliasInitialized: true, invalidCardAlias: !!err })
+        })
     }
 
-    onCvcChange = (CVC2) => {
-        this.setState({ CVC2 })
+    onCardNumberChange = (cardNumber) => {
+        joi.string().min(16).max(16).creditCard().validate(cardNumber, (err, val) => {
+            this.setState({ cardNumber, isCardNumberInitialized: true, invalidCardNumber: !!err })
+        })
     }
 
     onExpireMonthChange = (expireMonth) => {
-        this.setState({ expireMonth })
+        joi.string().min(2).max(2).validate(expireMonth, (err, val) => {
+            this.setState({ expireMonth, isExpireMonthInitialized: true, invalidExpireMonth: !!err })
+        })
     }
 
     onExpireYearChange = (expireYear) => {
-        this.setState({ expireYear })
+        joi.string().min(2).max(2).validate(expireYear, (err, val) => {
+            this.setState({ expireYear, isExpireYearInitialized: true, invalidExpireYear: !!err })
+        })
     }
 
     render() {
@@ -75,39 +92,39 @@ class AddNewCardScreen extends React.PureComponent {
 
                 <InputComponent
                     options={{
-                        placeholder: 'Card Label (Personal etc.)'
+                        placeholder: 'Card Label (Personal etc.)',
+                        maxLength: 20
                     }}
                     onChange={this.onAliasChange}
+                    invalid={
+                        this.state.invalidCardAlias && this.state.isCardAliasInitialized
+                    }
                     value={this.state.cardAlias} />
 
                 <InputComponent
                     options={{
                         placeholder: 'Card No',
+                        maxLength: 16,
                         keyboardType: 'number-pad'
                     }}
+                    invalid={
+                        this.state.invalidCardNumber && this.state.isCardNumberInitialized
+                    }
                     onChange={this.onCardNumberChange}
                     value={this.state.cardNumber} />
 
                 <View style={styles.row}>
 
-                    {
-                        //  <View style={styles.inputContainer}>
-                        //      <InputComponent
-                        //          options={{
-                        //              placeholder: 'CVC2',
-                        //              keyboardType: 'number-pad'
-                        //          }}
-                        //          onChange={this.onCvcChange}
-                        //          value={this.state.CVC2} />
-                        //  </View>
-                    }
-
                     <View style={styles.inputContainer}>
                         <InputComponent
                             options={{
                                 placeholder: 'Month',
+                                maxLength: 2,
                                 keyboardType: 'number-pad'
                             }}
+                            invalid={
+                                this.state.invalidExpireMonth && this.state.isExpireMonthInitialized
+                            }
                             onChange={this.onExpireMonthChange}
                             value={this.state.expireMonth} />
                     </View>
@@ -116,8 +133,12 @@ class AddNewCardScreen extends React.PureComponent {
                         <InputComponent
                             options={{
                                 placeholder: 'Year',
+                                maxLength: 2,
                                 keyboardType: 'number-pad'
                             }}
+                            invalid={
+                                this.state.invalidExpireYear && this.state.isExpireYearInitialized
+                            }
                             onChange={this.onExpireYearChange}
                             value={this.state.expireYear} />
                     </View>
@@ -128,7 +149,16 @@ class AddNewCardScreen extends React.PureComponent {
 
                 <View style={styles.buttonDivider} />
 
-                <ButtonComponent text={'Continue'} onClick={this.onContinueClick} />
+                <ButtonComponent
+                    text={'Continue'}
+                    onClick={this.onContinueClick}
+                    disabled={
+                        this.state.invalidCardAlias || !this.state.isCardAliasInitialized ||
+                        this.state.invalidCardNumber || !this.state.isCardNumberInitialized ||
+                        this.state.invalidExpireYear || !this.state.isExpireYearInitialized ||
+                        this.state.invalidExpireMonth || !this.state.isExpireMonthInitialized
+                    }
+                />
 
             </ScrollView>
         )

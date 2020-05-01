@@ -48,7 +48,8 @@ class ActivationScreen extends React.PureComponent {
                     invalid={this.state.invalidActivationCode && this.state.isActivationCodeInitialized}
                     options={{
                         keyboardType: 'number-pad',
-                        placeholder: 'Activation Code'
+                        placeholder: 'Activation Code',
+                        maxLength: 4
                     }} />
 
                 <ButtonComponent
