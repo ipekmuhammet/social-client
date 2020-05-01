@@ -3,46 +3,51 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import { StyleSheet } from 'react-native'
 import Modal, { ModalTitle, ModalButton, ModalFooter } from 'react-native-modals'
 
-const DeleteAddressPopup = ({ scaleAnimationModal, setPopupState }) => (
-    <Modal
-        onTouchOutside={() => {
-            setPopupState({ scaleAnimationModal: false })
-        }}
-        width={0.9}
-        visible={scaleAnimationModal}
-        onSwipeOut={() => setPopupState({ scaleAnimationModal: false })}
-        onHardwareBackPress={() => {
-            setPopupState({ scaleAnimationModal: false })
-            return true
-        }}
-        modalTitle={
-            <ModalTitle
-                style={styles.title}
-                textStyle={styles.titleText}
-                title='Are you sure you want to delete you address?'
-                hasTitleBar={false} />
-        }
-        footer={
-            <ModalFooter style={styles.footer}>
-                <ModalButton
-                    text='No'
-                    textStyle={styles.buttonText}
-                    style={styles.buttonNo}
-                    onPress={() => {
-                        setPopupState({ scaleAnimationModal: false })
-                    }}
-                    key='button-1' />
-                <ModalButton
-                    text='Yes'
-                    textStyle={styles.buttonText}
-                    style={styles.buttonYes}
-                    onPress={() => {
-                        setPopupState({ scaleAnimationModal: false }, true)
-                    }}
-                    key='button-2' />
-            </ModalFooter>
-        } />
-)
+class DeleteAddressPopup extends React.PureComponent {
+
+    close = () => {
+        this.props.setPopupState({ scaleAnimationModal: false })
+        return true
+    }
+
+    onConfirm = () => {
+        this.props.setPopupState({ scaleAnimationModal: false }, true)
+    }
+
+    render() {
+        return (
+            <Modal
+                onTouchOutside={this.close}
+                width={0.9}
+                visible={this.props.scaleAnimationModal}
+                onSwipeOut={this.close}
+                onHardwareBackPress={this.close}
+                modalTitle={
+                    <ModalTitle
+                        style={styles.title}
+                        textStyle={styles.titleText}
+                        title='Adresi silmek istediğine emin misin ?'
+                        hasTitleBar={false} />
+                }
+                footer={
+                    <ModalFooter style={styles.footer}>
+                        <ModalButton
+                            text='Hayır'
+                            textStyle={styles.buttonText}
+                            style={styles.buttonNo}
+                            onPress={this.close}
+                            key='button-1' />
+                        <ModalButton
+                            text='Evet'
+                            textStyle={styles.buttonText}
+                            style={styles.buttonYes}
+                            onPress={this.onConfirm}
+                            key='button-2' />
+                    </ModalFooter>
+                } />
+        )
+    }
+}
 
 const styles = StyleSheet.create({
     footer: { height: RFValue(42, 600) },

@@ -9,6 +9,8 @@ import joi from 'react-native-joi'
 import { login } from '../actions/actions4'
 import ButtonComponent from '../components/ButtonComponent'
 import InputComponent from '../components/InputComponent'
+import InputIcon from '../components/InputIcon'
+import { Ionicons } from '@expo/vector-icons'
 
 class LoginScreen extends React.Component {
 
@@ -32,9 +34,13 @@ class LoginScreen extends React.Component {
     saveCart = () => {
         const { cart, token } = this.props
         if (token) {
-            axios.post(`${SERVER_URL}/user/cart`, cart)
+            axios.post(`${SERVER_URL}/user/cart`, Object.values(cart).map(({ _id, quantity }) => ({ _id, quantity })))
+                .then(({ status, data }) => {
+                    if (status === 200) {
+                        AsyncStorage.setItem('cart', JSON.stringify(data))
+                    }
+                })
         }
-        AsyncStorage.setItem('cart', JSON.stringify(cart))
     }
 
     onLoginClick = () => {
@@ -53,15 +59,7 @@ class LoginScreen extends React.Component {
     }
 
     onPhoneChange = (phoneNumber) => {
-        this.setState({ phoneNumber })
-    }
-
-    onPasswordChange = (password) => {
-        this.setState({ password })
-    }
-
-    onPhoneChange = (phoneNumber) => {
-        joi.string().trim().strict().min(10).max(13).validate(phoneNumber, (err, val) => {
+        joi.string().trim().strict().min(10).max(10).validate(phoneNumber, (err, val) => {
             this.setState({ phoneNumber, isPhoneNumberInitialized: true, invalidPhoneNumber: !!err })
         })
     }
@@ -98,28 +96,41 @@ class LoginScreen extends React.Component {
                         options={{
                             keyboardType: 'phone-pad',
                             textContentType: 'telephoneNumber',
-                            placeholder: 'Phone Number'
+                            placeholder: 'Telefon numarası',
+                            maxLength: 10
                         }}
                         invalid={this.state.invalidPhoneNumber && this.state.isPhoneNumberInitialized}
                         value={this.state.phoneNumber}
-                        onChange={this.onPhoneChange} />
+                        onChange={this.onPhoneChange}>
+                        <InputIcon>
+                            <Text style={{ color: 'black', fontSize: RFValue(18, 600) }}>90</Text>
+                        </InputIcon>
+                    </InputComponent>
 
                     <InputComponent
                         options={{
                             secureTextEntry: true,
                             textContentType: 'password',
-                            placeholder: 'Password (min 4 characters)',
+                            placeholder: 'Şifre (en az 4 karakter)',
                         }}
                         invalid={this.state.invalidPassword && this.state.isPasswordInitialized}
                         value={this.state.password}
-                        onChange={this.onPasswordChange} />
+                        onChange={this.onPasswordChange}>
+
+                        <InputIcon>
+                            <Ionicons size={32} name={'md-lock'} color={
+                                this.state.invalidPassword && this.state.isPasswordInitialized ? 'red' : '#5D3EBD'
+                            } />
+                        </InputIcon>
+
+                    </InputComponent>
 
                     <ButtonComponent
                         disabled={
                             this.state.invalidPhoneNumber || !this.state.isPhoneNumberInitialized ||
                             this.state.invalidPassword || !this.state.isPasswordInitialized
                         }
-                        text={'Login'}
+                        text={'Giriş yap'}
                         onClick={this.onLoginClick} />
 
                     <View style={styles.child}>
@@ -132,7 +143,7 @@ class LoginScreen extends React.Component {
                 <View>
                     <View style={styles.buttonDivider} />
 
-                    <ButtonComponent text={'Register'} onClick={this.goToRegister} opposite />
+                    <ButtonComponent text={'Kayıt ol'} onClick={this.goToRegister} opposite />
                 </View>
             </ScrollView>
         )

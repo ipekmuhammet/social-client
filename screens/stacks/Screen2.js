@@ -12,7 +12,7 @@ const Screen2 = () => (
         <Stack.Screen
             name='search'
             options={{
-                title: 'Search',
+                title: 'Arama',
                 headerTitleAlign: 'center',
                 headerTintColor: 'white',
                 headerStyle: styles.headerStyle

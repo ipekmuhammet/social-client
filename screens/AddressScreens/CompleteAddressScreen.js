@@ -66,78 +66,81 @@ class CompleteAddressScreen extends React.Component {
 
     render() {
         return (
-            <ScrollView>
+            <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'space-between' }}>
                 <ConfirmAddressPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
-                <View style={styles.mapContainer}>
+                <View>
+                    <View style={styles.mapContainer}>
 
-                    <Map region={this.props.route.params.region} />
+                        <Map region={this.props.route.params.region} />
 
-                    <View style={styles.markerContainer} pointerEvents='none'>
-                        <Image style={styles.marker} source={require('../../assets/map-marker.png')} />
+                        <View style={styles.markerContainer} pointerEvents='none'>
+                            <Image style={styles.marker} source={require('../../assets/map-marker.png')} />
+                        </View>
+
                     </View>
-
+                    <View style={styles.body}>
+                        <View style={styles.inputContainerChild}>
+                            {
+                                //  <View style={styles.inputContainer}>
+                                //      <TextInput
+                                //          placeholder={'Address Icon'}
+                                //          style={styles.input} />
+                                //  </View>
+                            }
+                            <View style={styles.inputContainer}>
+                                <TextInput
+                                    onChangeText={this.onAddressTitleChange}
+                                    value={this.state.addressTitle} placeholder={'Address title (Home, Work)'}
+                                    style={styles.input} />
+                            </View>
+                        </View>
+                        <View style={styles.inputContainerChild}>
+                            <View style={styles.inputContainer}>
+                                <CompleteAddressInput />
+                            </View>
+                        </View>
+                        <View style={styles.inputContainerChild}>
+                            <View style={styles.inputContainer}>
+                                <TextInput
+                                    value={this.state.buildingNo}
+                                    keyboardType={'number-pad'}
+                                    onChangeText={this.onBuildingNoChange}
+                                    placeholder={'Building No'}
+                                    style={styles.input} />
+                            </View>
+                            <View style={styles.inputContainer}>
+                                <TextInput
+                                    value={this.state.floor}
+                                    keyboardType={'number-pad'}
+                                    onChangeText={this.onFloorChange}
+                                    placeholder={'Floor'}
+                                    style={styles.input} />
+                            </View>
+                            <View style={styles.inputContainer}>
+                                <TextInput
+                                    value={this.state.aptNo}
+                                    keyboardType={'number-pad'}
+                                    onChangeText={this.onAptNoChange}
+                                    placeholder={'Apt No'}
+                                    style={styles.input} />
+                            </View>
+                        </View>
+                        <View style={styles.inputContainer}>
+                            <TextInput
+                                onChangeText={this.onDirectionsChange}
+                                value={this.state.directions}
+                                placeholder={'Directions'}
+                                style={styles.input} />
+                        </View>
+                    </View>
                 </View>
-                <View style={styles.body}>
-                    <View style={styles.inputContainerChild}>
-                        {
-                            //  <View style={styles.inputContainer}>
-                            //      <TextInput
-                            //          placeholder={'Address Icon'}
-                            //          style={styles.input} />
-                            //  </View>
-                        }
-                        <View style={styles.inputContainer}>
-                            <TextInput
-                                onChangeText={this.onAddressTitleChange}
-                                value={this.state.addressTitle} placeholder={'Address title (Home, Work)'}
-                                style={styles.input} />
-                        </View>
-                    </View>
-                    <View style={styles.inputContainerChild}>
-                        <View style={styles.inputContainer}>
-                            <CompleteAddressInput />
-                        </View>
-                    </View>
-                    <View style={styles.inputContainerChild}>
-                        <View style={styles.inputContainer}>
-                            <TextInput
-                                value={this.state.buildingNo}
-                                keyboardType={'number-pad'}
-                                onChangeText={this.onBuildingNoChange}
-                                placeholder={'Building No'}
-                                style={styles.input} />
-                        </View>
-                        <View style={styles.inputContainer}>
-                            <TextInput
-                                value={this.state.floor}
-                                keyboardType={'number-pad'}
-                                onChangeText={this.onFloorChange}
-                                placeholder={'Floor'}
-                                style={styles.input} />
-                        </View>
-                        <View style={styles.inputContainer}>
-                            <TextInput
-                                value={this.state.aptNo}
-                                keyboardType={'number-pad'}
-                                onChangeText={this.onAptNoChange}
-                                placeholder={'Apt No'}
-                                style={styles.input} />
-                        </View>
-                    </View>
-                    <View style={styles.inputContainer}>
-                        <TextInput
-                            onChangeText={this.onDirectionsChange}
-                            value={this.state.directions}
-                            placeholder={'Directions'}
-                            style={styles.input} />
-                    </View>
-                    <ButtonComponent
-                        disabled={
-                            !(this.state.addressTitle.length > 0) || !(this.props.address.length > 0)
-                        }
-                        text={'Save'}
-                        onClick={this.onSaveClick} />
-                </View>
+                <ButtonComponent
+                    disabled={
+                        !(this.state.addressTitle.length > 0) || !(this.props.address.length > 0)
+                    }
+                    text={'Kaydet'}
+                    onClick={this.onSaveClick} />
+
             </ScrollView>
         )
     }

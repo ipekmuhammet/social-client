@@ -23,7 +23,7 @@ class LogoutItem extends React.PureComponent {
         return (
             <React.Fragment>
             
-                <LogoutPopup navigation={this.props.navigation} scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
+                <LogoutPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
 
                 <TouchableOpacity onPress={this.onClick}>
                     <SettingItem title={'Logout'}>

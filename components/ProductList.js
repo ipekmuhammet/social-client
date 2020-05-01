@@ -30,7 +30,7 @@ const ProductList = ({ products }) => (
 		// updateCellsBatchingPeriod={100}		// Performance
 		scrollEnabled={true}
 		showsVerticalScrollIndicator={false}
-		keyExtractor={item => item.id}
+		keyExtractor={item => item._id}
 		renderItem={renderListItem}
 		numColumns={3} />
 )

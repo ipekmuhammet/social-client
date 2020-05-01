@@ -3,36 +3,39 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import { Image, Text, StyleSheet } from 'react-native'
 import Modal, { ModalButton, ModalFooter, ModalContent } from 'react-native-modals'
 
-const PasswordChangedPopup = ({ scaleAnimationModal, setPopupState }) => (
-    <Modal
-        onTouchOutside={() => {
-            setPopupState({ scaleAnimationModal: false })
-        }}
-        width={0.9}
-        visible={scaleAnimationModal}
-        onSwipeOut={() => setPopupState({ scaleAnimationModal: false })}
-        onHardwareBackPress={() => {
-            setPopupState({ scaleAnimationModal: false })
-            return true
-        }}
-        footer={
-            <ModalFooter style={styles.footer}>
-                <ModalButton
-                    text='OK'
-                    textStyle={styles.buttonText}
-                    style={styles.button}
-                    onPress={() => {
-                        setPopupState({ scaleAnimationModal: false })
-                    }}
-                    key='button-1' />
-            </ModalFooter>
-        }>
-        <ModalContent style={styles.content}>
-            <Image style={styles.image} source={require('../../assets/verify-image.jpeg')} />
-            <Text style={styles.text}>Your password is changed</Text>
-        </ModalContent>
-    </Modal>
-)
+class PasswordChangedPopup extends React.PureComponent {
+
+    close = () => {
+        this.props.setPopupState({ scaleAnimationModal: false })
+        return true
+    }
+
+    render() {
+        return (
+            <Modal
+                onTouchOutside={this.close}
+                width={0.9}
+                visible={this.props.scaleAnimationModal}
+                onSwipeOut={this.close}
+                onHardwareBackPress={this.close}
+                footer={
+                    <ModalFooter style={styles.footer}>
+                        <ModalButton
+                            text='OK'
+                            textStyle={styles.buttonText}
+                            style={styles.button}
+                            onPress={this.close}
+                            key='button-1' />
+                    </ModalFooter>
+                }>
+                <ModalContent style={styles.content}>
+                    <Image style={styles.image} source={require('../../assets/verify-image.jpeg')} />
+                    <Text style={styles.text}>Şifre başarılı bir şekilde değiştirildi</Text>
+                </ModalContent>
+            </Modal>
+        )
+    }
+}
 
 const styles = StyleSheet.create({
     footer: { height: RFValue(42, 600) },

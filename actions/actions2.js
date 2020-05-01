@@ -23,38 +23,34 @@ export const setPaymentType = (paymentType) => {
 
 export const saveCard = (card, cb) => {
     return (dispatch) => {
-        //  axios.put(`${SERVER_URL}/user/card`, { card })
-        //      .then(({ status, data }) => {
-        //          if (status === 200) {
-        dispatch({
-            type: SAVE_CARD,
-            payload: {
-                card: {
-                    id: Math.random(),
-                    ...card
+        axios.post(`${SERVER_URL}/user/payment-card`, { card })
+            .then(({ status, data }) => {
+                if (status === 200) {
+                    dispatch({
+                        type: SAVE_CARD,
+                        payload: {
+                            card: data
+                        }
+                    })
+                    cb()
                 }
-                // card: data
-            }
-        })
-        cb()
-        //        }
-        //    })
+            })
     }
 }
 
 export const deleteCard = (cardToken) => {
     return (dispatch) => {
-        //  axios.delete(`${SERVER_URL}/user/card`, { id: cardId })
-        //      .then(({ status }) => {
-        //          if (status === 200) {
-        dispatch({
-            type: DELETE_CARD,
-            payload: {
-                cardToken
-            }
-        })
-        //        }
-        //    })
+        axios.put(`${SERVER_URL}/user/payment-card`, { cardToken })
+            .then(({ status }) => {
+                if (status === 200) {
+                    dispatch({
+                        type: DELETE_CARD,
+                        payload: {
+                            cardToken
+                        }
+                    })
+                }
+            })
     }
 }
 

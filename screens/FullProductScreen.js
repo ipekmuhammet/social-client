@@ -4,17 +4,17 @@ import { ScrollView, View, Image, Text, StyleSheet } from 'react-native'
 import { SERVER_URL } from 'react-native-dotenv'
 import { RFValue } from 'react-native-responsive-fontsize'
 
-import { addProduct } from '../actions/actions1'
+import { increaseProductQuantity } from '../actions/actions1'
 import ButtonComponent from '../components/ButtonComponent'
 
 class FullProductScreen extends React.PureComponent {
 
     onAddToCartClick = () => {
-        this.props.addProduct(this.props.route.params.id)
+        this.props.increaseProductQuantity(this.props.route.params._id)
     }
 
     render() {
-        const { product_name, price, image } = this.props.route.params
+        const { name, price, category, image } = this.props.route.params
 
         return (
             <View style={styles.container}>
@@ -24,7 +24,7 @@ class FullProductScreen extends React.PureComponent {
                         <Image
                             style={styles.image}
                             resizeMode={'contain'}
-                            source={{ uri: `${SERVER_URL}/assets/products/${image}.png` }} />
+                            source={{ uri: `${SERVER_URL}/assets/original-products/${category}/${image}.png` }} />
                     </View>
                     <View style={styles.details}>
 
@@ -33,7 +33,7 @@ class FullProductScreen extends React.PureComponent {
                         </View>
 
                         <View style={styles.textContainer}>
-                            <Text style={styles.productName}>{product_name}</Text>
+                            <Text style={styles.productName}>{name}</Text>
                         </View>
 
                     </View>
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
 })
 
 const mapDispatchToProps = {
-    addProduct
+    increaseProductQuantity
 }
 
 export default connect(null, mapDispatchToProps)(FullProductScreen)

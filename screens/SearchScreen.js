@@ -31,6 +31,10 @@ class SearchScreen extends React.PureComponent {
         }
     }
 
+    clear = () => {
+        this.search('')
+    }
+
     render() {
         return (
             <ScrollView contentContainerStyle={styles.container} behavior={'height'}>
@@ -42,13 +46,11 @@ class SearchScreen extends React.PureComponent {
                         <TextInput
                             value={this.state.text}
                             onChangeText={this.search}
-                            style={styles.searchInput} placeholder={'Search Product'} />
+                            style={styles.searchInput} placeholder={'Ara'} />
                     </View>
                     {
                         this.state.text.length > 0 && (
-                            <TouchableOpacity style={styles.iconContainer} onPress={() => {
-                                this.search('')
-                            }}>
+                            <TouchableOpacity style={styles.iconContainer} onPress={this.clear}>
                                 <Ionicons name={'md-close'} size={32} color={'#6D7891'} />
                             </TouchableOpacity>
                         )
@@ -67,7 +69,7 @@ class SearchScreen extends React.PureComponent {
                             !this.state.products.length > 0 ?
                                 (
                                     <React.Fragment>
-                                        <HeadingDivider title={'Popular Searches'} />
+                                        <HeadingDivider title={'Popüler aramalar'} />
                                         <SearchFilter onClick={this.search} />
                                     </React.Fragment>
                                 ) :

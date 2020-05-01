@@ -1,54 +1,58 @@
-import { AsyncStorage } from 'react-native'
 import axios from 'axios'
 import { SERVER_URL } from 'react-native-dotenv'
 
-export const ADD_PRODUCT = 'ADD_PRODUCT'
+export const CLEAR_CART = 'CLEAR_CART'
 export const DECREASE_PRODUCT_QUANTITY = 'DECREASE_PRODUCT_QUANTITY'
 export const INCREASE_PRODUCT_QUANTITY = 'INCREASE_PRODUCT_QUANTITY'
 export const MAKE_ORDER = 'MAKE_ORDER'
 
-export const makeOrder = (selectedCard, selectedAddress, cb) => {
+export const clearCart = (token) => {
 	return (dispatch) => {
-		const body = { card: selectedCard, address: selectedAddress }
-		axios.post(`${SERVER_URL}/user/order`, body).then(() => {
-			cb()
-
-			dispatch({
-				type: MAKE_ORDER,
-				payload: {
-					status: true
+		if (token) {
+			axios.delete(`${SERVER_URL}/user/cart`).then(({ status }) => {
+				if (status === 200) {
+					dispatch({
+						type: CLEAR_CART
+					})
 				}
 			})
-		}).catch((reason) => {
+		} else {
 			dispatch({
-				type: MAKE_ORDER,
-				payload: {
-					status: false
-				}
+				type: CLEAR_CART
 			})
-		})
+		}
 	}
 }
 
-export const addProduct = (productId) => {
+export const makeOrder = (selectedCard, selectedAddress, cb) => {
 	return (dispatch) => {
-		axios.get(`http://192.168.1.102:3000/product/${productId}`).then(({ data }) => {
+		const body = { card: selectedCard, address: selectedAddress }
+
+		axios.post(`${SERVER_URL}/user/order`, body).then(({ status }) => {
+			if (status === 200) {
+				cb()
+				dispatch({
+					type: MAKE_ORDER
+				})
+			}
+		}).catch((reason) => {
 			dispatch({
-				type: ADD_PRODUCT,
-				payload: {
-					[productId]: data
-				}
+				type: 'DO_NOT_HANDLE'
 			})
+			console.log(reason)
 		})
 	}
 }
 
 export const decreaseProductQuantity = (productId) => {
 	return (dispatch) => {
-		dispatch({
-			type: DECREASE_PRODUCT_QUANTITY,
-			payload: {
-				productId
+		axios.delete(`http://192.168.1.102:3000/product/${productId}`).then(({ data, status }) => {
+			if (status === 200) {
+				console.log('hhere')
+				dispatch({
+					type: DECREASE_PRODUCT_QUANTITY,
+					payload: data
+				})
 			}
 		})
 	}
@@ -56,10 +60,12 @@ export const decreaseProductQuantity = (productId) => {
 
 export const increaseProductQuantity = (productId) => {
 	return (dispatch) => {
-		dispatch({
-			type: INCREASE_PRODUCT_QUANTITY,
-			payload: {
-				productId
+		axios.get(`http://192.168.1.102:3000/product/${productId}`).then(({ data, status }) => {
+			if (status === 200) {
+				dispatch({
+					type: INCREASE_PRODUCT_QUANTITY,
+					payload: data
+				})
 			}
 		})
 	}

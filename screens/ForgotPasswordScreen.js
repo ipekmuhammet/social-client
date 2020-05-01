@@ -1,12 +1,13 @@
 import React from 'react'
 import axios from 'axios'
-import { ScrollView, StyleSheet } from 'react-native'
+import { ScrollView, View, Text, StyleSheet } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { SERVER_URL } from 'react-native-dotenv'
 import joi from 'react-native-joi'
 
 import ButtonComponent from '../components/ButtonComponent'
 import InputComponent from '../components/InputComponent'
+import InputIcon from '../components/InputIcon'
 
 class ForgotPasswordScreen extends React.PureComponent {
 
@@ -28,7 +29,7 @@ class ForgotPasswordScreen extends React.PureComponent {
     }
 
     onPhoneNumberChange = (phoneNumber) => {
-        joi.string().trim().strict().min(10).max(13).validate(phoneNumber, (err, val) => {
+        joi.string().trim().strict().min(10).max(10).validate(phoneNumber, (err, val) => {
             this.setState({ phoneNumber, isPhoneNumberInitialized: true, invalidPhoneNumber: !!err })
         })
     }
@@ -40,16 +41,21 @@ class ForgotPasswordScreen extends React.PureComponent {
                 <InputComponent
                     options={{
                         keyboardType: 'phone-pad',
-                        placeholder: 'Phone Number'
+                        placeholder: 'Telefon numarası',
+                        maxLength: 10
                     }}
                     invalid={
                         this.state.invalidPhoneNumber && this.state.isPhoneNumberInitialized
                     }
                     value={this.state.phoneNumber}
-                    onChange={this.onPhoneNumberChange} />
+                    onChange={this.onPhoneNumberChange}>
+                    <InputIcon>
+                        <Text style={{ color: 'black', fontSize: RFValue(18, 600) }}>90</Text>
+                    </InputIcon>
+                </InputComponent>
 
                 <ButtonComponent
-                    text={'Send Code'}
+                    text={'Kod gönder'}
                     onClick={this.onSendCodeClick}
                     disabled={
                         this.state.invalidPhoneNumber || !this.state.isPhoneNumberInitialized

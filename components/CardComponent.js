@@ -26,7 +26,6 @@ class CardComponent extends React.PureComponent {
 
     onDeleteClick = () => {
         const { item, setPopupState } = this.props
-
         setPopupState({ scaleAnimationModal: true, selectedCard: item.cardToken })
     }
 

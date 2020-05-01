@@ -6,41 +6,48 @@ import { connect } from 'react-redux'
 
 import { setNeedToLoginPopupState } from '../../actions/global-actions'
 
-const NeedToLoginPopup = ({ navigation, needToLoginPopupState, setNeedToLoginPopupState }) => (
-    <Modal
-        onTouchOutside={() => {
-            setNeedToLoginPopupState(false)
-        }}
-        width={0.9}
-        visible={needToLoginPopupState}
-        onSwipeOut={() => setNeedToLoginPopupState(false)}
-        onHardwareBackPress={() => {
-            setNeedToLoginPopupState(false)
-            return true
-        }}
-        modalTitle={
-            <ModalTitle
-                style={styles.title}
-                textStyle={styles.titleText}
-                title='You need to login before continuing.'
-                hasTitleBar={false} />
+class NeedToLoginPopup extends React.PureComponent {
+
+    close = () => {
+        this.props.setNeedToLoginPopupState(false)
+        return true
+    }
+
+    onConfirm = () => {
+        this.props.setNeedToLoginPopupState(false)
+        if (this.props.navigation) {
+            this.props.navigation.navigate('Welcome', { screen: 'login' })
         }
-        footer={
-            <ModalFooter style={styles.footer}>
-                <ModalButton
-                    text='Ok'
-                    textStyle={styles.buttonText}
-                    style={styles.buttonOk}
-                    onPress={() => {
-                        setNeedToLoginPopupState(false)
-                        if (navigation) {
-                            navigation.navigate('Welcome', { screen: 'login' })
-                        }
-                    }}
-                    key='button-2' />
-            </ModalFooter>
-        } />
-)
+    }
+
+    render() {
+        return (
+            <Modal
+                onTouchOutside={this.close}
+                width={0.9}
+                visible={this.props.needToLoginPopupState}
+                onSwipeOut={this.close}
+                onHardwareBackPress={this.close}
+                modalTitle={
+                    <ModalTitle
+                        style={styles.title}
+                        textStyle={styles.titleText}
+                        title='Devam etmeden önce giriş yapmalısın'
+                        hasTitleBar={false} />
+                }
+                footer={
+                    <ModalFooter style={styles.footer}>
+                        <ModalButton
+                            text='Ok'
+                            textStyle={styles.buttonText}
+                            style={styles.buttonOk}
+                            onPress={this.onConfirm}
+                            key='button-2' />
+                    </ModalFooter>
+                } />
+        )
+    }
+}
 
 const styles = StyleSheet.create({
     footer: { height: RFValue(42, 600) },

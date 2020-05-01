@@ -1,5 +1,5 @@
 import { SAVE_CARD, DELETE_CARD, DELETE_ADDRESS, SAVE_ADDRESS, SET_SELECTED_ADDRESS, SET_SELECTED_CARD, SET_PAYMENT_TYPE } from '../actions/actions2'
-import { SET_INITIAL_DATAS, LOGOUT } from '../actions/actions4'
+import { SET_INITIAL_DATAS, LOGOUT, SET_USER } from '../actions/actions4'
 import { MAKE_ORDER } from '../actions/actions1'
 
 const INITIAL_STATE = {
@@ -17,6 +17,7 @@ export default (state = INITIAL_STATE, action) => {
 
         case LOGOUT: return Object.assign({}, state, { addresses: [] })
 
+        case SET_USER:
         case SET_INITIAL_DATAS: return Object.assign({}, state, {
             addresses: action.payload?.user?.addresses ?? [],
             cards: action.payload?.cards ?? []
@@ -29,10 +30,11 @@ export default (state = INITIAL_STATE, action) => {
 
         case DELETE_CARD: {
             state.cards.splice(state.cards.indexOf(state.cards.find(card => card.cardToken === action.payload.cardToken)), 1)
-            return Object.assign({}, state, { cards: [...state.cards] })
+            return Object.assign({}, state, { cards: [...state.cards], selectedCard: null })
         }
 
-        case DELETE_ADDRESS:
+        case DELETE_ADDRESS: return Object.assign({}, state, { ...action.payload, selectedAddress: null })
+
         case SAVE_ADDRESS:
         case SET_SELECTED_ADDRESS:
         case SET_SELECTED_CARD:

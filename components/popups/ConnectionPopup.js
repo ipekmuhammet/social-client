@@ -8,36 +8,39 @@ import { setConnectionPopupState } from '../../actions/global-actions'
 
 import connectionImage from '../../assets/connection.png'
 
-const ConnectionPopup = ({ connectionPopupState, setConnectionPopupState }) => (
-    <Modal
-        onTouchOutside={() => {
-            setConnectionPopupState(false)
-        }}
-        width={0.9}
-        visible={connectionPopupState}
-        onSwipeOut={() => setConnectionPopupState(false)}
-        onHardwareBackPress={() => {
-            setConnectionPopupState(false)
-            return true
-        }}
-        footer={
-            <ModalFooter style={styles.footer}>
-                <ModalButton
-                    text='Ok'
-                    textStyle={styles.buttonText}
-                    style={styles.buttonOk}
-                    onPress={() => {
-                        setConnectionPopupState(false)
-                    }}
-                    key='button-1' />
-            </ModalFooter>
-        }>
-        <ModalContent style={styles.content}>
-            <Image style={styles.contentImage} resizeMode={'contain'} source={connectionImage} />
-            <Text style={styles.contentText}>Please check your internet connection.</Text>
-        </ModalContent>
-    </Modal>
-)
+class ConnectionPopup extends React.PureComponent {
+
+    close = () => {
+        this.props.setConnectionPopupState(false)
+        return true
+    }
+
+    render() {
+        return (
+            <Modal
+                onTouchOutside={this.close}
+                width={0.9}
+                visible={this.props.connectionPopupState}
+                onSwipeOut={this.close}
+                onHardwareBackPress={this.close}
+                footer={
+                    <ModalFooter style={styles.footer}>
+                        <ModalButton
+                            text='Ok'
+                            textStyle={styles.buttonText}
+                            style={styles.buttonOk}
+                            onPress={this.close}
+                            key='button-1' />
+                    </ModalFooter>
+                }>
+                <ModalContent style={styles.content}>
+                    <Image style={styles.contentImage} resizeMode={'contain'} source={connectionImage} />
+                    <Text style={styles.contentText}>Lütfen internet bağlantını kontrol et</Text>
+                </ModalContent>
+            </Modal>
+        )
+    }
+}
 
 const styles = StyleSheet.create({
     footer: { height: RFValue(42, 600) },

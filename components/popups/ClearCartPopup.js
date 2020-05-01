@@ -1,17 +1,26 @@
 import React from 'react'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { StyleSheet } from 'react-native'
-import Modal, { ModalTitle, ModalButton, ModalFooter } from 'react-native-modals'
+import { connect } from 'react-redux'
+import Modal, {
+    ModalTitle,
+    ModalButton,
+    ModalFooter
+} from 'react-native-modals'
 
-class DeleteCardPopup extends React.PureComponent {
+import { clearCart } from '../../actions/actions1'
+import { setClearCartPopupState } from '../../actions/global-actions'
+
+class ClearCartPopup extends React.PureComponent {
 
     close = () => {
-        this.props.setPopupState({ scaleAnimationModal: false })
+        this.props.setClearCartPopupState(false)
         return true
     }
 
     onConfirm = () => {
-        this.props.setPopupState({ scaleAnimationModal: false }, true)
+        this.props.setClearCartPopupState(false)
+        this.props.clearCart(this.props.token)
     }
 
     render() {
@@ -19,14 +28,14 @@ class DeleteCardPopup extends React.PureComponent {
             <Modal
                 onTouchOutside={this.close}
                 width={0.9}
-                visible={this.props.scaleAnimationModal}
+                visible={this.props.clearCartPopupState}
                 onSwipeOut={this.close}
                 onHardwareBackPress={this.close}
                 modalTitle={
                     <ModalTitle
                         style={styles.title}
                         textStyle={styles.titleText}
-                        title='Kartı silmek istediğine emin misin ?'
+                        title='Sepeti boşatmak istediğinden emin misin?'
                         hasTitleBar={false} />
                 }
                 footer={
@@ -47,16 +56,33 @@ class DeleteCardPopup extends React.PureComponent {
                 } />
         )
     }
-
 }
+
 
 const styles = StyleSheet.create({
     footer: { height: RFValue(42, 600) },
     buttonNo: { backgroundColor: '#697488' },
     buttonYes: { backgroundColor: '#5D3EBD' },
     buttonText: { color: 'white' },
-    title: { marginVertical: RFValue(8, 600) },
-    titleText: { textAlign: 'center' }
+    title: { marginVertical: RFValue(6, 600) },
+    titleText: { textAlign: 'center', fontSize: RFValue(16, 600) }
 })
 
-export default DeleteCardPopup
+const mapStateToProps = ({
+    globalReducer: {
+        clearCartPopupState
+    },
+    reducer4: {
+        token
+    }
+}) => ({
+    clearCartPopupState,
+    token
+})
+
+const mapDispatchToProps = {
+    clearCart,
+    setClearCartPopupState
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ClearCartPopup)

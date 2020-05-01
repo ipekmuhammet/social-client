@@ -26,7 +26,7 @@ class List extends React.PureComponent {
         }
     }
 
-    rowRenderer = (type, item) => item.empty ? <EmptyProduct /> : <Product key={item.id} data={item} navigation={this.props.navigation} />
+    rowRenderer = (type, item) => item.empty ? <EmptyProduct /> : <Product key={item._id} data={item} navigation={this.props.navigation} />
 
     setRef = (ref) => {
         this.setState({ ref })

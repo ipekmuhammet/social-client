@@ -41,7 +41,7 @@ class PinAddressScreen extends React.PureComponent {
                 </View>
 
                 <View style={styles.buttonContainer}>
-                    <ButtonComponent text={'Use this address'} onClick={this.onUseThisAddressClick} needFlex />
+                    <ButtonComponent text={'Bu adresi kullan'} onClick={this.onUseThisAddressClick} needFlex />
                 </View>
 
             </View>

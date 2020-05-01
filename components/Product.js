@@ -5,17 +5,21 @@ import { RFPercentage } from 'react-native-responsive-fontsize'
 import { connect } from 'react-redux'
 import { SERVER_URL } from 'react-native-dotenv'
 
-import { addProduct } from '../actions/actions1'
+import { increaseProductQuantity } from '../actions/actions1'
 
 class Product extends React.PureComponent {
 
 	onAddProductClick = () => {
-		const { data: { id }, addProduct } = this.props
-		addProduct(id)
+		const { data: { _id }, increaseProductQuantity } = this.props
+		increaseProductQuantity(_id)
+	}
+
+	onProductClick = () => {
+		this.props.navigation.navigate('fullProductScreen', this.props.data)
 	}
 
 	render() {
-		const { data: { id, product_name, kind_name, price, image } } = this.props
+		const { name, price, category, image } = this.props.data
 
 		return (
 			<View style={styles.container}>
@@ -25,15 +29,13 @@ class Product extends React.PureComponent {
 					<Text style={styles.addProductIcon}>+</Text>
 				</TouchableOpacity>
 
-				<TouchableOpacity style={[styles.child, styles.productImageContainer]} onPress={() => {
-					this.props.navigation.navigate('fullProductScreen', { id, product_name, price, image })
-				}}>
-					<Image source={{ uri: `${SERVER_URL}/assets/products/${image}.png` }} resizeMode={'contain'} style={styles.productImage} />
+				<TouchableOpacity style={[styles.child, styles.productImageContainer]} onPress={this.onProductClick}>
+					<Image source={{ uri: `${SERVER_URL}/assets/products/${category}/${image}.png` }} resizeMode={'contain'} style={styles.productImage} />
 				</TouchableOpacity>
 
 				<Text style={[styles.child, styles.productPrice, { alignItems: 'flex-start' }]}>{'₺' + price.toFixed(2).toString().replace('.', ',')}</Text>
 
-				<Text numberOfLines={3} style={[styles.productName, styles.child]}>{product_name}</Text>
+				<Text numberOfLines={3} style={[styles.productName, styles.child]}>{name}</Text>
 
 				{
 					//	<View style={[styles.child, { alignItems: 'flex-start' }]}>
@@ -116,7 +118,7 @@ const styles = StyleSheet.create({
 })
 
 const mapDispatchToProps = {
-	addProduct
+	increaseProductQuantity
 }
 
 export default connect(null, mapDispatchToProps)(Product)
