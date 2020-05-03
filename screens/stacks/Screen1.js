@@ -16,62 +16,62 @@ const Stack = createStackNavigator()
 
 // eslint-disable-next-line no-shadow
 const Screen1 = ({ navigation, setRootNavigation }) => {
-  setRootNavigation(navigation)
+	setRootNavigation(navigation)
 
-  return (
-    <Stack.Navigator screenOptions={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }}>
+	return (
+		<Stack.Navigator screenOptions={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }}>
 
-      <Stack.Screen
-        name="home"
-        component={HomeScreen}
-        options={{
-          headerTitleAlign: 'center',
-          headerStyle: styles.headerStyle,
-          headerTitle: () => (
-            <View style={styles.headerTitle}>
-              <Image source={logo} resizeMode="contain" style={styles.headerImage} />
-            </View>
-          ),
-        }}
-      />
+			<Stack.Screen
+				name="home"
+				component={HomeScreen}
+				options={{
+					headerTitleAlign: 'center',
+					headerStyle: styles.headerStyle,
+					headerTitle: () => (
+						<View style={styles.headerTitle}>
+							<Image source={logo} resizeMode="contain" style={styles.headerImage} />
+						</View>
+					),
+				}}
+			/>
 
-      <Stack.Screen
-        name="products"
-        options={{
-          title: 'Ürünler',
-          headerTitleAlign: 'center',
-          headerTintColor: 'white',
-          headerStyle: styles.headerStyle,
-        }}
-        component={ProductScreen}
-      />
+			<Stack.Screen
+				name="products"
+				options={{
+					title: 'Ürünler',
+					headerTitleAlign: 'center',
+					headerTintColor: 'white',
+					headerStyle: styles.headerStyle,
+				}}
+				component={ProductScreen}
+			/>
 
-      <Stack.Screen
-        name="fullProductScreen"
-        options={{
-          title: 'Ürün detayı',
-          headerTitleAlign: 'center',
-          headerTintColor: 'white',
-          headerStyle: styles.headerStyle,
-        }}
+			<Stack.Screen
+				name="fullProductScreen"
+				options={{
+					title: 'Ürün detayı',
+					headerTitleAlign: 'center',
+					headerTintColor: 'white',
+					headerStyle: styles.headerStyle,
+				}}
 
-        component={FullProductScreen}
-      />
+				component={FullProductScreen}
+			/>
 
-    </Stack.Navigator>
-  )
+		</Stack.Navigator>
+	)
 }
 
 const styles = StyleSheet.create({
-  headerStyle: { backgroundColor: '#5D3EBD' },
-  headerTitle: {
-    height: '100%', padding: RFValue(8, 600), backgroundColor: '#5D3EBD', display: 'flex',
-  },
-  headerImage: { flex: 1 },
+	headerStyle: { backgroundColor: '#5D3EBD' },
+	headerTitle: {
+		height: '100%', padding: RFValue(8, 600), backgroundColor: '#5D3EBD', display: 'flex',
+	},
+	headerImage: { flex: 1 },
 })
 
 const mapDispatchToProps = {
-  setRootNavigation,
+	setRootNavigation,
 }
 
 export default connect(null, mapDispatchToProps)(Screen1)

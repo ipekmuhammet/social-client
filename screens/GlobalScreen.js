@@ -8,14 +8,14 @@ import GlobalMessagePopup from '../components/popups/GlobalMessagePopup'
 
 
 const GlobalScreen = () => (
-  <>
-    <ConnectionPopup />
-    <NeedToLoginPopup />
-    <ClearCartPopup />
-    <GlobalMessagePopup>
-      <Ionicons name="md-warning" size={48} color="red" />
-    </GlobalMessagePopup>
-  </>
+	<>
+		<ConnectionPopup />
+		<NeedToLoginPopup />
+		<ClearCartPopup />
+		<GlobalMessagePopup>
+			<Ionicons name="md-warning" size={48} color="red" />
+		</GlobalMessagePopup>
+	</>
 )
 
 export default GlobalScreen

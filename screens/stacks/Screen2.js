@@ -8,22 +8,22 @@ import SearchScreen from '../SearchScreen'
 const Stack = createStackNavigator()
 
 const Screen2 = () => (
-  <Stack.Navigator screenOptions={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }}>
-    <Stack.Screen
-      name="search"
-      options={{
-        title: 'Arama',
-        headerTitleAlign: 'center',
-        headerTintColor: 'white',
-        headerStyle: styles.headerStyle,
-      }}
-      component={SearchScreen}
-    />
-  </Stack.Navigator>
+	<Stack.Navigator screenOptions={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }}>
+		<Stack.Screen
+			name="search"
+			options={{
+				title: 'Arama',
+				headerTitleAlign: 'center',
+				headerTintColor: 'white',
+				headerStyle: styles.headerStyle,
+			}}
+			component={SearchScreen}
+		/>
+	</Stack.Navigator>
 )
 
 const styles = StyleSheet.create({
-  headerStyle: { backgroundColor: '#5D3EBD' },
+	headerStyle: { backgroundColor: '#5D3EBD' },
 })
 
 export default Screen2

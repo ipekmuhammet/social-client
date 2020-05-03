@@ -1,12 +1,12 @@
 import { SET_NETWORK_STATUS } from '../actions/network-actions'
 
 const INITIAL_STATE = {
-  networkStatus: false,
+	networkStatus: false,
 }
 
 export default (state = INITIAL_STATE, action) => {
-  switch (action.type) {
-    case SET_NETWORK_STATUS: return { ...state, ...action.payload }
-    default: return state
-  }
+	switch (action.type) {
+		case SET_NETWORK_STATUS: return { ...state, ...action.payload }
+		default: return state
+	}
 }

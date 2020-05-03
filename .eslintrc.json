@@ -14,12 +14,34 @@
                 ]
             }
         ],
+        "indent": [
+            "error",
+            "tab",
+            {
+                "SwitchCase": 1
+            }
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "never"
+        ],
+        "max-len": "off",
+        "no-tabs": "off",
         "comma-dangle": "off",
-        "semi": "off",
         "no-underscore-dangle": "off",
         "no-use-before-define": "off",
         "react/state-in-constructor": "off",
         "react/destructuring-assignment": "off",
-        "react/prop-types": "off"
+        "react/prop-types": "off",
+        "react/jsx-indent": "off",
+        "react/jsx-indent-props": "off"
     }
 }

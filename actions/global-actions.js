@@ -5,46 +5,46 @@ export const SET_ROOT_NAVIGATION = 'SET_ROOT_NAVIGATION'
 export const SET_MESSAGE_POPUP_REF = 'SET_MESSAGE_POPUP_REF'
 
 export const setMessagePopupRef = (messagePopupRef) => (dispatch) => {
-  dispatch({
-    type: SET_MESSAGE_POPUP_REF,
-    payload: {
-      messagePopupRef,
-    },
-  })
+	dispatch({
+		type: SET_MESSAGE_POPUP_REF,
+		payload: {
+			messagePopupRef,
+		},
+	})
 }
 
 export const setRootNavigation = (navigation) => (dispatch) => {
-  dispatch({
-    type: SET_ROOT_NAVIGATION,
-    payload: {
-      navigation,
-    },
-  })
+	dispatch({
+		type: SET_ROOT_NAVIGATION,
+		payload: {
+			navigation,
+		},
+	})
 }
 
 export const setConnectionPopupState = (connectionPopupState) => (dispatch) => {
-  dispatch({
-    type: SET_CONNECTION_POPUP_STATE,
-    payload: {
-      connectionPopupState,
-    },
-  })
+	dispatch({
+		type: SET_CONNECTION_POPUP_STATE,
+		payload: {
+			connectionPopupState,
+		},
+	})
 }
 
 export const setNeedToLoginPopupState = (needToLoginPopupState) => (dispatch) => {
-  dispatch({
-    type: NEED_TO_LOGIN_POPUP_STATE,
-    payload: {
-      needToLoginPopupState,
-    },
-  })
+	dispatch({
+		type: NEED_TO_LOGIN_POPUP_STATE,
+		payload: {
+			needToLoginPopupState,
+		},
+	})
 }
 
 export const setClearCartPopupState = (clearCartPopupState) => (dispatch) => {
-  dispatch({
-    type: CLEAR_CART_POPUP_STATE,
-    payload: {
-      clearCartPopupState,
-    },
-  })
+	dispatch({
+		type: CLEAR_CART_POPUP_STATE,
+		payload: {
+			clearCartPopupState,
+		},
+	})
 }

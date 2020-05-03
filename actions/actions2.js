@@ -10,101 +10,101 @@ export const SET_SELECTED_CARD = 'SET_SELECTED_CARD'
 export const SET_SELECTED_ADDRESS = 'SET_SELECTED_ADDRESS'
 
 export const setPaymentType = (paymentType) => (dispatch) => {
-  dispatch({
-    type: SET_PAYMENT_TYPE,
-    payload: {
-      paymentType,
-    },
-  })
+	dispatch({
+		type: SET_PAYMENT_TYPE,
+		payload: {
+			paymentType,
+		},
+	})
 }
 
 export const saveCard = (card, cb) => (dispatch) => {
-  axios.post(`${SERVER_URL}/user/payment-card`, { card })
-    .then(({ status, data }) => {
-      if (status === 200) {
-        dispatch({
-          type: SAVE_CARD,
-          payload: {
-            card: data,
-          },
-        })
-        cb()
-      }
-    })
+	axios.post(`${SERVER_URL}/user/payment-card`, { card })
+		.then(({ status, data }) => {
+			if (status === 200) {
+				dispatch({
+					type: SAVE_CARD,
+					payload: {
+						card: data,
+					},
+				})
+				cb()
+			}
+		})
 }
 
 export const deleteCard = (cardToken) => (dispatch) => {
-  axios.put(`${SERVER_URL}/user/payment-card`, { cardToken })
-    .then(({ status }) => {
-      if (status === 200) {
-        dispatch({
-          type: DELETE_CARD,
-          payload: {
-            cardToken,
-          },
-        })
-      }
-    })
+	axios.put(`${SERVER_URL}/user/payment-card`, { cardToken })
+		.then(({ status }) => {
+			if (status === 200) {
+				dispatch({
+					type: DELETE_CARD,
+					payload: {
+						cardToken,
+					},
+				})
+			}
+		})
 }
 
 export const saveAddress = (address, details) => {
-  const body = {
-    openAddress: address,
-    addressTitle: details.addressTitle,
-    buildingNo: details.buildingNo,
-    floor: details.floor,
-    aptNo: details.aptNo,
-    directions: details.directions,
-  }
+	const body = {
+		openAddress: address,
+		addressTitle: details.addressTitle,
+		buildingNo: details.buildingNo,
+		floor: details.floor,
+		aptNo: details.aptNo,
+		directions: details.directions,
+	}
 
-  return (dispatch) => {
-    axios.post(`${SERVER_URL}/user/address`, body)
-      .then(({ status, data }) => {
-        if (status === 200) {
-          // AsyncStorage.setItem('user', JSON.stringify(data)) // User serverda güncellenince, güncellenenen tüm user'ı geri dönüyor.
-          dispatch({
-            type: SAVE_ADDRESS,
-            payload: {
-              addresses: data.addresses,
-            },
-          })
-        }
-      })
-  }
+	return (dispatch) => {
+		axios.post(`${SERVER_URL}/user/address`, body)
+			.then(({ status, data }) => {
+				if (status === 200) {
+					// AsyncStorage.setItem('user', JSON.stringify(data)) // User serverda güncellenince, güncellenenen tüm user'ı geri dönüyor.
+					dispatch({
+						type: SAVE_ADDRESS,
+						payload: {
+							addresses: data.addresses,
+						},
+					})
+				}
+			})
+	}
 }
 
 export const deleteAddress = (addressId) => (dispatch) => {
-  axios.delete(`${SERVER_URL}/user/address/${addressId}`)
-    .then(({ status, data }) => {
-      if (status === 200) {
-        // AsyncStorage.setItem('user', JSON.stringify(data)) // User serverda güncellenince, güncellenenen tüm user'ı geri dönüyor.
+	axios.delete(`${SERVER_URL}/user/address/${addressId}`)
+		.then(({ status, data }) => {
+			if (status === 200) {
+				// AsyncStorage.setItem('user', JSON.stringify(data)) // User serverda güncellenince, güncellenenen tüm user'ı geri dönüyor.
 
-        dispatch({
-          type: DELETE_ADDRESS,
-          payload: {
-            addresses: data.addresses,
-          },
-        })
-      }
-    })
+				dispatch({
+					type: DELETE_ADDRESS,
+					payload: {
+						addresses: data.addresses,
+					},
+				})
+			}
+		})
 }
 
 export const setSelectedCard = (selectedCard, cb) => (dispatch) => {
-  dispatch({
-    type: SET_SELECTED_CARD,
-    payload: {
-      selectedCard,
-    },
-  })
-  cb()
+	dispatch({
+		type: SET_SELECTED_CARD,
+		payload: {
+			selectedCard,
+		},
+	})
+	cb()
 }
 
 export const setSelectedAddress = (selectedAddress, cb) => (dispatch) => {
-  dispatch({
-    type: SET_SELECTED_ADDRESS,
-    payload: {
-      selectedAddress,
-    },
-  })
-  cb()
+	dispatch({
+		type: SET_SELECTED_ADDRESS,
+		payload: {
+			selectedAddress,
+		},
+	})
+	cb()
 }
