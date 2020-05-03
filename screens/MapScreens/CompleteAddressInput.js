@@ -6,32 +6,40 @@ import { TextInput, StyleSheet } from 'react-native'
 import { setAddress } from '../../actions/map-actions'
 
 const CompleteAddressInput = ({ address, setAddress }) => (
-    <TextInput
-        value={address}
-        onChangeText={setAddress}
-        placeholder={'Address'}
-        style={styles.input} />
+  <TextInput
+    value={address}
+    onChangeText={setAddress}
+    placeholder="Address"
+    style={styles.input}
+  />
 )
 
 const styles = StyleSheet.create({
-    input: {
-        flex: 1, borderWidth: 1, alignItems: 'center', justifyContent: 'center', margin: RFValue(3, 600), borderRadius: 8,
-        borderColor: '#C3C3C3', paddingHorizontal: RFValue(13, 600), fontSize: RFValue(17, 600)
-    }
+  input: {
+    flex: 1,
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: RFValue(3, 600),
+    borderRadius: 8,
+    borderColor: '#C3C3C3',
+    paddingHorizontal: RFValue(13, 600),
+    fontSize: RFValue(17, 600),
+  },
 })
 
 const mapStateToProps = ({
-    mapReducer: {
-        region,
-        address
-    }
-}) => ({
+  mapReducer: {
     region,
-    address
+    address,
+  },
+}) => ({
+  region,
+  address,
 })
 
 const mapDispatchToProps = {
-    setAddress
+  setAddress,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CompleteAddressInput)

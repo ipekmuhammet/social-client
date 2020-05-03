@@ -9,63 +9,64 @@ import InteractiveSettingItem from './InteractiveSettingItem'
 import DeleteAddressPopup from './popups/DeleteAddressPopup'
 
 class AddressList extends React.PureComponent {
-
     state = {
-        addressId: '',
-        scaleAnimationModal: false
+      addressId: '',
+      scaleAnimationModal: false,
     }
 
     setPopupState = (state, deleteStatus) => {
-        this.setState(state)
+      this.setState(state)
 
-        if (deleteStatus) {
-            this.props.deleteAddress(this.state.addressId)
-        }
+      if (deleteStatus) {
+        this.props.deleteAddress(this.state.addressId)
+      }
     }
 
     renderAddressItem = ({ item: address }) => (
-        <InteractiveSettingItem title={address.openAddress}
-            onLeftClick={() => {
-                this.props.setSelectedAddress(address._id, () => {
-                    this.props.navigation.goBack()
-                    this.props.stackNavigation.popToTop()
-                })
-            }}
-            onRightIconClick={() => {
-                this.setPopupState({ scaleAnimationModal: true, addressId: address._id })
-            }}>
-            <Ionicons color={'#4522A0'} name={'md-locate'} size={32} />
-            <Ionicons color={'#4522A0'} name={'md-trash'} size={32} />
-        </InteractiveSettingItem>
+      <InteractiveSettingItem
+        title={address.openAddress}
+        onLeftClick={() => {
+          this.props.setSelectedAddress(address._id, () => {
+            this.props.navigation.goBack()
+            this.props.stackNavigation.popToTop()
+          })
+        }}
+        onRightIconClick={() => {
+          this.setPopupState({ scaleAnimationModal: true, addressId: address._id })
+        }}
+      >
+        <Ionicons color="#4522A0" name="md-locate" size={32} />
+        <Ionicons color="#4522A0" name="md-trash" size={32} />
+      </InteractiveSettingItem>
     )
 
 
     render() {
-        return (
-            <React.Fragment>
-                <FlatList
-                    data={this.props.addresses}
-                    keyExtractor={item => item._id}
-                    renderItem={this.renderAddressItem}
-                    ListFooterComponent={this.props.footer}
-                />
-                <DeleteAddressPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
-            </React.Fragment>
-        )
+      return (
+        <>
+          <FlatList
+            data={this.props.addresses}
+            keyExtractor={(item) => item._id}
+            renderItem={this.renderAddressItem}
+            ListFooterComponent={this.props.footer}
+          />
+          <DeleteAddressPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
+        </>
+      )
     }
 }
 
 const mapStateToProps = ({
-    reducer2: {
-        addresses
-    }
+  reducer2: {
+    addresses,
+  },
 }) => ({
-    addresses
+  addresses,
 })
 
 const mapDispatchToProps = {
-    setSelectedAddress,
-    deleteAddress
+  setSelectedAddress,
+  deleteAddress,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddressList)

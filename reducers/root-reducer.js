@@ -9,11 +9,11 @@ import networkReducer from './network-reducer'
 import globalReducer from './global-reducer'
 
 export default combineReducers({
-    reducer1,
-    reducer2,
-    reducer3,
-    reducer4,
-    mapReducer,
-    networkReducer,
-    globalReducer
+  reducer1,
+  reducer2,
+  reducer3,
+  reducer4,
+  mapReducer,
+  networkReducer,
+  globalReducer,
 })

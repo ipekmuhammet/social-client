@@ -1,34 +1,35 @@
 import React from 'react'
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
+import {
+  View, TouchableOpacity, Text, StyleSheet,
+} from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { RFValue } from 'react-native-responsive-fontsize'
 
 class AddNewCardComponent extends React.PureComponent {
-
     onClick = () => {
-        this.props.navigation.navigate('addNewCardScreen')
+      this.props.navigation.navigate('addNewCardScreen')
     }
 
     render() {
-        return (
-            <React.Fragment>
-                <TouchableOpacity style={styles.container} onPress={this.onClick}>
-                    <View style={styles.child}>
-                        <View style={styles.iconContainer}>
-                            <Ionicons name={'md-add'} size={32} color={'#5D3EBD'} />
-                        </View>
-                    </View>
-                    <View style={[styles.child, styles.textContainer]}>
-                        <View style={styles.child}>
-                            <Text style={styles.highlightedText}>{'Yeni kart ekle'}</Text>
-                        </View>
-                    </View>
-                    <TouchableOpacity style={styles.child}>
-                        <View style={styles.emptyIcon} />
-                    </TouchableOpacity>
-                </TouchableOpacity>
+      return (
+        <>
+          <TouchableOpacity style={styles.container} onPress={this.onClick}>
+            <View style={styles.child}>
+              <View style={styles.iconContainer}>
+                <Ionicons name="md-add" size={32} color="#5D3EBD" />
+              </View>
+            </View>
+            <View style={[styles.child, styles.textContainer]}>
+              <View style={styles.child}>
+                <Text style={styles.highlightedText}>Yeni kart ekle</Text>
+              </View>
+            </View>
+            <TouchableOpacity style={styles.child}>
+              <View style={styles.emptyIcon} />
+            </TouchableOpacity>
+          </TouchableOpacity>
 
-                {
+          {
                     //  <TouchableOpacity style={styles.container}>
                     //      <View style={styles.child}>
                     //          <Ionicons name={'md-add'} size={32} color={'#5D3EBD'} />
@@ -43,20 +44,24 @@ class AddNewCardComponent extends React.PureComponent {
                     //      </TouchableOpacity>
                     //  </TouchableOpacity>
                 }
-            </React.Fragment>
-        )
+        </>
+      )
     }
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, flexDirection: 'row', padding: 8, marginHorizontal: 6 },
-    child: { alignItems: 'center', justifyContent: 'center', marginHorizontal: 8 },
-    cardName: { fontSize: RFValue(16, 600) },
-    cardNumber: { fontSize: RFValue(15, 600), color: '#6C7486' },
-    highlightedText: { fontSize: RFValue(16, 600), color: '#5D3EBD' },
-    iconContainer: { height: 24, width: 36, alignItems: 'center', justifyContent: 'center' },
-    emptyIcon: { height: 32 },
-    textContainer: { flex: 1, alignItems: 'flex-start', marginHorizontal: 6 }
+  container: {
+    flex: 1, flexDirection: 'row', padding: 8, marginHorizontal: 6,
+  },
+  child: { alignItems: 'center', justifyContent: 'center', marginHorizontal: 8 },
+  cardName: { fontSize: RFValue(16, 600) },
+  cardNumber: { fontSize: RFValue(15, 600), color: '#6C7486' },
+  highlightedText: { fontSize: RFValue(16, 600), color: '#5D3EBD' },
+  iconContainer: {
+    height: 24, width: 36, alignItems: 'center', justifyContent: 'center',
+  },
+  emptyIcon: { height: 32 },
+  textContainer: { flex: 1, alignItems: 'flex-start', marginHorizontal: 6 },
 })
 
 export default AddNewCardComponent

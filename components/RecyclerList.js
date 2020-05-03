@@ -4,47 +4,47 @@ import { RecyclerListView, DataProvider, LayoutProvider } from 'recyclerlistview
 
 import Product from './Product'
 import EmptyProduct from './EmptyProduct'
-import SearchFilter from '../components/SearchFilter'
+import SearchFilter from './SearchFilter'
 
 class List extends React.PureComponent {
-    constructor(args) {
-        super(args)
+  constructor(args) {
+    super(args)
 
-        let { width } = Dimensions.get('window')
+    const { width } = Dimensions.get('window')
 
-        let dataProvider = new DataProvider((r1, r2) => r1 !== r2)
+    const dataProvider = new DataProvider((r1, r2) => r1 !== r2)
 
-        this.layoutProvider = new LayoutProvider(index => {
-            return 0
-        }, (type, dim) => {
-            dim.width = width / 3.05
-            dim.height = 236
-        })
+    this.layoutProvider = new LayoutProvider((index) => 0, (type, dim) => {
+      dim.width = width / 3.05
+      dim.height = 236
+    })
 
-        this.state = {
-            dataProvider: dataProvider.cloneWithRows(this.props.list)
-        }
+    this.state = {
+      dataProvider: dataProvider.cloneWithRows(this.props.list),
     }
+  }
 
-    rowRenderer = (type, item) => item.empty ? <EmptyProduct /> : <Product key={item._id} data={item} navigation={this.props.navigation} />
+    rowRenderer = (type, item) => (item.empty ? <EmptyProduct /> : <Product key={item._id} data={item} navigation={this.props.navigation} />)
 
     setRef = (ref) => {
-        this.setState({ ref })
+      this.setState({ ref })
     }
 
     render() {
-        return <React.Fragment>
-            {
+      return (
+        <>
+          {
                 false && !this.props.fromSearch && <SearchFilter listRef={this.state.ref} />
             }
-            <RecyclerListView
-                style={{ backgroundColor: 'white' }}
-                ref={this.setRef}
-                layoutProvider={this.layoutProvider}
-                dataProvider={this.state.dataProvider}
-                rowRenderer={this.rowRenderer} />
-        </React.Fragment>
-
+          <RecyclerListView
+            style={{ backgroundColor: 'white' }}
+            ref={this.setRef}
+            layoutProvider={this.layoutProvider}
+            dataProvider={this.state.dataProvider}
+            rowRenderer={this.rowRenderer}
+          />
+        </>
+      )
     }
 }
 

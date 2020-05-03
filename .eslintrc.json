@@ -1,0 +1,25 @@
+{
+    "extends": "airbnb",
+    "parser": "babel-eslint",
+    "ecmaFeatures": {
+        "classes": true
+    },
+    "rules": {
+        "react/jsx-filename-extension": [
+            "error",
+            {
+                "extensions": [
+                    ".js",
+                    ".jsx"
+                ]
+            }
+        ],
+        "comma-dangle": "off",
+        "semi": "off",
+        "no-underscore-dangle": "off",
+        "no-use-before-define": "off",
+        "react/state-in-constructor": "off",
+        "react/destructuring-assignment": "off",
+        "react/prop-types": "off"
+    }
+}

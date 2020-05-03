@@ -19,36 +19,40 @@ export default function BottomTabNavigator({ navigation, route }) {
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME} tabBarOptions={{ activeTintColor: '#5D3EBD' }} lazy={false}>
 
       <BottomTab.Screen
-        name='Home'
+        name="Home"
         component={Home}
         options={{
           title: 'Home',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name='md-home' />
-        }} />
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-home" />,
+        }}
+      />
 
       <BottomTab.Screen
-        name='Search'
+        name="Search"
         component={Search}
         options={{
           title: 'Search',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name='md-search' />
-        }} />
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-search" />,
+        }}
+      />
 
       <BottomTab.Screen
-        name='Cart'
+        name="Cart"
         component={Cart}
         options={{
           title: 'Cart',
-          tabBarIcon: ({ focused }) => <CartIcon focused={focused} name='md-cart' />
-        }} />
+          tabBarIcon: ({ focused }) => <CartIcon focused={focused} name="md-cart" />,
+        }}
+      />
 
       <BottomTab.Screen
-        name='Profile'
+        name="Profile"
         component={ProfileScreen}
         options={{
           title: 'Profile',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name='md-person' />
-        }} />
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-person" />,
+        }}
+      />
 
     </BottomTab.Navigator>
   )
@@ -65,6 +69,8 @@ function getHeaderTitle(route) {
     case 'Cart':
       return 'Cart'
     case 'Profile':
+      return 'Profile'
+    default:
       return 'Profile'
   }
 }

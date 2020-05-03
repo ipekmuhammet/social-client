@@ -6,57 +6,56 @@ import { setInitialDatas } from '../actions/actions4'
 import LoadingComponent from '../components/LoadingCompenent'
 
 class LoadingScreen extends React.PureComponent {
-	UNSAFE_componentWillMount() {
-		// AsyncStorage.removeItem('init')
-		AsyncStorage.getItem('init').then((init) => {
-			if (init) {
-				if (this.props.categories.length > 0) {
-					this.props.navigation.navigate('Root')
-				} else {
-					this.props.setInitialDatas()
-				}
+  UNSAFE_componentWillMount() {
+    // AsyncStorage.removeItem('init')
+    AsyncStorage.getItem('init').then((init) => {
+      if (init) {
+        if (this.props.categories.length > 0) {
+          this.props.navigation.navigate('Root')
+        } else {
+          this.props.setInitialDatas()
+        }
+      } else {
+        this.props.navigation.navigate('Welcome')
+      }
+    })
+  }
 
-			} else {
-				this.props.navigation.navigate('Welcome')
-			}
-		})
-	}
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    // if (nextProps.token) {
+    if (nextProps.categories.length > 0) {
+      AsyncStorage.setItem('init', 'true')
+      this.props.navigation.navigate('Root')
+    } else {
+      // if (this.props.token !== nextProps.token) {
+      // console.warn('Initial datas problem')
+      this.props.setInitialDatas()
+      // }
+    }
+    //	} else {
+    //		this.props.navigation.navigate('Welcome')
+    //	}
+  }
 
-	UNSAFE_componentWillReceiveProps(nextProps) {
-		// if (nextProps.token) {
-		if (nextProps.categories.length > 0) {
-			AsyncStorage.setItem('init', 'true')
-			this.props.navigation.navigate('Root')
-		} else {
-			// if (this.props.token !== nextProps.token) {
-			// console.warn('Initial datas problem')
-			this.props.setInitialDatas()
-			// }
-		}
-		//	} else {
-		//		this.props.navigation.navigate('Welcome')
-		//	}
-	}
-
-	render() {
-		return <LoadingComponent />
-	}
+  render() {
+    return <LoadingComponent />
+  }
 }
 
 const mapStateToProps = ({
-	reducer4: {
-		token,
-		categories,
-		products
-	}
+  reducer4: {
+    token,
+    categories,
+    products,
+  },
 }) => ({
-	token,
-	categories,
-	products
+  token,
+  categories,
+  products,
 })
 
 const mapDispatchToProps = {
-	setInitialDatas
+  setInitialDatas,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoadingScreen)
