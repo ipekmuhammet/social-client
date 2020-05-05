@@ -2,7 +2,6 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack'
 
-
 import SearchScreen from '../SearchScreen'
 
 const Stack = createStackNavigator()
@@ -12,10 +11,10 @@ const Screen2 = () => (
 		<Stack.Screen
 			name="search"
 			options={{
-				title: 'Arama',
+				title: 'Ara',
 				headerTitleAlign: 'center',
 				headerTintColor: 'white',
-				headerStyle: styles.headerStyle,
+				headerStyle: styles.headerStyle
 			}}
 			component={SearchScreen}
 		/>
@@ -23,7 +22,7 @@ const Screen2 = () => (
 )
 
 const styles = StyleSheet.create({
-	headerStyle: { backgroundColor: '#5D3EBD' },
+	headerStyle: { backgroundColor: '#5D3EBD' }
 })
 
 export default Screen2

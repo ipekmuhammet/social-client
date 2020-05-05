@@ -22,8 +22,8 @@ export default function BottomTabNavigator({ navigation, route }) {
 				name="Home"
 				component={Home}
 				options={{
-					title: 'Home',
-					tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-home" />,
+					title: 'Sipariş',
+					tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-home" />
 				}}
 			/>
 
@@ -31,8 +31,8 @@ export default function BottomTabNavigator({ navigation, route }) {
 				name="Search"
 				component={Search}
 				options={{
-					title: 'Search',
-					tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-search" />,
+					title: 'Ara',
+					tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-search" />
 				}}
 			/>
 
@@ -40,8 +40,8 @@ export default function BottomTabNavigator({ navigation, route }) {
 				name="Cart"
 				component={Cart}
 				options={{
-					title: 'Cart',
-					tabBarIcon: ({ focused }) => <CartIcon focused={focused} name="md-cart" />,
+					title: 'Sepetim',
+					tabBarIcon: ({ focused }) => <CartIcon focused={focused} name="md-cart" />
 				}}
 			/>
 
@@ -49,8 +49,8 @@ export default function BottomTabNavigator({ navigation, route }) {
 				name="Profile"
 				component={ProfileScreen}
 				options={{
-					title: 'Profile',
-					tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-person" />,
+					title: 'Diğer',
+					tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-menu" />
 				}}
 			/>
 

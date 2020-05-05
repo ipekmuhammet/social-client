@@ -35,20 +35,20 @@ class GlobalMessagePopup extends React.PureComponent {
 
 const styles = StyleSheet.create({
 	absoluteContainer: {
-		...StyleSheet.absoluteFillObject, zIndex: 1000, elevation: 0.01, top: 100,
+		...StyleSheet.absoluteFillObject, zIndex: 1000, elevation: 0.01, top: 100
 	},
 	container: {
-		flex: 1, height: RFValue(80, 600), margin: RFValue(12, 600), borderRadius: 6, backgroundColor: 'white', display: 'flex', flexDirection: 'row',
+		flex: 1, height: RFValue(80, 600), margin: RFValue(12, 600), borderRadius: 6, backgroundColor: 'white', display: 'flex', flexDirection: 'row'
 	},
 	iconContainer: { alignItems: 'center', justifyContent: 'center', marginHorizontal: RFValue(12, 600) },
 	titleContainer: {
-		flex: 1, alignItems: 'flex-start', justifyContent: 'center', marginHorizontal: RFValue(12, 600), backgroundColor: 'white',
+		flex: 1, alignItems: 'flex-start', justifyContent: 'center', marginHorizontal: RFValue(12, 600), backgroundColor: 'white'
 	},
-	title: { fontSize: RFValue(18, 600) },
+	title: { fontSize: RFValue(18, 600) }
 })
 
 const mapDispatchToProps = {
-	setMessagePopupRef,
+	setMessagePopupRef
 }
 
 export default connect(null, mapDispatchToProps)(GlobalMessagePopup)
