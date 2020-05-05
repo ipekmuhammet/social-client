@@ -10,105 +10,107 @@ import ButtonComponent from '../components/ButtonComponent'
 import InputIcon from '../components/InputIcon'
 
 class EditProfileScreen extends React.PureComponent {
+	state = {
+		nameSurname: this.props.user.nameSurname,
+		phoneNumber: this.props.user.phoneNumber,
+		email: this.props.user.email,
+	}
 
-    state = {
-        nameSurname: this.props.user.nameSurname,
-        phoneNumber: this.props.user.phoneNumber,
-        email: this.props.user.email
-    }
+	onNameSurnameChange = (nameSurname) => {
+		this.setState({ nameSurname })
+	}
 
-    onNameSurnameChange = (nameSurname) => {
-        this.setState({ nameSurname })
-    }
+	onEmailChange = (email) => {
+		this.setState({ email })
+	}
 
-    onEmailChange = (email) => {
-        this.setState({ email })
-    }
+	onPhoneChange = (phoneNumber) => {
+		this.setState({ phoneNumber })
+	}
 
-    onPhoneChange = (phoneNumber) => {
-        this.setState({ phoneNumber })
-    }
+	onSaveClick = () => {
+		this.props.updateProfile({
+			nameSurname: this.state.nameSurname,
+			phoneNumber: this.state.phoneNumber,
+			email: this.state.email,
+		}, () => {
+			this.props.navigation.goBack()
+		})
+	}
 
-    onSaveClick = () => {
-        this.props.updateProfile({
-            nameSurname: this.state.nameSurname,
-            phoneNumber: this.state.phoneNumber,
-            email: this.state.email
-        }, () => {
-            this.props.navigation.goBack()
-        })
-    }
+	render() {
+		return (
+			<ScrollView contentContainerStyle={styles.container}>
 
-    render() {
-        return (
-            <ScrollView contentContainerStyle={styles.container}>
+				<View>
+					<InputComponent
+						options={{
+							textContentType: 'name',
+							placeholder: 'Ad soyad',
+						}}
+						value={this.state.nameSurname}
+						onChange={this.onNameSurnameChange}
+					>
+						<InputIcon>
+							<Ionicons size={32} name="md-person" color="#5D3EBD" />
+						</InputIcon>
 
-                <View>
-                    <InputComponent
-                        options={{
-                            textContentType: 'name',
-                            placeholder: 'Ad soyad'
-                        }}
-                        value={this.state.nameSurname}
-                        onChange={this.onNameSurnameChange}>
-                        <InputIcon>
-                            <Ionicons size={32} name={'md-person'} color={'#5D3EBD'} />
-                        </InputIcon>
+					</InputComponent>
 
-                    </InputComponent>
+					<InputComponent
+						options={{
+							keyboardType: 'email-address',
+							textContentType: 'emailAddress',
+							placeholder: 'E-mail',
+						}}
+						value={this.state.email}
+						onChange={this.onEmailChange}
+					>
+						<InputIcon>
+							<Ionicons size={32} name="md-mail-open" color="#5D3EBD" />
+						</InputIcon>
 
-                    <InputComponent
-                        options={{
-                            keyboardType: 'email-address',
-                            textContentType: 'emailAddress',
-                            placeholder: 'E-mail'
-                        }}
-                        value={this.state.email}
-                        onChange={this.onEmailChange}>
-                        <InputIcon>
-                            <Ionicons size={32} name={'md-mail-open'} color={'#5D3EBD'} />
-                        </InputIcon>
+					</InputComponent>
 
-                    </InputComponent>
+					<InputComponent
+						options={{
+							keyboardType: 'phone-pad',
+							textContentType: 'telephoneNumber',
+							placeholder: 'Telefon numarası',
+							maxLength: 10,
+						}}
+						value={this.state.phoneNumber}
+						disabled
+						onChange={this.onPhoneChange}
+					>
+						<InputIcon>
+							<Ionicons size={32} name="md-phone-portrait" color="#5D3EBD" />
+						</InputIcon>
 
-                    <InputComponent
-                        options={{
-                            keyboardType: 'phone-pad',
-                            textContentType: 'telephoneNumber',
-                            placeholder: 'Telefon numarası',
-                            maxLength: 10
-                        }}
-                        value={this.state.phoneNumber}
-                        disabled
-                        onChange={this.onPhoneChange}>
-                        <InputIcon>
-                            <Ionicons size={32} name={'md-phone-portrait'} color={'#5D3EBD'} />
-                        </InputIcon>
+					</InputComponent>
+				</View>
 
-                    </InputComponent>
-                </View>
+				<ButtonComponent text="Kaydet" onClick={this.onSaveClick} />
 
-                <ButtonComponent text={'Kaydet'} onClick={this.onSaveClick} />
-
-            </ScrollView>
-        )
-    }
+			</ScrollView>
+		)
+	}
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, justifyContent: 'space-between' }
+	container: { flex: 1, justifyContent: 'space-between' },
 })
 
 const mapStateToProps = ({
-    reducer4: {
-        user
-    }
+	reducer4: {
+		user,
+	},
 }) => ({
-    user
+	user,
 })
 
 const mapDispatchToProps = {
-    updateProfile
+	updateProfile,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditProfileScreen)

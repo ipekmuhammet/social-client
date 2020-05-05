@@ -6,34 +6,32 @@ import { Ionicons } from '@expo/vector-icons'
 import { setClearCartPopupState } from '../../actions/global-actions'
 
 class HeaderRight extends React.PureComponent {
+	onClearClick = () => {
+		this.props.setClearCartPopupState(true)
+	}
 
-    onClearClick = () => {
-        this.props.setClearCartPopupState(true)
-    }
-
-    render() {
-        if (Object.values(this.props.cart).length > 0) {
-            return (
-                <TouchableOpacity style={{ marginRight: 16 }} onPress={this.onClearClick}>
-                    <Ionicons name={'md-trash'} size={26} color={'white'} />
-                </TouchableOpacity>
-            )
-        } else {
-            return null
-        }
-    }
+	render() {
+		if (Object.values(this.props.cart).length > 0) {
+			return (
+				<TouchableOpacity style={{ marginRight: 16 }} onPress={this.onClearClick}>
+					<Ionicons name="md-trash" size={26} color="white" />
+				</TouchableOpacity>
+			)
+		}
+		return null
+	}
 }
 
 const mapStateToProps = ({
-    reducer1: {
-        cart
-    }
+	reducer1: {
+		cart,
+	},
 }) => ({
-    cart
+	cart,
 })
 
 const mapDispatchToProps = {
-    setClearCartPopupState
+	setClearCartPopupState,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderRight)

@@ -1,15 +1,17 @@
 import React from 'react'
-import { RFValue } from 'react-native-responsive-fontsize'
-import { TouchableOpacity, View, Text, Image, StyleSheet } from 'react-native'
-import { RFPercentage } from 'react-native-responsive-fontsize'
+import { RFValue, RFPercentage } from 'react-native-responsive-fontsize'
+import {
+	TouchableOpacity, View, Text, Image, StyleSheet,
+} from 'react-native'
+
 import { connect } from 'react-redux'
-import { SERVER_URL } from 'react-native-dotenv'
+import { SERVER_URL } from '../utils/global'
 
 import { increaseProductQuantity } from '../actions/actions1'
 
 class Product extends React.PureComponent {
-
 	onAddProductClick = () => {
+		// eslint-disable-next-line no-shadow
 		const { data: { _id }, increaseProductQuantity } = this.props
 		increaseProductQuantity(_id)
 	}
@@ -19,21 +21,27 @@ class Product extends React.PureComponent {
 	}
 
 	render() {
-		const { name, price, category, image } = this.props.data
+		const {
+			name, price, category, image,
+		} = this.props.data
+
+		const url = `${SERVER_URL}/assets/products/${category}/${image}.png`
 
 		return (
 			<View style={styles.container}>
 
-				<TouchableOpacity onPress={this.onAddProductClick}
-					style={styles.addProductButton}>
+				<TouchableOpacity
+					onPress={this.onAddProductClick}
+					style={styles.addProductButton}
+				>
 					<Text style={styles.addProductIcon}>+</Text>
 				</TouchableOpacity>
 
 				<TouchableOpacity style={[styles.child, styles.productImageContainer]} onPress={this.onProductClick}>
-					<Image source={{ uri: `${SERVER_URL}/assets/products/${category}/${image}.png` }} resizeMode={'contain'} style={styles.productImage} />
+					<Image source={{ uri: url }} resizeMode="contain" style={styles.productImage} />
 				</TouchableOpacity>
 
-				<Text style={[styles.child, styles.productPrice, { alignItems: 'flex-start' }]}>{'₺' + price.toFixed(2).toString().replace('.', ',')}</Text>
+				<Text style={[styles.child, styles.productPrice, { alignItems: 'flex-start' }]}>{`₺${price.toFixed(2).toString().replace('.', ',')}`}</Text>
 
 				<Text numberOfLines={3} style={[styles.productName, styles.child]}>{name}</Text>
 
@@ -54,12 +62,12 @@ const styles = StyleSheet.create({
 		padding: RFPercentage(1),
 		marginVertical: RFPercentage(2),
 		zIndex: -1,
-		backgroundColor: 'transparent'
+		backgroundColor: 'transparent',
 	},
 	child: {
 		alignItems: 'center',
 		justifyContent: 'center',
-		marginVertical: RFPercentage(.3)
+		marginVertical: RFPercentage(0.3),
 	},
 	addProductButton: {
 		alignItems: 'center',
@@ -69,27 +77,31 @@ const styles = StyleSheet.create({
 		right: -2,
 		zIndex: 1,
 		borderRadius: 8,
-		borderWidth: .6,
+		borderWidth: 0.6,
 		width: RFValue(28, 600),
 		height: RFValue(28, 600),
 		borderColor: '#CDCDCD',
 		backgroundColor: 'white',
-		shadowColor: '#000', shadowOffset: { width: 1, height: 1, }, shadowOpacity: .2, shadowRadius: 12, elevation: 4
+		shadowColor: '#000',
+		shadowOffset: { width: 1, height: 1 },
+		shadowOpacity: 0.2,
+		shadowRadius: 12,
+		elevation: 4,
 	},
 	addProductIcon: {
 		color: '#5837C2',
-		fontSize: RFValue(23, 600)
+		fontSize: RFValue(23, 600),
 	},
 	productImageContainer: {
-		borderWidth: .4,
+		borderWidth: 0.4,
 		borderColor: '#BCBCBC',
 		borderRadius: 16,
-		backgroundColor: 'white'
+		backgroundColor: 'white',
 	},
 	productImage: {
 		width: RFPercentage(12),
 		height: RFPercentage(14),
-		margin: RFValue(6, 600)
+		margin: RFValue(6, 600),
 	},
 	productName: {
 		fontSize: RFPercentage(2.5),
@@ -97,7 +109,7 @@ const styles = StyleSheet.create({
 		color: '#303030',
 		textAlign: 'left',
 		justifyContent: 'center',
-		letterSpacing: .2
+		letterSpacing: 0.2,
 	},
 	kindText: {
 		fontSize: RFPercentage(2.3),
@@ -105,7 +117,7 @@ const styles = StyleSheet.create({
 		color: '#B1B1B1',
 		textAlign: 'left',
 		justifyContent: 'center',
-		letterSpacing: .2
+		letterSpacing: 0.2,
 	},
 	productPrice: {
 		fontSize: RFPercentage(2.9),
@@ -113,12 +125,12 @@ const styles = StyleSheet.create({
 		color: '#5837C2',
 		textAlign: 'left',
 		justifyContent: 'center',
-		letterSpacing: .2
-	}
+		letterSpacing: 0.2,
+	},
 })
 
 const mapDispatchToProps = {
-	increaseProductQuantity
+	increaseProductQuantity,
 }
 
 export default connect(null, mapDispatchToProps)(Product)

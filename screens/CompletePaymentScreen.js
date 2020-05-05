@@ -13,75 +13,80 @@ import { setNeedToLoginPopupState } from '../actions/global-actions'
 //  import OrderNoteComponent from '../components/CompletePaymentComponents/OrderNoteComponent'
 
 class CompletePaymentScreen extends React.PureComponent {
+	render() {
+		const {
+			// eslint-disable-next-line no-shadow
+			navigation, cards, addresses, selectedCard, selectedAddress, token, setNeedToLoginPopupState,
+		} = this.props
 
-    render() {
-        const { navigation, cards, addresses, selectedCard, selectedAddress, token, setNeedToLoginPopupState } = this.props
+		return (
+			<>
 
-        return (
-            <React.Fragment>
+				<ScrollView style={{ zIndex: -1 }}>
+					<HeadingDivider title="Adres Seçimi" />
 
-                <ScrollView style={{ zIndex: -1 }}>
-                    <HeadingDivider title={'Adres Seçimi'} />
+					<AddressSelectComponent
+						navigation={navigation}
+						token={token}
+						setNeedToLoginPopupState={setNeedToLoginPopupState}
+						title={(addresses.find((address) => address._id === selectedAddress))?.openAddress ?? 'Adres seçiniz'}
+						subTitle={(addresses.find((address) => address._id === selectedAddress))?.openAddress ?? 'Adres seçiniz'}
+					/>
 
-                    <AddressSelectComponent
-                        navigation={navigation}
-                        token={token}
-                        setNeedToLoginPopupState={setNeedToLoginPopupState}
-                        title={(addresses.find(address => address._id === selectedAddress))?.openAddress ?? 'Adres seçiniz'}
-                        subTitle={(addresses.find(address => address._id === selectedAddress))?.openAddress ?? 'Adres seçiniz'} />
+					<HeadingDivider title="Ödeme Şekli" />
 
-                    <HeadingDivider title={'Ödeme Şekli'} />
+					<PaymentTypeSelectComponent
+						navigation={navigation}
+						token={token}
+						setNeedToLoginPopupState={setNeedToLoginPopupState}
+						title={(cards.find((card) => card.cardToken === selectedCard))?.cardAlias ?? 'Kart Seçiniz'}
+						subTitle={(cards.find((card) => card.cardToken === selectedCard))?.cardNumber ?? 'Kart Seçiniz'}
+					/>
 
-                    <PaymentTypeSelectComponent
-                        navigation={navigation}
-                        token={token}
-                        setNeedToLoginPopupState={setNeedToLoginPopupState}
-                        title={(cards.find(card => card.cardToken === selectedCard))?.cardAlias ?? 'Kart Seçiniz'}
-                        subTitle={(cards.find(card => card.cardToken === selectedCard))?.cardNumber ?? 'Kart Seçiniz'} />
+					{
+						//  <HeadingDivider title={'Gönderim Zamanı'} />
+						//  <OrderTimeComponent />
+						//  <HeadingDivider title={'Sipariş Notu'} />
+						//  <OrderNoteComponent />
+					}
 
-                    {
-                        //  <HeadingDivider title={'Gönderim Zamanı'} />
-                        //  <OrderTimeComponent />
-                        //  <HeadingDivider title={'Sipariş Notu'} />
-                        //  <OrderNoteComponent />
-                    }
+					<View style={styles.footer} />
+				</ScrollView>
 
-                    <View style={styles.footer} />
-                </ScrollView>
+				<CompletePayment
+					completable
+					navigation={navigation}
+				/>
 
-                <CompletePayment
-                    completable={true}
-                    navigation={navigation} />
-
-            </React.Fragment>
-        )
-    }
+			</>
+		)
+	}
 }
 
 const styles = StyleSheet.create({
-    footer: { height: RFValue(90, 600) }
+	footer: { height: RFValue(90, 600) },
 })
 
 const mapStateToProps = ({
-    reducer2: {
-        cards,
-        addresses,
-        selectedCard,
-        selectedAddress
-    },
-    reducer4: {
-        token
-    }
+	reducer2: {
+		cards,
+		addresses,
+		selectedCard,
+		selectedAddress,
+	},
+	reducer4: {
+		token,
+	},
 }) => ({
-    cards,
-    addresses,
-    selectedCard,
-    selectedAddress,
-    token
+	cards,
+	addresses,
+	selectedCard,
+	selectedAddress,
+	token,
 })
 
 const mapDispatchToProps = {
-    setNeedToLoginPopupState
+	setNeedToLoginPopupState,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CompletePaymentScreen)

@@ -20,32 +20,18 @@ import axiosMiddleware from './utils/axios'
 
 import { SET_NETWORK_STATUS } from './actions/network-actions'
 
-//	const networkMiddleWare = store => next => action => {
-//		console.log(store.getState().networkReducer.networkStatus)
-//		console.log(action.type === SET_NETWORK_STATUS || store.getState().networkReducer.networkStatus)
-//		if (action.type === SET_NETWORK_STATUS || store.getState().networkReducer.networkStatus) {
-//			next(action)
-//		} else {
-//			next({
-//				type: SET_CONNECTION_POPUP_STATE, payload: {
-//					connectionPopupState: true
-//				}
-//			})
-//		}
-//	}
-
 const store = createStore(rootReducer, applyMiddleware(thunk))
 const Stack = createStackNavigator()
 
 axiosMiddleware(store)
 
 const networkListener = () => {
-	NetInfo.addEventListener(state => {
+	NetInfo.addEventListener((state) => {
 		store.dispatch({
 			type: SET_NETWORK_STATUS,
 			payload: {
-				networkStatus: state.isConnected
-			}
+				networkStatus: state.isConnected,
+			},
 		})
 	})
 }
@@ -55,16 +41,12 @@ const handleAppStateChange = (nextAppState) => {
 	// const { token } = store.getState().reducer4
 	if (nextAppState.match(/inactive|background/)) {
 		if (Object.values(cart).length > 0) {
-			//	if (token) {
-			//		axios.post(`${SERVER_URL}/user/cart`, cart)
-			//	}
 			AsyncStorage.setItem('cart', JSON.stringify(cart))
 		}
 	}
 }
 
 export default function App(props) {
-
 	networkListener()
 	AppState.addEventListener('change', handleAppStateChange)
 
@@ -98,18 +80,17 @@ export default function App(props) {
 
 	if (!isLoadingComplete && !props.skipLoadingScreen) {
 		return null
-	} else {
-		return (
-			<Provider store={store}>
-				<GlobalScreen />
-				<NavigationContainer ref={containerRef} initialState={initialNavigationState}>
-					<Stack.Navigator initialRouteName={'Loading'}>
-						<Stack.Screen name='Welcome' component={WelcomeStack} options={{ headerShown: false }} />
-						<Stack.Screen name='Loading' component={LoadingScreen} options={{ headerShown: false }} />
-						<Stack.Screen name='Root' component={BottomTabNavigator} />
-					</Stack.Navigator>
-				</NavigationContainer>
-			</Provider>
-		)
 	}
+	return (
+		<Provider store={store}>
+			<GlobalScreen />
+			<NavigationContainer ref={containerRef} initialState={initialNavigationState}>
+				<Stack.Navigator initialRouteName="Loading">
+					<Stack.Screen name="Welcome" component={WelcomeStack} options={{ headerShown: false }} />
+					<Stack.Screen name="Loading" component={LoadingScreen} options={{ headerShown: false }} />
+					<Stack.Screen name="Root" component={BottomTabNavigator} />
+				</Stack.Navigator>
+			</NavigationContainer>
+		</Provider>
+	)
 }

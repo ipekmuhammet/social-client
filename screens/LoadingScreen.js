@@ -6,6 +6,7 @@ import { setInitialDatas } from '../actions/actions4'
 import LoadingComponent from '../components/LoadingCompenent'
 
 class LoadingScreen extends React.PureComponent {
+	// eslint-disable-next-line camelcase
 	UNSAFE_componentWillMount() {
 		// AsyncStorage.removeItem('init')
 		AsyncStorage.getItem('init').then((init) => {
@@ -15,13 +16,13 @@ class LoadingScreen extends React.PureComponent {
 				} else {
 					this.props.setInitialDatas()
 				}
-
 			} else {
 				this.props.navigation.navigate('Welcome')
 			}
 		})
 	}
 
+	// eslint-disable-next-line camelcase
 	UNSAFE_componentWillReceiveProps(nextProps) {
 		// if (nextProps.token) {
 		if (nextProps.categories.length > 0) {
@@ -47,16 +48,16 @@ const mapStateToProps = ({
 	reducer4: {
 		token,
 		categories,
-		products
-	}
+		products,
+	},
 }) => ({
 	token,
 	categories,
-	products
+	products,
 })
 
 const mapDispatchToProps = {
-	setInitialDatas
+	setInitialDatas,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoadingScreen)

@@ -13,58 +13,64 @@ const BottomTab = createBottomTabNavigator()
 const INITIAL_ROUTE_NAME = 'Home'
 
 export default function BottomTabNavigator({ navigation, route }) {
-  navigation.setOptions({ headerTitle: getHeaderTitle(route), headerShown: false })
+	navigation.setOptions({ headerTitle: getHeaderTitle(route), headerShown: false })
 
-  return (
-    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME} tabBarOptions={{ activeTintColor: '#5D3EBD' }} lazy={false}>
+	return (
+		<BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME} tabBarOptions={{ activeTintColor: '#5D3EBD' }} lazy={false}>
 
-      <BottomTab.Screen
-        name='Home'
-        component={Home}
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name='md-home' />
-        }} />
+			<BottomTab.Screen
+				name="Home"
+				component={Home}
+				options={{
+					title: 'Home',
+					tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-home" />,
+				}}
+			/>
 
-      <BottomTab.Screen
-        name='Search'
-        component={Search}
-        options={{
-          title: 'Search',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name='md-search' />
-        }} />
+			<BottomTab.Screen
+				name="Search"
+				component={Search}
+				options={{
+					title: 'Search',
+					tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-search" />,
+				}}
+			/>
 
-      <BottomTab.Screen
-        name='Cart'
-        component={Cart}
-        options={{
-          title: 'Cart',
-          tabBarIcon: ({ focused }) => <CartIcon focused={focused} name='md-cart' />
-        }} />
+			<BottomTab.Screen
+				name="Cart"
+				component={Cart}
+				options={{
+					title: 'Cart',
+					tabBarIcon: ({ focused }) => <CartIcon focused={focused} name="md-cart" />,
+				}}
+			/>
 
-      <BottomTab.Screen
-        name='Profile'
-        component={ProfileScreen}
-        options={{
-          title: 'Profile',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name='md-person' />
-        }} />
+			<BottomTab.Screen
+				name="Profile"
+				component={ProfileScreen}
+				options={{
+					title: 'Profile',
+					tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-person" />,
+				}}
+			/>
 
-    </BottomTab.Navigator>
-  )
+		</BottomTab.Navigator>
+	)
 }
 
 function getHeaderTitle(route) {
-  const routeName = route.state?.routes[route.state.index]?.name ?? INITIAL_ROUTE_NAME
+	const routeName = route.state?.routes[route.state.index]?.name ?? INITIAL_ROUTE_NAME
 
-  switch (routeName) {
-    case 'Home':
-      return 'Home'
-    case 'Search':
-      return 'Search'
-    case 'Cart':
-      return 'Cart'
-    case 'Profile':
-      return 'Profile'
-  }
+	switch (routeName) {
+		case 'Home':
+			return 'Home'
+		case 'Search':
+			return 'Search'
+		case 'Cart':
+			return 'Cart'
+		case 'Profile':
+			return 'Profile'
+		default:
+			return 'Profile'
+	}
 }

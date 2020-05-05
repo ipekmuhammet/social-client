@@ -13,6 +13,7 @@ const formatData = (data, numColumns) => {
 	let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns)
 	while (numberOfElementsLastRow !== numColumns && numberOfElementsLastRow !== 0) {
 		data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true })
+		// eslint-disable-next-line no-plusplus
 		numberOfElementsLastRow++
 	}
 
@@ -23,7 +24,7 @@ const formatData = (data, numColumns) => {
 class HomeScreen extends React.PureComponent {
 	keyExtractor = (item) => item._id
 
-	renderItem = ({ item, index }) => item.empty ? <EmptyCategory /> : <Category navigation={this.props.navigation} index={index} data={item} />
+	renderItem = ({ item, index }) => (item.empty ? <EmptyCategory /> : <Category navigation={this.props.navigation} index={index} data={item} />)
 
 	render() {
 		return (
@@ -41,10 +42,10 @@ class HomeScreen extends React.PureComponent {
 
 const mapStateToProps = ({
 	reducer4: {
-		categories
-	}
+		categories,
+	},
 }) => ({
-	categories
+	categories,
 })
 
 export default connect(mapStateToProps)(HomeScreen)
