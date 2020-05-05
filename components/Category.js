@@ -40,28 +40,29 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 		padding: RFPercentage(0.8),
 		margin: RFPercentage(0.8),
-		zIndex: -1,
+		zIndex: -1
 	},
 	child: {
 		alignItems: 'center',
 		justifyContent: 'center',
-		flex: 1,
+		flex: 1
 	},
 	imageContainer: {
 		borderWidth: 0.2,
-		borderRadius: 12,
-		borderColor: '#5D3EBD',
+		borderRadius: 16,
+		borderColor: '#BCBCBC',
 		backgroundColor: 'white',
 		shadowColor: '#000',
 		shadowOffset: { width: 1, height: 1 },
 		shadowOpacity: 0.2,
 		shadowRadius: 12,
 		elevation: 2,
+		marginHorizontal: 8
 	},
 	productImage: {
 		width: RFPercentage(14),
 		height: RFPercentage(14),
-		margin: RFValue(4, 600),
+		margin: RFValue(4, 600)
 	},
 	categoryName: {
 		fontSize: RFPercentage(3),
@@ -69,12 +70,12 @@ const styles = StyleSheet.create({
 		fontWeight: '300',
 		color: '#707070',
 		textAlign: 'center',
-		justifyContent: 'center',
-	},
+		justifyContent: 'center'
+	}
 })
 
 const mapDispatchToProps = {
-	setSelectedCategory,
+	setSelectedCategory
 }
 
 export default connect(null, mapDispatchToProps)(Category)

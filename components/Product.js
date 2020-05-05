@@ -62,12 +62,13 @@ const styles = StyleSheet.create({
 		padding: RFPercentage(1),
 		marginVertical: RFPercentage(2),
 		zIndex: -1,
-		backgroundColor: 'transparent',
+		backgroundColor: 'transparent'
 	},
 	child: {
 		alignItems: 'center',
 		justifyContent: 'center',
-		marginVertical: RFPercentage(0.3),
+		margin: 6,
+		marginVertical: RFPercentage(0.3)
 	},
 	addProductButton: {
 		alignItems: 'center',
@@ -78,30 +79,30 @@ const styles = StyleSheet.create({
 		zIndex: 1,
 		borderRadius: 8,
 		borderWidth: 0.6,
-		width: RFValue(28, 600),
-		height: RFValue(28, 600),
+		width: RFValue(30, 600),
+		height: RFValue(30, 600),
 		borderColor: '#CDCDCD',
 		backgroundColor: 'white',
 		shadowColor: '#000',
 		shadowOffset: { width: 1, height: 1 },
 		shadowOpacity: 0.2,
 		shadowRadius: 12,
-		elevation: 4,
+		elevation: 4
 	},
 	addProductIcon: {
 		color: '#5837C2',
-		fontSize: RFValue(23, 600),
+		fontSize: RFValue(23, 600)
 	},
 	productImageContainer: {
 		borderWidth: 0.4,
 		borderColor: '#BCBCBC',
 		borderRadius: 16,
-		backgroundColor: 'white',
+		backgroundColor: 'white'
 	},
 	productImage: {
 		width: RFPercentage(12),
 		height: RFPercentage(14),
-		margin: RFValue(6, 600),
+		margin: RFValue(6, 600)
 	},
 	productName: {
 		fontSize: RFPercentage(2.5),
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
 		color: '#303030',
 		textAlign: 'left',
 		justifyContent: 'center',
-		letterSpacing: 0.2,
+		letterSpacing: 0.2
 	},
 	kindText: {
 		fontSize: RFPercentage(2.3),
@@ -117,7 +118,7 @@ const styles = StyleSheet.create({
 		color: '#B1B1B1',
 		textAlign: 'left',
 		justifyContent: 'center',
-		letterSpacing: 0.2,
+		letterSpacing: 0.2
 	},
 	productPrice: {
 		fontSize: RFPercentage(2.9),
@@ -125,8 +126,8 @@ const styles = StyleSheet.create({
 		color: '#5837C2',
 		textAlign: 'left',
 		justifyContent: 'center',
-		letterSpacing: 0.2,
-	},
+		letterSpacing: 0.2
+	}
 })
 
 const mapDispatchToProps = {
