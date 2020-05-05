@@ -15,5 +15,5 @@ export default combineReducers({
 	reducer4,
 	mapReducer,
 	networkReducer,
-	globalReducer,
+	globalReducer
 })
