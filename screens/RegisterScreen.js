@@ -4,10 +4,10 @@ import {
 	ScrollView, View, StyleSheet, Text,
 } from 'react-native'
 import axios from 'axios'
-import { SERVER_URL } from 'react-native-dotenv'
 import { Ionicons } from '@expo/vector-icons'
-
 import joi from 'react-native-joi'
+
+import { SERVER_URL } from '../utils/global'
 import ButtonComponent from '../components/ButtonComponent'
 import InputComponent from '../components/InputComponent'
 import InputIcon from '../components/InputIcon'
@@ -33,7 +33,9 @@ class RegisterScreen extends React.PureComponent {
 	}
 
 	onRegisterClick = () => {
-		axios.post(`${SERVER_URL}/send-activation-code`, {
+		const url = `${SERVER_URL}/send-activation-code`
+
+		axios.post(url, {
 			phoneNumber: this.state.phoneNumber,
 			activationCodeType: 0, // REGISTER
 		}).then(({ status }) => {

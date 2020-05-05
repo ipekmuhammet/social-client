@@ -1,5 +1,6 @@
 import React from 'react'
 import Slideshow from 'react-native-image-slider-show'
+import { SERVER_URL } from '../utils/global'
 
 class Slider extends React.PureComponent {
 	state = {
@@ -7,17 +8,17 @@ class Slider extends React.PureComponent {
 		interval: null,
 		dataSource: [
 			{
-				url: 'https://www.herkesebilimteknoloji.com/wp-content/uploads/2019/04/ata-1600x1000.jpg',
+				url: `${SERVER_URL}/assets/banners/1.jpg`
 			},
 			{
-				url: 'https://i2.milimaj.com/i/milliyet/75/0x0/5dc7360d5542871e38fdc526.jpg',
+				url: `${SERVER_URL}/assets/banners/2.jpg`
 			},
 			{
-				url: 'https://i.sozcu.com.tr/wp-content/uploads/2019/11/09/iecrop/images-2_16_9_1573296641.jpg',
+				url: `${SERVER_URL}/assets/banners/3.jpg`
 			},
 			{
-				url: 'https://i4.hurimg.com/i/hurriyet/75/0x0/5dc69e46d3806c14c4d56d73.jpg',
-			},
+				url: `${SERVER_URL}/assets/banners/4.jpg`
+			}
 		],
 	}
 

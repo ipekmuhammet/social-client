@@ -1,22 +1,40 @@
 import { AsyncStorage } from 'react-native'
 import axios from 'axios'
-import { SERVER_URL } from 'react-native-dotenv'
+import { SERVER_URL } from '../utils/global'
 
 export const SET_INITIAL_DATAS = 'SET_INITIAL_DATAS'
 export const SET_USER = 'SET_USER'
 export const LOGOUT = 'LOGOUT'
 export const UPDATE_PROFILE = 'UPDATE_PROFILE'
 
-const getCategories = () => axios.get(`${SERVER_URL}/categories`).then(({ data }) => data)
+const getCategories = () => {
+	const url = `${SERVER_URL}/categories`
 
-const getProducts = () => axios.get(`${SERVER_URL}/products`).then(({ data }) => data)
+	return axios.get(url).then(({ data }) => data)
+}
 
-const getCart = (token) => axios.get(`${SERVER_URL}/user/cart`, { headers: { Authorization: token } }).then(({ data }) => data)
+const getProducts = () => {
+	const url = `${SERVER_URL}/products`
 
-const getPaymentCards = (token) => axios.get(`${SERVER_URL}/user/list-cards`, { headers: { Authorization: token } }).then(({ data }) => data)
+	return axios.get(url).then(({ data }) => data)
+}
+
+const getCart = (token) => {
+	const url = `${SERVER_URL}/user/cart`
+
+	return axios.get(url, { headers: { Authorization: token } }).then(({ data }) => data)
+}
+
+const getPaymentCards = (token) => {
+	const url = `${SERVER_URL}/user/list-cards`
+
+	return axios.get(url, { headers: { Authorization: token } }).then(({ data }) => data)
+}
 
 export const updateProfile = (body, cb) => (dispatch) => {
-	axios.put(`${SERVER_URL}/user/profile`, body)
+	const url = `${SERVER_URL}/user/profile`
+
+	axios.put(url, body)
 		.then(({ data, status }) => {
 			if (status === 200) {
 				dispatch({
@@ -64,7 +82,9 @@ export const setInitialDatas = () => (dispatch) => {
 }
 
 export const login = (body, popupRef, cb) => (dispatch) => {
-	axios.post(`${SERVER_URL}/login`, body).then(({ status, data }) => {
+	const url = `${SERVER_URL}/login`
+
+	axios.post(url, body).then(({ status, data }) => {
 		if (status === 200) {
 			AsyncStorage.multiSet([['token', data.token], ['user', JSON.stringify(data.user)]]).then(() => {
 				dispatch({
@@ -83,7 +103,9 @@ export const login = (body, popupRef, cb) => (dispatch) => {
 }
 
 export const register = (body, cb) => (dispatch) => {
-	axios.post(`${SERVER_URL}/register`, body).then(({ status, data }) => {
+	const url = `${SERVER_URL}/register`
+
+	axios.post(url, body).then(({ status, data }) => {
 		if (status === 200) {
 			AsyncStorage.multiSet([['token', data.token], ['user', JSON.stringify(data.user)]]).then(() => {
 				dispatch({

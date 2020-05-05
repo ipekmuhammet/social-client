@@ -4,9 +4,9 @@ import {
 	ScrollView, Text, StyleSheet,
 } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { SERVER_URL } from 'react-native-dotenv'
 import joi from 'react-native-joi'
 
+import { SERVER_URL } from '../utils/global'
 import ButtonComponent from '../components/ButtonComponent'
 import InputComponent from '../components/InputComponent'
 import InputIcon from '../components/InputIcon'
@@ -19,7 +19,9 @@ class ForgotPasswordScreen extends React.PureComponent {
 	}
 
 	onSendCodeClick = () => {
-		axios.post(`${SERVER_URL}/send-activation-code`, {
+		const url = `${SERVER_URL}/send-activation-code`
+
+		axios.post(url, {
 			phoneNumber: this.state.phoneNumber,
 			activationCodeType: 1, // RESET
 		}).then(({ status }) => {

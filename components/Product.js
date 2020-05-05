@@ -5,12 +5,13 @@ import {
 } from 'react-native'
 
 import { connect } from 'react-redux'
-import { SERVER_URL } from 'react-native-dotenv'
+import { SERVER_URL } from '../utils/global'
 
 import { increaseProductQuantity } from '../actions/actions1'
 
 class Product extends React.PureComponent {
 	onAddProductClick = () => {
+		// eslint-disable-next-line no-shadow
 		const { data: { _id }, increaseProductQuantity } = this.props
 		increaseProductQuantity(_id)
 	}
@@ -24,6 +25,8 @@ class Product extends React.PureComponent {
 			name, price, category, image,
 		} = this.props.data
 
+		const url = `${SERVER_URL}/assets/products/${category}/${image}.png`
+
 		return (
 			<View style={styles.container}>
 
@@ -35,7 +38,7 @@ class Product extends React.PureComponent {
 				</TouchableOpacity>
 
 				<TouchableOpacity style={[styles.child, styles.productImageContainer]} onPress={this.onProductClick}>
-					<Image source={{ uri: `${SERVER_URL}/assets/products/${category}/${image}.png` }} resizeMode="contain" style={styles.productImage} />
+					<Image source={{ uri: url }} resizeMode="contain" style={styles.productImage} />
 				</TouchableOpacity>
 
 				<Text style={[styles.child, styles.productPrice, { alignItems: 'flex-start' }]}>{`₺${price.toFixed(2).toString().replace('.', ',')}`}</Text>

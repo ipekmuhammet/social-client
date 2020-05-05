@@ -4,11 +4,11 @@ import {
 } from 'react-native'
 import axios from 'axios'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { SERVER_URL } from 'react-native-dotenv'
 import joi from 'react-native-joi'
 import { Ionicons } from '@expo/vector-icons'
 import { connect } from 'react-redux'
 
+import { SERVER_URL } from '../utils/global'
 import ButtonComponent from '../components/ButtonComponent'
 import InputComponent from '../components/InputComponent'
 
@@ -36,8 +36,11 @@ class ActivationScreen extends React.PureComponent {
 	}
 
 	onResendClick = () => {
-		axios.post(`${SERVER_URL}/send-activation-code`, {
-			phoneNumber: this.props.route.params.phoneNumber, activationCodeType: 0, // REGISTER
+		const url = `${SERVER_URL}/send-activation-code`
+
+		axios.post(url, {
+			phoneNumber: this.props.route.params.phoneNumber,
+			activationCodeType: 0, // REGISTER
 		})
 	}
 

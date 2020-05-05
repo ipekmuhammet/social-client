@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import {
 	ScrollView, View, Image, Text, StyleSheet,
 } from 'react-native'
-import { SERVER_URL } from 'react-native-dotenv'
 import { RFValue } from 'react-native-responsive-fontsize'
 
+import { SERVER_URL } from '../utils/global'
 import { increaseProductQuantity } from '../actions/actions1'
 import ButtonComponent from '../components/ButtonComponent'
 
@@ -19,6 +19,8 @@ class FullProductScreen extends React.PureComponent {
 			name, price, category, image,
 		} = this.props.route.params
 
+		const url = `${SERVER_URL}/assets/original-products/${category}/${image}.png`
+
 		return (
 			<View style={styles.container}>
 
@@ -27,7 +29,7 @@ class FullProductScreen extends React.PureComponent {
 						<Image
 							style={styles.image}
 							resizeMode="contain"
-							source={{ uri: `${SERVER_URL}/assets/original-products/${category}/${image}.png` }}
+							source={{ uri: url }}
 						/>
 					</View>
 					<View style={styles.details}>

@@ -6,9 +6,9 @@ import {
 	ScrollView, TouchableOpacity, Text, StyleSheet,
 } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-import { SERVER_URL } from 'react-native-dotenv'
 import joi from 'react-native-joi'
 
+import { SERVER_URL } from '../utils/global'
 import PasswordChangedPopup from '../components/popups/PasswordChangedPopup'
 import ButtonComponent from '../components/ButtonComponent'
 import InputComponent from '../components/InputComponent'
@@ -50,8 +50,13 @@ class ResetPasswordScreen extends React.PureComponent {
 		} else if (this.state.password.length < 4) {
 			this.props.messagePopupRef.showMessage({ message: 'Yeni şifreniz en az 4 haneli olmalı' })
 		} else {
-			axios.put(`${SERVER_URL}/reset-password`,
-				{ activationCode: this.state.activationCode, phoneNumber: this.state.phoneNumber, newPassword: this.state.password }).then(({ status }) => {
+			const url = `${SERVER_URL}/reset-password`
+
+			axios.put(url, {
+				activationCode: this.state.activationCode,
+				phoneNumber: this.state.phoneNumber,
+				newPassword: this.state.password
+			}).then(({ status }) => {
 				if (status === 200) {
 					this.setState({ scaleAnimationModal: true })
 				}
@@ -60,7 +65,9 @@ class ResetPasswordScreen extends React.PureComponent {
 	}
 
 	onResendClick = () => {
-		axios.post(`${SERVER_URL}/send-activation-code`, {
+		const url = `${SERVER_URL}/send-activation-code`
+
+		axios.post(url, {
 			phoneNumber: this.state.phoneNumber,
 			activationCodeType: 1, // RESET
 		})

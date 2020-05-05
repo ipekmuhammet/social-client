@@ -90,15 +90,15 @@ const styles = StyleSheet.create({
 	listProductsText: {
 		color: 'white', fontSize: RFValue(19, 600), alignItems: 'center', justifyContent: 'center',
 	},
-	footer: { height: RFValue(90, 600) },
+	footer: { height: RFValue(90, 600) }
 })
 
 const mapStateToProps = ({
 	reducer1: {
-		cart,
+		cart
 	},
 }) => ({
-	cart,
+	cart
 })
 
 export default connect(mapStateToProps)(CartScreen)

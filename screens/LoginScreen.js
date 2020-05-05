@@ -5,10 +5,10 @@ import {
 } from 'react-native'
 import axios from 'axios'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { SERVER_URL } from 'react-native-dotenv'
 import joi from 'react-native-joi'
-
 import { Ionicons } from '@expo/vector-icons'
+
+import { SERVER_URL } from '../utils/global'
 import { login } from '../actions/actions4'
 import ButtonComponent from '../components/ButtonComponent'
 import InputComponent from '../components/InputComponent'
@@ -35,7 +35,9 @@ class LoginScreen extends React.Component {
 	saveCart = () => {
 		const { cart, token } = this.props
 		if (token && Object.values(cart).length > 0) {
-			axios.post(`${SERVER_URL}/user/cart`, Object.values(cart).map(({ _id, quantity }) => ({ _id, quantity })))
+			const url = `${SERVER_URL}/user/cart`
+
+			axios.post(url, Object.values(cart).map(({ _id, quantity }) => ({ _id, quantity })))
 				.then(({ status, data }) => {
 					if (status === 200) {
 						AsyncStorage.setItem('cart', JSON.stringify(data))

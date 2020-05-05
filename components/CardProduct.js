@@ -3,7 +3,7 @@ import {
 	View, Image, Text, StyleSheet,
 } from 'react-native'
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize'
-import { SERVER_URL } from 'react-native-dotenv'
+import { SERVER_URL } from '../utils/global'
 
 import CardProductQuantityComponent from './CardProductQuantityComponent'
 
@@ -15,6 +15,8 @@ class CardProduct extends React.PureComponent {
 			},
 		} = this.props
 
+		const url = `${SERVER_URL}/assets/products/${category}/${image}.png`
+
 		return (
 			<View style={styles.container}>
 
@@ -22,7 +24,7 @@ class CardProduct extends React.PureComponent {
 					<Image
 						style={styles.productImage}
 						resizeMode="contain"
-						source={{ uri: `${SERVER_URL}/assets/products/${category}/${image}.png` }}
+						source={{ uri: url }}
 					/>
 				</View>
 

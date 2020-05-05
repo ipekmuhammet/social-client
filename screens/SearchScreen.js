@@ -5,8 +5,8 @@ import {
 	ScrollView, View, TouchableOpacity, ActivityIndicator, TextInput, StyleSheet,
 } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-import { SERVER_URL } from 'react-native-dotenv'
 
+import { SERVER_URL } from '../utils/global'
 import HeadingDivider from '../components/HeadingDivider'
 import SearchFilter from '../components/SearchFilter'
 import RecyclerList from '../components/RecyclerList'
@@ -22,7 +22,9 @@ class SearchScreen extends React.PureComponent {
 		if (text.length > 0) {
 			this.setState({ fetch: true, text })
 
-			axios.get(`${SERVER_URL}/search-product?name=${text}`).then((response) => {
+			const url = `${SERVER_URL}/search-product?name=${text}`
+
+			axios.get(url).then((response) => {
 				this.setState({ products: response.data.map(({ _source }) => _source), fetch: false })
 			}).catch(() => {
 				this.setState({ fetch: false })

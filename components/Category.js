@@ -4,7 +4,7 @@ import {
 	TouchableOpacity, View, Text, Image, StyleSheet,
 } from 'react-native'
 import { connect } from 'react-redux'
-import { SERVER_URL } from 'react-native-dotenv'
+import { SERVER_URL } from '../utils/global'
 
 import { setSelectedCategory } from '../actions/actions3'
 

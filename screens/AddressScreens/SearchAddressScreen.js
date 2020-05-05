@@ -20,9 +20,10 @@ class SearchAddressScreen extends React.PureComponent {
 	}
 
 	search = (text) => {
+		const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${text}&key=AIzaSyDOKcW0tFvi_T9vFyERfUDh20IxfTfBsmA&components=country:tr&origin=41.0381511,28.9418645`
+
 		this.setState({ searchVal: text })
-		axios.get(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=istanbul ${text}&key=AIzaSyDOKcW0tFvi_T9vFyERfUDh20IxfTfBsmA&components=country:tr&origin=41.0381511,28.9418645`)
-			.then(this.onSearchResult)
+		axios.get(url).then(this.onSearchResult)
 	}
 
 	onAddress = (data) => {

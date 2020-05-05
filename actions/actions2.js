@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { SERVER_URL } from 'react-native-dotenv'
+import { SERVER_URL } from '../utils/global'
 
 export const SET_PAYMENT_TYPE = 'SET_PAYMENT_TYPE'
 export const SAVE_CARD = 'SAVE_CARD'
@@ -19,7 +19,9 @@ export const setPaymentType = (paymentType) => (dispatch) => {
 }
 
 export const saveCard = (card, cb) => (dispatch) => {
-	axios.post(`${SERVER_URL}/user/payment-card`, { card })
+	const url = `${SERVER_URL}/user/payment-card`
+
+	axios.post(url, { card })
 		.then(({ status, data }) => {
 			if (status === 200) {
 				dispatch({
@@ -34,7 +36,9 @@ export const saveCard = (card, cb) => (dispatch) => {
 }
 
 export const deleteCard = (cardToken) => (dispatch) => {
-	axios.put(`${SERVER_URL}/user/payment-card`, { cardToken })
+	const url = `${SERVER_URL}/user/payment-card`
+
+	axios.put(url, { cardToken })
 		.then(({ status }) => {
 			if (status === 200) {
 				dispatch({
@@ -58,7 +62,9 @@ export const saveAddress = (address, details) => {
 	}
 
 	return (dispatch) => {
-		axios.post(`${SERVER_URL}/user/address`, body)
+		const url = `${SERVER_URL}/user/address`
+
+		axios.post(url, body)
 			.then(({ status, data }) => {
 				if (status === 200) {
 					// AsyncStorage.setItem('user', JSON.stringify(data)) // User serverda güncellenince, güncellenenen tüm user'ı geri dönüyor.
@@ -74,7 +80,9 @@ export const saveAddress = (address, details) => {
 }
 
 export const deleteAddress = (addressId) => (dispatch) => {
-	axios.delete(`${SERVER_URL}/user/address/${addressId}`)
+	const url = `${SERVER_URL}/user/address/${addressId}`
+
+	axios.delete(url)
 		.then(({ status, data }) => {
 			if (status === 200) {
 				// AsyncStorage.setItem('user', JSON.stringify(data)) // User serverda güncellenince, güncellenenen tüm user'ı geri dönüyor.

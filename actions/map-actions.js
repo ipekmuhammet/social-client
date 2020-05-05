@@ -16,10 +16,11 @@ const getLocationAsync = async () => {
 	return coords
 }
 
-const getAddress = (region) => (
-	axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${region.latitude},${region.longitude}&key=AIzaSyDOKcW0tFvi_T9vFyERfUDh20IxfTfBsmA`)
-		.then(({ data }) => data.results[0].formatted_address)
-)
+const getAddress = (region) => {
+	const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${region.latitude},${region.longitude}&key=AIzaSyDOKcW0tFvi_T9vFyERfUDh20IxfTfBsmA`
+
+	return axios.get(url).then(({ data }) => data.results[0].formatted_address)
+}
 
 export const setRegion = (region) => ((dispatch) => {
 	getAddress(region).then((address) => {
@@ -47,7 +48,9 @@ export const setAddress = (address) => ((dispatch) => {
 })
 
 export const setRegionByPlace = (placeId, cb) => ((dispatch) => {
-	axios.get(`https://maps.googleapis.com/maps/api/place/details/json?placeid=${placeId}&key=AIzaSyDOKcW0tFvi_T9vFyERfUDh20IxfTfBsmA`)
+	const url = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${placeId}&key=AIzaSyDOKcW0tFvi_T9vFyERfUDh20IxfTfBsmA`
+
+	axios.get(url)
 		.then(({ data }) => {
 			dispatch({
 				type: SET_REGION_BY_PLACE,
