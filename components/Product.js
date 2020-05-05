@@ -22,7 +22,7 @@ class Product extends React.PureComponent {
 
 	render() {
 		const {
-			name, price, category, image,
+			name, price, category, image
 		} = this.props.data
 
 		const url = `${SERVER_URL}/assets/products/${category}/${image}.png`
@@ -79,8 +79,8 @@ const styles = StyleSheet.create({
 		zIndex: 1,
 		borderRadius: 8,
 		borderWidth: 0.6,
-		width: RFValue(30, 600),
-		height: RFValue(30, 600),
+		width: RFValue(32, 600),
+		height: RFValue(32, 600),
 		borderColor: '#CDCDCD',
 		backgroundColor: 'white',
 		shadowColor: '#000',
