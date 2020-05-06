@@ -74,22 +74,22 @@ class CartScreen extends React.PureComponent {
 const styles = StyleSheet.create({
 	container: { flex: 1, justifyContent: 'space-between' },
 	emptyCartContainer: {
-		flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#EDEDED',
+		flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#EDEDED'
 	},
 	child: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-	emptyCartText: { fontSize: RFValue(18, 600), textAlign: 'center' },
+	emptyCartText: { fontSize: RFValue(18, 600), textAlign: 'center', color: '#303030' },
 	listProductsButtonContainer: { display: 'flex' },
 	listProducts: {
-		backgroundColor: '#4CAB51',
+		backgroundColor: '#5D3EBD',
 		borderRadius: 32,
 		alignItems: 'center',
 		justifyContent: 'center',
 		margin: RFValue(18, 600),
 		padding: RFValue(18, 600),
-		paddingHorizontal: RFValue(48, 600),
+		paddingHorizontal: RFValue(48, 600)
 	},
 	listProductsText: {
-		color: 'white', fontSize: RFValue(19, 600), alignItems: 'center', justifyContent: 'center',
+		color: 'white', fontSize: RFValue(19, 600), alignItems: 'center', justifyContent: 'center'
 	},
 	footer: {
 		height: RFValue(65, 600),

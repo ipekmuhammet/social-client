@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-	ScrollView, TouchableOpacity, Text, StyleSheet,
+	TouchableOpacity, Text, StyleSheet
 } from 'react-native'
 import axios from 'axios'
 import { RFValue } from 'react-native-responsive-fontsize'
@@ -11,6 +11,7 @@ import { connect } from 'react-redux'
 import { SERVER_URL } from '../utils/global'
 import ButtonComponent from '../components/ButtonComponent'
 import InputComponent from '../components/InputComponent'
+import ShadowContainer from '../components/ShadowContainer'
 
 import { register } from '../actions/actions4'
 
@@ -46,7 +47,7 @@ class ActivationScreen extends React.PureComponent {
 
 	render() {
 		return (
-			<ScrollView style={styles.container}>
+			<ShadowContainer>
 
 				<InputComponent
 					value={this.state.activationCode}
@@ -70,19 +71,20 @@ class ActivationScreen extends React.PureComponent {
 					<Text style={styles.resendCodeText}>Yeniden gönder</Text>
 				</TouchableOpacity>
 
-			</ScrollView>
+			</ShadowContainer>
 		)
 	}
 }
 
 const styles = StyleSheet.create({
-	container: { marginVertical: RFValue(12, 600) },
-	resendContainer: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
-	resendCodeText: { fontSize: RFValue(19, 600), paddingHorizontal: RFValue(12, 600), color: '#6E7586' },
+	resendContainer: {
+		flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 12
+	},
+	resendCodeText: { fontSize: RFValue(19, 600), paddingHorizontal: RFValue(12, 600), color: '#6E7586' }
 })
 
 const mapDistachToProps = {
-	register,
+	register
 }
 
 export default connect(null, mapDistachToProps)(ActivationScreen)

@@ -25,7 +25,7 @@ const Screen3 = ({ navigation }) => (
 				headerTintColor: 'white',
 				headerStyle: styles.headerStyle,
 				headerLeft: () => <HeaderLeft navigation={navigation} />,
-				headerRight: () => <HeaderRight />,
+				headerRight: () => <HeaderRight />
 			}}
 		/>
 
@@ -36,7 +36,7 @@ const Screen3 = ({ navigation }) => (
 				title: 'Ödemeyi tamamla',
 				headerTitleAlign: 'center',
 				headerTintColor: 'white',
-				headerStyle: styles.headerStyle,
+				headerStyle: styles.headerStyle
 			}}
 		/>
 
@@ -47,7 +47,7 @@ const Screen3 = ({ navigation }) => (
 				title: 'Ödeme Yöntemi',
 				headerTitleAlign: 'center',
 				headerTintColor: 'white',
-				headerStyle: styles.headerStyle,
+				headerStyle: styles.headerStyle
 			}}
 		/>
 
@@ -58,7 +58,7 @@ const Screen3 = ({ navigation }) => (
 				title: 'Online Kredi/Banka Kartı',
 				headerTitleAlign: 'center',
 				headerTintColor: 'white',
-				headerStyle: styles.headerStyle,
+				headerStyle: styles.headerStyle
 			}}
 		/>
 
@@ -66,14 +66,14 @@ const Screen3 = ({ navigation }) => (
 			name="thanksScreen"
 			component={ThanksScreen}
 			options={{
-				headerShown: false,
+				headerShown: false
 			}}
 		/>
 	</Stack.Navigator>
 )
 
 const styles = StyleSheet.create({
-	headerStyle: { backgroundColor: '#5D3EBD' },
+	headerStyle: { backgroundColor: '#5D3EBD' }
 })
 
 export default Screen3

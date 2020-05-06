@@ -3,7 +3,7 @@ import { View, TextInput, StyleSheet } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 
 const InputComponent = ({
-	value, onChange, options, children: icon, invalid, disabled,
+	value, onChange, options, children: icon, invalid, disabled
 }) => (
 	<View style={styles.container}>
 		{
@@ -33,15 +33,15 @@ const styles = StyleSheet.create({
 		flex: 1,
 		margin: RFValue(4, 600),
 		zIndex: -1,
-		borderRadius: 10,
+		borderRadius: 6,
 		paddingHorizontal: RFValue(12, 600),
 		fontSize: RFValue(18, 600),
-		borderWidth: 0.8,
-		borderColor: '#CDCDCD',
+		borderWidth: 1,
+		borderColor: '#CCC8E0'
 	},
 	withIcon: { paddingLeft: RFValue(48, 600) },
 	invalid: { borderColor: 'red', borderWidth: 1.2 },
-	disabled: { color: '#909090' },
+	disabled: { color: '#909090' }
 })
 
 export default InputComponent

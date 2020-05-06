@@ -165,7 +165,7 @@ class ResetPasswordScreen extends React.PureComponent {
 
 const styles = StyleSheet.create({
 	resendContainer: {
-		flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingVertical: 12
+		flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 12
 	},
 	resendCodeText: { fontSize: RFValue(19, 600), paddingHorizontal: RFValue(12, 600), color: '#6E7586' }
 })
