@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { ScrollView, StyleSheet } from 'react-native'
+import { ScrollView } from 'react-native'
 import axios from 'axios'
-import { RFValue } from 'react-native-responsive-fontsize'
 import joi from 'react-native-joi'
 
 import { SERVER_URL } from '../utils/global'
@@ -67,7 +66,7 @@ class ChangePasswordScreen extends React.PureComponent {
 	render() {
 		return (
 			<ShadowContainer>
-				<ScrollView style={styles.container}>
+				<ScrollView>
 
 					<PasswordChangedPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
 
@@ -107,12 +106,6 @@ class ChangePasswordScreen extends React.PureComponent {
 		)
 	}
 }
-
-const styles = StyleSheet.create({
-	container: { marginVertical: RFValue(12, 600) },
-	resendContainer: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
-	resendCodeText: { fontSize: RFValue(20, 600), paddingHorizontal: RFValue(12, 600), color: '#6E7586' },
-})
 
 const mapStateToProps = ({
 	globalReducer: {

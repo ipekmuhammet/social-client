@@ -69,7 +69,7 @@ class CompleteAddressScreen extends React.Component {
 
 	render() {
 		return (
-			<ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'space-between' }}>
+			<ScrollView contentContainerStyle={styles.container}>
 				<ConfirmAddressPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
 				<View>
 					<View style={styles.mapContainer}>
@@ -157,6 +157,7 @@ class CompleteAddressScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+	container: { flexGrow: 1, justifyContent: 'space-between' },
 	mapContainer: { height: RFValue(136, 600) },
 	body: { marginVertical: RFValue(12, 600) },
 	markerContainer: {
@@ -184,7 +185,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = ({
 	mapReducer: {
 		address
-	},
+	}
 }) => ({
 	address
 })

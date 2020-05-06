@@ -59,10 +59,10 @@ class SearchAddressScreen extends React.PureComponent {
 			<View style={{ height: 110, display: 'flex', backgroundColor: 'white' }}>
 
 				<View style={{
-					flex: 1, display: 'flex', flexDirection: 'row', alignItems: 'center', marginHorizontal: RFValue(6, 600)
+					flex: 1, display: 'flex', flexDirection: 'row', alignItems: 'center', marginHorizontal: 6
 				}}
 				>
-					<View style={{ flex: 1, flexDirection: 'row', marginHorizontal: RFValue(10, 600) }}>
+					<View style={{ flex: 1, flexDirection: 'row', marginHorizontal: 10 }}>
 						<Ionicons size={32} name="md-search" color="#5E3FBE" />
 						<TextInput
 							value={this.state.searchVal}
@@ -72,15 +72,16 @@ class SearchAddressScreen extends React.PureComponent {
 						/>
 					</View>
 				</View>
+				<View style={{ height: 1, backgroundColor: '#DFDFDF', marginHorizontal: 12 }} />
 
 				<TouchableOpacity
 					onPress={this.useCurrentLocation}
 					style={{
-						flex: 1, display: 'flex', flexDirection: 'row', alignItems: 'center', marginHorizontal: RFValue(6, 600)
+						flex: 1, display: 'flex', flexDirection: 'row', alignItems: 'center', marginHorizontal: 6
 					}}
 				>
 					<View style={{
-						flex: 1, flexDirection: 'row', marginHorizontal: RFValue(10, 600), alignItems: 'center'
+						flex: 1, flexDirection: 'row', marginHorizontal: 10, alignItems: 'center'
 					}}
 					>
 						<Ionicons size={32} name="md-locate" color="#5E3FBE" />

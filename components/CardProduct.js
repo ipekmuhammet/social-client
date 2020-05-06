@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
 		width: '100%', paddingHorizontal: RFValue(8, 600), justifyContent: 'flex-start', alignItems: 'flex-start',
 	},
 	productName: {
-		fontSize: RFPercentage(2.4), fontWeight: '700', color: '#303030', textAlign: 'justify', justifyContent: 'center', letterSpacing: 0.2,
+		fontSize: RFPercentage(2.4), fontWeight: '700', color: '#454545', textAlign: 'justify', justifyContent: 'center', letterSpacing: 0.2,
 	},
 	productPrice: {
 		fontSize: RFPercentage(3.1), fontWeight: '700', color: '#5439B3', textAlign: 'center', justifyContent: 'center', letterSpacing: 0.2,

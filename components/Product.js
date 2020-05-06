@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
 	productName: {
 		fontSize: RFPercentage(2.5),
 		fontWeight: '300',
-		color: '#303030',
+		color: '#454545',
 		textAlign: 'left',
 		justifyContent: 'center',
 		letterSpacing: 0.2

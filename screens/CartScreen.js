@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
 		flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#EDEDED'
 	},
 	child: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-	emptyCartText: { fontSize: RFValue(18, 600), textAlign: 'center', color: '#303030' },
+	emptyCartText: { fontSize: RFValue(18, 600), textAlign: 'center', color: '#454545' },
 	listProductsButtonContainer: { display: 'flex' },
 	listProducts: {
 		backgroundColor: '#5D3EBD',

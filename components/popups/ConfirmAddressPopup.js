@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
 	},
 	content: { alignItems: 'center', justifyContent: 'center' },
 	contentText: {
-		fontSize: RFValue(16, 600), color: '#303030', fontWeight: 'bold', textAlign: 'center',
+		fontSize: RFValue(16, 600), color: '#454545', fontWeight: 'bold', textAlign: 'center',
 	},
 })
 

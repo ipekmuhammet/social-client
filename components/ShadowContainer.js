@@ -23,8 +23,7 @@ const styles = StyleSheet.create({
 	y: {
 		flexDirection: 'row',
 		overflow: 'hidden',
-		paddingVertical: 3,
-		borderRadius: 4
+		paddingBottom: 4
 	},
 	z: {
 		flex: 1,
@@ -33,8 +32,8 @@ const styles = StyleSheet.create({
 		shadowColor: '#000',
 		shadowOffset: { width: 1, height: 1 },
 		shadowOpacity: 0.2,
-		shadowRadius: 12,
-		elevation: 8
+		shadowRadius: 24,
+		elevation: 3
 	},
 })
 

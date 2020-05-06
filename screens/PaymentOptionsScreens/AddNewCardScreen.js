@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {
-	ScrollView, View, Image, Text, StyleSheet,
+	ScrollView, View, Image, Text, StyleSheet
 } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import joi from 'react-native-joi'
@@ -32,7 +32,7 @@ class AddNewCardScreen extends React.PureComponent {
 		// isCardHolderNameInitialized: true,
 		isCardNumberInitialized: false,
 		isExpireYearInitialized: false,
-		isExpireMonthInitialized: false,
+		isExpireMonthInitialized: false
 	}
 
 	onContinueClick = () => {
@@ -74,96 +74,97 @@ class AddNewCardScreen extends React.PureComponent {
 	render() {
 		return (
 			<ScrollView contentContainerStyle={styles.container}>
-
-				<View style={styles.header}>
-
-					<View style={styles.imageContainer}>
-						<Image style={styles.caseImage} source={caseImage} />
-					</View>
-
-					<View style={styles.infoContainer}>
-
-						<View>
-							<Text style={styles.securityText}>Güvenlik</Text>
-						</View>
-
-						<View>
-							<Text style={styles.securityInformation}>
-								Kredi kartı bilgileriniz App tarafından tutulmamaktadır ödeme altyapısı Iyzico tarafından sağlanmaktadır.
-							</Text>
-						</View>
-
-					</View>
-
-				</View>
-
 				<View>
-					<InputComponent
-						options={{
-							placeholder: 'Kart etiketi (Kişisel, Iş vb.)',
-							maxLength: 20,
-						}}
-						onChange={this.onAliasChange}
-						invalid={
-							this.state.invalidCardAlias && this.state.isCardAliasInitialized
-						}
-						value={this.state.cardAlias}
-					/>
+					<View style={styles.header}>
 
-					<InputComponent
-						options={{
-							placeholder: 'Kart No',
-							maxLength: 16,
-							keyboardType: 'number-pad',
-						}}
-						invalid={
-							this.state.invalidCardNumber && this.state.isCardNumberInitialized
-						}
-						onChange={this.onCardNumberChange}
-						value={this.state.cardNumber}
-					/>
-
-					<View style={styles.row}>
-
-						<View style={styles.inputContainer}>
-							<InputComponent
-								options={{
-									placeholder: 'Ay',
-									maxLength: 2,
-									keyboardType: 'number-pad',
-								}}
-								invalid={
-									this.state.invalidExpireMonth && this.state.isExpireMonthInitialized
-								}
-								onChange={this.onExpireMonthChange}
-								value={this.state.expireMonth}
-							/>
+						<View style={styles.imageContainer}>
+							<Image style={styles.caseImage} source={caseImage} />
 						</View>
 
-						<View style={styles.inputContainer}>
-							<InputComponent
-								options={{
-									placeholder: 'Yıl',
-									maxLength: 2,
-									keyboardType: 'number-pad',
-								}}
-								invalid={
-									this.state.invalidExpireYear && this.state.isExpireYearInitialized
-								}
-								onChange={this.onExpireYearChange}
-								value={this.state.expireYear}
-							/>
+						<View style={styles.infoContainer}>
+
+							<View>
+								<Text style={styles.securityText}>Güvenlik</Text>
+							</View>
+
+							<View>
+								<Text style={styles.securityInformation}>
+									{
+										// TODO
+									}
+									Kredi kartı bilgileriniz App tarafından tutulmamaktadır ödeme altyapısı Iyzico tarafından sağlanmaktadır.
+								</Text>
+							</View>
+
 						</View>
 
 					</View>
 
+					<View>
+						<InputComponent
+							options={{
+								placeholder: 'Kart etiketi (Kişisel, İş vb.)',
+								maxLength: 20
+							}}
+							onChange={this.onAliasChange}
+							invalid={
+								this.state.invalidCardAlias && this.state.isCardAliasInitialized
+							}
+							value={this.state.cardAlias}
+						/>
+
+						<InputComponent
+							options={{
+								placeholder: 'Kart No',
+								maxLength: 16,
+								keyboardType: 'number-pad'
+							}}
+							invalid={
+								this.state.invalidCardNumber && this.state.isCardNumberInitialized
+							}
+							onChange={this.onCardNumberChange}
+							value={this.state.cardNumber}
+						/>
+
+						<View style={styles.row}>
+
+							<View style={styles.inputContainer}>
+								<InputComponent
+									options={{
+										placeholder: 'Ay',
+										maxLength: 2,
+										keyboardType: 'number-pad'
+									}}
+									invalid={
+										this.state.invalidExpireMonth && this.state.isExpireMonthInitialized
+									}
+									onChange={this.onExpireMonthChange}
+									value={this.state.expireMonth}
+								/>
+							</View>
+
+							<View style={styles.inputContainer}>
+								<InputComponent
+									options={{
+										placeholder: 'Yıl',
+										maxLength: 2,
+										keyboardType: 'number-pad'
+									}}
+									invalid={
+										this.state.invalidExpireYear && this.state.isExpireYearInitialized
+									}
+									onChange={this.onExpireYearChange}
+									value={this.state.expireYear}
+								/>
+							</View>
+
+						</View>
+
+					</View>
 				</View>
 				{
 					// <TermsComponent />
 				}
-
-				<View style={styles.buttonDivider} />
-
 				<ButtonComponent
 					text="Tamamla"
 					onClick={this.onContinueClick}
@@ -174,13 +175,12 @@ class AddNewCardScreen extends React.PureComponent {
 						|| this.state.invalidExpireMonth || !this.state.isExpireMonthInitialized
 					}
 				/>
-
 			</ScrollView>
 		)
 	}
 }
 const styles = StyleSheet.create({
-	container: { flex: 1, justifyContent: 'space-between' },
+	container: { flexGrow: 1, justifyContent: 'space-between' },
 	header: { flexDirection: 'row' },
 	imageContainer: { margin: RFValue(10, 600), marginLeft: RFValue(12, 600) },
 	caseImage: { width: RFValue(95, 600), height: RFValue(105, 600), borderRadius: 8 },
@@ -192,23 +192,22 @@ const styles = StyleSheet.create({
 	row: { flexDirection: 'row' },
 	inputContainer: { flex: 1 },
 	continueButton: {
-		flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgb(94,63,190)', borderRadius: 10,
+		flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgb(94,63,190)', borderRadius: 10
 	},
 	continueText: { fontSize: RFValue(20, 600), color: 'white' },
-	empty: { height: RFValue(22, 600) },
-	buttonDivider: { height: RFValue(20, 600), backgroundColor: '#EDEEF0' },
+	empty: { height: RFValue(22, 600) }
 })
 
 const mapStateToProps = ({
 	reducer4: {
-		user,
+		user
 	},
 }) => ({
-	user,
+	user
 })
 
 const mapDispatchToProps = {
-	saveCard,
+	saveCard
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddNewCardScreen)
