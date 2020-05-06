@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { ScrollView, View, StyleSheet } from 'react-native'
+import { View } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
 import { updateProfile } from '../actions/actions4'
@@ -8,12 +8,13 @@ import { updateProfile } from '../actions/actions4'
 import InputComponent from '../components/InputComponent'
 import ButtonComponent from '../components/ButtonComponent'
 import InputIcon from '../components/InputIcon'
+import ShadowContainer from '../components/ShadowContainer'
 
 class EditProfileScreen extends React.PureComponent {
 	state = {
 		nameSurname: this.props.user.nameSurname,
 		phoneNumber: this.props.user.phoneNumber,
-		email: this.props.user.email,
+		email: this.props.user.email
 	}
 
 	onNameSurnameChange = (nameSurname) => {
@@ -32,7 +33,7 @@ class EditProfileScreen extends React.PureComponent {
 		this.props.updateProfile({
 			nameSurname: this.state.nameSurname,
 			phoneNumber: this.state.phoneNumber,
-			email: this.state.email,
+			email: this.state.email
 		}, () => {
 			this.props.navigation.goBack()
 		})
@@ -40,8 +41,7 @@ class EditProfileScreen extends React.PureComponent {
 
 	render() {
 		return (
-			<ScrollView contentContainerStyle={styles.container}>
-
+			<ShadowContainer>
 				<View>
 					<InputComponent
 						options={{
@@ -91,26 +91,21 @@ class EditProfileScreen extends React.PureComponent {
 				</View>
 
 				<ButtonComponent text="Kaydet" onClick={this.onSaveClick} />
-
-			</ScrollView>
+			</ShadowContainer>
 		)
 	}
 }
 
-const styles = StyleSheet.create({
-	container: { flex: 1, justifyContent: 'space-between' },
-})
-
 const mapStateToProps = ({
 	reducer4: {
-		user,
+		user
 	},
 }) => ({
-	user,
+	user
 })
 
 const mapDispatchToProps = {
-	updateProfile,
+	updateProfile
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditProfileScreen)

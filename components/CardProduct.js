@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
 		paddingVertical: RFValue(12, 600),
 		borderBottomWidth: 1,
 		borderBottomColor: '#EFEFEF',
+		backgroundColor: 'white'
 	},
 	child: { flex: 1, alignItems: 'center', justifyContent: 'center' },
 	flex2: { flex: 1.6 },

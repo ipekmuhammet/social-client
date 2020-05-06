@@ -26,7 +26,7 @@ const Category = ({
 				<Image source={{ uri: imageUrl }} resizeMode="contain" style={styles.productImage} />
 			</View>
 
-			<View style={[styles.child, { minHeight: 50 }]}>
+			<View style={[styles.child, { paddingTop: 10 }]}>
 				<Text style={styles.categoryName}>{name}</Text>
 			</View>
 
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
 		shadowOpacity: 0.2,
 		shadowRadius: 12,
 		elevation: 2,
-		marginHorizontal: 8
+		marginHorizontal: 4
 	},
 	productImage: {
 		width: RFPercentage(14),
@@ -66,7 +66,6 @@ const styles = StyleSheet.create({
 	},
 	categoryName: {
 		fontSize: RFPercentage(3),
-		marginVertical: 8,
 		fontWeight: '300',
 		color: '#707070',
 		textAlign: 'center',

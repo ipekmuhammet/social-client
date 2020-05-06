@@ -12,6 +12,7 @@ import { SERVER_URL } from '../utils/global'
 import PasswordChangedPopup from '../components/popups/PasswordChangedPopup'
 import ButtonComponent from '../components/ButtonComponent'
 import InputComponent from '../components/InputComponent'
+import ShadowContainer from '../components/ShadowContainer'
 
 class ResetPasswordScreen extends React.PureComponent {
 	state = {
@@ -97,7 +98,7 @@ class ResetPasswordScreen extends React.PureComponent {
 
 	render() {
 		return (
-			<ScrollView style={styles.container}>
+			<ShadowContainer>
 
 				<PasswordChangedPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
 
@@ -157,23 +158,24 @@ class ResetPasswordScreen extends React.PureComponent {
 					<Text style={styles.resendCodeText}>Yeniden gönder</Text>
 				</TouchableOpacity>
 
-			</ScrollView>
+			</ShadowContainer>
 		)
 	}
 }
 
 const styles = StyleSheet.create({
-	container: { marginVertical: RFValue(12, 600) },
-	resendContainer: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
-	resendCodeText: { fontSize: RFValue(19, 600), paddingHorizontal: RFValue(12, 600), color: '#6E7586' },
+	resendContainer: {
+		flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingVertical: 12
+	},
+	resendCodeText: { fontSize: RFValue(19, 600), paddingHorizontal: RFValue(12, 600), color: '#6E7586' }
 })
 
 const mapStateToProps = ({
 	globalReducer: {
-		messagePopupRef,
+		messagePopupRef
 	},
 }) => ({
-	messagePopupRef,
+	messagePopupRef
 })
 
 export default connect(mapStateToProps)(ResetPasswordScreen)

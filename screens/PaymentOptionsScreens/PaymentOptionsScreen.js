@@ -1,12 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { View, FlatList, StyleSheet } from 'react-native'
+import { FlatList, StyleSheet } from 'react-native'
 
 import DeleteCardPopup from '../../components/popups/DeleteCardPopup'
 import CardComponent from '../../components/CardComponent'
 import AddNewCardComponent from '../../components/AddNewCardComponent'
-import { deleteCard } from '../../actions/actions2'
+import ShadowContainer from '../../components/ShadowContainer'
 
+import { deleteCard } from '../../actions/actions2'
 
 class PaymentOptionsScreen extends React.Component {
 	state = {
@@ -38,7 +39,7 @@ class PaymentOptionsScreen extends React.Component {
 
 	render() {
 		return (
-			<View style={styles.container}>
+			<ShadowContainer>
 
 				<DeleteCardPopup scaleAnimationModal={this.state.scaleAnimationModal} setPopupState={this.setPopupState} />
 
@@ -50,26 +51,25 @@ class PaymentOptionsScreen extends React.Component {
 					ListFooterComponent={this.renderListFooter}
 				/>
 
-			</View>
+			</ShadowContainer>
 		)
 	}
 }
 
 const styles = StyleSheet.create({
-	container: { flex: 1, backgroundColor: '#F5F5F5' },
-	list: { backgroundColor: 'white' },
+	list: { backgroundColor: 'white' }
 })
 
 const mapStateToProps = ({
 	reducer2: {
-		cards,
+		cards
 	},
 }) => ({
-	cards,
+	cards
 })
 
 const mapDispacthToProps = {
-	deleteCard,
+	deleteCard
 }
 
 export default connect(mapStateToProps, mapDispacthToProps)(PaymentOptionsScreen)

@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		overflow: 'hidden',
 		paddingVertical: RFValue(3, 600),
-		borderRadius: 8,
+		borderRadius: 4
 	},
 	titleContainer: {
 		flex: 1,
@@ -26,10 +26,10 @@ const styles = StyleSheet.create({
 		shadowColor: '#000',
 		shadowOffset: { width: 1, height: 1 },
 		shadowOpacity: 0.2,
-		shadowRadius: RFValue(12, 600),
-		elevation: 8,
+		shadowRadius: 12,
+		elevation: 8
 	},
-	title: { color: '#A8A8A8', fontSize: RFValue(17, 600), fontWeight: 'bold' },
+	title: { color: '#A8A8A8', fontSize: RFValue(17, 600), fontWeight: 'bold' }
 })
 
 export default HeadingDivider

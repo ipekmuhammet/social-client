@@ -10,6 +10,7 @@ import { SERVER_URL } from '../utils/global'
 import HeadingDivider from '../components/HeadingDivider'
 import SearchFilter from '../components/SearchFilter'
 import RecyclerList from '../components/RecyclerList'
+import ShadowContainer from '../components/ShadowContainer'
 
 class SearchScreen extends React.PureComponent {
 	state = {
@@ -60,36 +61,38 @@ class SearchScreen extends React.PureComponent {
 	render() {
 		return (
 			<ScrollView contentContainerStyle={styles.container} behavior="height">
-				<View style={styles.searchHeader}>
-					<View style={styles.iconContainer}>
-						<Ionicons name="md-search" size={32} color="#5D3EBD" />
+				<ShadowContainer>
+					<View style={styles.searchHeader}>
+						<View style={styles.iconContainer}>
+							<Ionicons name="md-search" size={32} color="#5D3EBD" />
+						</View>
+						<View style={styles.inputContainer}>
+							<TextInput
+								value={this.state.text}
+								onChangeText={this.search}
+								style={styles.searchInput}
+								placeholder="Ara"
+							/>
+						</View>
+						{
+							this.state.text.length > 0 && (
+								<TouchableOpacity style={styles.iconContainer} onPress={this.clear}>
+									<Ionicons name="md-close" size={32} color="#6D7891" />
+								</TouchableOpacity>
+							)
+							//  <View style={styles.iconContainer}>
+							//      <Ionicons name={'md-microphone'} size={32} color={'#6D7891'} />
+							//  </View>
+						}
 					</View>
-					<View style={styles.inputContainer}>
-						<TextInput
-							value={this.state.text}
-							onChangeText={this.search}
-							style={styles.searchInput}
-							placeholder="Ara"
-						/>
-					</View>
-					{
-						this.state.text.length > 0 && (
-							<TouchableOpacity style={styles.iconContainer} onPress={this.clear}>
-								<Ionicons name="md-close" size={32} color="#6D7891" />
-							</TouchableOpacity>
-						)
-						//  <View style={styles.iconContainer}>
-						//      <Ionicons name={'md-microphone'} size={32} color={'#6D7891'} />
-						//  </View>
-					}
-				</View>
 
-				{
-					// eslint-disable-next-line no-nested-ternary
-					this.state.fetch ? this.fetching() : (
-						!this.state.products.length > 0 ? this.renderDivider() : this.renderSearchResult()
-					)
-				}
+					{
+						// eslint-disable-next-line no-nested-ternary
+						this.state.fetch ? this.fetching() : (
+							!this.state.products.length > 0 ? this.renderDivider() : this.renderSearchResult()
+						)
+					}
+				</ShadowContainer>
 			</ScrollView>
 		)
 	}

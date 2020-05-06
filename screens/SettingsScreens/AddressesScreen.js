@@ -1,10 +1,10 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
 import ClickableSettingItem from '../../components/ClickableSettingItem'
 import HeadingDivider from '../../components/HeadingDivider'
 import AddressList from '../../components/AddressList'
+import ShadowContainer from '../../components/ShadowContainer'
 
 class AddressesScreen extends React.PureComponent {
 	moveToSearchAddress = () => {
@@ -43,18 +43,11 @@ class AddressesScreen extends React.PureComponent {
 
 	render() {
 		return (
-			<View style={styles.container}>
+			<ShadowContainer>
 				<AddressList stackNavigation={this.props.navigation} navigation={this.props.route.params.navigation} footer={this.renderFooter} />
-			</View>
+			</ShadowContainer>
 		)
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-		backgroundColor: '#EDEDED',
-	},
-})
-
 
 export default AddressesScreen

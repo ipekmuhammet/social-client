@@ -8,6 +8,7 @@ import { Ionicons } from '@expo/vector-icons'
 
 import CardProduct from '../components/CardProduct'
 import CompletePayment from '../components/CompletePayment'
+import ShadowContainer from '../components/ShadowContainer'
 
 const renderCardProductItem = ({ item }) => <CardProduct data={item} />
 
@@ -32,14 +33,14 @@ class CartScreen extends React.PureComponent {
 		if (products.length > 0) {
 			return (
 				<View style={styles.container}>
-					<FlatList
-						data={products}
-						keyExtractor={this.keyExtractor}
-						renderItem={renderCardProductItem}
-						ListFooterComponent={
-							<View style={styles.footer} />
-						}
-					/>
+					<ShadowContainer>
+						<FlatList
+							data={products}
+							keyExtractor={this.keyExtractor}
+							renderItem={renderCardProductItem}
+						/>
+					</ShadowContainer>
+					<View style={styles.footer} />
 					<CompletePayment navigation={this.props.navigation} />
 				</View>
 			)
@@ -71,7 +72,7 @@ class CartScreen extends React.PureComponent {
 }
 
 const styles = StyleSheet.create({
-	container: { flex: 1, backgroundColor: '#F5F5F5' },
+	container: { flex: 1, justifyContent: 'space-between' },
 	emptyCartContainer: {
 		flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#EDEDED',
 	},
@@ -90,7 +91,10 @@ const styles = StyleSheet.create({
 	listProductsText: {
 		color: 'white', fontSize: RFValue(19, 600), alignItems: 'center', justifyContent: 'center',
 	},
-	footer: { height: RFValue(90, 600) }
+	footer: {
+		height: RFValue(65, 600),
+		backgroundColor: 'transparent'
+	}
 })
 
 const mapStateToProps = ({

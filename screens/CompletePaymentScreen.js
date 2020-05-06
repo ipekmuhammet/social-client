@@ -1,7 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { View, ScrollView, StyleSheet } from 'react-native'
-import { RFValue } from 'react-native-responsive-fontsize'
 
 import HeadingDivider from '../components/HeadingDivider'
 import CompletePayment from '../components/CompletePayment'
@@ -9,6 +7,7 @@ import CompletePayment from '../components/CompletePayment'
 import AddressSelectComponent from '../components/CompletePaymentComponents/AddressSelectComponent'
 import PaymentTypeSelectComponent from '../components/CompletePaymentComponents/PaymentTypeSelectComponent'
 import { setNeedToLoginPopupState } from '../actions/global-actions'
+import ShadowContainer from '../components/ShadowContainer'
 //  import OrderTimeComponent from '../components/CompletePaymentComponents/OrderTimeComponent'
 //  import OrderNoteComponent from '../components/CompletePaymentComponents/OrderNoteComponent'
 
@@ -21,8 +20,7 @@ class CompletePaymentScreen extends React.PureComponent {
 
 		return (
 			<>
-
-				<ScrollView style={{ zIndex: -1 }}>
+				<ShadowContainer>
 					<HeadingDivider title="Adres Seçimi" />
 
 					<AddressSelectComponent
@@ -49,44 +47,37 @@ class CompletePaymentScreen extends React.PureComponent {
 						//  <HeadingDivider title={'Sipariş Notu'} />
 						//  <OrderNoteComponent />
 					}
-
-					<View style={styles.footer} />
-				</ScrollView>
+				</ShadowContainer>
 
 				<CompletePayment
 					completable
 					navigation={navigation}
 				/>
-
 			</>
 		)
 	}
 }
-
-const styles = StyleSheet.create({
-	footer: { height: RFValue(90, 600) },
-})
 
 const mapStateToProps = ({
 	reducer2: {
 		cards,
 		addresses,
 		selectedCard,
-		selectedAddress,
+		selectedAddress
 	},
 	reducer4: {
-		token,
+		token
 	},
 }) => ({
 	cards,
 	addresses,
 	selectedCard,
 	selectedAddress,
-	token,
+	token
 })
 
 const mapDispatchToProps = {
-	setNeedToLoginPopupState,
+	setNeedToLoginPopupState
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CompletePaymentScreen)

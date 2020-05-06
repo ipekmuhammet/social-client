@@ -21,7 +21,7 @@ class CompleteAddressScreen extends React.Component {
 		buildingNo: '',
 		floor: '',
 		aptNo: '',
-		directions: '',
+		directions: ''
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
 	mapContainer: { height: RFValue(136, 600) },
 	body: { marginVertical: RFValue(12, 600) },
 	markerContainer: {
-		flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', zIndex: RFValue(2, 600),
+		flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', zIndex: RFValue(2, 600)
 	},
 	marker: { width: RFValue(48, 600), borderColor: '#C3C3C3', height: RFValue(48, 600) },
 	inputContainer: { height: RFValue(60, 600), margin: RFValue(2, 600), flex: 1 },
@@ -177,20 +177,20 @@ const styles = StyleSheet.create({
 		borderRadius: 8,
 		borderColor: '#C3C3C3',
 		paddingHorizontal: RFValue(13, 600),
-		fontSize: RFValue(17, 600),
-	},
+		fontSize: RFValue(17, 600)
+	}
 })
 
 const mapStateToProps = ({
 	mapReducer: {
-		address,
+		address
 	},
 }) => ({
-	address,
+	address
 })
 
 const mapDispatchToProps = {
-	saveAddress,
+	saveAddress
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CompleteAddressScreen)

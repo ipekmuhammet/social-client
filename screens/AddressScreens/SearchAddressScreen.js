@@ -8,6 +8,7 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import { Ionicons } from '@expo/vector-icons'
 
 import { setRegionByPlace, setCurrentRegion } from '../../actions/map-actions'
+import ShadowContainer from '../../components/ShadowContainer'
 
 class SearchAddressScreen extends React.PureComponent {
 	state = {
@@ -54,51 +55,53 @@ class SearchAddressScreen extends React.PureComponent {
 	}
 
 	renderListHeaderComponent = () => (
-		<View style={{ height: 110, display: 'flex', backgroundColor: 'white' }}>
+		<ShadowContainer>
+			<View style={{ height: 110, display: 'flex', backgroundColor: 'white' }}>
 
-			<View style={{
-				flex: 1, display: 'flex', flexDirection: 'row', alignItems: 'center', marginHorizontal: RFValue(6, 600),
-			}}
-			>
-				<View style={{ flex: 1, flexDirection: 'row', marginHorizontal: RFValue(10, 600) }}>
-					<Ionicons size={32} name="md-search" color="#5E3FBE" />
-					<TextInput
-						value={this.state.searchVal}
-						onChangeText={this.search}
-						placeholder="Adres ara"
-						style={{ flex: 1, paddingHorizontal: RFValue(16, 600), fontSize: 17 }}
-					/>
-				</View>
-			</View>
-
-			<TouchableOpacity
-				onPress={this.useCurrentLocation}
-				style={{
-					flex: 1, display: 'flex', flexDirection: 'row', alignItems: 'center', marginHorizontal: RFValue(6, 600),
-				}}
-			>
 				<View style={{
-					flex: 1, flexDirection: 'row', marginHorizontal: RFValue(10, 600), alignItems: 'center',
+					flex: 1, display: 'flex', flexDirection: 'row', alignItems: 'center', marginHorizontal: RFValue(6, 600)
 				}}
 				>
-					<Ionicons size={32} name="md-locate" color="#5E3FBE" />
-					<Text style={{ flex: 1, paddingHorizontal: RFValue(16, 600), fontSize: 17 }}>Şuanki konumu kullan</Text>
+					<View style={{ flex: 1, flexDirection: 'row', marginHorizontal: RFValue(10, 600) }}>
+						<Ionicons size={32} name="md-search" color="#5E3FBE" />
+						<TextInput
+							value={this.state.searchVal}
+							onChangeText={this.search}
+							placeholder="Adres ara"
+							style={{ flex: 1, paddingHorizontal: RFValue(16, 600), fontSize: 17 }}
+						/>
+					</View>
 				</View>
-			</TouchableOpacity>
 
-		</View>
+				<TouchableOpacity
+					onPress={this.useCurrentLocation}
+					style={{
+						flex: 1, display: 'flex', flexDirection: 'row', alignItems: 'center', marginHorizontal: RFValue(6, 600)
+					}}
+				>
+					<View style={{
+						flex: 1, flexDirection: 'row', marginHorizontal: RFValue(10, 600), alignItems: 'center'
+					}}
+					>
+						<Ionicons size={32} name="md-locate" color="#5E3FBE" />
+						<Text style={{ flex: 1, paddingHorizontal: RFValue(16, 600), fontSize: 17 }}>Şuanki konumu kullan</Text>
+					</View>
+				</TouchableOpacity>
+
+			</View>
+		</ShadowContainer>
 	)
 
 	renderSearchedItem = ({ item }) => (
 		<TouchableOpacity
 			onPress={() => this.onAddressClick(item)}
 			style={{
-				height: 70, paddingVertical: RFValue(16, 600), display: 'flex', flexDirection: 'row', alignItems: 'center', margin: RFValue(6, 600),
+				height: 70, paddingVertical: RFValue(16, 600), display: 'flex', flexDirection: 'row', alignItems: 'center', margin: RFValue(6, 600)
 			}}
 		>
 
 			<View style={{
-				flex: 1, flexDirection: 'row', marginHorizontal: RFValue(10, 600), alignItems: 'center',
+				flex: 1, flexDirection: 'row', marginHorizontal: RFValue(10, 600), alignItems: 'center'
 			}}
 			>
 
@@ -107,7 +110,7 @@ class SearchAddressScreen extends React.PureComponent {
 				<Text
 					numberOfLines={3}
 					style={{
-						flex: 1, paddingHorizontal: RFValue(16, 600), fontSize: RFValue(15, 600), color: '#6B788B', fontWeight: '500',
+						flex: 1, paddingHorizontal: RFValue(16, 600), fontSize: RFValue(15, 600), color: '#6B788B', fontWeight: '500'
 					}}
 				>
 					{item.description}
@@ -116,11 +119,12 @@ class SearchAddressScreen extends React.PureComponent {
 				<Text
 					numberOfLines={3}
 					style={{
-						paddingHorizontal: RFValue(4, 600), fontSize: RFValue(13, 600), color: '#6B788B', fontWeight: '500',
+						paddingHorizontal: RFValue(4, 600), fontSize: RFValue(13, 600), color: '#6B788B', fontWeight: '500'
 					}}
 				>
 					{
 						item.distance_meters
+						// eslint-disable-next-line radix
 						&& (parseInt(item.distance_meters) > 1000 ? `${(parseInt(item.distance_meters) / 1000).toFixed(2)}km` : `${item.distance_meters}m`)
 					}
 				</Text>
@@ -152,15 +156,15 @@ class SearchAddressScreen extends React.PureComponent {
 
 const mapStateToProps = ({
 	globalReducer: {
-		messagePopupRef,
+		messagePopupRef
 	},
 }) => ({
-	messagePopupRef,
+	messagePopupRef
 })
 
 const mapDispatchToProps = {
 	setRegionByPlace,
-	setCurrentRegion,
+	setCurrentRegion
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchAddressScreen)

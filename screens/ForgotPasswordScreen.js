@@ -1,8 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import {
-	ScrollView, Text, StyleSheet,
-} from 'react-native'
+import { Text } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import joi from 'react-native-joi'
 
@@ -10,6 +8,7 @@ import { SERVER_URL } from '../utils/global'
 import ButtonComponent from '../components/ButtonComponent'
 import InputComponent from '../components/InputComponent'
 import InputIcon from '../components/InputIcon'
+import ShadowContainer from '../components/ShadowContainer'
 
 class ForgotPasswordScreen extends React.PureComponent {
 	state = {
@@ -41,8 +40,7 @@ class ForgotPasswordScreen extends React.PureComponent {
 
 	render() {
 		return (
-			<ScrollView style={styles.container}>
-
+			<ShadowContainer>
 				<InputComponent
 					options={{
 						keyboardType: 'phone-pad',
@@ -68,13 +66,10 @@ class ForgotPasswordScreen extends React.PureComponent {
 					}
 				/>
 
-			</ScrollView>
+			</ShadowContainer>
 		)
 	}
 }
 
-const styles = StyleSheet.create({
-	container: { marginVertical: RFValue(12, 600) },
-})
 
 export default ForgotPasswordScreen

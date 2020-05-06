@@ -163,21 +163,21 @@ class LoginScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-	container: { flex: 1, justifyContent: 'space-between', marginVertical: RFValue(12, 600) },
+	container: { flex: 1, justifyContent: 'space-between', marginBottom: 12 },
 	child: { height: RFValue(60, 600), margin: RFValue(3, 600) },
 	facebookButton: {
-		backgroundColor: '#3B589E', flex: 1, margin: RFValue(4, 600), borderRadius: 10, alignItems: 'center', justifyContent: 'center',
+		backgroundColor: '#3B589E', flex: 1, margin: RFValue(4, 600), borderRadius: 10, alignItems: 'center', justifyContent: 'center'
 	},
 	forgotPasswordButton: { flex: 1, alignItems: 'center', justifyContent: 'center' },
 	inputContainer: { flexDirection: 'row' },
 	input: {
-		flex: 1, margin: RFValue(4, 600), zIndex: -1, borderRadius: 6, paddingHorizontal: RFValue(12, 600), fontSize: RFValue(18, 600), borderWidth: 0.8, borderColor: '#ABABAB',
+		flex: 1, margin: RFValue(4, 600), zIndex: -1, borderRadius: 6, paddingHorizontal: RFValue(12, 600), fontSize: RFValue(18, 600), borderWidth: 0.8, borderColor: '#ABABAB'
 	},
 	facebookText: { color: 'white', fontSize: RFValue(18, 600) },
 	forgotPasswordText: { color: '#6E7586', fontSize: RFValue(18, 600), fontWeight: 'bold' },
 	empty: { height: RFValue(28, 600) },
 	buttonDivider: { height: RFValue(22, 600), backgroundColor: '#EDEEF0' },
-	view: { justifyContent: 'flex-end', margin: 0 },
+	view: { justifyContent: 'flex-end', margin: 0 }
 })
 
 const mapStateToProps = ({

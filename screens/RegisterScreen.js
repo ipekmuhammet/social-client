@@ -228,18 +228,18 @@ class RegisterScreen extends React.PureComponent {
 }
 
 const styles = StyleSheet.create({
-	container: { flex: 1, justifyContent: 'space-between', marginVertical: RFValue(12, 600) },
+	container: { flex: 1, justifyContent: 'space-between', marginBottom: 12 },
 	facebookButton: {
 		backgroundColor: '#3B589E',
 		flex: 1,
 		margin: RFValue(4, 600),
 		borderRadius: 10,
 		alignItems: 'center',
-		justifyContent: 'center',
+		justifyContent: 'center'
 	},
 	facebookText: { color: 'white', fontSize: RFValue(18, 600) },
 	termsContainer: {
-		flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start',
+		flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start'
 	},
 	checkBoxContainer: { alignItems: 'flex-start', justifyContent: 'flex-start' },
 	checkBox: { backgroundColor: 'transparent' },
@@ -247,10 +247,10 @@ const styles = StyleSheet.create({
 	termsLinkText: { color: '#5D3EBD', fontSize: RFValue(16, 600), fontWeight: 'bold' },
 	termsTextContainer: { alignItems: 'center', justifyContent: 'center', flexDirection: 'row' },
 	termsInfoContainer: {
-		alignItems: 'flex-start', justifyContent: 'flex-start', flexDirection: 'column', marginLeft: RFValue(8, 600),
+		alignItems: 'flex-start', justifyContent: 'flex-start', flexDirection: 'column', marginLeft: RFValue(8, 600)
 	},
 	buttonDivider: { height: RFValue(22, 600), backgroundColor: '#EDEEF0' },
-	invalid: { borderColor: 'red' },
+	invalid: { borderColor: 'red' }
 })
 
 export default RegisterScreen
