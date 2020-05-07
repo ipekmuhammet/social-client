@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { PermissionsAndroid } from 'react-native'
 
 export const SET_REGION = 'SET_REGION'
 export const SET_ADDRESS = 'SET_ADDRESS'
@@ -8,11 +7,6 @@ export const SET_CURRENT_REGION = 'SET_CURRENT_REGION'
 
 const getLocationAsync = () => (
 	new Promise((resolve, reject) => {
-		const status = PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION)
-		if (status !== PermissionsAndroid.RESULTS.GRANTED) {
-			reject(new Error())
-		}
-
 		// eslint-disable-next-line no-undef
 		navigator.geolocation.getCurrentPosition((position) => {
 			resolve(position)
@@ -34,8 +28,8 @@ export const setRegion = (region) => ((dispatch) => {
 			type: SET_REGION,
 			payload: {
 				region,
-				address,
-			},
+				address
+			}
 		})
 	}).catch(() => {
 		dispatch({
@@ -48,8 +42,8 @@ export const setAddress = (address) => ((dispatch) => {
 	dispatch({
 		type: SET_ADDRESS,
 		payload: {
-			address,
-		},
+			address
+		}
 	})
 })
 
@@ -63,24 +57,24 @@ export const setRegionByPlace = (placeId, cb) => ((dispatch) => {
 				payload: {
 					region: {
 						latitude: data.result.geometry.location.lat,
-						longitude: data.result.geometry.location.lng,
-					},
-				},
+						longitude: data.result.geometry.location.lng
+					}
+				}
 			})
 			cb(data)
 		})
 })
 
 export const setCurrentRegion = (cb) => ((dispatch) => {
-	getLocationAsync().then((region) => {
+	getLocationAsync().then(({ coords }) => {
 		dispatch({
 			type: SET_CURRENT_REGION,
 			payload: {
-				region
+				region: coords
 			}
 		})
 
-		cb(region)
+		cb(coords)
 	}).catch((err) => {
 		cb(null, err)
 	})

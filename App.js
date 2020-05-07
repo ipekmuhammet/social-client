@@ -6,6 +6,7 @@ import thunk from 'redux-thunk'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import NetInfo from '@react-native-community/netinfo'
+import geolocation from '@react-native-community/geolocation'
 
 import rootReducer from './reducers/root-reducer'
 
@@ -17,6 +18,9 @@ import GlobalScreen from './screens/GlobalScreen'
 import axiosMiddleware from './utils/axios'
 
 import { SET_NETWORK_STATUS } from './actions/network-actions'
+
+// eslint-disable-next-line no-undef
+navigator.geolocation = geolocation
 
 const store = createStore(rootReducer, applyMiddleware(thunk))
 const Stack = createStackNavigator()
