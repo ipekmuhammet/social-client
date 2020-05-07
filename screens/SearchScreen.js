@@ -45,10 +45,10 @@ class SearchScreen extends React.PureComponent {
 	)
 
 	renderDivider = () => (
-		<>
+		<ShadowContainer>
 			<HeadingDivider title="Popüler aramalar" />
 			<SearchFilter onClick={this.search} />
-		</>
+		</ShadowContainer>
 	)
 
 	fetching = () => (
@@ -60,38 +60,36 @@ class SearchScreen extends React.PureComponent {
 	render() {
 		return (
 			<ScrollView contentContainerStyle={styles.container} behavior="height">
-				<ShadowContainer>
-					<View style={styles.searchHeader}>
-						<View style={styles.iconContainer}>
-							<Ionicons name="md-search" size={32} color="#5D3EBD" />
-						</View>
-						<View style={styles.inputContainer}>
-							<TextInput
-								value={this.state.text}
-								onChangeText={this.search}
-								style={styles.searchInput}
-								placeholder="Ara"
-							/>
-						</View>
-						{
-							this.state.text.length > 0 && (
-								<TouchableOpacity style={styles.iconContainer} onPress={this.clear}>
-									<Ionicons name="md-close" size={32} color="#6D7891" />
-								</TouchableOpacity>
-							)
-							//  <View style={styles.iconContainer}>
-							//      <Ionicons name={'md-microphone'} size={32} color={'#6D7891'} />
-							//  </View>
-						}
+				<View style={styles.searchHeader}>
+					<View style={styles.iconContainer}>
+						<Ionicons name="md-search" size={32} color="#5D3EBD" />
 					</View>
-
+					<View style={styles.inputContainer}>
+						<TextInput
+							value={this.state.text}
+							onChangeText={this.search}
+							style={styles.searchInput}
+							placeholder="Ara"
+						/>
+					</View>
 					{
-						// eslint-disable-next-line no-nested-ternary
-						this.state.fetch ? this.fetching() : (
-							!this.state.products.length > 0 ? this.renderDivider() : this.renderSearchResult()
+						this.state.text.length > 0 && (
+							<TouchableOpacity style={styles.iconContainer} onPress={this.clear}>
+								<Ionicons name="md-close" size={32} color="#6D7891" />
+							</TouchableOpacity>
 						)
+						//  <View style={styles.iconContainer}>
+						//      <Ionicons name={'md-microphone'} size={32} color={'#6D7891'} />
+						//  </View>
 					}
-				</ShadowContainer>
+				</View>
+
+				{
+					// eslint-disable-next-line no-nested-ternary
+					this.state.fetch ? this.fetching() : (
+						!this.state.products.length > 0 ? this.renderDivider() : this.renderSearchResult()
+					)
+				}
 			</ScrollView>
 		)
 	}
