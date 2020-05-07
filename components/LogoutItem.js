@@ -1,6 +1,6 @@
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
-import { MaterialIcons } from '@expo/vector-icons'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 import SettingItem from './SettingItem'
 import LogoutPopup from './popups/LogoutPopup'

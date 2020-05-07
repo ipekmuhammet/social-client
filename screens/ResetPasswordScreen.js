@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import { RFValue } from 'react-native-responsive-fontsize'
 import axios from 'axios'
 import {
-	ScrollView, TouchableOpacity, Text, StyleSheet,
+	TouchableOpacity, Text, StyleSheet
 } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import joi from 'react-native-joi'
 
 import { SERVER_URL } from '../utils/global'
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = ({
 	globalReducer: {
 		messagePopupRef
-	},
+	}
 }) => ({
 	messagePopupRef
 })

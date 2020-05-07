@@ -3,7 +3,8 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import {
 	View, TouchableOpacity, Text, StyleSheet,
 } from 'react-native'
-import { Ionicons, MaterialIcons } from '@expo/vector-icons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import ShadowContainer from '../ShadowContainer'
 
 const AddressSelectComponent = ({

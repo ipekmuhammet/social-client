@@ -1,9 +1,9 @@
 import React from 'react'
 import { RFValue } from 'react-native-responsive-fontsize'
 import {
-	View, TouchableOpacity, Text, StyleSheet,
+	View, TouchableOpacity, Text, StyleSheet
 } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 const ThanksScreen = ({ navigation }) => (
 	<View style={styles.emptyCartContainer}>
@@ -54,8 +54,8 @@ const styles = StyleSheet.create({
 		paddingHorizontal: RFValue(48, 600),
 	},
 	goToHomeButtonText: {
-		color: 'white', fontSize: RFValue(20, 600), alignItems: 'center', justifyContent: 'center',
-	},
+		color: 'white', fontSize: RFValue(20, 600), alignItems: 'center', justifyContent: 'center'
+	}
 })
 
 export default ThanksScreen

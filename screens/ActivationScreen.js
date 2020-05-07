@@ -5,7 +5,7 @@ import {
 import axios from 'axios'
 import { RFValue } from 'react-native-responsive-fontsize'
 import joi from 'react-native-joi'
-import { Ionicons } from '@expo/vector-icons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import { connect } from 'react-redux'
 
 import { SERVER_URL } from '../utils/global'

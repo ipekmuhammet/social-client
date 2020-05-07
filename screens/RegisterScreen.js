@@ -4,7 +4,7 @@ import {
 	ScrollView, View, StyleSheet, Text,
 } from 'react-native'
 import axios from 'axios'
-import { Ionicons } from '@expo/vector-icons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import joi from 'react-native-joi'
 
 import { SERVER_URL } from '../utils/global'
