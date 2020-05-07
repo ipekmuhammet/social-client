@@ -6,7 +6,7 @@ import {
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 
 const PaymentTypeSelectComponent = ({
-	navigation, title, token, setNeedToLoginPopupState,
+	navigation, title, token, setNeedToLoginPopupState
 }) => (
 	<TouchableOpacity
 		style={styles.container}

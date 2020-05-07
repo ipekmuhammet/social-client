@@ -4,35 +4,39 @@ import {
 	View, TouchableOpacity, Text, StyleSheet,
 } from 'react-native'
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'
+import ShadowContainer from '../ShadowContainer'
 
 const AddressSelectComponent = ({
-	navigation, title, subTitle, token, setNeedToLoginPopupState,
+	navigation, title, subTitle, token, setNeedToLoginPopupState
 }) => (
-	<TouchableOpacity
-		style={styles.container}
-		onPress={() => {
-			if (!token) {
-				setNeedToLoginPopupState(true)
-			} else {
-				navigation.navigate('addresses')
-			}
-		}}
-	>
-		<View style={styles.iconContainer}>
-			<Ionicons size={32} name="md-home" />
-		</View>
-		<View style={styles.paymentInfoContainer}>
-			<View style={styles.paymentInfoTextContainer}>
-				<Text numberOfLines={1} style={styles.paymentTitle}>{title}</Text>
+	<ShadowContainer>
+		<TouchableOpacity
+			style={styles.container}
+			onPress={() => {
+				if (!token) {
+					setNeedToLoginPopupState(true)
+				} else {
+					navigation.navigate('addresses')
+				}
+			}}
+		>
+
+			<View style={styles.iconContainer}>
+				<Ionicons size={32} name="md-home" />
 			</View>
-			<View style={styles.paymentInfoTextContainer}>
-				<Text numberOfLines={2} style={styles.paymentDetail}>{subTitle}</Text>
+			<View style={styles.paymentInfoContainer}>
+				<View style={styles.paymentInfoTextContainer}>
+					<Text numberOfLines={1} style={styles.paymentTitle}>{title}</Text>
+				</View>
+				<View style={styles.paymentInfoTextContainer}>
+					<Text numberOfLines={2} style={styles.paymentDetail}>{subTitle}</Text>
+				</View>
 			</View>
-		</View>
-		<View style={styles.iconContainer}>
-			<MaterialIcons color="#ACACAC" size={32} name="chevron-right" />
-		</View>
-	</TouchableOpacity>
+			<View style={styles.iconContainer}>
+				<MaterialIcons color="#ACACAC" size={32} name="chevron-right" />
+			</View>
+		</TouchableOpacity>
+	</ShadowContainer>
 )
 
 const styles = StyleSheet.create({

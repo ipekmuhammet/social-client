@@ -32,19 +32,6 @@ class Screen4 extends React.PureComponent {
 				/>
 
 				<Stack.Screen
-					name="addresses"
-					initialParams={{ navigation: this.props.navigation }}
-					component={AddressesScreen}
-					options={{
-						headerLeft: () => <HeaderBackButton tintColor="white" onPress={this.props.navigation.goBack} />,
-						title: 'Adreslerim',
-						headerTitleAlign: 'center',
-						headerTintColor: 'white',
-						headerStyle: styles.headerStyle,
-					}}
-				/>
-
-				<Stack.Screen
 					name="changePasswordScreen"
 					component={ChangePasswordScreen}
 					options={{
@@ -56,10 +43,22 @@ class Screen4 extends React.PureComponent {
 				/>
 
 				<Stack.Screen
+					name="addresses"
+					component={AddressesScreen}
+					options={{
+						headerLeft: () => <HeaderBackButton tintColor="white" onPress={this.props.navigation.goBack} />,
+						title: 'Adreslerim',
+						headerTitleAlign: 'center',
+						headerTintColor: 'white',
+						headerStyle: styles.headerStyle,
+					}}
+				/>
+
+				<Stack.Screen
 					name="searchAddressScreen"
 					component={SearchAddressScreen}
 					options={{
-						title: 'Kart ekle',
+						title: 'Adres ara',
 						headerTitleAlign: 'center',
 						headerTintColor: 'white',
 						headerStyle: styles.headerStyle,
@@ -90,7 +89,6 @@ class Screen4 extends React.PureComponent {
 
 				<Stack.Screen
 					name="paymentOptionsScreen"
-					initialParams={{ navigation: this.props.navigation }}
 					component={PaymentOptionsScreen}
 					options={{
 						headerLeft: () => <HeaderBackButton tintColor="white" onPress={this.props.navigation.goBack} />,

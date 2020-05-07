@@ -13,21 +13,19 @@ const HeadingDivider = ({ title }) => (
 const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'row',
-		overflow: 'hidden',
-		paddingVertical: RFValue(3, 600),
-		borderRadius: 4
+		overflow: 'hidden'
 	},
 	titleContainer: {
 		flex: 1,
 		justifyContent: 'center',
-		height: RFValue(40, 600),
-		paddingHorizontal: RFValue(16, 600),
-		backgroundColor: '#EDEDED',
+		height: 40,
+		paddingHorizontal: 16,
+		backgroundColor: '#DFDFDF',
 		shadowColor: '#000',
 		shadowOffset: { width: 1, height: 1 },
 		shadowOpacity: 0.2,
-		shadowRadius: 12,
-		elevation: 8
+		shadowRadius: 24,
+		elevation: 3
 	},
 	title: { color: '#A8A8A8', fontSize: RFValue(17, 600), fontWeight: 'bold' }
 })

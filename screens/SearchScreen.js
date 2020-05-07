@@ -1,6 +1,5 @@
 import React from 'react'
 import axios from 'axios'
-import { RFValue } from 'react-native-responsive-fontsize'
 import {
 	ScrollView, View, TouchableOpacity, ActivityIndicator, TextInput, StyleSheet,
 } from 'react-native'
@@ -101,17 +100,17 @@ class SearchScreen extends React.PureComponent {
 const styles = StyleSheet.create({
 	container: { flex: 1 },
 	searchHeader: {
-		height: 50, margin: RFValue(2, 600), flexDirection: 'row', backgroundColor: 'white',
+		height: 50, margin: 2, flexDirection: 'row', backgroundColor: 'white'
 	},
 	mostSearchContainer: {
-		flex: 0.7, padding: RFValue(2, 600), margin: RFValue(2, 600), alignItems: 'center', justifyContent: 'center', backgroundColor: 'white',
+		flex: 0.7, padding: 2, margin: 2, alignItems: 'center', justifyContent: 'center', backgroundColor: 'white'
 	},
 	iconContainer: { alignItems: 'center', justifyContent: 'center', flex: 1 },
 	inputContainer: {
-		alignItems: 'center', justifyContent: 'center', flex: 6, display: 'flex', flexDirection: 'row',
+		alignItems: 'center', justifyContent: 'center', flex: 6, display: 'flex', flexDirection: 'row'
 	},
 	searchInput: { textAlign: 'left', flex: 1, fontSize: 20 },
-	emptyFooter: { flex: 7, margin: RFValue(2, 600) },
+	emptyFooter: { flex: 7, margin: 2 },
 })
 
 export default SearchScreen

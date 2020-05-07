@@ -6,10 +6,11 @@ import CompletePayment from '../components/CompletePayment'
 
 import AddressSelectComponent from '../components/CompletePaymentComponents/AddressSelectComponent'
 import PaymentTypeSelectComponent from '../components/CompletePaymentComponents/PaymentTypeSelectComponent'
-import { setNeedToLoginPopupState } from '../actions/global-actions'
 import ShadowContainer from '../components/ShadowContainer'
 //  import OrderTimeComponent from '../components/CompletePaymentComponents/OrderTimeComponent'
 //  import OrderNoteComponent from '../components/CompletePaymentComponents/OrderNoteComponent'
+
+import { setNeedToLoginPopupState } from '../actions/global-actions'
 
 class CompletePaymentScreen extends React.PureComponent {
 	render() {

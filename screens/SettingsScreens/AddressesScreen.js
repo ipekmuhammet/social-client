@@ -44,7 +44,7 @@ class AddressesScreen extends React.PureComponent {
 	render() {
 		return (
 			<ShadowContainer>
-				<AddressList stackNavigation={this.props.navigation} navigation={this.props.route.params.navigation} footer={this.renderFooter} />
+				<AddressList navigation={this.props.navigation} footer={this.renderFooter} />
 			</ShadowContainer>
 		)
 	}

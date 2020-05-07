@@ -12,22 +12,21 @@ import { deleteCard } from '../../actions/actions2'
 class PaymentOptionsScreen extends React.Component {
 	state = {
 		scaleAnimationModal: false,
-		selectedCard: null,
+		selectedCard: null
 	}
 
 	renderCardComponent = ({ item }) => (
 		<CardComponent
 			item={item}
 			setPopupState={this.setPopupState}
-			stackNavigation={this.props.navigation}
-			navigation={this.props.route.params.navigation}
+			navigation={this.props.navigation}
 		/>
 	)
 
 	setPopupState = (result, confirm) => {
 		this.setState({
 			scaleAnimationModal: result.scaleAnimationModal,
-			selectedCard: result.selectedCard,
+			selectedCard: result.selectedCard
 		})
 
 		if (confirm) {
@@ -63,7 +62,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = ({
 	reducer2: {
 		cards
-	},
+	}
 }) => ({
 	cards
 })

@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack'
+import { createStackNavigator, CardStyleInterpolators, HeaderBackButton } from '@react-navigation/stack'
 
 
 import CartScreen from '../CartScreen'
@@ -11,6 +11,12 @@ import ThanksScreen from '../ThanksScreen'
 
 import HeaderLeft from '../../components/CartComponents/HeaderLeft'
 import HeaderRight from '../../components/CartComponents/HeaderRight'
+import PaymentOptionsScreen from '../PaymentOptionsScreens/PaymentOptionsScreen'
+import AddNewCardScreen from '../PaymentOptionsScreens/AddNewCardScreen'
+import CompleteAddressScreen from '../AddressScreens/CompleteAddressScreen'
+import PinAddressScreen from '../AddressScreens/PinAddressScreen'
+import SearchAddressScreen from '../AddressScreens/SearchAddressScreen'
+import AddressesScreen from '../SettingsScreens/AddressesScreen'
 
 const Stack = createStackNavigator()
 
@@ -59,6 +65,74 @@ const Screen3 = ({ navigation }) => (
 				headerTitleAlign: 'center',
 				headerTintColor: 'white',
 				headerStyle: styles.headerStyle
+			}}
+		/>
+
+		<Stack.Screen
+			name="paymentOptionsScreen"
+			component={PaymentOptionsScreen}
+			options={{
+				headerLeft: () => <HeaderBackButton tintColor="white" onPress={navigation.goBack} />,
+				title: 'Ödeme Yöntemlerim',
+				headerTitleAlign: 'center',
+				headerTintColor: 'white',
+				headerStyle: styles.headerStyle,
+			}}
+		/>
+
+		<Stack.Screen
+			name="addNewCardScreen"
+			component={AddNewCardScreen}
+			options={{
+				title: 'Kart ekle',
+				headerTitleAlign: 'center',
+				headerTintColor: 'white',
+				headerStyle: styles.headerStyle,
+			}}
+		/>
+
+		<Stack.Screen
+			name="addresses"
+			component={AddressesScreen}
+			options={{
+				headerLeft: () => <HeaderBackButton tintColor="white" onPress={navigation.goBack} />,
+				title: 'Adreslerim',
+				headerTitleAlign: 'center',
+				headerTintColor: 'white',
+				headerStyle: styles.headerStyle,
+			}}
+		/>
+
+		<Stack.Screen
+			name="searchAddressScreen"
+			component={SearchAddressScreen}
+			options={{
+				title: 'Adres ara',
+				headerTitleAlign: 'center',
+				headerTintColor: 'white',
+				headerStyle: styles.headerStyle,
+			}}
+		/>
+
+		<Stack.Screen
+			name="pinAddressScreen"
+			component={PinAddressScreen}
+			options={{
+				title: 'Adres ekle',
+				headerTitleAlign: 'center',
+				headerTintColor: 'white',
+				headerStyle: styles.headerStyle,
+			}}
+		/>
+
+		<Stack.Screen
+			name="completeAddressScreen"
+			component={CompleteAddressScreen}
+			options={{
+				title: 'Adres ekle',
+				headerTitleAlign: 'center',
+				headerTintColor: 'white',
+				headerStyle: styles.headerStyle,
 			}}
 		/>
 

@@ -28,7 +28,6 @@ class AddressList extends React.PureComponent {
 			onLeftClick={() => {
 				this.props.setSelectedAddress(address._id, () => {
 					this.props.navigation.goBack()
-					this.props.stackNavigation.popToTop()
 				})
 			}}
 			onRightIconClick={() => {

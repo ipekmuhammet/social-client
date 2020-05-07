@@ -17,7 +17,7 @@ class ShadowContainer extends React.PureComponent {
 
 const styles = StyleSheet.create({
 	x: {
-		flex: 1,
+		flexGrow: 1,
 		backgroundColor: '#DFDFDF'
 	},
 	y: {
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 		shadowOpacity: 0.2,
 		shadowRadius: 24,
 		elevation: 3
-	},
+	}
 })
 
 export default ShadowContainer
