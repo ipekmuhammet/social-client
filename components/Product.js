@@ -74,13 +74,13 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 		position: 'absolute',
-		top: -2,
-		right: -2,
+		top: 1,
+		right: 1,
 		zIndex: 1,
 		borderRadius: 8,
-		borderWidth: 0.6,
-		width: RFValue(32, 600),
-		height: RFValue(32, 600),
+		borderWidth: 0.2,
+		width: RFValue(34, 600),
+		height: RFValue(34, 600),
 		borderColor: '#CDCDCD',
 		backgroundColor: 'white',
 		shadowColor: '#000',
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
 		fontSize: RFValue(23, 600)
 	},
 	productImageContainer: {
-		borderWidth: 0.4,
+		borderWidth: 0.2,
 		borderColor: '#BCBCBC',
 		borderRadius: 16,
 		backgroundColor: 'white'
@@ -105,12 +105,11 @@ const styles = StyleSheet.create({
 		margin: RFValue(6, 600)
 	},
 	productName: {
-		fontSize: RFPercentage(2.5),
-		fontWeight: '300',
-		color: '#454545',
+		fontSize: RFPercentage(2.6),
+		fontWeight: '600',
+		color: 'black',
 		textAlign: 'left',
-		justifyContent: 'center',
-		letterSpacing: 0.2
+		justifyContent: 'center'
 	},
 	kindText: {
 		fontSize: RFPercentage(2.3),
@@ -125,8 +124,7 @@ const styles = StyleSheet.create({
 		fontWeight: '700',
 		color: '#5837C2',
 		textAlign: 'left',
-		justifyContent: 'center',
-		letterSpacing: 0.2
+		justifyContent: 'center'
 	}
 })
 

@@ -30,8 +30,8 @@ const networkListener = () => {
 		store.dispatch({
 			type: SET_NETWORK_STATUS,
 			payload: {
-				networkStatus: state.isConnected,
-			},
+				networkStatus: state.isConnected
+			}
 		})
 	})
 }
@@ -65,7 +65,7 @@ export default function App(props) {
 				// Load fonts
 				// await Font.loadAsync({
 				//  ...Ionicons.font,
-				//   'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
+				//   'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf')
 				// })
 			} catch (e) {
 				console.warn(e)

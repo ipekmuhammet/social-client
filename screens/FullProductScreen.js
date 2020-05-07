@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {
-	ScrollView, View, Image, Text, StyleSheet,
+	ScrollView, View, Image, Text, StyleSheet
 } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 
@@ -55,7 +55,7 @@ class FullProductScreen extends React.PureComponent {
 
 const styles = StyleSheet.create({
 	container: {
-		justifyContent: 'space-between', flex: 1, backgroundColor: 'white', paddingVertical: 12,
+		justifyContent: 'space-between', flex: 1, backgroundColor: 'white', paddingVertical: 12
 	},
 	scrollContainer: { justifyContent: 'space-between' },
 	imageContainer: { flex: 1, alignItems: 'center', justifyContent: 'center' },
@@ -64,11 +64,11 @@ const styles = StyleSheet.create({
 	price: { fontSize: RFValue(26, 600), fontWeight: '700', color: '#5837C2' },
 	productName: { fontSize: RFValue(22, 600), textAlign: 'center' },
 	buttonContainer: {
-		position: 'absolute', bottom: 0, width: '100%', backgroundColor: 'white',
+		position: 'absolute', bottom: 0, width: '100%', backgroundColor: 'white'
 	},
 	textContainer: {
-		flex: 1, alignItems: 'center', justifyContent: 'center', display: 'flex', textAlign: 'center', margin: 4,
-	},
+		flex: 1, alignItems: 'center', justifyContent: 'center', display: 'flex', textAlign: 'center', margin: 4
+	}
 })
 
 const mapDispatchToProps = {
