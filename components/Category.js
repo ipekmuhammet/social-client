@@ -26,7 +26,7 @@ const Category = ({
 				<Image source={{ uri: imageUrl }} resizeMode="contain" style={styles.productImage} />
 			</View>
 
-			<View style={[styles.child, { paddingTop: 10 }]}>
+			<View style={[styles.child, { height: 50 }]}>
 				<Text style={styles.categoryName}>{name}</Text>
 			</View>
 
