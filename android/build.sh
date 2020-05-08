@@ -1,0 +1,1 @@
+./gradlew assembleRelease -x bundleReleaseJsAndAssets
