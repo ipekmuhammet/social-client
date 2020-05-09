@@ -146,7 +146,7 @@ class LoginScreen extends React.Component {
 
 					<View style={styles.child}>
 						<TouchableOpacity style={styles.forgotPasswordButton} onPress={this.goToForgotPassword}>
-							<Text style={styles.forgotPasswordText}>Forgot Password</Text>
+							<Text style={styles.forgotPasswordText}>Şifremi unuttum</Text>
 						</TouchableOpacity>
 					</View>
 				</View>

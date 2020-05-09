@@ -24,7 +24,7 @@ const WelcomeScreen = ({ navigation }) => (
 					navigation.navigate('Loading', { next: true })
 				}}
 			>
-				<Text style={styles.buttonText}>Continue Without Registration</Text>
+				<Text style={styles.buttonText}>Giriş yapmadan devam et</Text>
 			</TouchableOpacity>
 		</View>
 

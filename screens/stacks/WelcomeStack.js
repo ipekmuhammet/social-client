@@ -38,7 +38,7 @@ const WelcomeStack = () => (
 				title: 'Giriş yap',
 				headerTitleAlign: 'center',
 				headerTintColor: 'white',
-				headerStyle: styles.headerStyle,
+				headerStyle: styles.headerStyle
 			}}
 		/>
 
@@ -49,7 +49,7 @@ const WelcomeStack = () => (
 				title: 'Kayıt ol',
 				headerTitleAlign: 'center',
 				headerTintColor: 'white',
-				headerStyle: styles.headerStyle,
+				headerStyle: styles.headerStyle
 			}}
 		/>
 
@@ -60,7 +60,7 @@ const WelcomeStack = () => (
 				title: 'Şifremi unuttum',
 				headerTitleAlign: 'center',
 				headerTintColor: 'white',
-				headerStyle: styles.headerStyle,
+				headerStyle: styles.headerStyle
 			}}
 		/>
 
@@ -71,7 +71,7 @@ const WelcomeStack = () => (
 				title: 'Şifremi unuttum',
 				headerTitleAlign: 'center',
 				headerTintColor: 'white',
-				headerStyle: styles.headerStyle,
+				headerStyle: styles.headerStyle
 			}}
 		/>
 
@@ -82,7 +82,7 @@ const WelcomeStack = () => (
 				title: 'Aktivasyon',
 				headerTitleAlign: 'center',
 				headerTintColor: 'white',
-				headerStyle: styles.headerStyle,
+				headerStyle: styles.headerStyle
 			}}
 		/>
 	</Stack.Navigator>
@@ -91,9 +91,9 @@ const WelcomeStack = () => (
 const styles = StyleSheet.create({
 	headerStyle: { backgroundColor: '#5D3EBD' },
 	headerTitle: {
-		height: '100%', padding: RFValue(8, 600), backgroundColor: '#5D3EBD', display: 'flex',
+		height: '100%', padding: RFValue(8, 600), backgroundColor: '#5D3EBD', display: 'flex'
 	},
-	headerImage: { flex: 1 },
+	headerImage: { flex: 1 }
 })
 
 export default WelcomeStack

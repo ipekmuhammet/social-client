@@ -31,7 +31,7 @@ const Screen1 = ({ navigation, setRootNavigation }) => {
 						<View style={styles.headerTitle}>
 							<Image source={logo} resizeMode="contain" style={styles.headerImage} />
 						</View>
-					),
+					)
 				}}
 			/>
 
@@ -41,7 +41,7 @@ const Screen1 = ({ navigation, setRootNavigation }) => {
 					title: 'Ürünler',
 					headerTitleAlign: 'center',
 					headerTintColor: 'white',
-					headerStyle: styles.headerStyle,
+					headerStyle: styles.headerStyle
 				}}
 				component={ProductScreen}
 			/>
@@ -52,7 +52,7 @@ const Screen1 = ({ navigation, setRootNavigation }) => {
 					title: 'Ürün detayı',
 					headerTitleAlign: 'center',
 					headerTintColor: 'white',
-					headerStyle: styles.headerStyle,
+					headerStyle: styles.headerStyle
 				}}
 
 				component={FullProductScreen}
@@ -65,13 +65,13 @@ const Screen1 = ({ navigation, setRootNavigation }) => {
 const styles = StyleSheet.create({
 	headerStyle: { backgroundColor: '#5D3EBD' },
 	headerTitle: {
-		height: '100%', padding: RFValue(8, 600), backgroundColor: '#5D3EBD', display: 'flex',
+		height: '100%', padding: RFValue(8, 600), backgroundColor: '#5D3EBD', display: 'flex'
 	},
-	headerImage: { flex: 1 },
+	headerImage: { flex: 1 }
 })
 
 const mapDispatchToProps = {
-	setRootNavigation,
+	setRootNavigation
 }
 
 export default connect(null, mapDispatchToProps)(Screen1)
