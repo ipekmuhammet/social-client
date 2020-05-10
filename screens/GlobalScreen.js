@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Ionicons } from '@expo/vector-icons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import ConnectionPopup from '../components/popups/ConnectionPopup'
 import NeedToLoginPopup from '../components/popups/NeedToLoginPopup'
 import ClearCartPopup from '../components/popups/ClearCartPopup'

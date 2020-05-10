@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { TouchableOpacity } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import { setClearCartPopupState } from '../../actions/global-actions'
 
@@ -24,14 +24,14 @@ class HeaderRight extends React.PureComponent {
 
 const mapStateToProps = ({
 	reducer1: {
-		cart,
-	},
+		cart
+	}
 }) => ({
-	cart,
+	cart
 })
 
 const mapDispatchToProps = {
-	setClearCartPopupState,
+	setClearCartPopupState
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderRight)

@@ -3,7 +3,7 @@ import axios from 'axios'
 import {
 	ScrollView, View, TouchableOpacity, ActivityIndicator, TextInput, StyleSheet,
 } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import { SERVER_URL } from '../utils/global'
 import HeadingDivider from '../components/HeadingDivider'

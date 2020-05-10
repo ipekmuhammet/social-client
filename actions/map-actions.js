@@ -1,20 +1,20 @@
 import axios from 'axios'
-import * as Permissions from 'expo-permissions'
-import * as Location from 'expo-location'
 
 export const SET_REGION = 'SET_REGION'
 export const SET_ADDRESS = 'SET_ADDRESS'
 export const SET_REGION_BY_PLACE = 'SET_REGION_BY_PLACE'
 export const SET_CURRENT_REGION = 'SET_CURRENT_REGION'
 
-const getLocationAsync = async () => {
-	const { status } = await Permissions.askAsync(Permissions.LOCATION)
-	if (status !== 'granted') {
-		throw new Error()
-	}
-	const { coords } = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.High, enableHighAccuracy: true })
-	return coords
-}
+const getLocationAsync = () => (
+	new Promise((resolve, reject) => {
+		// eslint-disable-next-line no-undef
+		navigator.geolocation.getCurrentPosition((position) => {
+			resolve(position)
+		}, (error) => {
+			reject(error)
+		}, { enableHighAccuracy: true })
+	})
+)
 
 const getAddress = (region) => {
 	const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${region.latitude},${region.longitude}&key=AIzaSyDOKcW0tFvi_T9vFyERfUDh20IxfTfBsmA`
@@ -28,8 +28,8 @@ export const setRegion = (region) => ((dispatch) => {
 			type: SET_REGION,
 			payload: {
 				region,
-				address,
-			},
+				address
+			}
 		})
 	}).catch(() => {
 		dispatch({
@@ -42,8 +42,8 @@ export const setAddress = (address) => ((dispatch) => {
 	dispatch({
 		type: SET_ADDRESS,
 		payload: {
-			address,
-		},
+			address
+		}
 	})
 })
 
@@ -57,24 +57,24 @@ export const setRegionByPlace = (placeId, cb) => ((dispatch) => {
 				payload: {
 					region: {
 						latitude: data.result.geometry.location.lat,
-						longitude: data.result.geometry.location.lng,
-					},
-				},
+						longitude: data.result.geometry.location.lng
+					}
+				}
 			})
 			cb(data)
 		})
 })
 
 export const setCurrentRegion = (cb) => ((dispatch) => {
-	getLocationAsync().then((region) => {
+	getLocationAsync().then(({ coords }) => {
 		dispatch({
 			type: SET_CURRENT_REGION,
 			payload: {
-				region,
-			},
+				region: coords
+			}
 		})
 
-		cb(region)
+		cb(coords)
 	}).catch((err) => {
 		cb(null, err)
 	})

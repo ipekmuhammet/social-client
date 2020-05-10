@@ -2,7 +2,7 @@ import React from 'react'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { connect } from 'react-redux'
 import { View, TextInput, StyleSheet } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 const HeaderAddressInput = ({ address }) => (
 	<View style={styles.container}>
@@ -25,19 +25,25 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		borderRadius: 10,
 		margin: RFValue(18, 600),
-		paddingHorizontal: RFValue(12, 600),
+		paddingHorizontal: RFValue(12, 600)
 	},
 	input: {
-		margin: RFValue(8, 600), marginHorizontal: RFValue(4, 600), flex: 1, fontSize: RFValue(19, 600), padding: RFValue(8, 600), paddingHorizontal: RFValue(8, 600), color: '#757B8B',
-	},
+		margin: RFValue(8, 600),
+		marginHorizontal: RFValue(4, 600),
+		flex: 1,
+		fontSize: RFValue(19, 600),
+		padding: RFValue(8, 600),
+		paddingHorizontal: RFValue(8, 600),
+		color: '#757B8B'
+	}
 })
 
 const mapStateToProps = ({
 	mapReducer: {
-		address,
-	},
+		address
+	}
 }) => ({
-	address,
+	address
 })
 
 export default connect(mapStateToProps)(HeaderAddressInput)

@@ -5,7 +5,7 @@ import {
 } from 'react-native'
 import axios from 'axios'
 import { RFValue } from 'react-native-responsive-fontsize'
-import { Ionicons } from '@expo/vector-icons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import { setRegionByPlace, setCurrentRegion } from '../../actions/map-actions'
 import ShadowContainer from '../../components/ShadowContainer'
@@ -62,7 +62,10 @@ class SearchAddressScreen extends React.PureComponent {
 					flex: 1, display: 'flex', flexDirection: 'row', alignItems: 'center', marginHorizontal: 6
 				}}
 				>
-					<View style={{ flex: 1, flexDirection: 'row', marginHorizontal: 10 }}>
+					<View style={{
+						flex: 1, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginHorizontal: 10
+					}}
+					>
 						<Ionicons size={32} name="md-search" color="#5E3FBE" />
 						<TextInput
 							value={this.state.searchVal}

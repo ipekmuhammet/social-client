@@ -1,7 +1,8 @@
 import React from 'react'
-import { ScrollView, TouchableOpacity } from 'react-native'
-import { Ionicons, MaterialIcons } from '@expo/vector-icons'
 import { connect } from 'react-redux'
+import { ScrollView, TouchableOpacity } from 'react-native'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 import SettingItem from '../components/SettingItem'
 import LogoutItem from '../components/LogoutItem'

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { TouchableOpacity } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 class HeaderLeft extends React.PureComponent {
 	onBackClick = () => {
@@ -22,10 +22,10 @@ class HeaderLeft extends React.PureComponent {
 
 const mapStateToProps = ({
 	reducer1: {
-		cart,
-	},
+		cart
+	}
 }) => ({
-	cart,
+	cart
 })
 
 export default connect(mapStateToProps)(HeaderLeft)

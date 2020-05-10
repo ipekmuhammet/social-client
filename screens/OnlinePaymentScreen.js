@@ -6,7 +6,7 @@ import {
 import { connect } from 'react-redux'
 
 import FloatingInput from 'react-native-floating-labels'
-import { Ionicons } from '@expo/vector-icons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import { makeOrder } from '../actions/actions1'
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { RFValue } from 'react-native-responsive-fontsize'
 import { View, Text, StyleSheet } from 'react-native'
-import { MaterialIcons } from '@expo/vector-icons'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 const SettingItem = ({ children: icon, title, version }) => (
 	<View style={styles.container}>

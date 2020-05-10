@@ -4,7 +4,7 @@ import {
 	FlatList, View, TouchableOpacity, Text, StyleSheet,
 } from 'react-native'
 import { connect } from 'react-redux'
-import { Ionicons } from '@expo/vector-icons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import CardProduct from '../components/CardProduct'
 import CompletePayment from '../components/CompletePayment'

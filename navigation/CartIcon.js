@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { View, Text, StyleSheet } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import { RFValue } from 'react-native-responsive-fontsize'
 
 const CartIcon = ({ name, focused, cart }) => (
@@ -24,17 +24,17 @@ const CartIcon = ({ name, focused, cart }) => (
 
 const styles = StyleSheet.create({
 	badge: {
-		position: 'absolute', right: -10, top: 0, backgroundColor: 'red', borderRadius: 8, width: 16, height: 16, justifyContent: 'center', alignItems: 'center',
+		position: 'absolute', right: -10, top: 0, backgroundColor: 'red', borderRadius: 8, width: 16, height: 16, justifyContent: 'center', alignItems: 'center'
 	},
-	badgeText: { color: 'white', fontSize: RFValue(12, 600) },
+	badgeText: { color: 'white', fontSize: RFValue(12, 600) }
 })
 
 const mapStateToProps = ({
 	reducer1: {
-		cart,
-	},
+		cart
+	}
 }) => ({
-	cart,
+	cart
 })
 
 export default connect(mapStateToProps)(CartIcon)
