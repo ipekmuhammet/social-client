@@ -62,7 +62,10 @@ class SearchAddressScreen extends React.PureComponent {
 					flex: 1, display: 'flex', flexDirection: 'row', alignItems: 'center', marginHorizontal: 6
 				}}
 				>
-					<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginHorizontal: 10 }}>
+					<View style={{
+						flex: 1, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', marginHorizontal: 10
+					}}
+					>
 						<Ionicons size={32} name="md-search" color="#5E3FBE" />
 						<TextInput
 							value={this.state.searchVal}
