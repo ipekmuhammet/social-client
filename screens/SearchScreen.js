@@ -25,7 +25,14 @@ class SearchScreen extends React.PureComponent {
 			const url = `${SERVER_URL}/search-product?name=${text}`
 
 			axios.get(url).then((response) => {
-				this.setState({ products: response.data.map(({ _source }) => _source), fetch: false })
+				this.setState({
+					products: response.data.map(({ _source }) => {
+						// eslint-disable-next-line no-param-reassign
+						_source._id = _source.id
+						return _source
+					}),
+					fetch: false
+				})
 			}).catch(() => {
 				this.setState({ fetch: false })
 			})
@@ -40,7 +47,7 @@ class SearchScreen extends React.PureComponent {
 
 	renderSearchResult = () => (
 		<View style={{ flex: 1 }}>
-			<RecyclerList list={this.state.products} fromSearch />
+			<RecyclerList navigation={this.props.navigation} list={this.state.products} fromSearch />
 		</View>
 	)
 
