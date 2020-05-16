@@ -8,7 +8,7 @@ import LoadingComponent from '../components/LoadingCompenent'
 class LoadingScreen extends React.PureComponent {
 	// eslint-disable-next-line camelcase
 	UNSAFE_componentWillMount() {
-		// AsyncStorage.multiRemove('init', 'token', 'user')
+		// AsyncStorage.multiRemove(['init', 'token', 'user'])
 		AsyncStorage.getItem('init').then((init) => {
 			if (init) {
 				if (this.props.categories.length > 0) {
@@ -53,11 +53,11 @@ const mapStateToProps = ({
 }) => ({
 	token,
 	categories,
-	products,
+	products
 })
 
 const mapDispatchToProps = {
-	setInitialDatas,
+	setInitialDatas
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoadingScreen)

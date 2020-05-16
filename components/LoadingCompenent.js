@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
 	},
 	center: { alignItems: 'center', justifyContent: 'center', flexDirection: 'column' },
 	text: {
-		fontSize: RFValue(23, 600),
+		fontSize: RFValue(30, 600),
 		paddingVertical: RFValue(30, 600),
 		fontWeight: 'bold',
 		color: '#5D3EBD',
